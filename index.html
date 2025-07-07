@@ -28,7 +28,7 @@
       display: inline-block;
     }
     nav a:hover {
-      background-color: #4d494c;
+      background-color: #6a6a6a;
     }
     section {
       padding: 30px;
@@ -65,8 +65,8 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: #ffbb33;
-      color: #000;
+      background: #881414;
+      color: white;
       border: none;
       padding: 12px 16px;
       border-radius: 30px;
@@ -82,7 +82,7 @@
       right: 20px;
       width: 350px;
       max-height: 500px;
-      background: #1f1f1f;
+      background: #4d494c;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
@@ -107,13 +107,13 @@
     }
     #chat-header {
       padding: 10px;
-      background: #222;
+      background: #881414;
       font-weight: bold;
       text-align: center;
       color: white;
     }
     #users-list {
-      background: #2d2d2d;
+      background: #5a5a5a;
       padding: 10px;
       font-size: 0.85rem;
       max-height: 80px;
@@ -123,21 +123,21 @@
       flex: 1;
       overflow-y: auto;
       padding: 10px;
-      background: #1f1f1f;
+      background: #fff;
+      color: black;
     }
     .message {
       margin-bottom: 10px;
       word-wrap: break-word;
-      color: white;
     }
     .message .time {
       font-size: 0.75rem;
-      color: #aaa;
+      color: #555;
     }
     #chat-form {
       display: flex;
       padding: 10px;
-      background: #2a2a2a;
+      background: #e0e0e0;
     }
     #message-input {
       flex: 1;
@@ -146,7 +146,8 @@
       border-radius: 5px;
     }
     #send-btn {
-      background: #ffbb33;
+      background: #881414;
+      color: white;
       border: none;
       padding: 8px 12px;
       margin-left: 8px;
@@ -157,7 +158,6 @@
 </head>
 <body>
 
-<!-- Contenido principal -->
 <header>
   <h1>Los Cabos Motors</h1>
   <p>Autos en venta y rifas exclusivas</p>
@@ -172,12 +172,30 @@
 <section id="venta">
   <h2>Autos en Venta</h2>
   <div class="autos">
-    <!-- Ejemplo auto -->
     <div class="card">
       <img src="Images/Mustang2016.jpg" alt="Auto 1">
       <h3>Ford Mustang 2016</h3>
-      <p>$240,000 MXN</p>
-      <p>Tel: 6241091503</p>
+      <p>$240.000 MXN</p>
+      <h3>6241091503</h3>
+    </div>
+    <div class="card">
+      <img src="Images/Xtrail2020.jpg" alt="Auto 2">
+      <h3>Nissan Xtrail 2020 Sense 2 Row</h3>
+      <p>$350,000 MXN</p>
+      <h3>6241181978</h3>
+    </div>
+  </div>
+</section>
+
+<section id="rifas">
+  <h2>Rifas Actuales</h2>
+  <div class="rifas">
+    <div class="card">
+      <img src="Images/Batcabo.jpg" alt="Auto de Rifa">
+      <h3>Rifa Mustang Cyclone (Pausada)</h3>
+      <p>Boletos desde $125 MXN</p>
+      <p>Fecha del sorteo: 30 Octubre 2025</p>
+      <button>Comprar Boleto</button>
     </div>
   </div>
 </section>
@@ -185,19 +203,18 @@
 <section id="contacto">
   <h2>Contacto</h2>
   <p style="text-align:center;">Tel: 624-118-1978 | Email: LosCabosMotors@gmail.com</p>
-  <p style="text-align:center;">Dirección: Los Cabos, BCS</p>
+  <p style="text-align:center;">Dirección:  Los Cabos, BCS</p>
 </section>
 
 <footer>
   <p>&copy; 2025 Los Cabos Motors - Todos los derechos reservados</p>
 </footer>
 
-<!-- BOTÓN Y CAJA DE CHAT -->
+<!-- CHAT BUTTON & BOX -->
 <button class="chat-toggle" onclick="toggleChat()">💬 Chat</button>
-
 <div id="chat-box">
   <div id="login-screen">
-    <h3 style="color:white; text-align:center;">Ingresa tu nombre</h3>
+    <h3 style="padding:10px;">Ingresa tu nombre</h3>
     <input type="text" id="name-input" placeholder="Tu nombre">
     <button onclick="enterChat()">Entrar</button>
   </div>
@@ -212,10 +229,8 @@
   </div>
 </div>
 
-<!-- FIREBASE SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
-
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
@@ -226,27 +241,20 @@
     messagingSenderId: "312586924965",
     appId: "1:312586924965:web:ae4868021f68728e74ae4c"
   };
-  firebase.initializeApp(firebaseConfig);
+  const app = firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
   const usersRef = db.ref("users");
   const messagesRef = db.ref("messages");
-
   let username = "";
   const userId = crypto.randomUUID();
 
   function toggleChat() {
     const chatBox = document.getElementById("chat-box");
-    const loginScreen = document.getElementById("login-screen");
-    const chatScreen = document.getElementById("chat-screen");
-
-    chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none";
-
-    if (username) {
-      loginScreen.style.display = "none";
-      chatScreen.style.display = "flex";
+    chatBox.style.display = chatBox.style.display === "flex" ? "none" : "flex";
+    if (username === "") {
+      document.getElementById("login-screen").style.display = "flex";
     } else {
-      loginScreen.style.display = "flex";
-      chatScreen.style.display = "none";
+      document.getElementById("chat-screen").style.display = "flex";
     }
   }
 
@@ -254,10 +262,8 @@
     const input = document.getElementById("name-input");
     username = input.value.trim();
     if (!username) return;
-
     document.getElementById("login-screen").style.display = "none";
     document.getElementById("chat-screen").style.display = "flex";
-
     usersRef.child(userId).set({ name: username });
     usersRef.child(userId).onDisconnect().remove();
   }
@@ -282,12 +288,7 @@
   }
 
   function formatEmojis(text) {
-    return text
-      .replace(/:\)/g, '😊')
-      .replace(/:\(/g, '😢')
-      .replace(/:D/g, '😄')
-      .replace(/<3/g, '❤️')
-      .replace(/:p/g, '😜');
+    return text.replace(/:\)/g, '😊').replace(/:\(/g, '😢').replace(/:D/g, '😄').replace(/<3/g, '❤️').replace(/:p/g, '😜');
   }
 
   document.getElementById("chat-form").addEventListener("submit", function(e) {
