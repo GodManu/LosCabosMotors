@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Los Cabos Motors</title>
+  <style>
+    body {
+      font-family: Arial , sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #bebebe;
+    }
+    header {
+      background-color: #881414;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    nav {
+      background-color: #4d494c;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      display: inline-block;
+    }
+    nav a:hover {
+      background-color: #4d494c;
+    }
+    section {
+      padding: 30px;
+    }
+    .autos, .rifas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: #881414;
+      border-radius: 10px;
+      box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+      width: 300px;
+      padding: 15px;
+      text-align: center;
+      color: white
+    }
+    .card img {
+      width: 94%;
+      border-radius: 25px;
+    }
+    footer {
+      background-color: #4d494c;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Los Cabos Motors</h1>
+  <p>Autos en venta y rifas exclusivas</p>
+</header>
+
+<nav>
+  <a href="#venta">Venta de Autos</a>
+  <a href="#rifas">Rifas</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<section id="venta">
+  <h2>Autos en Venta</h2>
+  <div class="autos">
+    <div class="card">
+      <img src="https://github.com/GodManu/LosCabosMotors/blob/main/Mustang2016.jpg" alt="Auto 1">
+      <h3>Ford Mustang 2016</h3>
+      <p>$240.000 MXN</p>
+    </div>
+    <div class="card">
+      <img src="https://github.com/GodManu/LosCabosMotors/blob/main/Xtrail2020.jpg" alt="Auto 2">
+      <h3>Nissan Xtrail 2020 Sense 2 Row</h3>
+      <p>$350,000 MXN</p>
+    </div>
+    <!-- Puedes agregar más autos aquí -->
+  </div>
+</section>
+
+<section id="rifas">
+  <h2>Rifas Actuales</h2>
+  <div class="rifas">
+    <div class="card">
+      <img src="Images/Batcabo.jpg" alt="Auto de Rif">
+      <h3>Rifa Mustang Cyclone</h3>
+      <p>Boletos desde $150 MXN</p>
+      <p>Fecha del sorteo: 30 Octubre 2025</p>
+      <button>Comprar Boleto</button>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <p style="text-align:center;">Tel: 624-118-1978 | Email: LosCabosMotors@gmail.com</p>
+  <p style="text-align:center;">Dirección: Blvd. Forjadores, Cabo San Lucas, BCS</p>
+</section>
+
+<footer>
+  <p>&copy; 2025 Los Cabos Motors - Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>
