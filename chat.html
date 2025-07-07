@@ -3,102 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Los Cabos Motors Chat</title>
+  <title>Chat Público - Los Cabos Motors</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-  color: #f0f0f0;
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
-  min-height: 100vh;
-}
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      color: #f0f0f0;
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      min-height: 100vh;
+    }
 
-header {
-  width: 100%;
-  background-color: rgba(26, 42, 108, 0.8);
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: white;
-  text-shadow: 0 0 5px #000;
-}
+    header {
+      width: 100%;
+      background-color: rgba(26, 42, 108, 0.8);
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: white;
+      text-shadow: 0 0 5px #000;
+    }
 
-#chat-container {
-  width: 90%;
-  max-width: 600px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  margin: 2rem 0;
-  padding: 1rem;
-  box-shadow: 0 0 20px rgba(26, 42, 108, 0.6);
-  display: flex;
-  flex-direction: column;
-}
+    #chat-container {
+      width: 90%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      margin: 2rem 0;
+      padding: 1rem;
+      box-shadow: 0 0 20px rgba(26, 42, 108, 0.6);
+      display: flex;
+      flex-direction: column;
+    }
 
-#messages {
-  height: 400px;
-  overflow-y: auto;
-  border-radius: 10px;
-  padding: 10px;
-  background: rgba(10, 25, 80, 0.8);
-  margin-bottom: 1rem;
-}
+    #messages {
+      height: 400px;
+      overflow-y: auto;
+      border-radius: 10px;
+      padding: 10px;
+      background: rgba(10, 25, 80, 0.8);
+      margin-bottom: 1rem;
+    }
 
-.message {
-  padding: 8px 12px;
-  margin: 6px 0;
-  border-radius: 10px;
-  max-width: 80%;
-  word-wrap: break-word;
-}
+    .message {
+      padding: 8px 12px;
+      margin: 6px 0;
+      border-radius: 10px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
 
-.me {
-  background: #1939b7;
-  align-self: flex-end;
-  color: #e0e0ff;
-}
+    .me {
+      background: #1939b7;
+      align-self: flex-end;
+      color: #e0e0ff;
+    }
 
-.other {
-  background: #2f3d91;
-  align-self: flex-start;
-  color: #c0c0ff;
-}
+    .other {
+      background: #2f3d91;
+      align-self: flex-start;
+      color: #c0c0ff;
+    }
 
-#chat-form {
-  display: flex;
-}
+    #chat-form {
+      display: flex;
+    }
 
-#message-input {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 8px 0 0 8px;
-  font-size: 1rem;
-}
+    #message-input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      font-size: 1rem;
+    }
 
-#send-btn {
-  background-color: #1939b7;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 0 8px 8px 0;
-  font-size: 1rem;
-  cursor: pointer;
-}
+    #send-btn {
+      background-color: #1939b7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 0 8px 8px 0;
+      font-size: 1rem;
+      cursor: pointer;
+    }
 
-#send-btn:hover {
-  background-color: #0f2675;
-}
+    #send-btn:hover {
+      background-color: #0f2675;
+    }
   </style>
 </head>
 <body>
-  <header>💬 Chat Público - Los Cabos Motors</header>
+  <header>🚘 Chat Oficial - Los Cabos Motors</header>
 
   <div id="chat-container">
     <div id="messages"></div>
@@ -108,76 +108,65 @@ header {
     </form>
   </div>
 
-  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
 
-<script>
-  // Configuración Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
-    authDomain: "chatloscabosmotors.firebaseapp.com",
-    databaseURL: "https://chatloscabosmotors-default-rtdb.firebaseio.com",
-    projectId: "chatloscabosmotors",
-    storageBucket: "chatloscabosmotors.firebasestorage.app",
-    messagingSenderId: "312586924965",
-    appId: "1:312586924965:web:ae4868021f68728e74ae4c"
-  };
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
+      authDomain: "chatloscabosmotors.firebaseapp.com",
+      databaseURL: "https://chatloscabosmotors-default-rtdb.firebaseio.com",
+      projectId: "chatloscabosmotors",
+      storageBucket: "chatloscabosmotors.firebasestorage.app",
+      messagingSenderId: "312586924965",
+      appId: "1:312586924965:web:ae4868021f68728e74ae4c"
+    };
 
-  // Inicializar Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-  // Pedir nombre usuario
-  let username = prompt("Ingresa tu nombre o apodo:");
-  if (!username) username = "Invitado";
+    let username = prompt("Ingresa tu nombre o apodo:");
+    if (!username) username = "Invitado";
+    const userId = crypto.randomUUID(); // ID único para este visitante
 
-  const messagesRef = db.ref("messages");
+    const messagesRef = db.ref("messages");
 
-  // Referencias DOM
-  const messagesDiv = document.getElementById("messages");
-  const chatForm = document.getElementById("chat-form");
-  const messageInput = document.getElementById("message-input");
+    const messagesDiv = document.getElementById("messages");
+    const chatForm = document.getElementById("chat-form");
+    const messageInput = document.getElementById("message-input");
 
-  // Función para agregar mensaje a pantalla
-  function addMessageToScreen(msg, isMe) {
-    const msgDiv = document.createElement("div");
-    msgDiv.classList.add("message");
-    msgDiv.classList.add(isMe ? "me" : "other");
-    msgDiv.textContent = `${msg.name}: ${msg.text}`;
-    messagesDiv.appendChild(msgDiv);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  }
+    function addMessageToScreen(msg, isMe) {
+      const msgDiv = document.createElement("div");
+      msgDiv.classList.add("message");
+      msgDiv.classList.add(isMe ? "me" : "other");
+      msgDiv.textContent = `${msg.name}: ${msg.text}`;
+      messagesDiv.appendChild(msgDiv);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
 
-  // Enviar mensaje
-  chatForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const message = messageInput.value.trim();
-    if (message === "") return;
+    chatForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      if (message === "") return;
 
-    // Mostrar mensaje al instante
-    addMessageToScreen({name: username, text: message}, true);
+      addMessageToScreen({ name: username, text: message }, true);
 
-    // Guardar mensaje en Firebase
-    messagesRef.push({
-      name: username,
-      text: message,
-      time: Date.now()
+      messagesRef.push({
+        name: username,
+        text: message,
+        userId: userId,
+        time: Date.now()
+      });
+
+      messageInput.value = "";
     });
 
-    // Limpiar input
-    messageInput.value = "";
-  });
-
-  // Escuchar nuevos mensajes en Firebase
-  messagesRef.limitToLast(100).on("child_added", (snapshot) => {
-    const msg = snapshot.val();
-    // Mostrar mensaje solo si no es del usuario actual (ya lo mostramos instant)
-    if (msg.name !== username) {
-      addMessageToScreen(msg, false);
-    }
-  });
-</script>
-
+    messagesRef.limitToLast(100).on("child_added", (snapshot) => {
+      const msg = snapshot.val();
+      if (msg.userId !== userId) {
+        addMessageToScreen(msg, false);
+      }
+    });
+  </script>
 </body>
 </html>
