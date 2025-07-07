@@ -108,4 +108,74 @@
     </form>
   </div>
 
-  <script src="https:
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
+
+  <script>
+    // Configuración Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
+      authDomain: "chatloscabosmotors.firebaseapp.com",
+      databaseURL: "https://chatloscabosmotors-default-rtdb.firebaseio.com",
+      projectId: "chatloscabosmotors",
+      storageBucket: "chatloscabosmotors.firebasestorage.app",
+      messagingSenderId: "312586924965",
+      appId: "1:312586924965:web:ae4868021f68728e74ae4c"
+    };
+
+    // Inicializar Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // Pedir nombre y crear ID único
+    let username = prompt("Ingresa tu nombre o apodo:");
+    if (!username) username = "Invitado";
+    const userId = 'uid-' + Math.random().toString(36).substring(2, 15);
+
+    const messagesRef = db.ref("messages");
+
+    const messagesDiv = document.getElementById("messages");
+    const chatForm = document.getElementById("chat-form");
+    const messageInput = document.getElementById("message-input");
+
+    // Agregar mensaje a pantalla
+    function addMessageToScreen(msg, isMe) {
+      if (!msg || !msg.name || !msg.text) return;
+      const msgDiv = document.createElement("div");
+      msgDiv.classList.add("message");
+      msgDiv.classList.add(isMe ? "me" : "other");
+      msgDiv.textContent = `${msg.name}: ${msg.text}`;
+      messagesDiv.appendChild(msgDiv);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    // Enviar mensaje
+    chatForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      if (message === "") return;
+
+      addMessageToScreen({ name: username, text: message }, true);
+
+      messagesRef.push({
+        name: username,
+        text: message,
+        userId: userId,
+        time: Date.now()
+      });
+
+      messageInput.value = "";
+      messageInput.focus();
+    });
+
+    // Escuchar nuevos mensajes
+    messagesRef.limitToLast(100).on("child_added", (snapshot) => {
+      const msg = snapshot.val();
+      if (msg && msg.userId && msg.userId !== userId) {
+        addMessageToScreen(msg, false);
+      }
+    });
+  </script>
+</body>
+</html>
