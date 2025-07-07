@@ -212,7 +212,7 @@
 
 <!-- CHAT BUTTON & BOX -->
 <button class="chat-toggle" onclick="toggleChat()">💬 Chat</button>
-<div id="chat-box">
+<div id="chat-box" style="display:none; flex-direction: column; position: fixed; bottom: 80px; right: 20px; width: 350px; max-height: 500px; background: #1f1f1f; border-radius: 10px; overflow: hidden; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
   <div id="login-screen">
     <h3 style="padding:10px;">Ingresa tu nombre</h3>
     <input type="text" id="name-input" placeholder="Tu nombre">
@@ -249,14 +249,10 @@
   const userId = crypto.randomUUID();
 
   function toggleChat() {
-    const chatBox = document.getElementById("chat-box");
-    chatBox.style.display = chatBox.style.display === "flex" ? "none" : "flex";
-    if (username === "") {
-      document.getElementById("login-screen").style.display = "flex";
-    } else {
-      document.getElementById("chat-screen").style.display = "flex";
-    }
-  }
+  const chatBox = document.getElementById("chat-box");
+  const isHidden = chatBox.style.display === "none" || chatBox.style.display === "";
+  chatBox.style.display = isHidden ? "flex" : "none";
+}
 
   function enterChat() {
     const input = document.getElementById("name-input");
