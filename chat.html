@@ -3,94 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chat Público - Los Cabos Motors</title>
+  <title>Los Cabos Motors Chat</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0;
-      min-height: 100vh;
-    }
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+  color: #f0f0f0;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  min-height: 100vh;
+}
 
-    header {
-      width: 100%;
-      background-color: rgba(255, 0, 100, 0.7);
-      padding: 1rem;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
+header {
+  width: 100%;
+  background-color: rgba(26, 42, 108, 0.8);
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: white;
+  text-shadow: 0 0 5px #000;
+}
 
-    #chat-container {
-      width: 90%;
-      max-width: 600px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      margin: 2rem 0;
-      padding: 1rem;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-    }
+#chat-container {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  margin: 2rem 0;
+  padding: 1rem;
+  box-shadow: 0 0 20px rgba(26, 42, 108, 0.6);
+  display: flex;
+  flex-direction: column;
+}
 
-    #messages {
-      height: 400px;
-      overflow-y: auto;
-      border-radius: 10px;
-      padding: 10px;
-      background: rgba(0, 0, 0, 0.3);
-      margin-bottom: 1rem;
-    }
+#messages {
+  height: 400px;
+  overflow-y: auto;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(10, 25, 80, 0.8);
+  margin-bottom: 1rem;
+}
 
-    .message {
-      padding: 8px 12px;
-      margin: 6px 0;
-      border-radius: 10px;
-      max-width: 80%;
-      word-wrap: break-word;
-    }
+.message {
+  padding: 8px 12px;
+  margin: 6px 0;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
 
-    .me {
-      background: #ff4f7b;
-      align-self: flex-end;
-    }
+.me {
+  background: #1939b7;
+  align-self: flex-end;
+  color: #e0e0ff;
+}
 
-    .other {
-      background: #444;
-      align-self: flex-start;
-    }
+.other {
+  background: #2f3d91;
+  align-self: flex-start;
+  color: #c0c0ff;
+}
 
-    #chat-form {
-      display: flex;
-    }
+#chat-form {
+  display: flex;
+}
 
-    #message-input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      border-radius: 8px 0 0 8px;
-      font-size: 1rem;
-    }
+#message-input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+}
 
-    #send-btn {
-      background-color: #ff4f7b;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 0 8px 8px 0;
-      font-size: 1rem;
-      cursor: pointer;
-    }
+#send-btn {
+  background-color: #1939b7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 8px 8px 0;
+  font-size: 1rem;
+  cursor: pointer;
+}
 
-    #send-btn:hover {
-      background-color: #ff3366;
-    }
+#send-btn:hover {
+  background-color: #0f2675;
+}
   </style>
 </head>
 <body>
@@ -129,29 +133,44 @@
     const messagesRef = db.ref("messages");
 
     // Enviar mensaje
-    document.getElementById("chat-form").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const message = document.getElementById("message-input").value;
-      if (message.trim() !== "") {
-        messagesRef.push({
-          name: username,
-          text: message,
-          time: Date.now()
-        });
-        document.getElementById("message-input").value = "";
-      }
+   document.getElementById("chat-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const messageInput = document.getElementById("message-input");
+  const message = messageInput.value.trim();
+  if (message !== "") {
+    // Mostrar instantáneamente
+    addMessageToScreen({name: username, text: message}, true);
+
+    // Guardar en Firebase
+    messagesRef.push({
+      name: username,
+      text: message,
+      time: Date.now()
     });
+
+    messageInput.value = "";
+  }
+});
+
+// Función para agregar mensaje a la pantalla
+function addMessageToScreen(msg, isMe) {
+  const msgDiv = document.createElement("div");
+  msgDiv.classList.add("message");
+  msgDiv.classList.add(isMe ? "me" : "other");
+  msgDiv.textContent = `${msg.name}: ${msg.text}`;
+  document.getElementById("messages").appendChild(msgDiv);
+  document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+}
 
     // Mostrar mensajes
     messagesRef.limitToLast(100).on("child_added", (data) => {
-      const msg = data.val();
-      const msgDiv = document.createElement("div");
-      msgDiv.classList.add("message");
-      msgDiv.classList.add(msg.name === username ? "me" : "other");
-      msgDiv.textContent = `${msg.name}: ${msg.text}`;
-      document.getElementById("messages").appendChild(msgDiv);
-      document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
-    });
+  const msg = data.val();
+  // Solo mostrar si no es el mensaje que acabamos de mostrar
+  if (msg.name !== username) {
+    addMessageToScreen(msg, false);
+  }
+});
+
   </script>
 </body>
 </html>
