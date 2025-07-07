@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Público - Los Cabos Motors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      background-color: rgba(255, 0, 100, 0.7);
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    #chat-container {
+      width: 90%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      margin: 2rem 0;
+      padding: 1rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+    }
+
+    #messages {
+      height: 400px;
+      overflow-y: auto;
+      border-radius: 10px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      margin-bottom: 1rem;
+    }
+
+    .message {
+      padding: 8px 12px;
+      margin: 6px 0;
+      border-radius: 10px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .me {
+      background: #ff4f7b;
+      align-self: flex-end;
+    }
+
+    .other {
+      background: #444;
+      align-self: flex-start;
+    }
+
+    #chat-form {
+      display: flex;
+    }
+
+    #message-input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      font-size: 1rem;
+    }
+
+    #send-btn {
+      background-color: #ff4f7b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 0 8px 8px 0;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    #send-btn:hover {
+      background-color: #ff3366;
+    }
+  </style>
+</head>
+<body>
+  <header>💬 Chat Público - Los Cabos Motors</header>
+
+  <div id="chat-container">
+    <div id="messages"></div>
+    <form id="chat-form">
+      <input type="text" id="message-input" placeholder="Escribe tu mensaje..." required />
+      <button type="submit" id="send-btn">Enviar</button>
+    </form>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
+      authDomain: "chatloscabosmotors.firebaseapp.com",
+      databaseURL: "https://chatloscabosmotors-default-rtdb.firebaseio.com",
+      projectId: "chatloscabosmotors",
+      storageBucket: "chatloscabosmotors.firebasestorage.app",
+      messagingSenderId: "312586924965",
+      appId: "1:312586924965:web:ae4868021f68728e74ae4c"
+    };
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    let username = prompt("Ingresa tu nombre o apodo:");
+    if (!username) username = "Invitado";
+
+    const messagesRef = db.ref("messages");
+
+    // Enviar mensaje
+    document.getElementById("chat-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const message = document.getElementById("message-input").value;
+      if (message.trim() !== "") {
+        messagesRef.push({
+          name: username,
+          text: message,
+          time: Date.now()
+        });
+        document.getElementById("message-input").value = "";
+      }
+    });
+
+    // Mostrar mensajes
+    messagesRef.limitToLast(100).on("child_added", (data) => {
+      const msg = data.val();
+      const msgDiv = document.createElement("div");
+      msgDiv.classList.add("message");
+      msgDiv.classList.add(msg.name === username ? "me" : "other");
+      msgDiv.textContent = `${msg.name}: ${msg.text}`;
+      document.getElementById("messages").appendChild(msgDiv);
+      document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+    });
+  </script>
+</body>
+</html>
