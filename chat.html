@@ -110,67 +110,74 @@ header {
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
-      authDomain: "chatloscabosmotors.firebaseapp.com",
-      databaseURL: "https://chatloscabosmotors-default-rtdb.firebaseio.com",
-      projectId: "chatloscabosmotors",
-      storageBucket: "chatloscabosmotors.firebasestorage.app",
-      messagingSenderId: "312586924965",
-      appId: "1:312586924965:web:ae4868021f68728e74ae4c"
-    };
+<script>
+  // Configuración Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
+    authDomain: "chatloscabosmotors.firebaseapp.com",
+    databaseURL: "https://chatloscabosmotors-default-rtdb.firebaseio.com",
+    projectId: "chatloscabosmotors",
+    storageBucket: "chatloscabosmotors.firebasestorage.app",
+    messagingSenderId: "312586924965",
+    appId: "1:312586924965:web:ae4868021f68728e74ae4c"
+  };
 
-    // Inicializar Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+  // Inicializar Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
 
-    let username = prompt("Ingresa tu nombre o apodo:");
-    if (!username) username = "Invitado";
+  // Pedir nombre usuario
+  let username = prompt("Ingresa tu nombre o apodo:");
+  if (!username) username = "Invitado";
 
-    const messagesRef = db.ref("messages");
+  const messagesRef = db.ref("messages");
 
-    // Enviar mensaje
-   document.getElementById("chat-form").addEventListener("submit", (e) => {
-  e.preventDefault();
+  // Referencias DOM
+  const messagesDiv = document.getElementById("messages");
+  const chatForm = document.getElementById("chat-form");
   const messageInput = document.getElementById("message-input");
-  const message = messageInput.value.trim();
-  if (message !== "") {
-    // Mostrar instantáneamente
+
+  // Función para agregar mensaje a pantalla
+  function addMessageToScreen(msg, isMe) {
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add("message");
+    msgDiv.classList.add(isMe ? "me" : "other");
+    msgDiv.textContent = `${msg.name}: ${msg.text}`;
+    messagesDiv.appendChild(msgDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  // Enviar mensaje
+  chatForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const message = messageInput.value.trim();
+    if (message === "") return;
+
+    // Mostrar mensaje al instante
     addMessageToScreen({name: username, text: message}, true);
 
-    // Guardar en Firebase
+    // Guardar mensaje en Firebase
     messagesRef.push({
       name: username,
       text: message,
       time: Date.now()
     });
 
+    // Limpiar input
     messageInput.value = "";
-  }
-});
+  });
 
-// Función para agregar mensaje a la pantalla
-function addMessageToScreen(msg, isMe) {
-  const msgDiv = document.createElement("div");
-  msgDiv.classList.add("message");
-  msgDiv.classList.add(isMe ? "me" : "other");
-  msgDiv.textContent = `${msg.name}: ${msg.text}`;
-  document.getElementById("messages").appendChild(msgDiv);
-  document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
-}
+  // Escuchar nuevos mensajes en Firebase
+  messagesRef.limitToLast(100).on("child_added", (snapshot) => {
+    const msg = snapshot.val();
+    // Mostrar mensaje solo si no es del usuario actual (ya lo mostramos instant)
+    if (msg.name !== username) {
+      addMessageToScreen(msg, false);
+    }
+  });
+</script>
 
-    // Mostrar mensajes
-    messagesRef.limitToLast(100).on("child_added", (data) => {
-  const msg = data.val();
-  // Solo mostrar si no es el mensaje que acabamos de mostrar
-  if (msg.name !== username) {
-    addMessageToScreen(msg, false);
-  }
-});
-
-  </script>
 </body>
 </html>
