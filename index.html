@@ -248,8 +248,12 @@
 
   function toggleChat() {
   const chatBox = document.getElementById("chat-box");
-  const isHidden = chatBox.style.display === "none" || chatBox.style.display === "";
-  chatBox.style.display = isHidden ? "flex" : "none";
+  const isVisible = chatBox.style.display === "flex";
+  if (isVisible) {
+    chatBox.style.display = "none";
+  } else {
+    chatBox.style.display = "flex";
+  }
 }
 
   function enterChat() {
