@@ -239,7 +239,7 @@
     messagingSenderId: "312586924965",
     appId: "1:312586924965:web:ae4868021f68728e74ae4c"
   };
-  const app = firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
   const usersRef = db.ref("users");
   const messagesRef = db.ref("messages");
