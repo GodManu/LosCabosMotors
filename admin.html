@@ -122,26 +122,28 @@
   }
 
   // Cargar boletos
-  function cargarDatos() {
-    const cont = document.getElementById("contenido");
-    db.ref("boletosApartados").on("value", (snapshot) => {
-      cont.innerHTML = "";
-      const data = snapshot.val();
-      for (const key in data) {
-        const item = data[key];
-        const fila = document.createElement("tr");
-        fila.innerHTML = `
-          <td>${item.nombre} ${item.apellido || ""}</td>
-          <td>${item.telefono}</td>
-          <td>${item.ciudad}</td>
-          <td>${item.estado}</td>
-          <td>${(item.boletos || []).map(n => String(n).padStart(5, '0')).join(", ")}</td>
-          <td>${new Date(item.fecha).toLocaleString()}</td>
-        `;
-        cont.appendChild(fila);
-      }
-    });
-  }
+  // Reemplaza esta parte en tu script:
+function cargarDatos() {
+  const cont = document.getElementById("contenido");
+  db.ref("boletos").on("value", (snapshot) => {
+    cont.innerHTML = "";
+    const data = snapshot.val();
+    for (const key in data) {
+      const item = data[key];
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td>${item.nombre} ${item.apellido || ""}</td>
+        <td>${item.telefono}</td>
+        <td>${item.ciudad}</td>
+        <td>${item.estado}</td>
+        <td>${(item.boletos || []).map(n => String(n).padStart(5, '0')).join(", ")}</td>
+        <td>${item.fecha ? new Date(item.fecha).toLocaleString() : "Sin fecha"}</td>
+      `;
+      cont.appendChild(fila);
+    }
+  });
+}
+
 
   // Proteger acceso si no hay sesión
   auth.onAuthStateChanged(user => {
