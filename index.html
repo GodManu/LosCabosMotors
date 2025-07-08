@@ -6,7 +6,7 @@
   <title>Los Cabos Motors</title>
   <style>
     body {
-      font-family: Arial , sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       background-color: #bebebe;
@@ -28,7 +28,7 @@
       display: inline-block;
     }
     nav a:hover {
-      background-color: #4d494c;
+      background-color: #3c3c3c;
     }
     section {
       padding: 30px;
@@ -46,7 +46,7 @@
       width: 300px;
       padding: 15px;
       text-align: center;
-      color: white
+      color: white;
     }
     .card img {
       width: 100%;
@@ -58,6 +58,110 @@
       text-align: center;
       padding: 20px 0;
       margin-top: 30px;
+    }
+
+    /* CHAT STYLES */
+    .chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffbb33;
+      color: #000;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    #chat-box {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 350px;
+      max-height: 500px;
+      background: #1f1f1f;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    #login-screen, #chat-screen {
+      display: none;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    #login-screen {
+      padding: 20px;
+    }
+
+    #login-screen input {
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: none;
+      width: 100%;
+    }
+
+    #chat-header {
+      padding: 10px;
+      background: #222;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    #users-list {
+      background: #2d2d2d;
+      padding: 10px;
+      font-size: 0.85rem;
+      max-height: 80px;
+      overflow-y: auto;
+    }
+
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      background: #141414;
+    }
+
+    .message {
+      margin-bottom: 10px;
+      word-wrap: break-word;
+    }
+
+    .message .time {
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+
+    #chat-form {
+      display: flex;
+      padding: 10px;
+      background: #2a2a2a;
+    }
+
+    #message-input {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #send-btn {
+      background: #ffbb33;
+      border: none;
+      padding: 8px 12px;
+      margin-left: 8px;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -80,7 +184,7 @@
     <div class="card">
       <img src="Images/Mustang2016.jpg" alt="Auto 1">
       <h3>Ford Mustang 2016</h3>
-      <p>$240.000 MXN</p>
+      <p>$240,000 MXN</p>
       <h3>6241091503</h3>
     </div>
     <div class="card">
@@ -115,28 +219,28 @@
   <p>&copy; 2025 Los Cabos Motors - Todos los derechos reservados</p>
 </footer>
 
-<!-- BOTÓN DE CHAT -->
+<!-- BOTÓN DEL CHAT -->
 <button class="chat-toggle" onclick="toggleChat()">💬 Chat</button>
 
 <!-- CAJA DE CHAT -->
-<div id="chat-box" style="display:none">
-  <div id="login-screen" style="padding: 15px;">
-    <h3>Ingresa tu nombre</h3>
+<div id="chat-box">
+  <div id="login-screen">
+    <h3 style="text-align:center;">Ingresa tu nombre</h3>
     <input type="text" id="name-input" placeholder="Tu nombre">
-    <button onclick="enterChat()">Entrar</button>
+    <button onclick="enterChat()">Entrar al chat</button>
   </div>
-  <div id="chat-screen" style="display:none; flex-direction: column; height: 400px;">
+  <div id="chat-screen">
     <div id="chat-header">🚘 Chat - Los Cabos Motors</div>
-    <div id="users-list" style="padding: 5px; font-size: 0.9rem;"></div>
-    <div id="messages" style="flex: 1; overflow-y: auto; padding: 10px;"></div>
-    <form id="chat-form" style="display:flex; padding:10px;">
-      <input type="text" id="message-input" placeholder="Escribe un mensaje..." style="flex:1; padding:5px;">
+    <div id="users-list"></div>
+    <div id="messages"></div>
+    <form id="chat-form">
+      <input type="text" id="message-input" placeholder="Escribe un mensaje...">
       <button type="submit" id="send-btn">Enviar</button>
     </form>
   </div>
 </div>
 
-<!-- FIREBASE SDK v8 -->
+<!-- FIREBASE SCRIPTS (v8) -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
@@ -156,11 +260,20 @@
   const messagesRef = db.ref("messages");
 
   let username = "";
-  const userId = Math.random().toString(36).substring(2);
+  const userId = Math.random().toString(36).substring(2, 15);
 
   function toggleChat() {
     const chatBox = document.getElementById("chat-box");
-    chatBox.style.display = chatBox.style.display === "flex" ? "none" : "flex";
+    const login = document.getElementById("login-screen");
+    const chat = document.getElementById("chat-screen");
+
+    if (chatBox.style.display === "flex") {
+      chatBox.style.display = "none";
+    } else {
+      chatBox.style.display = "flex";
+      login.style.display = "flex";
+      chat.style.display = "none";
+    }
   }
 
   function enterChat() {
@@ -173,30 +286,6 @@
 
     usersRef.child(userId).set({ name: username });
     usersRef.child(userId).onDisconnect().remove();
-
-    messagesRef.limitToLast(100).on("child_added", (snapshot) => {
-      const msg = snapshot.val();
-      addMessageToScreen(msg, msg.name === username);
-    });
-
-    usersRef.on("value", (snapshot) => {
-      const users = snapshot.val();
-      let list = '<strong>Conectados:</strong><br>';
-      for (const key in users) {
-        list += `<span style="color:${stringToColor(users[key].name)}">${users[key].name}</span><br>`;
-      }
-      document.getElementById("users-list").innerHTML = list;
-    });
-  }
-
-  function addMessageToScreen(data, isMe) {
-    const div = document.createElement("div");
-    div.className = "message";
-    const color = stringToColor(data.name);
-    const time = new Date(data.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    div.innerHTML = `<strong style="color:${color}">${data.name}</strong>: ${formatEmojis(data.text)}<div style="font-size:0.8em; color:#999">${time}</div>`;
-    document.getElementById("messages").appendChild(div);
-    document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
   }
 
   function stringToColor(str) {
@@ -217,12 +306,37 @@
       .replace(/:p/g, '😜');
   }
 
+  function addMessageToScreen(data, isMe) {
+    const div = document.createElement("div");
+    div.className = "message";
+    const color = stringToColor(data.name);
+    const time = new Date(data.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    div.innerHTML = `<strong style="color:${color}">${data.name}</strong>: ${formatEmojis(data.text)}<div class="time">${time}</div>`;
+    const messages = document.getElementById("messages");
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
   document.getElementById("chat-form").addEventListener("submit", function(e) {
     e.preventDefault();
-    const message = document.getElementById("message-input").value.trim();
-    if (message === "") return;
-    messagesRef.push({ name: username, text: message, time: Date.now() });
+    const msg = document.getElementById("message-input").value.trim();
+    if (!msg) return;
+    messagesRef.push({ name: username, text: msg, time: Date.now() });
     document.getElementById("message-input").value = "";
+  });
+
+  messagesRef.limitToLast(100).on("child_added", (snapshot) => {
+    const msg = snapshot.val();
+    addMessageToScreen(msg, msg.name === username);
+  });
+
+  usersRef.on("value", (snapshot) => {
+    const users = snapshot.val() || {};
+    let list = '<strong>Conectados:</strong><br>';
+    for (const key in users) {
+      list += `<span style="color:${stringToColor(users[key].name)}">${users[key].name}</span><br>`;
+    }
+    document.getElementById("users-list").innerHTML = list;
   });
 </script>
 
