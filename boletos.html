@@ -3,408 +3,205 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Los Cabos Motors - Rifas</title>
+  <title>Los Cabos Motors - Rifa de Boletos</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0; padding: 0;
       background-color: #bebebe;
+      color: white;
     }
     header {
       background-color: #881414;
-      color: white;
       padding: 20px 0;
       text-align: center;
     }
-    nav {
-      background-color: #4d494c;
-      text-align: center;
+    header h1 {
+      margin: 0;
     }
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 15px 20px;
-      display: inline-block;
-    }
-    nav a:hover {
-      background-color: #3c3c3c;
-    }
-    section {
-      padding: 30px;
-    }
-    .autos, .rifas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .card {
-      background: #881414;
-      border-radius: 10px;
-      box-shadow: 0 5px 5px rgba(0,0,0,0.2);
-      width: 300px;
-      padding: 15px;
-      text-align: center;
-      color: white;
-    }
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    footer {
-      background-color: #4d494c;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      margin-top: 30px;
-    }
-
-    /* CHAT STYLES */
-    .chat-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ffbb33;
-      color: #000;
-      border: none;
-      padding: 12px 16px;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 1000;
-    }
-
-    #chat-box {
-      display: none;
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 350px;
-      max-height: 500px;
-      background: #1f1f1f;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      z-index: 1000;
-    }
-
-    #login-screen, #chat-screen {
-      display: none;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    #login-screen {
-      padding: 20px;
-    }
-
-    #login-screen input {
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      border: none;
-      width: 100%;
-    }
-
-    #chat-header {
-      padding: 10px;
-      background: #222;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    #users-list {
-      background: #2d2d2d;
-      padding: 10px;
-      font-size: 0.85rem;
-      max-height: 80px;
-      overflow-y: auto;
-    }
-
-    #messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px;
-      background: #141414;
-    }
-
-    .message {
-      margin-bottom: 10px;
-      word-wrap: break-word;
-    }
-
-    .message .time {
-      font-size: 0.75rem;
-      color: #aaa;
-    }
-
-    #chat-form {
-      display: flex;
-      padding: 10px;
-      background: #2a2a2a;
-    }
-
-    #message-input {
-      flex: 1;
-      padding: 8px;
-      border: none;
-      border-radius: 5px;
-    }
-
-    #send-btn {
-      background: #ffbb33;
-      border: none;
-      padding: 8px 12px;
-      margin-left: 8px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    /* Boletos container */
     #boletos-container {
-      border: 1px solid #4d494c;
-      border-radius: 8px;
-      background-color: white;
-      height: 300px;
-      overflow-y: scroll;
+      max-height: 250px;
+      overflow-y: auto;
+      background: #fff;
       padding: 10px;
+      border-radius: 8px;
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      justify-content: center;
-      max-width: 800px;
-      margin: 10px auto;
+      color: black;
+      margin: 20px auto;
+      width: 90%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
-
     #boletos-container button {
-      min-width: 50px;
-      padding: 6px 4px;
-      font-size: 12px;
+      padding: 6px 8px;
+      border-radius: 6px;
       border: 1px solid #4d494c;
-      border-radius: 5px;
       cursor: pointer;
       user-select: none;
-      transition: background-color 0.2s;
-    }
-
-    #boletos-container button:disabled {
-      cursor: not-allowed;
-      opacity: 0.7;
-    }
-
-    /* Seleccionados arriba */
-    #seleccionados-box {
-      max-width: 800px;
-      margin: 0 auto 15px auto;
-      padding: 10px;
-      background: #d3d3d3;
-      border-radius: 8px;
-      min-height: 30px;
-      font-size: 14px;
-      color: #333;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-
-    /* Botones de acción */
-    #botones-acciones {
+      background-color: #d3d3d3;
+      color: black;
+      font-weight: bold;
+      min-width: 60px;
       text-align: center;
-      margin-bottom: 20px;
     }
-    #botones-acciones button {
-      margin: 0 6px 10px 6px;
-      padding: 8px 14px;
-      background: #881414;
-      border: none;
-      border-radius: 6px;
+    #boletos-container button.apartado {
+      background-color: black;
+      color: #555;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+    #boletos-container button.seleccionado {
+      background-color: #28a745;
+      color: white;
+    }
+    #seleccionados-container {
+      max-height: 60px;
+      overflow-x: auto;
+      background-color: #881414;
+      padding: 10px;
+      margin: 0 auto 20px auto;
+      width: 90%;
+      border-radius: 8px;
+      display: flex;
+      gap: 10px;
       color: white;
       font-weight: bold;
+    }
+    #seleccionados-container span {
+      background: #ffbb33;
+      padding: 4px 10px;
+      border-radius: 6px;
+      user-select: none;
+    }
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto 30px auto;
+      background: #881414;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      color: white;
+    }
+    .form-container input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background: #ffbb33;
+      border: none;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      color: black;
     }
-    #botones-acciones button:hover {
-      background-color: #b03030;
-    }
-
   </style>
 </head>
 <body>
 
 <header>
   <h1>Los Cabos Motors</h1>
-  <p>Autos en venta y rifas exclusivas</p>
+  <p>Aparta tus boletos para la rifa</p>
 </header>
 
-<nav>
-  <a href="#contacto">Contacto</a>
-</nav>
+<div id="seleccionados-container" title="Boletos seleccionados"></div>
 
-<section id="rifa-boletos">
-  <h2 style="text-align:center;">Aparta tus boletos</h2>
-  <div style="text-align:center;">
-    <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
-    <p>Selecciona tus boletos o usa la opción aleatoria</p>
-  </div>
+<div id="boletos-container"></div>
 
-  <div id="seleccionados-box">
-    <strong>Boletos seleccionados:</strong> <span id="lista-seleccionados">Ninguno</span>
-  </div>
-
-  <div id="botones-acciones">
-    <button onclick="seleccionarAleatorios(1)">🎲 Elegir 1 al azar</button>
-    <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
-    <button onclick="seleccionarAleatorios(6)">🎲 Elegir 6 al azar</button>
-    <button onclick="seleccionarAleatorios(10)">🎲 Elegir 10 al azar</button>
-    <button onclick="limpiarSeleccion()">🧹 Limpiar selección</button>
-  </div>
-
-  <div id="boletos-container"></div>
-
-  <div style="margin-top:20px; max-width: 400px; margin-left:auto; margin-right:auto;">
-    <h3>Ingresa tus datos</h3>
-    <input type="text" id="nombre" placeholder="Nombre" required style="width:100%; margin-bottom:10px; padding:8px; border-radius:5px; border:1px solid #ccc;">
-    <input type="text" id="apellido" placeholder="Apellido" required style="width:100%; margin-bottom:10px; padding:8px; border-radius:5px; border:1px solid #ccc;">
-    <input type="text" id="estado" placeholder="Estado" required style="width:100%; margin-bottom:10px; padding:8px; border-radius:5px; border:1px solid #ccc;">
-    <input type="text" id="ciudad" placeholder="Ciudad" required style="width:100%; margin-bottom:10px; padding:8px; border-radius:5px; border:1px solid #ccc;">
-    <input type="tel" id="telefono" placeholder="Teléfono" required style="width:100%; margin-bottom:15px; padding:8px; border-radius:5px; border:1px solid #ccc;">
-    <button onclick="enviarWhatsApp()" style="width:100%; padding:12px; background:#881414; border:none; color:white; font-weight:bold; border-radius:6px; cursor:pointer;">📩 Apartar y Enviar por WhatsApp</button>
-  </div>
-</section>
-
-<section id="contacto">
-  <h2>Contacto</h2>
-  <p style="text-align:center;">Tel: 624-118-1978 | Email: LosCabosMotors@gmail.com</p>
-  <p style="text-align:center;">Dirección: Los Cabos, BCS</p>
-</section>
-
-<footer>
-  <p>&copy; 2025 Los Cabos Motors - Todos los derechos reservados</p>
-</footer>
-
-<!-- BOTÓN DEL CHAT -->
-<button class="chat-toggle" onclick="toggleChat()">💬 Chat</button>
-
-<!-- CAJA DE CHAT -->
-<div id="chat-box">
-  <div id="login-screen">
-    <h3 style="text-align:center;">Ingresa tu nombre</h3>
-    <input type="text" id="name-input" placeholder="Tu nombre">
-    <button onclick="enterChat()">Entrar al chat</button>
-  </div>
-  <div id="chat-screen">
-    <div id="chat-header">🚘 Chat - Los Cabos Motors</div>
-    <div id="users-list"></div>
-    <div id="messages"></div>
-    <form id="chat-form">
-      <input type="text" id="message-input" placeholder="Escribe un mensaje...">
-      <button type="submit" id="send-btn">Enviar</button>
-    </form>
-  </div>
+<div class="form-container">
+  <input type="text" id="nombre" placeholder="Nombre" required />
+  <input type="text" id="apellido" placeholder="Apellido" required />
+  <input type="text" id="estado" placeholder="Estado" required />
+  <input type="text" id="ciudad" placeholder="Ciudad" required />
+  <input type="tel" id="telefono" placeholder="Teléfono" required />
+  <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
 </div>
 
-<!-- FIREBASE SCRIPTS (v8) -->
+<!-- Firebase v8 -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 <script>
-  // Configura Firebase con tus datos reales aquí:
+  // Config Firebase - pon tus datos reales aquí
   const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_AUTH_DOMAIN",
-    databaseURL: "TU_DATABASE_URL",
-    projectId: "TU_PROJECT_ID",
-    storageBucket: "TU_STORAGE_BUCKET",
-    messagingSenderId: "TU_MESSAGING_SENDER_ID",
-    appId: "TU_APP_ID"
+    apiKey: "TU_APIKEY",
+    authDomain: "TU_AUTHDOMAIN",
+    databaseURL: "TU_DATABASEURL",
+    projectId: "TU_PROJECTID",
+    storageBucket: "TU_STORAGEBUCKET",
+    messagingSenderId: "TU_MESSAGINGSENDERID",
+    appId: "TU_APPID"
   };
+
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
 
+  const apartadosRef = db.ref("boletosApartados");
   const totalBoletos = 60000;
   const boletosSeleccionados = new Set();
-  const boletosApartados = new Set();
+  let boletosApartados = new Set();
 
-  const apartadosRef = db.ref("boletosApartados");
+  const boletosContainer = document.getElementById("boletos-container");
+  const seleccionadosContainer = document.getElementById("seleccionados-container");
 
+  // Carga boletos apartados de Firebase y actualiza vista
   apartadosRef.on("value", (snapshot) => {
-    const data = snapshot.val();
-    console.log("Datos Firebase boletosApartados:", data);
     boletosApartados.clear();
-
-    if (data) {
-      for (const key in data) {
-        const item = data[key];
-        if (Array.isArray(item.boletos)) {
-          item.boletos.forEach(num => boletosApartados.add(Number(num)));
-        }
-      }
+    const data = snapshot.val() || {};
+    for (const key in data) {
+      data[key].boletos.forEach(n => boletosApartados.add(n));
     }
     renderBoletos();
+    actualizarSeleccionados();
   });
 
   function renderBoletos() {
-  const container = document.getElementById("boletos-container");
-  if (!container) {
-    console.error("No se encontró el contenedor de boletos");
-    return;
-  }
-  container.innerHTML = "";
+    boletosContainer.innerHTML = "";
+    for (let i = 1000; i <= totalBoletos; i++) {
+      const numStr = String(i).padStart(5, "0");
+      const btn = document.createElement("button");
+      btn.textContent = numStr;
 
-  for (let i = 1000; i <= 60000; i++) {
-    const numeroFormateado = String(i).padStart(5, "0");
-    const btn = document.createElement("button");
-    btn.textContent = numeroFormateado;
-    btn.style.padding = "6px";
-    btn.style.fontSize = "12px";
-    btn.style.borderRadius = "5px";
-    btn.style.cursor = "pointer";
-    btn.style.border = "1px solid #4d494c";
-    btn.style.userSelect = "none";
-
-    btn.style.backgroundColor = "#d3d3d3";
-    btn.style.color = "#000";
-    btn.onclick = () => alert("Boleto: " + numeroFormateado);
-
-    container.appendChild(btn);
-  }
-}
-renderBoletos();
-
-    const listaSpan = document.getElementById("lista-seleccionados");
-    const lista = Array.from(boletosSeleccionados)
-      .sort((a, b) => a - b)
-      .map((n) => String(n).padStart(5, "0"));
-    listaSpan.textContent = lista.length > 0 ? lista.join(", ") : "Ninguno";
-  }
-
-  function toggleBoleto(num) {
-    if (boletosSeleccionados.has(num)) {
-      boletosSeleccionados.delete(num);
-    } else {
-      boletosSeleccionados.add(num);
-    }
-    renderBoletos();
-  }
-
-  function seleccionarAleatorios(cantidad) {
-    boletosSeleccionados.clear();
-    let intentos = 0;
-    while (boletosSeleccionados.size < cantidad && intentos < 5000) {
-      const random = Math.floor(Math.random() * (totalBoletos - 999)) + 1000;
-      if (!boletosApartados.has(random)) {
-        boletosSeleccionados.add(random);
+      if (boletosApartados.has(i)) {
+        btn.classList.add("apartado");
+        btn.disabled = true;
+      } else if (boletosSeleccionados.has(i)) {
+        btn.classList.add("seleccionado");
       }
-      intentos++;
+
+      btn.onclick = () => {
+        if (boletosApartados.has(i)) return; // no hacer nada si está apartado
+        if (boletosSeleccionados.has(i)) {
+          boletosSeleccionados.delete(i);
+        } else {
+          boletosSeleccionados.add(i);
+        }
+        renderBoletos();
+        actualizarSeleccionados();
+      };
+
+      boletosContainer.appendChild(btn);
     }
-    renderBoletos();
   }
 
-  function limpiarSeleccion() {
-    boletosSeleccionados.clear();
-    renderBoletos();
+  function actualizarSeleccionados() {
+    seleccionadosContainer.innerHTML = "";
+    if (boletosSeleccionados.size === 0) {
+      seleccionadosContainer.textContent = "No hay boletos seleccionados";
+      return;
+    }
+    boletosSeleccionados.forEach(n => {
+      const span = document.createElement("span");
+      span.textContent = String(n).padStart(5, "0");
+      seleccionadosContainer.appendChild(span);
+    });
   }
 
   function enviarWhatsApp() {
@@ -414,129 +211,49 @@ renderBoletos();
     const ciudad = document.getElementById("ciudad").value.trim();
     const telefono = document.getElementById("telefono").value.trim();
 
-    if (!nombre || !apellido || !estado || !ciudad || !telefono || boletosSeleccionados.size === 0) {
-      alert("Completa todos los campos y selecciona al menos un boleto.");
+    if (!nombre || !apellido || !estado || !ciudad || !telefono) {
+      alert("Por favor completa todos los campos.");
+      return;
+    }
+    if (boletosSeleccionados.size === 0) {
+      alert("Por favor selecciona al menos un boleto.");
       return;
     }
 
-    // Verificar que no se haya apartado alguno seleccionado mientras tanto
-    const duplicados = Array.from(boletosSeleccionados).filter((n) => boletosApartados.has(n));
-    if (duplicados.length > 0) {
-      alert(
-        `Los siguientes boletos ya fueron apartados: ${duplicados
-          .map((n) => String(n).padStart(5, "0"))
-          .join(", ")}`
-      );
-      renderBoletos();
-      return;
-    }
-
-    const datos = {
-      nombre,
-      apellido,
-      telefono,
-      ciudad,
-      estado,
-      boletos: Array.from(boletosSeleccionados).sort((a, b) => a - b),
-      fecha: new Date().toISOString(),
-    };
+    const boletosArray = Array.from(boletosSeleccionados).sort((a,b) => a-b);
+    const boletosTexto = boletosArray.map(n => String(n).padStart(5, "0")).join(", ");
 
     // Guardar en Firebase
-    db.ref("boletosApartados").push(datos);
-
-    // Preparar mensaje para WhatsApp
-    const boletosStr = datos.boletos.map((n) => String(n).padStart(5, "0")).join(", ");
-    const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletosStr}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
-    const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, "_blank");
-
-    limpiarSeleccion();
+    const nuevoApartado = {
+      nombre,
+      apellido,
+      estado,
+      ciudad,
+      telefono,
+      boletos: boletosArray,
+      fecha: Date.now()
+    };
+    apartadosRef.push(nuevoApartado)
+      .then(() => {
+        alert("Boletos apartados correctamente!");
+        // Abrir WhatsApp con mensaje
+        const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletosTexto}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
+        const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
+        window.open(url, "_blank");
+        boletosSeleccionados.clear();
+        renderBoletos();
+        actualizarSeleccionados();
+        // Limpiar formulario
+        document.getElementById("nombre").value = "";
+        document.getElementById("apellido").value = "";
+        document.getElementById("estado").value = "";
+        document.getElementById("ciudad").value = "";
+        document.getElementById("telefono").value = "";
+      })
+      .catch((err) => alert("Error al guardar los datos: " + err.message));
   }
 
-  // CHAT - código ya integrado (igual que antes)
-  const usersRef = db.ref("users");
-  const messagesRef = db.ref("messages");
-
-  let username = "";
-  const userId = Math.random().toString(36).substring(2, 15);
-
-  function toggleChat() {
-    const chatBox = document.getElementById("chat-box");
-    const login = document.getElementById("login-screen");
-    const chat = document.getElementById("chat-screen");
-
-    if (chatBox.style.display === "flex") {
-      chatBox.style.display = "none";
-    } else {
-      chatBox.style.display = "flex";
-      login.style.display = "flex";
-      chat.style.display = "none";
-    }
-  }
-
-  function enterChat() {
-    const input = document.getElementById("name-input");
-    username = input.value.trim();
-    if (!username) return;
-
-    document.getElementById("login-screen").style.display = "none";
-    document.getElementById("chat-screen").style.display = "flex";
-
-    usersRef.child(userId).set({ name: username });
-    usersRef.child(userId).onDisconnect().remove();
-  }
-
-  function stringToColor(str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const color = Math.abs(hash).toString(16).substring(0, 6);
-    return `#${color.padStart(6, '0')}`;
-  }
-
-  function formatEmojis(text) {
-    return text
-      .replace(/:\)/g, '😊')
-      .replace(/:\(/g, '😢')
-      .replace(/:D/g, '😄')
-      .replace(/<3/g, '❤️')
-      .replace(/:p/g, '😜');
-  }
-
-  function addMessageToScreen(data, isMe) {
-    const div = document.createElement("div");
-    div.className = "message";
-    const color = stringToColor(data.name);
-    const time = new Date(data.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    div.innerHTML = `<strong style="color:${color}">${data.name}</strong>: ${formatEmojis(data.text)}<div class="time">${time}</div>`;
-    const messages = document.getElementById("messages");
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  document.getElementById("chat-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const msg = document.getElementById("message-input").value.trim();
-    if (!msg) return;
-    messagesRef.push({ name: username, text: msg, time: Date.now() });
-    document.getElementById("message-input").value = "";
-  });
-
-  messagesRef.limitToLast(100).on("child_added", (snapshot) => {
-    const msg = snapshot.val();
-    addMessageToScreen(msg, msg.name === username);
-  });
-
-  usersRef.on("value", (snapshot) => {
-    const users = snapshot.val() || {};
-    let list = '<strong>Conectados:</strong><br>';
-    for (const key in users) {
-      list += `<span style="color:${stringToColor(users[key].name)}">${users[key].name}</span><br>`;
-    }
-    document.getElementById("users-list").innerHTML = list;
-  });
-
+  renderBoletos();
 </script>
 
 </body>
