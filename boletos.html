@@ -1,207 +1,133 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Los Cabos Motors - Rifa de Boletos</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background-color: #bebebe;
-      color: white;
-    }
-    header {
-      background-color: #881414;
-      padding: 20px 0;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-    }
-    #boletos-container {
-      max-height: 250px;
-      overflow-y: auto;
-      background: #fff;
-      padding: 10px;
-      border-radius: 8px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      color: black;
-      margin: 20px auto;
-      width: 90%;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-    #boletos-container button {
-      padding: 6px 8px;
-      border-radius: 6px;
-      border: 1px solid #4d494c;
-      cursor: pointer;
-      user-select: none;
-      background-color: #d3d3d3;
-      color: black;
-      font-weight: bold;
-      min-width: 60px;
-      text-align: center;
-    }
-    #boletos-container button.apartado {
-      background-color: black;
-      color: #555;
-      cursor: not-allowed;
-      text-decoration: line-through;
-    }
-    #boletos-container button.seleccionado {
-      background-color: #28a745;
-      color: white;
-    }
-    #seleccionados-container {
-      max-height: 60px;
-      overflow-x: auto;
-      background-color: #881414;
-      padding: 10px;
-      margin: 0 auto 20px auto;
-      width: 90%;
-      border-radius: 8px;
-      display: flex;
-      gap: 10px;
-      color: white;
-      font-weight: bold;
-    }
-    #seleccionados-container span {
-      background: #ffbb33;
-      padding: 4px 10px;
-      border-radius: 6px;
-      user-select: none;
-    }
-    .form-container {
-      max-width: 400px;
-      margin: 0 auto 30px auto;
-      background: #881414;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      color: white;
-    }
-    .form-container input {
-      width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 6px;
-      border: none;
-      font-size: 16px;
-    }
-    .form-container button {
-      width: 100%;
-      padding: 12px;
-      background: #ffbb33;
-      border: none;
-      font-weight: bold;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      color: black;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Los Cabos Motors - Rifas</title>
+<style>
+  #boletos-seleccionados {
+    margin-bottom: 10px;
+    font-weight: bold;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #999;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  #boletos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-start;
+    max-height: 300px;
+    overflow-y: scroll;
+    padding: 10px;
+    background: #f0f0f0;
+    border: 2px solid #999;
+    border-radius: 8px;
+    margin: 10px auto;
+    width: 90%;
+  }
+  #boletos button {
+    padding: 6px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #333;
+  }
+  #boletos button:disabled {
+    cursor: default;
+  }
+</style>
 </head>
 <body>
 
-<header>
-  <h1>Los Cabos Motors</h1>
-  <p>Aparta tus boletos para la rifa</p>
-</header>
+<div style="text-align:center;">
+  <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
+  <p>Selecciona tus boletos o usa la opción aleatoria</p>
 
-<div id="seleccionados-container" title="Boletos seleccionados"></div>
+  <div id="boletos-seleccionados">
+    Boletos seleccionados: <span id="lista-seleccionados">Ninguno</span>
+  </div>
 
-<div id="boletos-container"></div>
+  <div id="boletos"></div>
 
-<div class="form-container">
-  <input type="text" id="nombre" placeholder="Nombre" required />
-  <input type="text" id="apellido" placeholder="Apellido" required />
-  <input type="text" id="estado" placeholder="Estado" required />
-  <input type="text" id="ciudad" placeholder="Ciudad" required />
-  <input type="tel" id="telefono" placeholder="Teléfono" required />
-  <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
+  <div style="margin-top:10px;">
+    <button onclick="seleccionarAleatorios(1)">🎲 Elegir 1 al azar</button>
+    <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
+    <button onclick="seleccionarAleatorios(6)">🎲 Elegir 6 al azar</button>
+    <button onclick="seleccionarAleatorios(10)">🎲 Elegir 10 al azar</button>
+  </div>
+
+  <div style="margin-top:20px;">
+    <h3>Ingresa tus datos</h3>
+    <input type="text" id="nombre" placeholder="Nombre" required><br><br>
+    <input type="text" id="apellido" placeholder="Apellido" required><br><br>
+    <input type="text" id="estado" placeholder="Estado" required><br><br>
+    <input type="text" id="ciudad" placeholder="Ciudad" required><br><br>
+    <input type="tel" id="telefono" placeholder="Teléfono" required><br><br>
+    <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
+  </div>
 </div>
 
-<!-- Firebase v8 -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
 <script>
-  // Config Firebase - pon tus datos reales aquí
-  const firebaseConfig = {
-    apiKey: "TU_APIKEY",
-    authDomain: "TU_AUTHDOMAIN",
-    databaseURL: "TU_DATABASEURL",
-    projectId: "TU_PROJECTID",
-    storageBucket: "TU_STORAGEBUCKET",
-    messagingSenderId: "TU_MESSAGINGSENDERID",
-    appId: "TU_APPID"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-
-  const apartadosRef = db.ref("boletosApartados");
   const totalBoletos = 60000;
   const boletosSeleccionados = new Set();
-  let boletosApartados = new Set();
 
-  const boletosContainer = document.getElementById("boletos-container");
-  const seleccionadosContainer = document.getElementById("seleccionados-container");
-
-  // Carga boletos apartados de Firebase y actualiza vista
-  apartadosRef.on("value", (snapshot) => {
-    boletosApartados.clear();
-    const data = snapshot.val() || {};
-    for (const key in data) {
-      data[key].boletos.forEach(n => boletosApartados.add(n));
-    }
-    renderBoletos();
-    actualizarSeleccionados();
-  });
+  // Boletos ya apartados (ocupados) - modifica aquí para agregar/quitar
+  const boletosApartados = new Set([1005, 1020, 1500, 25000]);
 
   function renderBoletos() {
-    boletosContainer.innerHTML = "";
+    const container = document.getElementById("boletos");
+    container.innerHTML = "";
+
     for (let i = 1000; i <= totalBoletos; i++) {
-      const numStr = String(i).padStart(5, "0");
+      const numeroFormateado = String(i).padStart(5, '0');
       const btn = document.createElement("button");
-      btn.textContent = numStr;
+      btn.textContent = numeroFormateado;
 
       if (boletosApartados.has(i)) {
-        btn.classList.add("apartado");
-        btn.disabled = true;
-      } else if (boletosSeleccionados.has(i)) {
-        btn.classList.add("seleccionado");
+        btn.style.backgroundColor = "#000";   // negro
+        btn.style.color = "#fff";              // texto blanco
+        btn.disabled = true;                   // no clickeable
+        btn.title = "Boleto ya apartado";
+      } else {
+        btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#ccc";
+        btn.onclick = () => toggleBoleto(i);
       }
-
-      btn.onclick = () => {
-        if (boletosApartados.has(i)) return; // no hacer nada si está apartado
-        if (boletosSeleccionados.has(i)) {
-          boletosSeleccionados.delete(i);
-        } else {
-          boletosSeleccionados.add(i);
-        }
-        renderBoletos();
-        actualizarSeleccionados();
-      };
-
-      boletosContainer.appendChild(btn);
+      container.appendChild(btn);
     }
+
+    // Mostrar boletos seleccionados arriba
+    const listaSpan = document.getElementById("lista-seleccionados");
+    const lista = Array.from(boletosSeleccionados)
+      .sort((a, b) => a - b)
+      .map(n => String(n).padStart(5, '0'));
+    listaSpan.textContent = lista.length > 0 ? lista.join(", ") : "Ninguno";
   }
 
-  function actualizarSeleccionados() {
-    seleccionadosContainer.innerHTML = "";
-    if (boletosSeleccionados.size === 0) {
-      seleccionadosContainer.textContent = "No hay boletos seleccionados";
-      return;
+  function toggleBoleto(num) {
+    if (boletosSeleccionados.has(num)) {
+      boletosSeleccionados.delete(num);
+    } else {
+      boletosSeleccionados.add(num);
     }
-    boletosSeleccionados.forEach(n => {
-      const span = document.createElement("span");
-      span.textContent = String(n).padStart(5, "0");
-      seleccionadosContainer.appendChild(span);
-    });
+    renderBoletos();
+  }
+
+  function seleccionarAleatorios(cantidad) {
+    boletosSeleccionados.clear();
+    while (boletosSeleccionados.size < cantidad) {
+      const random = Math.floor(Math.random() * (totalBoletos - 999)) + 1000;
+      if (!boletosApartados.has(random)) {
+        boletosSeleccionados.add(random);
+      }
+    }
+    renderBoletos();
   }
 
   function enviarWhatsApp() {
@@ -211,51 +137,27 @@
     const ciudad = document.getElementById("ciudad").value.trim();
     const telefono = document.getElementById("telefono").value.trim();
 
-    if (!nombre || !apellido || !estado || !ciudad || !telefono) {
-      alert("Por favor completa todos los campos.");
-      return;
-    }
-    if (boletosSeleccionados.size === 0) {
-      alert("Por favor selecciona al menos un boleto.");
+    if (!nombre || !apellido || !estado || !ciudad || !telefono || boletosSeleccionados.size === 0) {
+      alert("Completa todos los campos y selecciona al menos un boleto.");
       return;
     }
 
-    const boletosArray = Array.from(boletosSeleccionados).sort((a,b) => a-b);
-    const boletosTexto = boletosArray.map(n => String(n).padStart(5, "0")).join(", ");
+    const boletos = Array.from(boletosSeleccionados)
+      .sort((a, b) => a - b)
+      .map(n => String(n).padStart(5, '0'))
+      .join(", ");
 
-    // Guardar en Firebase
-    const nuevoApartado = {
-      nombre,
-      apellido,
-      estado,
-      ciudad,
-      telefono,
-      boletos: boletosArray,
-      fecha: Date.now()
-    };
-    apartadosRef.push(nuevoApartado)
-      .then(() => {
-        alert("Boletos apartados correctamente!");
-        // Abrir WhatsApp con mensaje
-        const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletosTexto}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
-        const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
-        window.open(url, "_blank");
-        boletosSeleccionados.clear();
-        renderBoletos();
-        actualizarSeleccionados();
-        // Limpiar formulario
-        document.getElementById("nombre").value = "";
-        document.getElementById("apellido").value = "";
-        document.getElementById("estado").value = "";
-        document.getElementById("ciudad").value = "";
-        document.getElementById("telefono").value = "";
-      })
-      .catch((err) => alert("Error al guardar los datos: " + err.message));
+    const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletos}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
+
+    const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, "_blank");
   }
 
+  // Inicializar la lista de boletos
   renderBoletos();
 </script>
 
 </body>
 </html>
+
 
