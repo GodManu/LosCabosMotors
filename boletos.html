@@ -72,133 +72,144 @@
 </section>
 
 <script>
-  const totalBoletos = 60000;
-  const boletosSeleccionados = new Set();
-  const boletosApartados = new Set();
+const totalBoletos = 60000;
+const boletosSeleccionados = new Set();
+const boletosApartados = new Set();
 
-  const apartadosRef = firebase.database().ref("boletosApartados");
+const apartadosRef = firebase.database().ref("boletosApartados");
 
-  apartadosRef.on("value", (snapshot) => {
-    boletosApartados.clear();
-    const data = snapshot.val();
+// Listener para cargar boletos apartados y renderizar
+apartadosRef.on("value", (snapshot) => {
+  const data = snapshot.val();
+  console.log("Datos Firebase boletosApartados:", data);
+
+  boletosApartados.clear();
+
+  if (data) {
     for (const key in data) {
       const item = data[key];
       if (Array.isArray(item.boletos)) {
         item.boletos.forEach(num => boletosApartados.add(Number(num)));
-      } else if (typeof item === 'number') {
-        boletosApartados.add(Number(item));
       }
     }
-    renderBoletos();
-  });
-
-  function renderBoletos() {
-    const container = document.getElementById("boletos");
-    container.innerHTML = "";
-
-    for (let i = 1000; i <= totalBoletos; i++) {
-      const numeroFormateado = String(i).padStart(5, '0');
-      const btn = document.createElement("button");
-      btn.textContent = numeroFormateado;
-      btn.style.padding = "6px";
-      btn.style.fontSize = "12px";
-      btn.style.borderRadius = "5px";
-      btn.style.cursor = "pointer";
-      btn.style.border = "1px solid #4d494c";
-
-      if (boletosApartados.has(i)) {
-        btn.style.backgroundColor = "#000";
-        btn.style.color = "#fff";
-        btn.disabled = true;
-        btn.title = "Boleto ya apartado";
-      } else {
-        btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#d3d3d3";
-        btn.style.color = "#000";
-        btn.onmouseover = () => btn.style.backgroundColor = "#aaa";
-        btn.onmouseout = () => btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#d3d3d3";
-        btn.onclick = () => toggleBoleto(i);
-      }
-
-      container.appendChild(btn);
-    }
-
-    const listaSpan = document.getElementById("lista-seleccionados");
-    const lista = Array.from(boletosSeleccionados)
-      .sort((a, b) => a - b)
-      .map(n => String(n).padStart(5, '0'));
-    listaSpan.textContent = lista.length > 0 ? lista.join(", ") : "Ninguno";
-
-    const disponibles = totalBoletos - boletosApartados.size;
-    const contador = document.getElementById("contador-disponibles");
-    contador.textContent = `Boletos disponibles: ${disponibles.toLocaleString()} de ${totalBoletos.toLocaleString()}`;
-  }
-
-  function toggleBoleto(num) {
-    if (boletosSeleccionados.has(num)) {
-      boletosSeleccionados.delete(num);
-    } else {
-      boletosSeleccionados.add(num);
-    }
-    renderBoletos();
-  }
-
-  function seleccionarAleatorios(cantidad) {
-    boletosSeleccionados.clear();
-    let intentos = 0;
-    while (boletosSeleccionados.size < cantidad && intentos < 5000) {
-      const random = Math.floor(Math.random() * (totalBoletos - 999)) + 1000;
-      if (!boletosApartados.has(random)) {
-        boletosSeleccionados.add(random);
-      }
-      intentos++;
-    }
-    renderBoletos();
-  }
-
-  function limpiarSeleccion() {
-    boletosSeleccionados.clear();
-    renderBoletos();
-  }
-
-  function enviarWhatsApp() {
-    const nombre = document.getElementById("nombre").value.trim();
-    const apellido = document.getElementById("apellido").value.trim();
-    const estado = document.getElementById("estado").value.trim();
-    const ciudad = document.getElementById("ciudad").value.trim();
-    const telefono = document.getElementById("telefono").value.trim();
-
-    if (!nombre || !apellido || !estado || !ciudad || !telefono || boletosSeleccionados.size === 0) {
-      alert("Completa todos los campos y selecciona al menos un boleto.");
-      return;
-    }
-
-    const duplicados = Array.from(boletosSeleccionados).filter(n => boletosApartados.has(n));
-    if (duplicados.length > 0) {
-      alert(`Los siguientes boletos ya fueron apartados: ${duplicados.map(n => String(n).padStart(5, '0')).join(", ")}`);
-      renderBoletos();
-      return;
-    }
-
-    const datos = {
-      nombre,
-      apellido,
-      telefono,
-      ciudad,
-      estado,
-      boletos: Array.from(boletosSeleccionados).sort((a, b) => a - b),
-      fecha: new Date().toISOString()
-    };
-    apartadosRef.push(datos);
-
-    const boletos = datos.boletos.map(n => String(n).padStart(5, '0')).join(", ");
-    const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletos}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
-    const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, "_blank");
-
-    limpiarSeleccion();
   }
 
   renderBoletos();
+});
+
+// Renderiza los botones de boletos
+function renderBoletos() {
+  const container = document.getElementById("boletos");
+  container.innerHTML = "";
+
+  for (let i = 1000; i <= totalBoletos; i++) {
+    const numeroFormateado = String(i).padStart(5, "0");
+    const btn = document.createElement("button");
+    btn.textContent = numeroFormateado;
+    btn.style.padding = "6px";
+    btn.style.fontSize = "12px";
+    btn.style.borderRadius = "5px";
+    btn.style.cursor = "pointer";
+    btn.style.border = "1px solid #4d494c";
+
+    if (boletosApartados.has(i)) {
+      btn.style.backgroundColor = "#000";
+      btn.style.color = "#fff";
+      btn.disabled = true;
+      btn.title = "Boleto ya apartado";
+    } else {
+      btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#d3d3d3";
+      btn.style.color = "#000";
+      btn.onmouseover = () => (btn.style.backgroundColor = "#aaa");
+      btn.onmouseout = () =>
+        (btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#d3d3d3");
+      btn.onclick = () => toggleBoleto(i);
+    }
+
+    container.appendChild(btn);
+  }
+
+  const listaSpan = document.getElementById("lista-seleccionados");
+  const lista = Array.from(boletosSeleccionados)
+    .sort((a, b) => a - b)
+    .map((n) => String(n).padStart(5, "0"));
+  listaSpan.textContent = lista.length > 0 ? lista.join(", ") : "Ninguno";
+
+  const disponibles = totalBoletos - boletosApartados.size;
+  const contador = document.getElementById("contador-disponibles");
+  contador.textContent = `Boletos disponibles: ${disponibles.toLocaleString()} de ${totalBoletos.toLocaleString()}`;
+}
+
+function toggleBoleto(num) {
+  if (boletosSeleccionados.has(num)) {
+    boletosSeleccionados.delete(num);
+  } else {
+    boletosSeleccionados.add(num);
+  }
+  renderBoletos();
+}
+
+function seleccionarAleatorios(cantidad) {
+  boletosSeleccionados.clear();
+  let intentos = 0;
+  while (boletosSeleccionados.size < cantidad && intentos < 5000) {
+    const random = Math.floor(Math.random() * (totalBoletos - 999)) + 1000;
+    if (!boletosApartados.has(random)) {
+      boletosSeleccionados.add(random);
+    }
+    intentos++;
+  }
+  renderBoletos();
+}
+
+function limpiarSeleccion() {
+  boletosSeleccionados.clear();
+  renderBoletos();
+}
+
+function enviarWhatsApp() {
+  const nombre = document.getElementById("nombre").value.trim();
+  const apellido = document.getElementById("apellido").value.trim();
+  const estado = document.getElementById("estado").value.trim();
+  const ciudad = document.getElementById("ciudad").value.trim();
+  const telefono = document.getElementById("telefono").value.trim();
+
+  if (!nombre || !apellido || !estado || !ciudad || !telefono || boletosSeleccionados.size === 0) {
+    alert("Completa todos los campos y selecciona al menos un boleto.");
+    return;
+  }
+
+  const duplicados = Array.from(boletosSeleccionados).filter((n) => boletosApartados.has(n));
+  if (duplicados.length > 0) {
+    alert(
+      `Los siguientes boletos ya fueron apartados: ${duplicados
+        .map((n) => String(n).padStart(5, "0"))
+        .join(", ")}`
+    );
+    renderBoletos();
+    return;
+  }
+
+  const datos = {
+    nombre,
+    apellido,
+    telefono,
+    ciudad,
+    estado,
+    boletos: Array.from(boletosSeleccionados).sort((a, b) => a - b),
+    fecha: new Date().toISOString(),
+  };
+
+  firebase.database().ref("boletosApartados").push(datos);
+
+  const boletos = datos.boletos.map((n) => String(n).padStart(5, "0")).join(", ");
+  const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletos}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
+  const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, "_blank");
+
+  limpiarSeleccion();
+}
+
 </script>
 
 
