@@ -181,7 +181,21 @@
   <div style="text-align:center;">
     <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
     <p>Selecciona tus boletos o usa la opción aleatoria</p>
-    <div id="boletos" style="display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin:10px 0;"></div>
+    <div id="boletos" style="
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-start;
+  max-height: 300px;
+  overflow-y: scroll;
+  padding: 10px;
+  background: #f0f0f0;
+  border: 2px solid #999;
+  border-radius: 8px;
+  margin: 10px auto;
+  width: 90%;
+"></div>
+
     <button onclick="seleccionarAleatorios(1)">🎲 Elegir 1 al azar</button>
     <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
     <button onclick="seleccionarAleatorios(6)">🎲 Elegir 6 al azar</button>
@@ -335,24 +349,28 @@
 
 </script>
 <script>
-  const totalBoletos = 4000;
+  const totalBoletos = 60000;
   const boletosSeleccionados = new Set();
 
   function renderBoletos() {
-    const container = document.getElementById("boletos");
-    container.innerHTML = "";
-    for (let i = 00001; i <= totalBoletos; i++) {
-      const btn = document.createElement("button");
-      btn.textContent = i;
-      btn.style.padding = "8px";
-      btn.style.borderRadius = "5px";
-      btn.style.cursor = "pointer";
-      btn.style.border = "1px solid #333";
-      btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#ccc";
-      btn.onclick = () => toggleBoleto(i);
-      container.appendChild(btn);
-    }
+  const container = document.getElementById("boletos");
+  container.innerHTML = "";
+
+  for (let i = 1000; i <= totalBoletos; i++) {
+    const numeroFormateado = String(i).padStart(5, '0');
+
+    const btn = document.createElement("button");
+    btn.textContent = numeroFormateado;
+    btn.style.padding = "6px";
+    btn.style.fontSize = "12px";
+    btn.style.borderRadius = "5px";
+    btn.style.cursor = "pointer";
+    btn.style.border = "1px solid #333";
+    btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#ccc";
+    btn.onclick = () => toggleBoleto(i);
+    container.appendChild(btn);
   }
+}
 
   function toggleBoleto(num) {
     if (boletosSeleccionados.has(num)) {
@@ -364,13 +382,13 @@
   }
 
   function seleccionarAleatorios(cantidad) {
-    boletosSeleccionados.clear();
-    while (boletosSeleccionados.size < cantidad) {
-      const random = Math.floor(Math.random() * totalBoletos) + 1;
-      boletosSeleccionados.add(random);
-    }
-    renderBoletos();
+  boletosSeleccionados.clear();
+  while (boletosSeleccionados.size < cantidad) {
+    const random = Math.floor(Math.random() * (totalBoletos - 999)) + 1000;
+    boletosSeleccionados.add(random);
   }
+  renderBoletos();
+}
 
   function enviarWhatsApp() {
     const nombre = document.getElementById("nombre").value;
@@ -384,7 +402,10 @@
       return;
     }
 
-    const boletos = Array.from(boletosSeleccionados).sort((a, b) => a - b).join(", ");
+    const boletos = Array.from(boletosSeleccionados)
+  .sort((a, b) => a - b)
+  .map(n => String(n).padStart(5, '0'))
+  .join(", ");
     const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletos}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
 
     const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
