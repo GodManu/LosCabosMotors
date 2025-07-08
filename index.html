@@ -207,6 +207,28 @@
       <button>Comprar Boleto</button>
     </div>
   </div>
+<section id="rifa-boletos">
+  <h2 style="text-align:center;">Aparta tus boletos</h2>
+  <div style="text-align:center;">
+    <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
+    <p>Selecciona tus boletos o usa la opción aleatoria</p>
+    <div id="boletos" style="display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin:10px 0;"></div>
+    <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
+  </div>
+
+  <div style="margin-top:20px; text-align:center;">
+    <h3>Ingresa tus datos</h3>
+    <input type="text" id="nombre" placeholder="Nombre" required><br><br>
+    <input type="text" id="apellido" placeholder="Apellido" required><br><br>
+    <input type="text" id="estado" placeholder="Estado" required><br><br>
+    <input type="text" id="ciudad" placeholder="Ciudad" required><br><br>
+    <input type="tel" id="telefono" placeholder="Teléfono" required><br><br>
+    <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
+  </div>
+  </div>
+</section>
+
+  
 </section>
 
 <section id="contacto">
