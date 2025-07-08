@@ -4,82 +4,93 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Los Cabos Motors - Rifas</title>
-<style>
-  #boletos-seleccionados {
-    margin-bottom: 10px;
-    font-weight: bold;
-    background: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #999;
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-  #boletos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    justify-content: flex-start;
-    max-height: 300px;
-    overflow-y: scroll;
-    padding: 10px;
-    background: #f0f0f0;
-    border: 2px solid #999;
-    border-radius: 8px;
-    margin: 10px auto;
-    width: 90%;
-  }
-  #boletos button {
-    padding: 6px;
-    font-size: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 1px solid #333;
-  }
-  #boletos button:disabled {
-    cursor: default;
-  }
-</style>
-</head>
-<body>
+<section id="rifa-boletos">
+  <h2 style="text-align:center;">Aparta tus boletos</h2>
+  <div style="text-align:center;">
+    <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
+    <p>Selecciona tus boletos o usa la opción aleatoria</p>
 
-<div style="text-align:center;">
-  <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
-  <p>Selecciona tus boletos o usa la opción aleatoria</p>
+    <!-- Boletos seleccionados -->
+    <div id="boletos-seleccionados" style="
+      margin-bottom: 15px;
+      font-weight: bold;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid #4d494c;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      overflow-x: auto;
+      white-space: nowrap;
+      color: #881414;
+    ">
+      Boletos seleccionados: <span id="lista-seleccionados">Ninguno</span>
+    </div>
 
-  <div id="boletos-seleccionados">
-    Boletos seleccionados: <span id="lista-seleccionados">Ninguno</span>
+    <!-- Cuadro deslizante de boletos -->
+    <div id="boletos" style="
+      display:flex;
+      flex-wrap:wrap;
+      gap:5px;
+      justify-content:flex-start;
+      max-height:300px;
+      overflow-y:scroll;
+      padding:10px;
+      background:#e0e0e0;
+      border:2px solid #4d494c;
+      border-radius:8px;
+      margin:10px auto;
+      width:90%;
+    "></div>
+
+    <!-- Botones de selección rápida -->
+    <div style="margin-top:10px;">
+      <button onclick="seleccionarAleatorios(1)" style="background:#881414; color:white; border:none; border-radius:6px; padding:8px 12px; margin:4px; cursor:pointer;">🎲 Elegir 1 al azar</button>
+      <button onclick="seleccionarAleatorios(3)" style="background:#881414; color:white; border:none; border-radius:6px; padding:8px 12px; margin:4px; cursor:pointer;">🎲 Elegir 3 al azar</button>
+      <button onclick="seleccionarAleatorios(6)" style="background:#881414; color:white; border:none; border-radius:6px; padding:8px 12px; margin:4px; cursor:pointer;">🎲 Elegir 6 al azar</button>
+      <button onclick="seleccionarAleatorios(10)" style="background:#881414; color:white; border:none; border-radius:6px; padding:8px 12px; margin:4px; cursor:pointer;">🎲 Elegir 10 al azar</button>
+    </div>
+
+    <!-- Limpiar selección y contador -->
+    <div style="margin-top:10px;">
+      <button onclick="limpiarSeleccion()" style="background:#4d494c; color:white; border:none; border-radius:6px; padding:8px 12px; margin:4px; cursor:pointer;">🗑 Limpiar selección</button>
+      <div id="contador-disponibles" style="margin-top:8px; color:#881414; font-weight:bold;"></div>
+    </div>
+
+    <!-- Formulario -->
+    <div style="margin-top:20px; text-align:center;">
+      <h3>Ingresa tus datos</h3>
+      <input type="text" id="nombre" placeholder="Nombre" required><br><br>
+      <input type="text" id="apellido" placeholder="Apellido" required><br><br>
+      <input type="text" id="estado" placeholder="Estado" required><br><br>
+      <input type="text" id="ciudad" placeholder="Ciudad" required><br><br>
+      <input type="tel" id="telefono" placeholder="Teléfono" required><br><br>
+      <button onclick="enviarWhatsApp()" style="background:#ffbb33; color:black; font-weight:bold; border:none; padding:10px 16px; border-radius:6px; cursor:pointer;">📩 Apartar y Enviar por WhatsApp</button>
+    </div>
   </div>
-
-  <div id="boletos"></div>
-
-  <div style="margin-top:10px;">
-    <button onclick="seleccionarAleatorios(1)">🎲 Elegir 1 al azar</button>
-    <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
-    <button onclick="seleccionarAleatorios(6)">🎲 Elegir 6 al azar</button>
-    <button onclick="seleccionarAleatorios(10)">🎲 Elegir 10 al azar</button>
-  </div>
-
-  <div style="margin-top:20px;">
-    <h3>Ingresa tus datos</h3>
-    <input type="text" id="nombre" placeholder="Nombre" required><br><br>
-    <input type="text" id="apellido" placeholder="Apellido" required><br><br>
-    <input type="text" id="estado" placeholder="Estado" required><br><br>
-    <input type="text" id="ciudad" placeholder="Ciudad" required><br><br>
-    <input type="tel" id="telefono" placeholder="Teléfono" required><br><br>
-    <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
-  </div>
-</div>
+</section>
 
 <script>
   const totalBoletos = 60000;
   const boletosSeleccionados = new Set();
+  const boletosApartados = new Set();
 
-  // Boletos ya apartados (ocupados) - modifica aquí para agregar/quitar
-  const boletosApartados = new Set([1005, 1020, 1500, 25000]);
+  const apartadosRef = firebase.database().ref("boletosApartados");
+
+  apartadosRef.on("value", (snapshot) => {
+    boletosApartados.clear();
+    const data = snapshot.val();
+    for (const key in data) {
+      const item = data[key];
+      if (Array.isArray(item.boletos)) {
+        item.boletos.forEach(num => boletosApartados.add(Number(num)));
+      } else if (typeof item === 'number') {
+        boletosApartados.add(Number(item));
+      }
+    }
+    renderBoletos();
+  });
 
   function renderBoletos() {
     const container = document.getElementById("boletos");
@@ -89,25 +100,37 @@
       const numeroFormateado = String(i).padStart(5, '0');
       const btn = document.createElement("button");
       btn.textContent = numeroFormateado;
+      btn.style.padding = "6px";
+      btn.style.fontSize = "12px";
+      btn.style.borderRadius = "5px";
+      btn.style.cursor = "pointer";
+      btn.style.border = "1px solid #4d494c";
 
       if (boletosApartados.has(i)) {
-        btn.style.backgroundColor = "#000";   // negro
-        btn.style.color = "#fff";              // texto blanco
-        btn.disabled = true;                   // no clickeable
+        btn.style.backgroundColor = "#000";
+        btn.style.color = "#fff";
+        btn.disabled = true;
         btn.title = "Boleto ya apartado";
       } else {
-        btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#ccc";
+        btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#d3d3d3";
+        btn.style.color = "#000";
+        btn.onmouseover = () => btn.style.backgroundColor = "#aaa";
+        btn.onmouseout = () => btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#d3d3d3";
         btn.onclick = () => toggleBoleto(i);
       }
+
       container.appendChild(btn);
     }
 
-    // Mostrar boletos seleccionados arriba
     const listaSpan = document.getElementById("lista-seleccionados");
     const lista = Array.from(boletosSeleccionados)
       .sort((a, b) => a - b)
       .map(n => String(n).padStart(5, '0'));
     listaSpan.textContent = lista.length > 0 ? lista.join(", ") : "Ninguno";
+
+    const disponibles = totalBoletos - boletosApartados.size;
+    const contador = document.getElementById("contador-disponibles");
+    contador.textContent = `Boletos disponibles: ${disponibles.toLocaleString()} de ${totalBoletos.toLocaleString()}`;
   }
 
   function toggleBoleto(num) {
@@ -121,12 +144,19 @@
 
   function seleccionarAleatorios(cantidad) {
     boletosSeleccionados.clear();
-    while (boletosSeleccionados.size < cantidad) {
+    let intentos = 0;
+    while (boletosSeleccionados.size < cantidad && intentos < 5000) {
       const random = Math.floor(Math.random() * (totalBoletos - 999)) + 1000;
       if (!boletosApartados.has(random)) {
         boletosSeleccionados.add(random);
       }
+      intentos++;
     }
+    renderBoletos();
+  }
+
+  function limpiarSeleccion() {
+    boletosSeleccionados.clear();
     renderBoletos();
   }
 
@@ -142,20 +172,35 @@
       return;
     }
 
-    const boletos = Array.from(boletosSeleccionados)
-      .sort((a, b) => a - b)
-      .map(n => String(n).padStart(5, '0'))
-      .join(", ");
+    const duplicados = Array.from(boletosSeleccionados).filter(n => boletosApartados.has(n));
+    if (duplicados.length > 0) {
+      alert(`Los siguientes boletos ya fueron apartados: ${duplicados.map(n => String(n).padStart(5, '0')).join(", ")}`);
+      renderBoletos();
+      return;
+    }
 
+    const datos = {
+      nombre,
+      apellido,
+      telefono,
+      ciudad,
+      estado,
+      boletos: Array.from(boletosSeleccionados).sort((a, b) => a - b),
+      fecha: new Date().toISOString()
+    };
+    apartadosRef.push(datos);
+
+    const boletos = datos.boletos.map(n => String(n).padStart(5, '0')).join(", ");
     const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletos}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
-
     const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
+
+    limpiarSeleccion();
   }
 
-  // Inicializar la lista de boletos
   renderBoletos();
 </script>
+
 
 </body>
 </html>
