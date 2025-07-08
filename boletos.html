@@ -346,36 +346,32 @@
   });
 
   function renderBoletos() {
-    const container = document.getElementById("boletos-container");
-    container.innerHTML = "";
+  const container = document.getElementById("boletos-container");
+  if (!container) {
+    console.error("No se encontró el contenedor de boletos");
+    return;
+  }
+  container.innerHTML = "";
 
-    for (let i = 1000; i <= totalBoletos; i++) {
-      const numeroFormateado = String(i).padStart(5, "0");
-      const btn = document.createElement("button");
-      btn.textContent = numeroFormateado;
-      btn.style.padding = "6px";
-      btn.style.fontSize = "12px";
-      btn.style.borderRadius = "5px";
-      btn.style.cursor = "pointer";
-      btn.style.border = "1px solid #4d494c";
-      btn.style.userSelect = "none";
+  for (let i = 1000; i <= 60000; i++) {
+    const numeroFormateado = String(i).padStart(5, "0");
+    const btn = document.createElement("button");
+    btn.textContent = numeroFormateado;
+    btn.style.padding = "6px";
+    btn.style.fontSize = "12px";
+    btn.style.borderRadius = "5px";
+    btn.style.cursor = "pointer";
+    btn.style.border = "1px solid #4d494c";
+    btn.style.userSelect = "none";
 
-      if (boletosApartados.has(i)) {
-        btn.style.backgroundColor = "#000";
-        btn.style.color = "#fff";
-        btn.disabled = true;
-        btn.title = "Boleto ya apartado";
-      } else {
-        btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#d3d3d3";
-        btn.style.color = "#000";
-        btn.onmouseover = () => (btn.style.backgroundColor = "#aaa");
-        btn.onmouseout = () =>
-          (btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#d3d3d3");
-        btn.onclick = () => toggleBoleto(i);
-      }
+    btn.style.backgroundColor = "#d3d3d3";
+    btn.style.color = "#000";
+    btn.onclick = () => alert("Boleto: " + numeroFormateado);
 
-      container.appendChild(btn);
-    }
+    container.appendChild(btn);
+  }
+}
+renderBoletos();
 
     const listaSpan = document.getElementById("lista-seleccionados");
     const lista = Array.from(boletosSeleccionados)
