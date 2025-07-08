@@ -209,27 +209,6 @@
 
     </div>
   </div>
-<section id="rifa-boletos">
-  <h2 style="text-align:center;">Aparta tus boletos</h2>
-  <div style="text-align:center;">
-    <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
-    <p>Selecciona tus boletos o usa la opción aleatoria</p>
-    <div id="boletos" style="display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin:10px 0;"></div>
-    <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
-  </div>
-
-  <div style="margin-top:20px; text-align:center;">
-    <h3>Ingresa tus datos</h3>
-    <input type="text" id="nombre" placeholder="Nombre" required><br><br>
-    <input type="text" id="apellido" placeholder="Apellido" required><br><br>
-    <input type="text" id="estado" placeholder="Estado" required><br><br>
-    <input type="text" id="ciudad" placeholder="Ciudad" required><br><br>
-    <input type="tel" id="telefono" placeholder="Teléfono" required><br><br>
-    <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
-  </div>
-  </div>
-</section>
-
   
 </section>
 
@@ -362,66 +341,6 @@
     }
     document.getElementById("users-list").innerHTML = list;
   });
-</script>
-<script>
-  const totalBoletos = 4000;
-  const boletosSeleccionados = new Set();
-
-  function renderBoletos() {
-    const container = document.getElementById("boletos");
-    container.innerHTML = "";
-    for (let i = 1; i <= totalBoletos; i++) {
-      const btn = document.createElement("button");
-      btn.textContent = i;
-      btn.style.padding = "8px";
-      btn.style.borderRadius = "5px";
-      btn.style.cursor = "pointer";
-      btn.style.border = "1px solid #333";
-      btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#ccc";
-      btn.onclick = () => toggleBoleto(i);
-      container.appendChild(btn);
-    }
-  }
-
-  function toggleBoleto(num) {
-    if (boletosSeleccionados.has(num)) {
-      boletosSeleccionados.delete(num);
-    } else {
-      boletosSeleccionados.add(num);
-    }
-    renderBoletos();
-  }
-
-  function seleccionarAleatorios(cantidad) {
-    boletosSeleccionados.clear();
-    while (boletosSeleccionados.size < cantidad) {
-      const random = Math.floor(Math.random() * totalBoletos) + 1;
-      boletosSeleccionados.add(random);
-    }
-    renderBoletos();
-  }
-
-  function enviarWhatsApp() {
-    const nombre = document.getElementById("nombre").value;
-    const apellido = document.getElementById("apellido").value;
-    const estado = document.getElementById("estado").value;
-    const ciudad = document.getElementById("ciudad").value;
-    const telefono = document.getElementById("telefono").value;
-
-    if (!nombre || !apellido || !estado || !ciudad || !telefono || boletosSeleccionados.size === 0) {
-      alert("Completa todos los campos y selecciona al menos un boleto.");
-      return;
-    }
-
-    const boletos = Array.from(boletosSeleccionados).sort((a, b) => a - b).join(", ");
-    const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletos}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
-
-    const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, "_blank");
-  }
-
-  renderBoletos();
-</script>
 
 </body>
 </html>
