@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Los Cabos Motors - Rifas</title>
 <style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #bebebe;
+    margin: 0;
+    padding: 20px;
+    color: #000;
+  }
   #boletos-seleccionados {
     margin-bottom: 10px;
     font-weight: bold;
@@ -42,6 +49,23 @@
   #boletos button:disabled {
     cursor: default;
   }
+  .notif {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #28a745;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-weight: bold;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .notif.show {
+    opacity: 1;
+  }
 </style>
 </head>
 <body>
@@ -61,6 +85,7 @@
     <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
     <button onclick="seleccionarAleatorios(6)">🎲 Elegir 6 al azar</button>
     <button onclick="seleccionarAleatorios(10)">🎲 Elegir 10 al azar</button>
+    <button onclick="limpiarSeleccion()">🧹 Limpiar selección</button>
   </div>
 
   <div style="margin-top:20px;">
@@ -73,6 +98,8 @@
     <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
   </div>
 </div>
+
+<div class="notif" id="notif">¡Boletos apartados correctamente!</div>
 
 <script>
   const totalBoletos = 60000;
@@ -92,22 +119,18 @@
 
       if (boletosApartados.has(i)) {
         btn.style.backgroundColor = "#000";   // negro
-        btn.style.color = "#fff";              // texto blanco
-        btn.disabled = true;                   // no clickeable
+        btn.style.color = "#fff";
+        btn.disabled = true;
         btn.title = "Boleto ya apartado";
       } else {
         btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#ccc";
         btn.onclick = () => toggleBoleto(i);
       }
+
       container.appendChild(btn);
     }
 
-    // Mostrar boletos seleccionados arriba
-    const listaSpan = document.getElementById("lista-seleccionados");
-    const lista = Array.from(boletosSeleccionados)
-      .sort((a, b) => a - b)
-      .map(n => String(n).padStart(5, '0'));
-    listaSpan.textContent = lista.length > 0 ? lista.join(", ") : "Ninguno";
+    actualizarSeleccionados();
   }
 
   function toggleBoleto(num) {
@@ -128,6 +151,26 @@
       }
     }
     renderBoletos();
+  }
+
+  function limpiarSeleccion() {
+    boletosSeleccionados.clear();
+    renderBoletos();
+  }
+
+  function actualizarSeleccionados() {
+    const listaSpan = document.getElementById("lista-seleccionados");
+    const lista = Array.from(boletosSeleccionados)
+      .sort((a, b) => a - b)
+      .map(n => String(n).padStart(5, '0'));
+    listaSpan.textContent = lista.length > 0 ? lista.join(", ") : "Ninguno";
+  }
+
+  function mostrarNotificacion(texto) {
+    const notif = document.getElementById("notif");
+    notif.textContent = texto;
+    notif.classList.add("show");
+    setTimeout(() => notif.classList.remove("show"), 3000);
   }
 
   function enviarWhatsApp() {
@@ -151,13 +194,21 @@
 
     const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
+
+    mostrarNotificacion("¡Boletos apartados correctamente!");
+    limpiarSeleccion();
+    document.getElementById("nombre").value = "";
+    document.getElementById("apellido").value = "";
+    document.getElementById("estado").value = "";
+    document.getElementById("ciudad").value = "";
+    document.getElementById("telefono").value = "";
   }
 
-  // Inicializar la lista de boletos
   renderBoletos();
 </script>
 
 </body>
 </html>
+
 
 
