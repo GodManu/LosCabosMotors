@@ -1,212 +1,222 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Los Cabos Motors - Rifas</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #bebebe;
-    margin: 0;
-    padding: 20px;
-    color: #000;
-  }
-  #boletos-seleccionados {
-    margin-bottom: 10px;
-    font-weight: bold;
-    background: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #999;
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-  #boletos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    justify-content: flex-start;
-    max-height: 300px;
-    overflow-y: scroll;
-    padding: 10px;
-    background: #f0f0f0;
-    border: 2px solid #999;
-    border-radius: 8px;
-    margin: 10px auto;
-    width: 90%;
-  }
-  #boletos button {
-    padding: 6px;
-    font-size: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 1px solid #333;
-  }
-  #boletos button:disabled {
-    cursor: default;
-  }
-  .notif {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #28a745;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    font-weight: bold;
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-  .notif.show {
-    opacity: 1;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Los Cabos Motors - Rifas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #bebebe;
+      margin: 0;
+      padding: 20px;
+      color: #000;
+    }
+    #boletos-seleccionados {
+      margin-bottom: 10px;
+      font-weight: bold;
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid #999;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    #boletos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: flex-start;
+      max-height: 300px;
+      overflow-y: scroll;
+      padding: 10px;
+      background: #f0f0f0;
+      border: 2px solid #999;
+      border-radius: 8px;
+      margin: 10px auto;
+      width: 90%;
+    }
+    #boletos button {
+      padding: 6px;
+      font-size: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: 1px solid #333;
+    }
+    #boletos button:disabled {
+      cursor: default;
+    }
+    .notif {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #28a745;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      font-weight: bold;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .notif.show {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
+  <div style="text-align:center;">
+    <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
+    <p>Selecciona tus boletos o usa la opción aleatoria</p>
 
-<div style="text-align:center;">
-  <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
-  <p>Selecciona tus boletos o usa la opción aleatoria</p>
+    <div id="boletos-seleccionados">
+      Boletos seleccionados: <span id="lista-seleccionados">Ninguno</span>
+    </div>
 
-  <div id="boletos-seleccionados">
-    Boletos seleccionados: <span id="lista-seleccionados">Ninguno</span>
+    <div id="boletos"></div>
+
+    <div style="margin-top:10px;">
+      <button onclick="seleccionarAleatorios(1)">🎲 Elegir 1 al azar</button>
+      <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
+      <button onclick="seleccionarAleatorios(6)">🎲 Elegir 6 al azar</button>
+      <button onclick="seleccionarAleatorios(10)">🎲 Elegir 10 al azar</button>
+      <button onclick="limpiarSeleccion()">🧹 Limpiar selección</button>
+    </div>
+
+    <div style="margin-top:20px;">
+      <h3>Ingresa tus datos</h3>
+      <input type="text" id="nombre" placeholder="Nombre" required><br><br>
+      <input type="text" id="apellido" placeholder="Apellido" required><br><br>
+      <input type="text" id="estado" placeholder="Estado" required><br><br>
+      <input type="text" id="ciudad" placeholder="Ciudad" required><br><br>
+      <input type="tel" id="telefono" placeholder="Teléfono" required><br><br>
+      <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
+    </div>
   </div>
 
-  <div id="boletos"></div>
+  <div class="notif" id="notif">¡Boletos apartados correctamente!</div>
 
-  <div style="margin-top:10px;">
-    <button onclick="seleccionarAleatorios(1)">🎲 Elegir 1 al azar</button>
-    <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
-    <button onclick="seleccionarAleatorios(6)">🎲 Elegir 6 al azar</button>
-    <button onclick="seleccionarAleatorios(10)">🎲 Elegir 10 al azar</button>
-    <button onclick="limpiarSeleccion()">🧹 Limpiar selección</button>
-  </div>
+  <!-- Firebase scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
+      authDomain: "chatloscabosmotors.firebaseapp.com",
+      databaseURL: "https://chatloscabosmotors-default-rtdb.firebaseio.com",
+      projectId: "chatloscabosmotors",
+      storageBucket: "chatloscabosmotors.appspot.com",
+      messagingSenderId: "312586924965",
+      appId: "1:312586924965:web:ae4868021f68728e74ae4c"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const refBoletos = db.ref("boletos");
 
-  <div style="margin-top:20px;">
-    <h3>Ingresa tus datos</h3>
-    <input type="text" id="nombre" placeholder="Nombre" required><br><br>
-    <input type="text" id="apellido" placeholder="Apellido" required><br><br>
-    <input type="text" id="estado" placeholder="Estado" required><br><br>
-    <input type="text" id="ciudad" placeholder="Ciudad" required><br><br>
-    <input type="tel" id="telefono" placeholder="Teléfono" required><br><br>
-    <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
-  </div>
-</div>
+    const totalBoletos = 60000;
+    const boletosSeleccionados = new Set();
+    const boletosApartados = new Set();
 
-<div class="notif" id="notif">¡Boletos apartados correctamente!</div>
+    refBoletos.once("value", (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        Object.values(data).forEach(entry => {
+          entry.boletos.forEach(b => boletosApartados.add(Number(b)));
+        });
+      }
+      renderBoletos();
+    });
 
-<script>
-  const totalBoletos = 60000;
-  const boletosSeleccionados = new Set();
+    function renderBoletos() {
+      const container = document.getElementById("boletos");
+      container.innerHTML = "";
+      for (let i = 1000; i <= totalBoletos; i++) {
+        const num = String(i).padStart(5, '0');
+        const btn = document.createElement("button");
+        btn.textContent = num;
+        if (boletosApartados.has(i)) {
+          btn.style.backgroundColor = "#000";
+          btn.style.color = "#fff";
+          btn.disabled = true;
+        } else {
+          btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#ccc";
+          btn.onclick = () => toggleBoleto(i);
+        }
+        container.appendChild(btn);
+      }
+      actualizarSeleccionados();
+    }
 
-  // Boletos ya apartados (ocupados) - modifica aquí para agregar/quitar
-  const boletosApartados = new Set([1005, 1020, 1500, 25000]);
-
-  function renderBoletos() {
-    const container = document.getElementById("boletos");
-    container.innerHTML = "";
-
-    for (let i = 1000; i <= totalBoletos; i++) {
-      const numeroFormateado = String(i).padStart(5, '0');
-      const btn = document.createElement("button");
-      btn.textContent = numeroFormateado;
-
-      if (boletosApartados.has(i)) {
-        btn.style.backgroundColor = "#000";   // negro
-        btn.style.color = "#fff";
-        btn.disabled = true;
-        btn.title = "Boleto ya apartado";
+    function toggleBoleto(num) {
+      if (boletosSeleccionados.has(num)) {
+        boletosSeleccionados.delete(num);
       } else {
-        btn.style.backgroundColor = boletosSeleccionados.has(i) ? "#28a745" : "#ccc";
-        btn.onclick = () => toggleBoleto(i);
+        boletosSeleccionados.add(num);
       }
-
-      container.appendChild(btn);
+      renderBoletos();
     }
 
-    actualizarSeleccionados();
-  }
-
-  function toggleBoleto(num) {
-    if (boletosSeleccionados.has(num)) {
-      boletosSeleccionados.delete(num);
-    } else {
-      boletosSeleccionados.add(num);
-    }
-    renderBoletos();
-  }
-
-  function seleccionarAleatorios(cantidad) {
-    boletosSeleccionados.clear();
-    while (boletosSeleccionados.size < cantidad) {
-      const random = Math.floor(Math.random() * (totalBoletos - 999)) + 1000;
-      if (!boletosApartados.has(random)) {
-        boletosSeleccionados.add(random);
+    function seleccionarAleatorios(cantidad) {
+      boletosSeleccionados.clear();
+      while (boletosSeleccionados.size < cantidad) {
+        const r = Math.floor(Math.random() * (totalBoletos - 999)) + 1000;
+        if (!boletosApartados.has(r)) boletosSeleccionados.add(r);
       }
-    }
-    renderBoletos();
-  }
-
-  function limpiarSeleccion() {
-    boletosSeleccionados.clear();
-    renderBoletos();
-  }
-
-  function actualizarSeleccionados() {
-    const listaSpan = document.getElementById("lista-seleccionados");
-    const lista = Array.from(boletosSeleccionados)
-      .sort((a, b) => a - b)
-      .map(n => String(n).padStart(5, '0'));
-    listaSpan.textContent = lista.length > 0 ? lista.join(", ") : "Ninguno";
-  }
-
-  function mostrarNotificacion(texto) {
-    const notif = document.getElementById("notif");
-    notif.textContent = texto;
-    notif.classList.add("show");
-    setTimeout(() => notif.classList.remove("show"), 3000);
-  }
-
-  function enviarWhatsApp() {
-    const nombre = document.getElementById("nombre").value.trim();
-    const apellido = document.getElementById("apellido").value.trim();
-    const estado = document.getElementById("estado").value.trim();
-    const ciudad = document.getElementById("ciudad").value.trim();
-    const telefono = document.getElementById("telefono").value.trim();
-
-    if (!nombre || !apellido || !estado || !ciudad || !telefono || boletosSeleccionados.size === 0) {
-      alert("Completa todos los campos y selecciona al menos un boleto.");
-      return;
+      renderBoletos();
     }
 
-    const boletos = Array.from(boletosSeleccionados)
-      .sort((a, b) => a - b)
-      .map(n => String(n).padStart(5, '0'))
-      .join(", ");
+    function limpiarSeleccion() {
+      boletosSeleccionados.clear();
+      renderBoletos();
+    }
 
-    const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletos}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
+    function actualizarSeleccionados() {
+      const listaSpan = document.getElementById("lista-seleccionados");
+      const lista = Array.from(boletosSeleccionados).sort((a,b)=>a-b).map(n => String(n).padStart(5, '0'));
+      listaSpan.textContent = lista.length > 0 ? lista.join(", ") : "Ninguno";
+    }
 
-    const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, "_blank");
+    function mostrarNotificacion(texto) {
+      const notif = document.getElementById("notif");
+      notif.textContent = texto;
+      notif.classList.add("show");
+      setTimeout(() => notif.classList.remove("show"), 3000);
+    }
 
-    mostrarNotificacion("¡Boletos apartados correctamente!");
-    limpiarSeleccion();
-    document.getElementById("nombre").value = "";
-    document.getElementById("apellido").value = "";
-    document.getElementById("estado").value = "";
-    document.getElementById("ciudad").value = "";
-    document.getElementById("telefono").value = "";
-  }
+    function enviarWhatsApp() {
+      const nombre = document.getElementById("nombre").value.trim();
+      const apellido = document.getElementById("apellido").value.trim();
+      const estado = document.getElementById("estado").value.trim();
+      const ciudad = document.getElementById("ciudad").value.trim();
+      const telefono = document.getElementById("telefono").value.trim();
+      if (!nombre || !apellido || !estado || !ciudad || !telefono || boletosSeleccionados.size === 0) {
+        alert("Completa todos los campos y selecciona al menos un boleto.");
+        return;
+      }
+      const boletos = Array.from(boletosSeleccionados).sort((a,b)=>a-b).map(n => String(n).padStart(5, '0'));
+      const mensaje = `Hola! Soy ${nombre} ${apellido}, quiero apartar los boletos: ${boletos.join(", ")}. Vivo en ${ciudad}, ${estado}. Mi número es ${telefono}.`;
+      const url = `https://wa.me/5216241181978?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, "_blank");
 
-  renderBoletos();
-</script>
+      // Guardar en Firebase
+      const nuevo = refBoletos.push();
+      nuevo.set({ nombre, apellido, estado, ciudad, telefono, boletos });
 
+      boletos.forEach(b => boletosApartados.add(Number(b)));
+      mostrarNotificacion("¡Boletos apartados correctamente!");
+      limpiarSeleccion();
+
+      document.getElementById("nombre").value = "";
+      document.getElementById("apellido").value = "";
+      document.getElementById("estado").value = "";
+      document.getElementById("ciudad").value = "";
+      document.getElementById("telefono").value = "";
+    }
+  </script>
 </body>
 </html>
 
