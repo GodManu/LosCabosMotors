@@ -181,6 +181,21 @@
   <div style="text-align:center;">
     <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
     <p>Selecciona tus boletos o usa la opción aleatoria</p>
+    <div id="boletos-seleccionados" style="
+  margin-bottom: 10px;
+  font-weight: bold;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #999;
+  max-width: 90%;
+  margin: 10px auto;
+  overflow-x: auto;
+  white-space: nowrap;
+">
+  Boletos seleccionados: <span id="lista-seleccionados">Ninguno</span>
+</div>
+
     <div id="boletos" style="
   display: flex;
   flex-wrap: wrap;
@@ -371,7 +386,16 @@
     btn.onclick = () => toggleBoleto(i);
     container.appendChild(btn);
   }
+
+  // Mostrar boletos seleccionados arriba
+  const listaSpan = document.getElementById("lista-seleccionados");
+  const lista = Array.from(boletosSeleccionados)
+    .sort((a, b) => a - b)
+    .map(n => String(n).padStart(5, '0'));
+
+  listaSpan.textContent = lista.length > 0 ? lista.join(", ") : "Ninguno";
 }
+
 
   function toggleBoleto(num) {
     if (boletosSeleccionados.has(num)) {
