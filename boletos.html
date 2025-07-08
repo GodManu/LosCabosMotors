@@ -182,7 +182,10 @@
     <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:10px;">
     <p>Selecciona tus boletos o usa la opción aleatoria</p>
     <div id="boletos" style="display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin:10px 0;"></div>
+    <button onclick="seleccionarAleatorios(1)">🎲 Elegir 1 al azar</button>
     <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
+    <button onclick="seleccionarAleatorios(6)">🎲 Elegir 6 al azar</button>
+    <button onclick="seleccionarAleatorios(10)">🎲 Elegir 10 al azar</button>
   </div>
 
   <div style="margin-top:20px; text-align:center;">
@@ -338,7 +341,7 @@
   function renderBoletos() {
     const container = document.getElementById("boletos");
     container.innerHTML = "";
-    for (let i = 1; i <= totalBoletos; i++) {
+    for (let i = 5; i <= totalBoletos; i++) {
       const btn = document.createElement("button");
       btn.textContent = i;
       btn.style.padding = "8px";
