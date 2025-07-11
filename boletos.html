@@ -9,7 +9,7 @@
       font-family: Arial, sans-serif;
       background: #bebebe;
       margin: 0;
-      padding: 0;
+      padding: 20px;
       color: #000;
     }
     header {
@@ -23,6 +23,7 @@
       color: white;
       overflow: hidden;
     }
+
     header::before {
       content: "";
       position: absolute;
@@ -32,22 +33,26 @@
       background-color: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
+
     .header-content {
       position: relative;
       z-index: 2;
     }
+
     .header-content h1 {
       font-size: 2.8rem;
       color: white;
       text-shadow: 2px 2px 0 black, -2px -2px 0 black;
       margin: 0;
     }
+
     .header-content p {
       font-size: 1.2rem;
       color: white;
       text-shadow: 1px 1px 0 black, -1px -1px 0 black;
       margin-top: 10px;
     }
+
     nav {
       background-color: #4d494c;
       text-align: center;
@@ -55,6 +60,7 @@
       top: 0;
       z-index: 100;
     }
+
     nav a {
       color: white;
       text-decoration: none;
@@ -62,25 +68,24 @@
       display: inline-block;
       font-weight: bold;
     }
+
     nav a:hover {
       background-color: #3c3c3c;
     }
     section {
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-top: 20px;
+      padding: 5px;
     }
     #boletos-seleccionados {
       margin-bottom: 10px;
       font-weight: bold;
-      background: #fff;
+      background: #3a3a3a;
+      color: white;
       padding: 10px;
       border-radius: 8px;
       border: 2px solid #999;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
       overflow-x: auto;
       white-space: nowrap;
     }
@@ -92,10 +97,11 @@
       max-height: 300px;
       overflow-y: scroll;
       padding: 10px;
-      background: #cfb874;
+      background: #3a3a3a;
       border: 2px solid #999;
       border-radius: 8px;
-      margin-top: 10px;
+      margin: 10px auto;
+      width: 90%;
     }
     #boletos button {
       padding: 6px;
@@ -124,18 +130,26 @@
     .notif.show {
       opacity: 1;
     }
-    .acciones {
-      margin-top: 20px;
-    }
-    .acciones button {
-      margin: 5px;
+    .contenedor-rifa {
+      background: #3a3a3a;
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 900px;
+      margin: 20px auto;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      text-align: center;
     }
     input {
-      padding: 10px;
-      width: 100%;
-      margin-bottom: 10px;
-      border: 1px solid #aaa;
+      padding: 8px;
+      width: 80%;
+      max-width: 400px;
+      border: 1px solid #999;
       border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    button {
+      margin: 4px;
     }
   </style>
 </head>
@@ -148,15 +162,13 @@
   </header>
   <nav>
     <a href="#venta">Venta de Autos</a>
-    <a href="#rifas">Rifas</a>
+    <a href="rifas.html">Rifas</a>
     <a href="#contacto">Contacto</a>
   </nav>
 
-  <section id="rifas">
-    <div style="text-align:center; background: #686868; padding: 20px; border-radius: 15px; max-width: 900px; margin: 20px auto; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-      <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:20px;">
-      <p style="margin-top:10px; font-size:1.1rem;">Selecciona tus boletos o usa la opción aleatoria</p>
-    </div>
+  <div class="contenedor-rifa">
+    <img src="Images/Batcabo.jpg" alt="Auto de Rifa" style="max-width:300px; border-radius:40px;">
+    <p>Selecciona tus boletos o usa la opción aleatoria</p>
 
     <div id="boletos-seleccionados">
       Boletos seleccionados: <span id="lista-seleccionados">Ninguno</span>
@@ -164,7 +176,7 @@
 
     <div id="boletos"></div>
 
-    <div class="acciones">
+    <div style="margin-top:10px;">
       <button onclick="seleccionarAleatorios(1)">🎲 Elegir 1 al azar</button>
       <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
       <button onclick="seleccionarAleatorios(6)">🎲 Elegir 6 al azar</button>
@@ -173,14 +185,16 @@
       <button onclick="limpiarSeleccion()">🧹 Limpiar selección</button>
     </div>
 
-    <h3 style="margin-top:30px; text-align:center;">Ingresa tus datos</h3>
-    <input type="text" id="nombre" placeholder="Nombre" required>
-    <input type="text" id="apellido" placeholder="Apellido" required>
-    <input type="text" id="estado" placeholder="Estado" required>
-    <input type="text" id="ciudad" placeholder="Ciudad" required>
-    <input type="tel" id="telefono" placeholder="Teléfono" required>
-    <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
-  </section>
+    <div style="margin-top:20px;">
+      <h3>Ingresa tus datos</h3>
+      <input type="text" id="nombre" placeholder="Nombre" required><br>
+      <input type="text" id="apellido" placeholder="Apellido" required><br>
+      <input type="text" id="estado" placeholder="Estado" required><br>
+      <input type="text" id="ciudad" placeholder="Ciudad" required><br>
+      <input type="tel" id="telefono" placeholder="Teléfono" required><br>
+      <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
+    </div>
+  </div>
 
   <div class="notif" id="notif">¡Boletos apartados correctamente!</div>
 
