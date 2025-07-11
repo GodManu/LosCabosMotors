@@ -12,12 +12,20 @@
       background-color: #bebebe;
     }
     header {
-      background-color: #881414;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(136, 20, 20, 0.95);
       color: white;
-      padding: 20px 0;
+      padding: 40px 20px;
       text-align: center;
+      backdrop-filter: blur(4px);
+      background-image: url('Images/LosCabosMotors.png');
+      background-size: 120px;
+      background-repeat: no-repeat;
+      background-position: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
-    nav {
       background-color: #4d494c;
       text-align: center;
     }
@@ -78,9 +86,8 @@
 </head>
 <body>
 <header>
-  <img src="Images/LosCabosMotors.png" alt="Logo Los Cabos Motors" style="max-width: 200px; height: auto; display: block; margin: 0 auto 10px;" />
-  <h1>Los Cabos Motors</h1>
-  <p>Autos en venta y rifas exclusivas</p>
+  <h1 style="margin: 0; font-size: 2.5rem;">Los Cabos Motors</h1>
+  <p style="margin: 10px 0 0; font-size: 1.2rem;">Autos en venta y rifas exclusivas</p>
 </header>
 
   <nav>
