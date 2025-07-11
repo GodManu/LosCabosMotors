@@ -12,31 +12,54 @@
       background-color: #bebebe;
     }
     header {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: rgba(136, 20, 20, 0.95);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-      backdrop-filter: blur(4px);
-      background-image: url('Images/LosCabosMotors.png');
-      background-size: 120px;
-      background-repeat: no-repeat;
-      background-position: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-      background-color: #4d494c;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 15px 20px;
-      display: inline-block;
-    }
-    nav a:hover {
-      background-color: #3c3c3c;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.header-content {
+  padding: 20px;
+}
+
+.logo {
+  max-width: 140px;
+  margin-bottom: 10px;
+}
+
+.textos-header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: white;
+}
+
+.textos-header p {
+  margin: 5px 0 15px;
+  font-size: 1.1rem;
+  color: #ddd;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #881414;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 25px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #6d0f0f;
+}
     }
     section {
       padding: 30px;
@@ -86,15 +109,19 @@
 </head>
 <body>
 <header>
-  <h1 style="margin: 0; font-size: 2.5rem;">Los Cabos Motors</h1>
-  <p style="margin: 10px 0 0; font-size: 1.2rem;">Autos en venta y rifas exclusivas</p>
-</header>
-
+  <div class="header-content">
+    <img src="Images/LosCabosMotors.png" alt="Logo Los Cabos Motors" class="logo">
+    <div class="textos-header">
+      <h1>Los Cabos Motors</h1>
+      <p>Autos en venta y rifas exclusivas</p>
+    </div>
+  </div>
   <nav>
     <a href="#venta">Venta de Autos</a>
     <a href="#rifas">Rifas</a>
     <a href="#contacto">Contacto</a>
   </nav>
+</header>
 
   <section id="about">
     <h2 style="text-align:center;">¿Quiénes somos?</h2>
