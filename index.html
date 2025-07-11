@@ -11,7 +11,7 @@
       padding: 0;
       background-color: #bebebe;
     }
-    header {
+  header {
   position: sticky;
   top: 0;
   z-index: 999;
@@ -22,23 +22,27 @@
 }
 
 .header-content {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  position: relative;
 }
 
 .logo {
-  max-width: 140px;
-  margin-bottom: 10px;
+  max-width: 120px;
+  margin-bottom: 5px;
 }
 
 .textos-header h1 {
   margin: 0;
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: white;
 }
 
 .textos-header p {
-  margin: 5px 0 15px;
-  font-size: 1.1rem;
+  margin: 5px 0 10px;
+  font-size: 1rem;
   color: #ddd;
 }
 
@@ -47,6 +51,7 @@ nav {
   justify-content: center;
   background-color: #881414;
   flex-wrap: wrap;
+  transition: max-height 0.3s ease;
 }
 
 nav a {
@@ -54,11 +59,39 @@ nav a {
   text-decoration: none;
   padding: 15px 25px;
   font-weight: bold;
-  transition: background 0.3s ease;
+  display: block;
 }
 
 nav a:hover {
   background-color: #6d0f0f;
+}
+
+/* Botón hamburguesa */
+.menu-toggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+  }
+  nav.show {
+    max-height: 300px;
+  }
+  .menu-toggle {
+    display: block;
+  }
 }
     }
     section {
@@ -115,8 +148,9 @@ nav a:hover {
       <h1>Los Cabos Motors</h1>
       <p>Autos en venta y rifas exclusivas</p>
     </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   </div>
-  <nav>
+  <nav id="main-nav">
     <a href="#venta">Venta de Autos</a>
     <a href="#rifas">Rifas</a>
     <a href="#contacto">Contacto</a>
@@ -183,5 +217,10 @@ nav a:hover {
   <footer>
     <p>&copy; 2025 Los Cabos Motors - Todos los derechos reservados</p>
   </footer>
+  <script>
+  function toggleMenu() {
+    document.getElementById("main-nav").classList.toggle("show");
+  }
+</script>
 </body>
 </html>
