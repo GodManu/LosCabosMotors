@@ -12,7 +12,6 @@
       background-color: #bebebe;
     }
 
-    /* HEADER CON LOGO DE FONDO */
     header {
       position: relative;
       background: url('Images/LosCabosMotors.png') center center / cover no-repeat;
@@ -31,7 +30,7 @@
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.4); /* oscurece para contraste */
+      background-color: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
@@ -41,21 +40,21 @@
     }
 
     .header-content h1 {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       color: white;
-      text-shadow: 2px 2px 0 black, -2px -2px 0 black;
+      text-shadow: 2px 2px 0 black;
       margin: 0;
     }
 
     .header-content p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: white;
-      text-shadow: 1px 1px 0 black, -1px -1px 0 black;
+      text-shadow: 1px 1px 0 black;
       margin-top: 10px;
     }
 
     nav {
-      background-color: #4d494c;
+      background-color: #333;
       text-align: center;
       position: sticky;
       top: 0;
@@ -71,259 +70,141 @@
     }
 
     nav a:hover {
-      background-color: #3c3c3c;
+      background-color: #222;
     }
 
     section {
-      padding: 30px;
+      padding: 30px 15px;
+      max-width: 1000px;
+      margin: auto;
     }
 
-    .autos, .rifas {
+    .card, .card1 {
+      background: #444;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      color: white;
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .autos {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
     }
 
-    .card {
-      background: #881414;
-      border-radius: 10px;
-      box-shadow: 0 5px 5px rgba(0,0,0,0.2);
-      width: 300px;
-      padding: 15px;
-      text-align: center;
-      color: white;
-    }
-
-    .card1 {
-      background: #515151;
-      border-radius: 40px;
-      box-shadow: 0 5px 5px rgba(0,0,0,0.2);
-      width: 500px;
-      padding: 30px;
-      text-align: center;
-      color: white;
-      margin: auto;
-    }
-
     .card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
 
-.card img:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
-}
+    .auto-titulo {
+      font-size: 1.3rem;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .auto-precio {
+      font-size: 1.1rem;
+      color: #d7e800;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .auto-contacto {
+      font-size: 1rem;
+      color: #ccc;
+    }
 
     footer {
-      background-color: #4d494c;
+      background-color: #222;
       color: white;
       text-align: center;
       padding: 20px 0;
-      margin-top: 30px;
     }
 
-    /* CHAT STYLES */
-    .chat-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ffbb33;
-      color: #000;
-      border: none;
-      padding: 12px 16px;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 1000;
+    @media (max-width: 600px) {
+      .card, .card1 {
+        width: 90%;
+        padding: 15px;
+      }
+
+      .header-content h1 {
+        font-size: 2rem;
+      }
+
+      .header-content p {
+        font-size: 1rem;
+      }
     }
-
-    #chat-box {
-      display: none;
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 350px;
-      max-height: 500px;
-      background: #1f1f1f;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      z-index: 1000;
-    }
-
-    #login-screen, #chat-screen {
-      display: none;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    #login-screen {
-      padding: 20px;
-    }
-
-    #login-screen input {
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      border: none;
-      width: 100%;
-    }
-
-    #chat-header {
-      padding: 10px;
-      background: #222;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    #users-list {
-      background: #2d2d2d;
-      padding: 10px;
-      font-size: 0.85rem;
-      max-height: 80px;
-      overflow-y: auto;
-    }
-
-    #messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px;
-      background: #141414;
-    }
-
-    .message {
-      margin-bottom: 10px;
-      word-wrap: break-word;
-    }
-
-    .message .time {
-      font-size: 0.75rem;
-      color: #aaa;
-    }
-
-    #chat-form {
-      display: flex;
-      padding: 10px;
-      background: #2a2a2a;
-    }
-
-    #message-input {
-      flex: 1;
-      padding: 8px;
-      border: none;
-      border-radius: 5px;
-    }
-
-    #send-btn {
-      background: #ffbb33;
-      border: none;
-      padding: 8px 12px;
-      margin-left: 8px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .auto-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 10px;
-}
-
-.auto-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-.auto-titulo {
-  font-size: 1.3rem;
-  margin-top: 15px;
-  font-weight: bold;
-  color: #fff;
-}
-
-.auto-precio {
-  font-size: 1.1rem;
-  color: #d7e800;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.auto-contacto {
-  font-size: 1rem;
-  color: #ccc;
-}
-
   </style>
 </head>
 <body>
-
-<header>
-  <div class="header-content">
-    <h1>Los Cabos Motors</h1>
-    <p>Autos en venta y rifas exclusivas</p>
-  </div>
-</header>
-
-<nav>
-  <a href="#venta">Venta de Autos</a>
-  <a href="rifas.html">Rifas</a>
-  <a href="#contacto">Contacto</a>
-</nav>
-
-<section id="About us">
-  <h2 style="text-align:center;">¿Quiénes somos?</h2>
-  <div class="card1">
-    <p>
-      Somos una empresa dedicada al marketing, la promoción y el apoyo general en la venta de vehículos. Nuestra sede está en Los Cabos, Baja California Sur, pero operamos con alcance nacional.
-      <br><br>
-      Nos encargamos de facilitar la conexión entre vendedores y compradores, utilizando herramientas digitales, estrategias de difusión y asesoría personalizada para que cada vehículo encuentre a su nuevo dueño de forma rápida y sencilla.
-      <br><br>
-      Ya sea que busques vender un auto, camioneta o cualquier otro tipo de vehículo, estamos aquí para ayudarte en cada paso del proceso.
-    </p>
-  </div>
-</section>
-
-<section id="venta">
-  <h2 style="text-align:center; font-size: 2rem; margin-bottom: 30px;">Autos en Venta</h2>
-  <div class="autos">
-    <div class="card auto-card">
-      <img src="Images/Mustang2016.jpg" alt="Mustang 2016">
-      <h3 class="auto-titulo">Ford Mustang 2016</h3>
-      <p class="auto-precio">$240,000 MXN</p>
-      <p class="auto-contacto">📞 624-109-1503</p>
+  <header>
+    <div class="header-content">
+      <h1>Los Cabos Motors</h1>
+      <p>Autos en venta y rifas exclusivas</p>
     </div>
+  </header>
 
-    <div class="card auto-card">
-      <img src="Images/Xtrail2020S.jpg" alt="Xtrail 2020">
-      <h3 class="auto-titulo">Nissan Xtrail 2020<br>Sense 2 Row</h3>
-      <p class="auto-precio">$350,000 MXN</p>
-      <p class="auto-contacto">📞 624-118-1978</p>
+  <nav>
+    <a href="#venta">Venta de Autos</a>
+    <a href="rifas.html">Rifas</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="About us">
+    <h2 style="text-align:center; color:#111;">¿Quiénes somos?</h2>
+    <div class="card1">
+      <p>
+        Somos una empresa dedicada al marketing, la promoción y el apoyo general en la venta de vehículos. Nuestra sede está en Los Cabos, Baja California Sur, pero operamos con alcance nacional.<br><br>
+        Facilitamos la conexión entre vendedores y compradores, usando herramientas digitales y asesoría personalizada para que cada auto encuentre su dueño.<br><br>
+        Si buscas vender un auto, camioneta o cualquier otro vehículo, te ayudamos en todo el proceso.
+      </p>
     </div>
+  </section>
 
-    <div class="card auto-card">
-      <img src="Images/AudiR8.jpg" alt="Audi R8">
-      <h3 class="auto-titulo">Audi R8 2017</h3>
-      <p class="auto-precio">$2,200,000 MXN</p>
-      <p class="auto-contacto">📞 624-118-1978</p>
+  <section id="venta">
+    <h2 style="text-align:center; font-size: 2rem; color:#111;">Autos en Venta</h2>
+    <div class="autos">
+      <div class="card">
+        <img src="Images/Mustang2016.jpg" alt="Mustang 2016">
+        <h3 class="auto-titulo">Ford Mustang 2016</h3>
+        <p class="auto-precio">$240,000 MXN</p>
+        <p class="auto-contacto">📞 624-109-1503</p>
+      </div>
+
+      <div class="card">
+        <img src="Images/Xtrail2020S.jpg" alt="Xtrail 2020">
+        <h3 class="auto-titulo">Nissan Xtrail 2020 Sense</h3>
+        <p class="auto-precio">$350,000 MXN</p>
+        <p class="auto-contacto">📞 624-118-1978</p>
+      </div>
+
+      <div class="card">
+        <img src="Images/AudiR8.jpg" alt="Audi R8">
+        <h3 class="auto-titulo">Audi R8 2017</h3>
+        <p class="auto-precio">$2,200,000 MXN</p>
+        <p class="auto-contacto">📞 624-118-1978</p>
+      </div>
     </div>
-  </div>
-</section>
-<section id="contacto">
-  <h2 style="text-align:center;">Contacto</h2>
-  <p style="text-align:center;">Tel: 624-118-1978 | Email: loscabosmotors@gmail.com</p>
-  <p style="text-align:center;">Dirección: Los Cabos, BCS</p>
-</section>
+  </section>
 
-<footer>
-  <p>&copy; 2025 Los Cabos Motors - Todos los derechos reservados</p>
-</footer>
+  <section id="contacto">
+    <h2 style="text-align:center; color:#111;">Contacto</h2>
+    <p style="text-align:center; color:#111;">Tel: 624-118-1978 | Email: loscabosmotors@gmail.com</p>
+    <p style="text-align:center; color:#111;">Dirección: Los Cabos, BCS</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Los Cabos Motors - Todos los derechos reservados</p>
+  </footer>
 
 <!-- BOTÓN DEL CHAT -->
 <button class="chat-toggle" onclick="toggleChat()">💬 Chat</button>
