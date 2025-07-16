@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Admin - Boletos Apartados</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      padding: 20px;
+    }
+    h2 {
+      color: #881414;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #881414;
+      color: white;
+    }
+    #login-container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #881414;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #logout {
+      background: #444;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="login-container">
+  <h2>Panel Admin</h2>
+  <input type="email" id="email" placeholder="Correo">
+  <input type="password" id="password" placeholder="Contraseña">
+  <button onclick="login()">Iniciar sesión</button>
+</div>
+
+<div id="panel" style="display:none;">
+  <h2>Boletos Apartados</h2>
+  <button id="logout" onclick="logout()">Cerrar sesión</button>
+  <table id="tabla">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Ciudad</th>
+        <th>Estado</th>
+        <th>Boletos</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody id="contenido"></tbody>
+  </table>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
+    authDomain: "chatloscabosmotors.firebaseapp.com",
+    databaseURL: "https://chatloscabosmotors-default-rtdb.firebaseio.com",
+    projectId: "chatloscabosmotors",
+    storageBucket: "chatloscabosmotors.appspot.com",
+    messagingSenderId: "312586924965",
+    appId: "1:312586924965:web:ae4868021f68728e74ae4c"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.database();
+
+  // Login
+  function login() {
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+    auth.signInWithEmailAndPassword(email, pass)
+      .then(() => {
+        document.getElementById("login-container").style.display = "none";
+        document.getElementById("panel").style.display = "block";
+        cargarDatos();
+      })
+      .catch(err => alert("Error de inicio de sesión: " + err.message));
+  }
+
+  // Logout
+  function logout() {
+    auth.signOut().then(() => {
+      document.getElementById("login-container").style.display = "block";
+      document.getElementById("panel").style.display = "none";
+    });
+  }
+
+  // Cargar boletos
+  // Reemplaza esta parte en tu script:
+function cargarDatos() {
+  const cont = document.getElementById("contenido");
+  db.ref("boletos").on("value", (snapshot) => {
+    cont.innerHTML = "";
+    const data = snapshot.val();
+    for (const key in data) {
+      const item = data[key];
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td>${item.nombre} ${item.apellido || ""}</td>
+        <td>${item.telefono}</td>
+        <td>${item.ciudad}</td>
+        <td>${item.estado}</td>
+        <td>${(item.boletos || []).map(n => String(n).padStart(5, '0')).join(", ")}</td>
+        <td>${item.fecha ? new Date(item.fecha).toLocaleString() : "Sin fecha"}</td>
+      `;
+      cont.appendChild(fila);
+    }
+  });
+}
+
+
+  // Proteger acceso si no hay sesión
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      document.getElementById("login-container").style.display = "none";
+      document.getElementById("panel").style.display = "block";
+      cargarDatos();
+    } else {
+      document.getElementById("login-container").style.display = "block";
+      document.getElementById("panel").style.display = "none";
+    }
+  });
+</script>
+</body>
+</html>
