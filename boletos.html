@@ -176,12 +176,12 @@
     <div id="boletos"></div>
 
     <div style="margin-top:10px;">
-      <button onclick="seleccionarAleatorios(1)">🎲 Elegir 1 al azar</button>
-      <button onclick="seleccionarAleatorios(3)">🎲 Elegir 3 al azar</button>
-      <button onclick="seleccionarAleatorios(6)">🎲 Elegir 6 al azar</button>
-      <button onclick="seleccionarAleatorios(10)">🎲 Elegir 10 al azar</button>
-      <button onclick="seleccionarAleatorios(100)">🎲 Elegir 100 al azar</button>
-      <button onclick="limpiarSeleccion()">🧹 Limpiar selección</button>
+      <button onclick="seleccionarAleatorios(1)">🍀 Elegir 1 al azar 🍀</button>
+      <button onclick="seleccionarAleatorios(3)">🍀 Elegir 3 al azar 🍀</button>
+      <button onclick="seleccionarAleatorios(6)">🍀 Elegir 6 al azar 🍀</button>
+      <button onclick="seleccionarAleatorios(10)">🍀 Elegir 10 al azar 🍀</button>
+      <button onclick="seleccionarAleatorios(100)">🍀 Elegir 100 al azar 🍀</button>
+      <button onclick="limpiarSeleccion()">🧹 Limpiar selección 🧹</button>
     </div>
 
     <div style="margin-top:20px;">
@@ -191,7 +191,7 @@
       <input type="text" id="estado" placeholder="Estado" required><br>
       <input type="text" id="ciudad" placeholder="Ciudad" required><br>
       <input type="tel" id="telefono" placeholder="Teléfono" required><br>
-      <button onclick="enviarWhatsApp()">📩 Apartar y Enviar por WhatsApp</button>
+      <button onclick="enviarWhatsApp()">📱 Apartar y Enviar por WhatsApp 📱</button>
     </div>
   </div>
 
@@ -214,7 +214,7 @@
     const db = firebase.database();
     const refBoletos = db.ref("boletos");
 
-    const totalBoletos = 60000;
+    const totalBoletos = 30000;
     const boletosSeleccionados = new Set();
     const boletosApartados = new Set();
 
