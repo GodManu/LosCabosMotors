@@ -286,56 +286,72 @@
       padding: 20px 15px;
     }
    #rifas {
-  text-align: center;
-  padding: 50px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
-  border-radius: 20px;
-  margin: 40px auto;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 }
 
-.rifas-card {
-  max-width: 600px;
-  margin: 0 auto;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-  color: white;
-  font-size: 1.2em;
-}
-
-.rifas-card img {
+.rifa-container {
   width: 100%;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  text-align: center;
 }
 
-.rifas-card h3 {
+.rifa-title {
+  font-size: 2.5em;
+  color: #FFD700;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 5px #000;
+}
+
+.rifa-card {
+  color: white;
+}
+
+.rifa-card img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+  margin-bottom: 20px;
+}
+
+.rifa-card h3 {
   font-size: 1.8em;
   margin-bottom: 10px;
   color: #FFD700;
   text-shadow: 1px 1px 3px #000;
 }
 
+.rifa-card p {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
 .rifa-btn {
   display: inline-block;
+  margin-top: 20px;
   background: #FFD700;
   color: #000;
-  padding: 12px 25px;
-  margin-top: 20px;
-  border-radius: 10px;
+  padding: 12px 30px;
   font-weight: bold;
+  border-radius: 10px;
   text-decoration: none;
-  transition: background 0.3s;
+  font-size: 1.1em;
+  transition: background 0.3s, transform 0.2s;
 }
 
 .rifa-btn:hover {
   background: #ffc300;
+  transform: scale(1.05);
   box-shadow: 0 0 15px #FFD700;
 }
-
 </style>
 </head>
 <body>
@@ -355,15 +371,15 @@
 
 
 <section id="rifas">
-  <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 20px; color: #FFD700; text-shadow: 2px 2px 5px #000;">
-    🎉 Rifas Actuales 🎉
-  </h2>
-  <div class="rifas-card">
-    <img src="Images/Batcabo.jpg" alt="Auto de Rifa">
-    <h3>Rifa Mustang Cyclone (Pausada)</h3>
-    <p>🎟️ Boletos desde <strong>$14 MXN</strong> | 30,000 emisiones</p>
-    <p>📅 Fecha del sorteo: --- 2025</p>
-    <a href="boletos.html" class="rifa-btn">🎯 Participar en la Rifa</a>
+  <div class="rifa-container">
+    <h2 class="rifa-title">🎉 Rifas Actuales 🎉</h2>
+    <div class="rifa-card">
+      <img src="Images/Batcabo.jpg" alt="Auto de Rifa">
+      <h3>Rifa Mustang Cyclone (Pausada)</h3>
+      <p>🎟️ Boletos desde <strong>$14 MXN</strong> | 30,000 emisiones</p>
+      <p>📅 Fecha del sorteo: --- 2025</p>
+      <a href="boletos.html" class="rifa-btn">🎯 Participar en la Rifa</a>
+    </div>
   </div>
 </section>
 
