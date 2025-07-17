@@ -10,7 +10,7 @@
       font-family: 'Segoe UI', sans-serif;
       background: #111;
       color: #f5f5f5;
-      background-image: url('Images/bg-dark.jpg'); /* si tienes una imagen oscura */
+      background-image: url('Images/bg-dark.jpg'); /* opcional */
       background-size: cover;
       background-attachment: fixed;
     }
@@ -19,23 +19,24 @@
       text-align: center;
       color: #e53935;
       margin-top: 40px;
+      font-size: 2.2rem;
     }
 
     .rifas {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 30px;
+      gap: 40px;
       padding: 40px 20px;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.6);
-      padding: 20px;
-      max-width: 300px;
+      border-radius: 16px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+      padding: 25px;
+      max-width: 340px;
       text-align: center;
       transition: transform 0.3s;
     }
@@ -46,29 +47,32 @@
 
     .card img {
       max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 15px;
+      border-radius: 10px;
+      margin-bottom: 18px;
     }
 
     .card h3 {
       color: #e53935;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
     }
 
     .card p {
       color: #ccc;
-      margin: 5px 0;
+      margin: 6px 0;
+      font-size: 1rem;
     }
 
     .card button {
-      margin-top: 15px;
+      margin-top: 18px;
       background-color: #e53935;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 24px;
       color: white;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 1rem;
       transition: background-color 0.3s;
     }
 
@@ -76,20 +80,25 @@
       background-color: #b71c1c;
     }
 
+    .card button a {
+      text-decoration: none;
+      color: white;
+    }
+
     .volver-inicio {
       text-align: center;
-      margin: 50px 0 30px;
+      margin: 60px 0 30px;
     }
 
     .volver-inicio a {
       background-color: #e53935;
       color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
       text-decoration: none;
       font-weight: bold;
       font-size: 18px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
       transition: background-color 0.3s;
     }
 
@@ -102,13 +111,14 @@
 <body>
 
   <h2>Rifas Actuales</h2>
+
   <div class="rifas">
     <div class="card">
       <img src="Images/Batcabo.jpg" alt="Auto de Rifa">
       <h3>Rifa Mustang Cyclone (Pausada)</h3>
       <p>Boletos desde $14 MXN | 30,000 emisiones</p>
       <p>Fecha del sorteo: --- 2025</p>
-      <button><a href="boletos.html" style="color: white; text-decoration: none;">Participar en Rifa</a></button>
+      <button><a href="boletos.html">Participar en Rifa</a></button>
     </div>
     <!-- Puedes duplicar esta tarjeta para más rifas -->
   </div>
@@ -119,4 +129,5 @@
 
 </body>
 </html>
+
 
