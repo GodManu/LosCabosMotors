@@ -2,511 +2,95 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Los Cabos Motors</title>
- <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #1c1c1c;
-    color: white;
-  }
-
-  header {
-    position: relative;
-    background: url('Images/LCMBANNER.png') center center / cover no-repeat;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    overflow: hidden;
-  }
-
-  header::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-  }
-
-  .header-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .header-content h1 {
-    font-size: 2.8rem;
-    color: white;
-    text-shadow: 2px 2px 0 black, -2px -2px 0 black;
-    margin: 0;
-  }
-
-  .header-content p {
-    font-size: 1.2rem;
-    text-shadow: 1px 1px 0 black;
-    margin-top: 10px;
-  }
-
-  nav {
-    background-color: #111;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  nav a {
-    color: white;
-    text-decoration: none;
-    padding: 15px 20px;
-    display: inline-block;
-    font-weight: bold;
-  }
-
-  nav a:hover {
-    background-color: #2e2e2e;
-  }
-
-  section {
-    padding: 30px;
-  }
-
-  .card {
-  background: rgba(255, 255, 255, 0.08); /* semitransparente */
-  backdrop-filter: blur(10px); /* desenfoque tipo vidrio */
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  width: 300px;
-  padding: 15px;
-  text-align: center;
-  color: white;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 10px;
-}
-
-.card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-}
-
-.card1 {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-  max-width: 500px;
-  padding: 30px;
-  text-align: center;
-  color: white;
-  margin: auto;
-}
-
-  .card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease, filter 0.3s ease;
-  }
-
-  .card img:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-  }
-
-  .auto-titulo {
-    font-size: 1.3rem;
-    margin-top: 15px;
-    font-weight: bold;
-    color: #fff;
-  }
-
-  .auto-precio {
-    font-size: 1.1rem;
-    color: #d7e800;
-    font-weight: bold;
-    margin: 10px 0;
-  }
-
-  .auto-contacto {
-    font-size: 1rem;
-    color: #ccc;
-  }
-
-  .autos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  footer {
-    background-color: #111;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 30px;
-  }
-
-  /* CHAT BOTÓN */
-  .chat-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ffbb33;
-    color: #000;
-    border: none;
-    padding: 12px 16px;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 1000;
-  }
-
-  #chat-box {
-    display: none;
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 350px;
-    max-height: 500px;
-    background: #1f1f1f;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
-  }
-
-  #login-screen, #chat-screen {
-    display: none;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  #login-screen {
-    padding: 20px;
-  }
-
-  #login-screen input {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    border: none;
-    width: 100%;
-  }
-
-  #chat-header {
-    padding: 10px;
-    background: #222;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  #users-list {
-    background: #2d2d2d;
-    padding: 10px;
-    font-size: 0.85rem;
-    max-height: 80px;
-    overflow-y: auto;
-  }
-
-  #messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px;
-    background: #141414;
-  }
-
-  .message {
-    margin-bottom: 10px;
-    word-wrap: break-word;
-  }
-
-  .message .time {
-    font-size: 0.75rem;
-    color: #aaa;
-  }
-
-  #chat-form {
-    display: flex;
-    padding: 10px;
-    background: #2a2a2a;
-  }
-
-  #message-input {
-    flex: 1;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-  }
-
-  #send-btn {
-    background: #ffbb33;
-    border: none;
-    padding: 8px 12px;
-    margin-left: 8px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  @media screen and (max-width: 768px) {
-    .card {
-      width: 90%;
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rifas - Los Cabos Motors</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
     }
 
-    .header-content h1 {
-      font-size: 2rem;
+    #rifas {
+      padding: 80px 20px;
+      display: flex;
+      justify-content: center;
     }
 
-    .header-content p {
-      font-size: 1rem;
+    .rifa-container {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
 
-    section {
-      padding: 20px 10px;
+    .rifa-title {
+      font-size: 2.5em;
+      color: #FFD700;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 5px #000;
     }
 
-    .card1 {
-      padding: 20px 15px;
+    .rifa-card img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+      margin-bottom: 20px;
     }
- #rifas {
-  padding: 80px 20px;
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-  display: flex;
-  justify-content: center;
-}
 
-.rifa-container {
-  max-width: 800px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 40px;
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  color: #fff;
-}
+    .rifa-card h3 {
+      font-size: 1.8em;
+      color: #FFD700;
+      text-shadow: 1px 1px 3px #000;
+      margin-top: 20px;
+    }
 
-.rifa-title {
-  font-size: 2.5em;
-  color: #FFD700;
-  margin-bottom: 30px;
-  text-shadow: 2px 2px 5px #000;
-}
+    .rifa-card p {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
 
-.rifa-card img {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
-  margin-bottom: 20px;
-}
+    .rifa-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: #FFD700;
+      color: #000;
+      padding: 12px 30px;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1.1em;
+      transition: background 0.3s, transform 0.2s;
+    }
 
-.rifa-card h3 {
-  font-size: 1.8em;
-  color: #FFD700;
-  text-shadow: 1px 1px 3px #000;
-}
-
-.rifa-card p {
-  font-size: 1.2em;
-  margin: 10px 0;
-}
-
-.rifa-btn {
-  display: inline-block;
-  margin-top: 20px;
-  background: #FFD700;
-  color: #000;
-  padding: 12px 30px;
-  font-weight: bold;
-  border-radius: 10px;
-  text-decoration: none;
-  font-size: 1.1em;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.rifa-btn:hover {
-  background: #ffc300;
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #FFD700;
-}  
-</style>
+    .rifa-btn:hover {
+      background: #ffc300;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #FFD700;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="header-content">
-    <h1>Los Cabos Motors</h1>
-    <p>Autos en venta y rifas exclusivas</p>
-  </div>
-</header>
-
-<nav>
-  <a href="index.html">Venta de Autos</a>
-  <a href="rifas.html">Rifas</a>
-  <a href="#contacto">Contacto</a>
-</nav>
-
-
-<section id="rifas">
-  <div class="rifa-container">
-    <h2 class="rifa-title">🎉 Rifas Actuales 🎉</h2>
-    <div class="rifa-card">
-      <img src="Images/Batcabo.jpg" alt="Auto de Rifa">
-      <h3>Rifa Mustang Cyclone (Pausada)</h3>
-      <p>🎟️ Boletos desde <strong>$14 MXN</strong> | 30,000 emisiones</p>
-      <p>📅 Fecha del sorteo: --- 2025</p>
-      <a href="boletos.html" class="rifa-btn">🎯 Participar en la Rifa</a>
+  <section id="rifas">
+    <div class="rifa-container">
+      <h2 class="rifa-title">🎉 Rifas Actuales 🎉</h2>
+      <div class="rifa-card">
+        <img src="Images/Batcabo.jpg" alt="Auto de Rifa">
+        <h3>Rifa Mustang Cyclone (Pausada)</h3>
+        <p>🎟️ Boletos desde <strong>$14 MXN</strong> | 30,000 emisiones</p>
+        <p>📅 Fecha del sorteo: --- 2025</p>
+        <a href="boletos.html" class="rifa-btn">🎯 Participar en la Rifa</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contacto">
-  <h2 style="text-align:center;">Contacto</h2>
-  <p style="text-align:center;">Tel: 624-118-1978 | Email: loscabosmotors@gmail.com</p>
-  <p style="text-align:center;">Dirección: Los Cabos, BCS</p>
-</section>
-
-<footer>
-  <p>&copy; 2025 Los Cabos Motors - Todos los derechos reservados</p>
-</footer>
-
-<!-- BOTÓN DEL CHAT -->
-<button class="chat-toggle" onclick="toggleChat()">💬 Chat</button>
-
-<!-- CAJA DE CHAT -->
-<div id="chat-box">
-  <div id="login-screen">
-    <h3 style="text-align:center;">Ingresa tu nombre</h3>
-    <input type="text" id="name-input" placeholder="Tu nombre">
-    <button onclick="enterChat()">Entrar al chat</button>
-  </div>
-  <div id="chat-screen">
-    <div id="chat-header">🚘 Chat - Los Cabos Motors</div>
-    <div id="users-list"></div>
-    <div id="messages"></div>
-    <form id="chat-form">
-      <input type="text" id="message-input" placeholder="Escribe un mensaje...">
-      <button type="submit" id="send-btn">Enviar</button>
-    </form>
-  </div>
-</div>
-
-<!-- FIREBASE SCRIPTS (v8) -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
-    authDomain: "chatloscabosmotors.firebaseapp.com",
-    databaseURL: "https://chatloscabosmotors-default-rtdb.firebaseio.com",
-    projectId: "chatloscabosmotors",
-    storageBucket: "chatloscabosmotors.appspot.com",
-    messagingSenderId: "312586924965",
-    appId: "1:312586924965:web:ae4868021f68728e74ae4c"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-  const usersRef = db.ref("users");
-  const messagesRef = db.ref("messages");
-
-  let username = "";
-  const userId = Math.random().toString(36).substring(2, 15);
-
-  function toggleChat() {
-    const chatBox = document.getElementById("chat-box");
-    const login = document.getElementById("login-screen");
-    const chat = document.getElementById("chat-screen");
-
-    if (chatBox.style.display === "flex") {
-      chatBox.style.display = "none";
-    } else {
-      chatBox.style.display = "flex";
-      login.style.display = "flex";
-      chat.style.display = "none";
-    }
-  }
-
-  function enterChat() {
-    const input = document.getElementById("name-input");
-    username = input.value.trim();
-    if (!username) return;
-
-    document.getElementById("login-screen").style.display = "none";
-    document.getElementById("chat-screen").style.display = "flex";
-
-    usersRef.child(userId).set({ name: username });
-    usersRef.child(userId).onDisconnect().remove();
-  }
-
-  function stringToColor(str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const color = Math.abs(hash).toString(16).substring(0, 6);
-    return `#${color.padStart(6, '0')}`;
-  }
-
-  function formatEmojis(text) {
-    return text
-      .replace(/:\)/g, '😊')
-      .replace(/:\(/g, '😢')
-      .replace(/:D/g, '😄')
-      .replace(/<3/g, '❤️')
-      .replace(/:p/g, '😜');
-  }
-
-  function addMessageToScreen(data, isMe) {
-    const div = document.createElement("div");
-    div.className = "message";
-    const color = stringToColor(data.name);
-    const time = new Date(data.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    div.innerHTML = `<strong style="color:${color}">${data.name}</strong>: ${formatEmojis(data.text)}<div class="time">${time}</div>`;
-    const messages = document.getElementById("messages");
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  document.getElementById("chat-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const msg = document.getElementById("message-input").value.trim();
-    if (!msg) return;
-    messagesRef.push({ name: username, text: msg, time: Date.now() });
-    document.getElementById("message-input").value = "";
-  });
-
-  messagesRef.limitToLast(100).on("child_added", (snapshot) => {
-    const msg = snapshot.val();
-    addMessageToScreen(msg, msg.name === username);
-  });
-
-  usersRef.on("value", (snapshot) => {
-    const users = snapshot.val() || {};
-    let list = '<strong>Conectados:</strong><br>';
-    for (const key in users) {
-      list += `<span style="color:${stringToColor(users[key].name)}">${users[key].name}</span><br>`;
-    }
-    document.getElementById("users-list").innerHTML = list;
-  });
-</script>
 </body>
 </html>
