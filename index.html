@@ -9,7 +9,8 @@
   <meta name="category" content="Automóviles">
   <title>Los Cabos Motors</title>
 <link rel="icon" type="image/png" href="Images/LCMBANNER.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 
   <style>
   body {
@@ -319,34 +320,51 @@
 }
 .redes-flotantes {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  z-index: 1000;
+  z-index: 999;
 }
+
 .redes-flotantes a {
-  background-color: #222;
   color: white;
-  padding: 10px;
+  padding: 12px;
   border-radius: 50%;
-  font-size: 18px;
   text-align: center;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 18px;
   text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Colores de cada red */
+.redes-flotantes a.facebook {
+  background-color: #1877f2;
+}
+.redes-flotantes a.instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.redes-flotantes a.whatsapp {
+  background-color: #25d366;
+}
+.redes-flotantes a.correo {
+  background-color: #d60000;
 }
 
 .redes-flotantes a:hover {
-  background-color: #d72638;
   transform: scale(1.1);
 }
+
+/* Ocultar en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+  .redes-flotantes {
+    display: none;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -442,12 +460,13 @@
     </form>
   </div>
 <div class="redes-flotantes">
-  <a href="https://www.facebook.com/LosCabosMotors" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-  <a href="https://www.instagram.com/LosCabosMotors" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-  <a href="https://wa.me/526241181978" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  <a href="mailto:loscabosmotors@gmail.com" title="Correo"><i class="fas fa-envelope"></i></a>
+  <a href="https://www.facebook.com/LosCabosMotors" class="facebook" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://www.instagram.com/LosCabosMotors" class="instagram" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://wa.me/526241181978" class="whatsapp" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="mailto:loscabosmotors@gmail.com" class="correo" title="Correo"><i class="fas fa-envelope"></i></a>
 </div>
-      
+
+  
 <!-- FIREBASE SCRIPTS (v8) -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
