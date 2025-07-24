@@ -8,7 +8,9 @@
 <meta name="author" content="Los Cabos Motors">
   <meta name="category" content="Automóviles">
   <title>Los Cabos Motors</title>
-<link rel="icon" type="image/png" href="Images/LCMBANNER.png"> 
+<link rel="icon" type="image/png" href="Images/LCMBANNER.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
   body {
     font-family: Arial, sans-serif;
@@ -315,6 +317,36 @@
   height: auto;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
 }
+.redes-flotantes {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+.redes-flotantes a {
+  background-color: #222;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 18px;
+  text-align: center;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.redes-flotantes a:hover {
+  background-color: #d72638;
+  transform: scale(1.1);
+}
 </style>
 </head>
 <body>
@@ -409,8 +441,13 @@
       <button type="submit" id="send-btn">Enviar</button>
     </form>
   </div>
+<div class="redes-flotantes">
+  <a href="https://www.facebook.com/LosCabosMotors" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://www.instagram.com/LosCabosMotors" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://wa.me/526241181978" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="mailto:loscabosmotors@gmail.com" title="Correo"><i class="fas fa-envelope"></i></a>
 </div>
-
+      
 <!-- FIREBASE SCRIPTS (v8) -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -509,5 +546,6 @@
     document.getElementById("users-list").innerHTML = list;
   });
 </script>
+      
 </body>
 </html>
