@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería - Los Cabos Motors</title>
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: url('Images/LCMBANNER.png') center / cover no-repeat;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    header h1 {
+      position: relative;
+      z-index: 1;
+      color: white;
+      font-size: 2.5rem;
+    }
+    .galeria-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff3c3c;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+    .grid img:hover {
+      transform: scale(1.05);
+    }
+    a.volver {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      color: #ff3c3c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Galería de Autos</h1>
+  </header>
+
+  <div class="galeria-container">
+    <h2>Ford Mustang 2016</h2>
+    <div class="grid">
+      <img src="Images/Mustang2016_1.jpg" alt="Mustang 1">
+      <img src="Images/Mustang2016_2.jpg" alt="Mustang 2">
+      <img src="Images/Mustang2016_3.jpg" alt="Mustang 3">
+    </div>
+
+    <h2>Audi R8 2017</h2>
+    <div class="grid">
+      <img src="Images/AudiR8_1.jpg" alt="Audi R8 1">
+      <img src="Images/AudiR8_2.jpg" alt="Audi R8 2">
+      <img src="Images/AudiR8_3.jpg" alt="Audi R8 3">
+    </div>
+
+    <a href="index.html" class="volver">Volver al inicio</a>
+  </div>
+</body>
+</html>
