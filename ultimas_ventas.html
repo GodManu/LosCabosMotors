@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Últimas Ventas - Los Cabos Motors</title>
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: url('Images/LCMBANNER.png') center / cover no-repeat;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    header h1 {
+      position: relative;
+      z-index: 1;
+      color: white;
+      font-size: 2.5rem;
+    }
+    .ventas-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ff3c3c;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      padding: 10px;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .card h3 {
+      margin: 10px 0 5px;
+      color: #fff;
+    }
+    .card p {
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+    .vendido {
+      color: red;
+      font-weight: bold;
+    }
+    a.volver {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      color: #ff3c3c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Últimas Ventas</h1>
+  </header>
+
+  <div class="ventas-container">
+    <h2>Vehículos Vendidos</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="Images/Xtrail2020S.jpg" alt="Xtrail 2020">
+        <h3>Nissan Xtrail 2020 Sense</h3>
+        <p class="vendido">💲 VENDIDO 💲</p>
+      </div>
+      <!-- Agrega más autos vendidos aquí -->
+    </div>
+
+    <a href="index.html" class="volver">Volver al inicio</a>
+  </div>
+</body>
+</html>
