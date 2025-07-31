@@ -364,6 +364,39 @@
     display: none;
   }
 }
+    .carousel-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+.carousel-modal .slide {
+  display: none;
+  position: relative;
+}
+.carousel-modal img { margin: auto; display: block; max-width: 90%; max-height: 80%; }
+.prev, .next {
+  cursor: pointer; position: absolute; top: 50%;
+  width: auto; padding: 16px; margin-top: -50px;
+  color: white; font-weight: bold; font-size: 24px;
+  transition: 0.3s; user-select: none;
+}
+.prev { left: 10%; }
+.next { right: 10%; }
+.close {
+  position: absolute; top: 30px; right: 35px;
+  color: #fff; font-size: 40px; font-weight: bold;
+  cursor: pointer;
+}
+.numbertext {
+  color: #f2f2f2; font-size: 14px;
+  position: absolute; top: 10px; left: 50%;
+  transform: translateX(-50%);
+}
 
 </style>
 </head>
@@ -428,9 +461,9 @@
   <!-- Carrusel oculto inicialmente -->
   <div id="carousel-polo" class="carousel-modal">
     <span class="close" onclick="closeCarousel('polo')">&times;</span>
-    <div class="slide"><img src="Images/Polo2020_1.jpg" alt=""><div class="numbertext">1 / 3</div></div>
-    <div class="slide"><img src="Images/Polo2020_2.jpg" alt=""><div class="numbertext">2 / 3</div></div>
-    <div class="slide"><img src="Images/Polo2020_3.jpg" alt=""><div class="numbertext">3 / 3</div></div>
+    <div class="slide"><img src="Images/Polo2020.jpg" alt=""><div class="numbertext">1 / 3</div></div>
+    <div class="slide"><img src="Images/Polo2020.jpg" alt=""><div class="numbertext">2 / 3</div></div>
+    <div class="slide"><img src="Images/Polo2020.jpg" alt=""><div class="numbertext">3 / 3</div></div>
     <a class="prev" onclick="plusSlides(-1,'polo')">&#10094;</a>
     <a class="next" onclick="plusSlides(1,'polo')">&#10095;</a>
   </div>
@@ -573,6 +606,33 @@
     document.getElementById("users-list").innerHTML = list;
   });
 </script>
-      
+      <script>
+function openCarousel(id) {
+  document.getElementById(`carousel-${id}`).style.display = "block";
+  showSlides(1, id);
+}
+function closeCarousel(id) {
+  document.getElementById(`carousel-${id}`).style.display = "none";
+}
+function plusSlides(n, id) {
+  showSlides(slideIndex[id] + n, id);
+}
+function currentSlide(n, id) {
+  showSlides(n, id);
+}
+const slideIndex = {};
+function showSlides(n, id) {
+  const modal = document.getElementById(`carousel-${id}`);
+  const slides = modal.getElementsByClassName("slide");
+  if (!slideIndex[id]) slideIndex[id] = 1;
+  let idx = n;
+  if (n > slides.length) idx = 1;
+  if (n < 1) idx = slides.length;
+  slideIndex[id] = idx;
+  for (let s of slides) s.style.display = "none";
+  slides[idx - 1].style.display = "block";
+}
+</script>
+
 </body>
 </html>
