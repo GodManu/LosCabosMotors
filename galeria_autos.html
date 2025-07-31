@@ -13,28 +13,45 @@
       padding: 0;
     }
     header {
-      background: url('Images/LCMBANNER.png') center / cover no-repeat;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-    }
-    header h1 {
-      position: relative;
-      z-index: 1;
-      color: white;
-      font-size: 2.5rem;
-    }
+    position: relative;
+    background: url('Images/LCMBANNER.png') center center / cover no-repeat;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .header-content h1 {
+    font-size: 2.8rem;
+    color: white;
+    text-shadow: 2px 2px 0 black, -2px -2px 0 black;
+    margin: 0;
+  }
+
+  .header-content p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 0 black;
+    margin-top: 10px;
+  }
+
     .galeria-container {
       max-width: 1100px;
       margin: auto;
@@ -93,7 +110,7 @@
   <header>
     <h1>Galería de Autos</h1>
 <nav>
-  <a href="#venta">Venta de Autos</a>
+  <a href="index.html">Venta de Autos</a>
   <a href="galeria_autos.html">Galería</a>
   <a href="ultimas_ventas.html">Últimas Ventas</a>
   <a href="#contacto">Contacto</a>
