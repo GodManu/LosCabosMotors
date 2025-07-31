@@ -423,9 +423,17 @@
   <img src="Images/Polo2020.jpg" alt="Polo 2020">
   <h3 class="auto-titulo">Polo Sound & Design 2020</h3>
   <p class="auto-precio">$265,000 MXN</p>
-  <p class="auto-contacto">📞 624-118-1978</p>
-  <a href="https://wa.me/526241181978?text=Hola%2C%20quiero%20más%20información%20del%20Volkswagen%20PoloS&D" target="_blank" class="whatsapp-btn">📲 Más info por WhatsApp</a>
-  <a href="autos/polo2020.html" class="whatsapp-btn" style="background:#e60000;">🔍 Ver detalles</a>
+  <a href="#" class="detalles-btn" onclick="openCarousel('polo')">🔍 Ver detalles</a>
+
+  <!-- Carrusel oculto inicialmente -->
+  <div id="carousel-polo" class="carousel-modal">
+    <span class="close" onclick="closeCarousel('polo')">&times;</span>
+    <div class="slide"><img src="Images/Polo2020_1.jpg" alt=""><div class="numbertext">1 / 3</div></div>
+    <div class="slide"><img src="Images/Polo2020_2.jpg" alt=""><div class="numbertext">2 / 3</div></div>
+    <div class="slide"><img src="Images/Polo2020_3.jpg" alt=""><div class="numbertext">3 / 3</div></div>
+    <a class="prev" onclick="plusSlides(-1,'polo')">&#10094;</a>
+    <a class="next" onclick="plusSlides(1,'polo')">&#10095;</a>
+  </div>
 </div>
 
 </section>
