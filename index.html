@@ -363,84 +363,7 @@
   .redes-flotantes {
     display: none;
   }
-/* --- Carrusel Modal --- */
-.modal-carousel {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  overflow: auto;
-}
-
-.modal-content {
-  position: relative;
-  margin: 5% auto;
-  max-width: 800px;
-}
-
-.modal-slide {
-  display: none;
-  text-align: center;
-}
-
-.modal-slide img {
-  max-width: 100%;
-  max-height: 80vh;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255,255,255,0.2);
-}
-
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  color: #fff;
-  font-size: 35px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 24px;
-  user-select: none;
-  background-color: rgba(0,0,0,0.5);
-  border-radius: 50%;
-  transition: 0.3s;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(255,255,255,0.2);
-}
-
-.prev { left: 0; }
-.next { right: 0; }
-
-.modal-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 14px;
-  background-color: #e60000;
-  color: white;
-  border-radius: 6px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.modal-btn:hover {
-  background-color: #ff1a1a;
-}
-
-
+   }
 </style>
 </head>
 <body>
@@ -477,56 +400,34 @@
 <section id="venta">
   <h2 style="text-align:center; font-size: 2rem; margin-bottom: 30px;">Autos en Venta</h2>
   <div class="autos">
+
     <div class="card auto-card">
-  <img src="Images/Mustang2016.jpg" alt="Mustang 2016">
-  <h3 class="auto-titulo">Ford Mustang 2016</h3>
-  <p class="auto-precio">$240,000 MXN</p>
-  <p class="auto-contacto">📞 624-109-1503</p>
-  <a href="#" class="whatsapp-btn" target="_blank">📲 Más info por WhatsApp</a>
-  <a href="#" class="modal-btn" onclick="openModal('mustang')">📸 Más detalles</a>
-</div>
+      <img src="Images/Mustang2016.jpg" alt="Mustang 2016">
+      <h3 class="auto-titulo">Ford Mustang 2016</h3>
+      <p class="auto-precio">$240,000 MXN</p>
+      <p class="auto-contacto">📞 624-109-1503</p>
+      <a href="https://wa.me/526241181978?text=Hola%2C%20quiero%20más%20información%20del%20Mustang%202017" target="_blank" class="whatsapp-btn">📲 Más info por WhatsApp</a>
+    </div>
 
-<!-- MODAL del MUSTANG -->
-<div id="modal-mustang" class="modal-carousel">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('mustang')">&times;</span>
+    <div class="card auto-card">
+      <img src="Images/AudiR8.jpg" alt="Audi R8 2017">
+      <h3 class="auto-titulo">Audi R8 2017</h3>
+      <p class="auto-precio">$2,200,000 MXN</p>
+      <p class="auto-contacto">📞 624-118-1978</p>
+      <a href="https://wa.me/526241181978?text=Hola%2C%20quiero%20más%20información%20del%20AudiR8%202017" target="_blank" class="whatsapp-btn">📲 Más info por WhatsApp</a>
+    </div>
 
-    <div class="modal-slide mustang"><img src="Images/Mustang2016.jpg" alt=""></div>
-    <div class="modal-slide mustang"><img src="Images/Mustang2016.jpg" alt=""></div>
-    <div class="modal-slide mustang"><img src="Images/Mustang2016.jpg" alt=""></div>
+    <div class="card auto-card">
+      <img src="Images/Polo2020.jpg" alt="Polo 2020">
+      <h3 class="auto-titulo">Polo Sound & Design 2020</h3>
+      <p class="auto-precio">$265,000 MXN</p>
+      <p class="auto-contacto">📞 624-118-1978</p>
+      <a href="https://wa.me/526241181978?text=Hola%2C%20quiero%20más%20información%20del%20Volkswagen%20Polo%20Sound%20y%20Design" target="_blank" class="whatsapp-btn">📲 Más info por WhatsApp</a>
+    </div>
 
-    <a class="prev" onclick="changeSlide(-1, 'mustang')">&#10094;</a>
-    <a class="next" onclick="changeSlide(1, 'mustang')">&#10095;</a>
   </div>
-</div>
-
-    <div class="card auto-card">
-  <img src="Images/AudiR8.jpg" alt="Audi R8 2017">
-  <h3 class="auto-titulo">Audi R8 2017</h3>
-  <p class="auto-precio">$2,200,000 MXN</p>
-  <p class="auto-contacto">📞 624-118-1978</p>
-  <a href="https://wa.me/526241181978?text=Hola%2C%20quiero%20más%20información%20del%20AudiR8%202017" target="_blank" class="whatsapp-btn">📲 Más info por WhatsApp</a>
-  <a href="autos/audir8.html" class="whatsapp-btn" style="background:#e60000;">🔍 Ver detalles</a>
-</div>
-
-    <div class="card auto-card">
-  <img src="Images/Polo2020.jpg" alt="Polo 2020">
-  <h3 class="auto-titulo">Polo Sound & Design 2020</h3>
-  <p class="auto-precio">$265,000 MXN</p>
-  <a href="#" class="detalles-btn" onclick="openCarousel('polo')">🔍 Ver detalles</a>
-
-  <!-- Carrusel oculto inicialmente -->
-  <div id="carousel-polo" class="carousel-modal">
-    <span class="close" onclick="closeCarousel('polo')">&times;</span>
-    <div class="slide"><img src="Images/Polo2020.jpg" alt=""><div class="numbertext">1 / 3</div></div>
-    <div class="slide"><img src="Images/Polo2020.jpg" alt=""><div class="numbertext">2 / 3</div></div>
-    <div class="slide"><img src="Images/Polo2020.jpg" alt=""><div class="numbertext">3 / 3</div></div>
-    <a class="prev" onclick="plusSlides(-1,'polo')">&#10094;</a>
-    <a class="next" onclick="plusSlides(1,'polo')">&#10095;</a>
-  </div>
-</div>
-
 </section>
+  
 </section>
 <section id="contacto">
   <h2 style="text-align:center;">Contacto</h2>
@@ -663,32 +564,6 @@
     document.getElementById("users-list").innerHTML = list;
   });
 </script>
-      <script>
-const slideIndexes = {};
-
-function openModal(id) {
-  document.getElementById("modal-" + id).style.display = "block";
-  slideIndexes[id] = 1;
-  showSlides(id, slideIndexes[id]);
-}
-
-function closeModal(id) {
-  document.getElementById("modal-" + id).style.display = "none";
-}
-
-function changeSlide(n, id) {
-  showSlides(id, slideIndexes[id] += n);
-}
-
-function showSlides(id, n) {
-  const slides = document.querySelectorAll(`.modal-slide.${id}`);
-  if (n > slides.length) slideIndexes[id] = 1;
-  if (n < 1) slideIndexes[id] = slides.length;
-  slides.forEach(slide => slide.style.display = "none");
-  slides[slideIndexes[id] - 1].style.display = "block";
-}
-</script>
-
 
 </body>
 </html>
