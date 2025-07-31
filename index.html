@@ -363,40 +363,83 @@
   .redes-flotantes {
     display: none;
   }
-}
-    .carousel-modal {
+/* --- Carrusel Modal --- */
+.modal-carousel {
   display: none;
   position: fixed;
-  z-index: 1000;
-  padding-top: 60px;
+  z-index: 9999;
   left: 0; top: 0;
   width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
   overflow: auto;
-  background-color: rgba(0,0,0,0.9);
 }
-.carousel-modal .slide {
-  display: none;
+
+.modal-content {
   position: relative;
+  margin: 5% auto;
+  max-width: 800px;
 }
-.carousel-modal img { margin: auto; display: block; max-width: 90%; max-height: 80%; }
-.prev, .next {
-  cursor: pointer; position: absolute; top: 50%;
-  width: auto; padding: 16px; margin-top: -50px;
-  color: white; font-weight: bold; font-size: 24px;
-  transition: 0.3s; user-select: none;
+
+.modal-slide {
+  display: none;
+  text-align: center;
 }
-.prev { left: 10%; }
-.next { right: 10%; }
-.close {
-  position: absolute; top: 30px; right: 35px;
-  color: #fff; font-size: 40px; font-weight: bold;
+
+.modal-slide img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
   cursor: pointer;
 }
-.numbertext {
-  color: #f2f2f2; font-size: 14px;
-  position: absolute; top: 10px; left: 50%;
-  transform: translateX(-50%);
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  user-select: none;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  transition: 0.3s;
 }
+
+.prev:hover, .next:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+.prev { left: 0; }
+.next { right: 0; }
+
+.modal-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background-color: #e60000;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.modal-btn:hover {
+  background-color: #ff1a1a;
+}
+
 
 </style>
 </head>
@@ -435,15 +478,29 @@
   <h2 style="text-align:center; font-size: 2rem; margin-bottom: 30px;">Autos en Venta</h2>
   <div class="autos">
     <div class="card auto-card">
-      <img src="Images/Mustang2016.jpg" alt="Mustang 2016">
-      <h3 class="auto-titulo">Ford Mustang 2016</h3>
-      <p class="auto-precio">$240,000 MXN</p>
-      <p class="auto-contacto">📞 624-109-1503</p>
-      <a href="https://wa.me/526241181978?text=Hola%2C%20quiero%20más%20información%20del%20Mustang%202017" target="_blank" class="whatsapp-btn">📲 Más info por WhatsApp</a>
-      <a href="autos/mustang2016.html" class="whatsapp-btn" style="background:#e60000;">🔍 Ver detalles</a>
-   </div>
+  <img src="Images/Mustang2016.jpg" alt="Mustang 2016">
+  <h3 class="auto-titulo">Ford Mustang 2016</h3>
+  <p class="auto-precio">$240,000 MXN</p>
+  <p class="auto-contacto">📞 624-109-1503</p>
+  <a href="#" class="whatsapp-btn" target="_blank">📲 Más info por WhatsApp</a>
+  <a href="#" class="modal-btn" onclick="openModal('mustang')">📸 Más detalles</a>
+</div>
 
-    <<div class="card auto-card">
+<!-- MODAL del MUSTANG -->
+<div id="modal-mustang" class="modal-carousel">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('mustang')">&times;</span>
+
+    <div class="modal-slide mustang"><img src="Images/Mustang2016.jpg" alt=""></div>
+    <div class="modal-slide mustang"><img src="Images/Mustang2016_2.jpg" alt=""></div>
+    <div class="modal-slide mustang"><img src="Images/Mustang2016_3.jpg" alt=""></div>
+
+    <a class="prev" onclick="changeSlide(-1, 'mustang')">&#10094;</a>
+    <a class="next" onclick="changeSlide(1, 'mustang')">&#10095;</a>
+  </div>
+</div>
+
+    <div class="card auto-card">
   <img src="Images/AudiR8.jpg" alt="Audi R8 2017">
   <h3 class="auto-titulo">Audi R8 2017</h3>
   <p class="auto-precio">$2,200,000 MXN</p>
@@ -607,32 +664,31 @@
   });
 </script>
       <script>
-function openCarousel(id) {
-  document.getElementById(`carousel-${id}`).style.display = "block";
-  showSlides(1, id);
+const slideIndexes = {};
+
+function openModal(id) {
+  document.getElementById("modal-" + id).style.display = "block";
+  slideIndexes[id] = 1;
+  showSlides(id, slideIndexes[id]);
 }
-function closeCarousel(id) {
-  document.getElementById(`carousel-${id}`).style.display = "none";
+
+function closeModal(id) {
+  document.getElementById("modal-" + id).style.display = "none";
 }
-function plusSlides(n, id) {
-  showSlides(slideIndex[id] + n, id);
+
+function changeSlide(n, id) {
+  showSlides(id, slideIndexes[id] += n);
 }
-function currentSlide(n, id) {
-  showSlides(n, id);
-}
-const slideIndex = {};
-function showSlides(n, id) {
-  const modal = document.getElementById(`carousel-${id}`);
-  const slides = modal.getElementsByClassName("slide");
-  if (!slideIndex[id]) slideIndex[id] = 1;
-  let idx = n;
-  if (n > slides.length) idx = 1;
-  if (n < 1) idx = slides.length;
-  slideIndex[id] = idx;
-  for (let s of slides) s.style.display = "none";
-  slides[idx - 1].style.display = "block";
+
+function showSlides(id, n) {
+  const slides = document.querySelectorAll(`.modal-slide.${id}`);
+  if (n > slides.length) slideIndexes[id] = 1;
+  if (n < 1) slideIndexes[id] = slides.length;
+  slides.forEach(slide => slide.style.display = "none");
+  slides[slideIndexes[id] - 1].style.display = "block";
 }
 </script>
+
 
 </body>
 </html>
