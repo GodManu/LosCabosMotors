@@ -363,7 +363,35 @@
   .redes-flotantes {
     display: none;
   }
-   }
+    #modal-info {
+      color: white;
+      margin-top: 20px;
+      text-align: center;
+      max-width: 90%;
+    }
+    #modal-info h3 {
+      color: #ffbb33;
+      margin-bottom: 10px;
+    }
+    #modal-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      text-align: left;
+      display: inline-block;
+    }
+    #modal-info ul li {
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+    #modal-info ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #25d366;
+    }
+  }
 </style>
 </head>
 <body>
@@ -385,26 +413,15 @@
 
 </section>
 
-  <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center; flex-direction:column;">
-  <span onclick="closeModal()" style="position:absolute; top:20px; right:30px; color:white; font-size:2em; cursor:pointer;">&times;</span>
-  <div id="carousel" style="max-width:90%; max-height:80%; display:flex; align-items:center; justify-content:center;">
-    <div id="car-info"></div>
-    <button onclick="changeImage(-1)" style="color:white; font-size:2em; background:none; border:none; cursor:pointer;">&#10094;</button>
-    <img id="carousel-image" src="" style="max-height:70vh; max-width:90vw; border-radius:10px;">
-    <button onclick="changeImage(1)" style="color:white; font-size:2em; background:none; border:none; cursor:pointer;">&#10095;</button>
+  <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center; overflow-y:auto;">
+    <span onclick="closeModal()" style="position:absolute; top:20px; right:30px; color:white; font-size:2em; cursor:pointer;">&times;</span>
+    <div id="carousel" style="max-width:90%; max-height:80%; display:flex; align-items:center; justify-content:center;">
+      <button onclick="changeImage(-1)" style="color:white; font-size:2em; background:none; border:none; cursor:pointer;">&#10094;</button>
+      <img id="carousel-image" src="" style="max-height:80vh; max-width:90vw; border-radius:10px;">
+      <button onclick="changeImage(1)" style="color:white; font-size:2em; background:none; border:none; cursor:pointer;">&#10095;</button>
+    </div>
+    <div id="modal-info"></div>
   </div>
-  <div id="car-info" style="color:white; padding:20px; text-align:center; max-width:80%; font-size:1rem;"></div>
-<style>
-  #car-info {
-    margin-top: 15px;
-    color: #fff;
-    text-align: center;
-    max-width: 90vw;
-    font-size: 1rem;
-  }
-</style>
-    
-</div>
 </div>
   
 <section id="venta">
@@ -605,45 +622,29 @@
 </script>
 <script>
   const images = {
-    mustang2016: [
-      "GALERIA/MUSTANGFRENTE.jpg",
-      "GALERIA/MUSTANGFRENTEIZQUIERDO.jpg",
-      "GALERIA/MUSTANGINTERIOR.jpg",
-      "GALERIA/MUSTANGLUZ.jpg"
-    ],
-    mustang2015: [
-      "GALERIA/mustangfrente.jpg",
-      "GALERIA/mustangdentro.jpg",
-      "GALERIA/mustangfrenteder.jpg",
-      "GALERIA/mustangfrenteizq.jpg",
-      "GALERIA/mustangladoder.jpg",
-      "GALERIA/mustangladoizq.jpg",
-      "GALERIA/mustangpuertader.jpg",
-      "GALERIA/mustangpuertaizq.jpg",
-      "GALERIA/mustandetras.png",
-      "GALERIA/mustangcajuela.png"
-    ],
-    audir8: [
-      "GALERIA/BACKAUDI.jpg",
-      "GALERIA/FRONTAUDI.jpg",
-      "GALERIA/R8FRENTE.jpg",
-      "GALERIA/R8FRENTELOGO.jpg",
-      "GALERIA/R8LADO.jpg",
-      "GALERIA/R8LOGO.jpg"
-    ],
-    polo2020: [
-      "GALERIA/POLO1.jpg",
-      "GALERIA/POLO2.jpg",
-      "GALERIA/POLO3.jpg",
-      "GALERIA/POLO4.jpg"
-    ]
+    mustang2016: ["GALERIA/MUSTANGFRENTE.jpg", "GALERIA/MUSTANGFRENTEIZQUIERDO.jpg", "GALERIA/MUSTANGINTERIOR.jpg", "GALERIA/MUSTANGLUZ.jpg"],
+    mustang2015: ["GALERIA/mustangfrente.jpg", "GALERIA/mustangdentro.jpg", "GALERIA/mustangfrenteder.jpg", "GALERIA/mustangfrenteizq.jpg", "GALERIA/mustangladoder.jpg", "GALERIA/mustangladoizq.jpg", "GALERIA/mustangpuertader.jpg", "GALERIA/mustangpuertaizq.jpg", "GALERIA/mustandetras.png", "GALERIA/mustangcajuela.png"],
+    audir8: ["GALERIA/BACKAUDI.jpg", "GALERIA/FRONTAUDI.jpg", "GALERIA/R8FRENTE.jpg", "GALERIA/R8FRENTELOGO.jpg", "GALERIA/R8LADO.jpg", "GALERIA/R8LOGO.jpg"],
+    polo2020: ["GALERIA/POLO1.jpg", "GALERIA/POLO2.jpg", "GALERIA/POLO3.jpg", "GALERIA/POLO4.jpg"]
   };
 
   const info = {
-    mustang2016: "Motor V6 3.7L, automático, modo sport, A/C frío, cielo estrellado, luces underglow, escape Borla.",
-    mustang2015: "Motor 3.7L V6, excelente estado interior y exterior, asientos deportivos, múltiples detalles estéticos mejorados.",
-    audir8: "Motor V10, transmisión automática de alto rendimiento, lujo y velocidad en su máxima expresión.",
-    polo2020: "Versión Sound & Design, económico, ideal para ciudad, sistema de sonido especial, interiores modernos."
+    mustang2016: {
+      titulo: "Ford Mustang 2016",
+      caracteristicas: ["Motor V6 3.7L económico y potente", "Transmisión automática con modo sport", "Cambio al volante + A/C frío", "Parrilla RTR + Resonadores Borla", "Luces underglow y cielo estrellado"]
+    },
+    mustang2015: {
+      titulo: "Ford Mustang 2015",
+      caracteristicas: ["Motor V6 3.7L de alto rendimiento", "Luces LED, interior limpio", "Cajuela amplia y detalles premium", "Diseño deportivo y clásico"]
+    },
+    audir8: {
+      titulo: "Audi R8 2017",
+      caracteristicas: ["Motor V10 potente", "Interior de lujo y tecnología avanzada", "Diseño aerodinámico", "Luces full LED"]
+    },
+    polo2020: {
+      titulo: "VW Polo Sound & Design 2020",
+      caracteristicas: ["Sistema de sonido premium de fábrica", "Rines deportivos y faros de niebla", "Motor 1.6L económico", "Gran rendimiento y estilo"]
+    }
   };
 
   let currentGallery = [];
@@ -654,13 +655,13 @@
     currentIndex = 0;
     document.getElementById("carousel-image").src = currentGallery[currentIndex];
     document.getElementById("modal").style.display = "flex";
-    document.getElementById("car-info").innerText = info[car];
-    document.body.style.overflow = 'hidden'; // Bloquear scroll del fondo
+    document.body.style.overflow = "hidden";
+    renderInfo(car);
   }
 
   function closeModal() {
     document.getElementById("modal").style.display = "none";
-    document.body.style.overflow = ''; // Restaurar scroll del fondo
+    document.body.style.overflow = "auto";
   }
 
   function changeImage(step) {
@@ -668,15 +669,24 @@
     document.getElementById("carousel-image").src = currentGallery[currentIndex];
   }
 
-  // Desplazar con rueda del mouse
-  document.getElementById("modal").addEventListener("wheel", function(e) {
-    e.preventDefault();
-    if (e.deltaY > 0) {
-      changeImage(1);
-    } else {
+  function renderInfo(car) {
+    const container = document.getElementById("modal-info");
+    const data = info[car];
+    if (!data) return;
+    let html = `<h3>${data.titulo}</h3><ul>`;
+    data.caracteristicas.forEach(item => html += `<li>${item}</li>`);
+    html += "</ul>";
+    container.innerHTML = html;
+  }
+
+  document.getElementById("modal").addEventListener("wheel", e => {
+    if (e.deltaY < 0) {
       changeImage(-1);
+    } else {
+      changeImage(1);
     }
-  });
+    e.preventDefault();
+  }, { passive: false });
 </script>
 
 </body>
