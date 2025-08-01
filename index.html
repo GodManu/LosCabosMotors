@@ -639,16 +639,17 @@
   let currentIndex = 0;
 
   function openModal(car) {
-    currentGallery = images[car];
-    currentIndex = 0;
-    document.getElementById("carousel-image").src = currentGallery[currentIndex];
-    document.getElementById("car-info").innerText = descriptions[car];
-    document.getElementById("modal").style.display = "flex";
-  }
+  currentGallery = images[car];
+  currentIndex = 0;
+  document.getElementById("carousel-image").src = currentGallery[currentIndex];
+  document.getElementById("modal").style.display = "flex";
+  document.body.style.overflow = 'hidden'; // ❌ Bloquear scroll del fondo
+}
 
-  function closeModal() {
-    document.getElementById("modal").style.display = "none";
-  }
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+  document.body.style.overflow = ''; // ✅ Restaurar scroll del fondo
+}
 
   function changeImage(step) {
     currentIndex = (currentIndex + step + currentGallery.length) % currentGallery.length;
