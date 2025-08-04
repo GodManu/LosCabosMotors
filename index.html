@@ -363,35 +363,110 @@
   .redes-flotantes {
     display: none;
   }
-    #modal-info {
-      color: white;
-      margin-top: 20px;
-      text-align: center;
-      max-width: 90%;
-    }
-    #modal-info h3 {
-      color: #ffbb33;
-      margin-bottom: 10px;
-    }
-    #modal-info ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 auto;
-      text-align: left;
-      display: inline-block;
-    }
-    #modal-info ul li {
-      margin-bottom: 8px;
-      padding-left: 20px;
-      position: relative;
-    }
-    #modal-info ul li::before {
-      content: "✔";
-      position: absolute;
-      left: 0;
-      color: #25d366;
-    }
+    /* MODAL MEJORADO Y RESPONSIVE */
+#modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  background-color: rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: #111;
+  border-radius: 15px;
+  max-width: 95%;
+  width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2em;
+  cursor: pointer;
+  color: white;
+}
+
+.modal-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.modal-carousel img {
+  max-width: 100%;
+  max-height: 60vh;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.carousel-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.5em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.carousel-btn.left {
+  left: -10px;
+}
+.carousel-btn.right {
+  right: -10px;
+}
+
+#modal-info {
+  margin-top: 20px;
+  text-align: left;
+}
+
+#modal-info h3 {
+  color: #ffbb33;
+  text-align: center;
+}
+
+#modal-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+#modal-info li {
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+#modal-info li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #25D366;
+}
+
+/* Swipe para móvil */
+@media (max-width: 768px) {
+  .carousel-btn {
+    font-size: 2em;
+    padding: 10px;
   }
+}
+
 </style>
 </head>
 <body>
@@ -413,16 +488,19 @@
 
 </section>
 
-  <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center; overflow-y:auto;">
-    <span onclick="closeModal()" style="position:absolute; top:20px; right:30px; color:white; font-size:2em; cursor:pointer;">&times;</span>
-    <div id="carousel" style="max-width:90%; max-height:80%; display:flex; align-items:center; justify-content:center;">
-      <button onclick="changeImage(-1)" style="color:white; font-size:2em; background:none; border:none; cursor:pointer;">&#10094;</button>
-      <img id="carousel-image" src="" style="max-height:80vh; max-width:90vw; border-radius:10px;">
-      <button onclick="changeImage(1)" style="color:white; font-size:2em; background:none; border:none; cursor:pointer;">&#10095;</button>
+  <div id="modal" style="display:none;">
+  <div class="modal-overlay" onclick="closeModal()"></div>
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <div class="modal-carousel">
+      <button class="carousel-btn left" onclick="changeImage(-1)">&#10094;</button>
+      <img id="carousel-image" src="">
+      <button class="carousel-btn right" onclick="changeImage(1)">&#10095;</button>
     </div>
     <div id="modal-info"></div>
   </div>
 </div>
+
   
 <section id="venta">
   <h2 style="text-align:center; font-size: 2rem; margin-bottom: 30px;">Autos en Venta</h2>
@@ -687,7 +765,22 @@
     }
     e.preventDefault();
   }, { passive: false });
+// Soporte táctil para cambiar imagen en móvil
+let startX = 0;
+
+document.getElementById("carousel-image").addEventListener("touchstart", function(e) {
+  startX = e.touches[0].clientX;
+}, false);
+
+document.getElementById("carousel-image").addEventListener("touchend", function(e) {
+  const endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) changeImage(1);  // swipe izq
+  else if (endX - startX > 50) changeImage(-1);  // swipe der
+}, false);
+
+  
 </script>
 
 </body>
 </html>
+
