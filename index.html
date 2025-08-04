@@ -360,7 +360,7 @@
 
     /* MODAL MEJORADO Y RESPONSIVE */
 #modal {
-  display: none; /* oculto por defecto */
+  display: none;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -374,9 +374,11 @@
   transition: opacity 0.3s ease;
   opacity: 0;
 }
+
 #modal.show {
   opacity: 1;
 }
+
 
 .modal-content {
   background-color: #111;
@@ -728,27 +730,25 @@
   let currentGallery = [];
   let currentIndex = 0;
 
- function openModal(car) {
-  currentGallery = images[car];
-  currentIndex = 0;
-  document.getElementById("carousel-image").src = currentGallery[currentIndex];
-  const modal = document.getElementById("modal");
-  modal.style.display = "flex";
-  setTimeout(() => modal.classList.add("show"), 10); // transición visible
-  document.body.style.overflow = "hidden";
-  renderInfo(car);
-}
-
+  function openModal(car) {
+    currentGallery = images[car];
+    currentIndex = 0;
+    document.getElementById("carousel-image").src = currentGallery[currentIndex];
+    const modal = document.getElementById("modal");
+    modal.style.display = "flex";
+    setTimeout(() => modal.classList.add("show"), 10);
+    document.body.style.overflow = "hidden";
+    renderInfo(car);
+  }
 
   function closeModal() {
-  const modal = document.getElementById("modal");
-  modal.classList.remove("show");
-  setTimeout(() => {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-  }, 300); // coincide con tu `transition: opacity 0.3s`
-}
-
+    const modal = document.getElementById("modal");
+    modal.classList.remove("show");
+    setTimeout(() => {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }, 300);
+  }
 
   function changeImage(step) {
     currentIndex = (currentIndex + step + currentGallery.length) % currentGallery.length;
@@ -765,51 +765,32 @@
     container.innerHTML = html;
   }
 
-  document.getElementById("modal").addEventListener("wheel", e => {
-    if (e.deltaY < 0) {
-      changeImage(-1);
-    } else {
-      changeImage(1);
-    }
-    e.preventDefault();
-  }, { passive: false });
-// Soporte táctil para cambiar imagen en móvil
-let startX = 0;
-
-document.getElementById("carousel-image").addEventListener("touchstart", function(e) {
-  startX = e.touches[0].clientX;
-}, false);
-
-document.getElementById("carousel-image").addEventListener("touchend", function(e) {
-  const endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) changeImage(1);  // swipe izq
-  else if (endX - startX > 50) changeImage(-1);  // swipe der
-}, false);
-
-  document.getElementById("modal").classList.add("show");
-
-
+  // Cerrar con tecla ESC
   document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") closeModal();
+    if (e.key === "Escape") closeModal();
+  });
 
-  }
-});
-  
-  
+  // Cerrar si se hace clic fuera del contenido
   document.getElementById("modal").addEventListener("click", function(e) {
-  if (!e.target.closest(".modal-content")) {
-    closeModal();
-  }
-});
-  
-  
+    if (!e.target.closest(".modal-content")) closeModal();
+  });
 
-
+  // Soporte táctil para móvil (swipe izq/der)
+  let startX = 0;
+  document.getElementById("carousel-image").addEventListener("touchstart", function(e) {
+    startX = e.touches[0].clientX;
+  }, false);
+  document.getElementById("carousel-image").addEventListener("touchend", function(e) {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) changeImage(1);  // swipe izquierda
+    else if (endX - startX > 50) changeImage(-1);  // swipe derecha
+  }, false);
   
 </script>
 
 </body>
 </html>
+
 
 
 
