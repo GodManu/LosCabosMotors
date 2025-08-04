@@ -777,15 +777,16 @@ document.getElementById("carousel-image").addEventListener("touchend", function(
 
   document.getElementById("modal").classList.add("show");
 
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeModal();
+
   document.getElementById("modal").addEventListener("click", function(e) {
   if (!e.target.closest(".modal-content")) {
     closeModal();
   }
 });
   
-  document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") closeModal();
-});
+  
 
 
   
@@ -793,6 +794,7 @@ document.getElementById("carousel-image").addEventListener("touchend", function(
 
 </body>
 </html>
+
 
 
 
