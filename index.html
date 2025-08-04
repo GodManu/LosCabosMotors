@@ -374,6 +374,9 @@
   transition: opacity 0.3s ease;
   opacity: 0;
 }
+#modal.show {
+  opacity: 1;
+}
 
 .modal-content {
   background-color: #111;
@@ -725,19 +728,27 @@
   let currentGallery = [];
   let currentIndex = 0;
 
-  function openModal(car) {
-    currentGallery = images[car];
-    currentIndex = 0;
-    document.getElementById("carousel-image").src = currentGallery[currentIndex];
-    document.getElementById("modal").style.display = "flex";
-    document.body.style.overflow = "hidden";
-    renderInfo(car);
-  }
+ function openModal(car) {
+  currentGallery = images[car];
+  currentIndex = 0;
+  document.getElementById("carousel-image").src = currentGallery[currentIndex];
+  const modal = document.getElementById("modal");
+  modal.style.display = "flex";
+  setTimeout(() => modal.classList.add("show"), 10); // transición visible
+  document.body.style.overflow = "hidden";
+  renderInfo(car);
+}
+
 
   function closeModal() {
-    document.getElementById("modal").style.display = "none";
+  const modal = document.getElementById("modal");
+  modal.classList.remove("show");
+  setTimeout(() => {
+    modal.style.display = "none";
     document.body.style.overflow = "auto";
-  }
+  }, 300); // coincide con tu `transition: opacity 0.3s`
+}
+
 
   function changeImage(step) {
     currentIndex = (currentIndex + step + currentGallery.length) % currentGallery.length;
@@ -777,9 +788,14 @@ document.getElementById("carousel-image").addEventListener("touchend", function(
 
   document.getElementById("modal").classList.add("show");
 
-document.addEventListener("keydown", function(e) {
+
+  document.addEventListener("keydown", function(e) {
   if (e.key === "Escape") closeModal();
 
+  }
+});
+  
+  
   document.getElementById("modal").addEventListener("click", function(e) {
   if (!e.target.closest(".modal-content")) {
     closeModal();
@@ -794,6 +810,7 @@ document.addEventListener("keydown", function(e) {
 
 </body>
 </html>
+
 
 
 
