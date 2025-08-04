@@ -371,6 +371,8 @@
   background-color: rgba(0,0,0,0.85);
   backdrop-filter: blur(4px);
   overflow-y: auto;
+  transition: opacity 0.3s ease;
+  opacity: 0;
 }
 
 .modal-content {
@@ -773,17 +775,25 @@ document.getElementById("carousel-image").addEventListener("touchend", function(
   else if (endX - startX > 50) changeImage(-1);  // swipe der
 }, false);
 
+  document.getElementById("modal").classList.add("show");
+
   document.getElementById("modal").addEventListener("click", function(e) {
   if (!e.target.closest(".modal-content")) {
     closeModal();
   }
 });
+  
+  document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeModal();
+});
+
 
   
 </script>
 
 </body>
 </html>
+
 
 
 
