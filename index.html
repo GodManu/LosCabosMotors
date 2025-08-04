@@ -489,7 +489,6 @@
 </section>
 
   <div id="modal" style="display:none;">
-  <div class="modal-overlay" onclick="closeModal()"></div>
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal()">&times;</span>
     <div class="modal-carousel">
@@ -778,9 +777,16 @@ document.getElementById("carousel-image").addEventListener("touchend", function(
   else if (endX - startX > 50) changeImage(-1);  // swipe der
 }, false);
 
+  document.getElementById("modal").addEventListener("click", function(e) {
+  if (!e.target.closest(".modal-content")) {
+    closeModal();
+  }
+});
+
   
 </script>
 
 </body>
 </html>
+
 
