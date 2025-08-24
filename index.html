@@ -1,212 +1,157 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Los Cabos Motors</title>
   <meta name="description" content="Venta de autos y rifas en Los Cabos. Encuentra tu próximo auto o participa para ganarlo." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    :root {
-      --bg: #0c0c0c;
-      --fg: #ffffff;
-      --accent: #ffbb33;
-      --muted: #aaa;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background-color: var(--bg);
-      color: var(--fg);
+      background-color: #0c0c0c;
+      color: white;
     }
-
-    header {
-      background: url('Images/LCMBANNER.png') center/cover no-repeat;
-      height: 300px;
+    .hero {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 400px;
+      overflow: hidden;
       text-align: center;
-      color: white;
-      position: relative;
+      padding: 2rem;
     }
-
-    header::before {
-      content: "";
+    .hero img {
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      z-index: 1;
-    }
-
-    header h1 {
-      position: relative;
-      z-index: 2;
-      font-size: 3rem;
-      text-shadow: 2px 2px black;
-    }
-
-    nav {
-      background-color: #1a1a1a;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 10px 0;
-      position: sticky;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       top: 0;
-      z-index: 999;
+      left: 0;
+      z-index: 0;
+      filter: brightness(0.3);
     }
-
-    nav a {
-      color: white;
-      text-decoration: none;
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 12px 20px;
+      border-radius: 8px;
+      background: #ffbb33;
+      color: black;
       font-weight: 600;
-      transition: color 0.3s;
+      text-decoration: none;
     }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    section {
-      padding: 50px 20px;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
       max-width: 1200px;
       margin: auto;
     }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .autos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
     .car-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
+      background: #1a1a1a;
+      border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       transition: transform 0.3s;
     }
-
     .car-card:hover {
       transform: scale(1.03);
     }
-
     .car-card img {
       width: 100%;
       height: 200px;
       object-fit: cover;
     }
-
     .car-card-content {
-      padding: 20px;
+      padding: 1rem;
     }
-
     .car-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.3rem;
+      margin-top: 0;
     }
-
-    .car-card .price {
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .car-card .contact {
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      background: var(--accent);
-      color: black;
-      transition: transform 0.2s;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-    }
-
     footer {
-      text-align: center;
-      padding: 30px;
+      padding: 2rem;
       background: #111;
-      font-size: 0.9rem;
-      color: var(--muted);
+      text-align: center;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Los Cabos Motors</h1>
+  <header class="hero">
+    <img src="Images/LCMBANNER.png" alt="Los Cabos Motors">
+    <div class="hero-inner">
+      <h1>Los Cabos Motors</h1>
+      <p>Compra, venta y rifas de autos en Los Cabos</p>
+      <a class="btn" href="#venta">Ver autos</a>
+    </div>
   </header>
 
-  <nav>
-    <a href="#venta">Autos</a>
-    <a href="#galeria">Galería</a>
-    <a href="#quienes">Nosotros</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-
-  <section id="venta">
-    <h2>Autos en Venta</h2>
-    <div class="autos-grid">
-      <div class="car-card">
-        <img src="GALERIA/MUSTANGFRENTE.jpg" alt="Mustang 2016">
-        <div class="car-card-content">
-          <h3>Ford Mustang 2016</h3>
-          <p class="price">$240,000 MXN</p>
-          <p class="contact">📞 624-109-1503</p>
-          <p class="contact">📞 624-118-1978</p>
-          <a class="btn" href="https://wa.me/526241181978?text=Hola%2C%20quiero%20info%20del%20Mustang%202016">📲 WhatsApp</a>
-        </div>
+  <section class="grid" id="venta">
+    <div class="car-card">
+      <img src="GALERIA/MUSTANGFRENTE.jpg" alt="Mustang 2016">
+      <div class="car-card-content">
+        <h3>Ford Mustang 2016</h3>
+        <p>$240,000 MXN</p>
+        <a class="btn" href="#" onclick="openModal('mustang2016')">📸 Ver más detalles</a>
       </div>
-      <!-- Agrega más tarjetas de autos similares -->
     </div>
-  </section>
-
-  <section id="quienes">
-    <h2>¿Quiénes somos?</h2>
-    <p style="max-width:800px; margin:auto; text-align:center; line-height:1.6;">
-      Somos una empresa de compra y venta de autos establecida en Los Cabos. Ofrecemos promociones exclusivas y rifas para que puedas tener tu próximo auto de forma accesible. ¡Conoce nuestro stock disponible y participa con confianza!
-    </p>
-  </section>
-
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p style="text-align:center;">📧 loscabosmotors@gmail.com</p>
-    <p style="text-align:center;">📍 Los Cabos, Baja California Sur</p>
-    <p style="text-align:center;">📞 624-118-1978</p>
+    <!-- Agrega más autos aquí -->
   </section>
 
   <footer>
     <p>&copy; 2025 Los Cabos Motors — Todos los derechos reservados</p>
   </footer>
+
+  <!-- Modal estructura -->
+  <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000a; justify-content:center; align-items:center; z-index:9999;">
+    <div style="background:#111; padding:20px; border-radius:8px; max-width:90%; max-height:90%; overflow:auto; position:relative">
+      <span onclick="closeModal()" style="position:absolute; top:10px; right:20px; font-size:1.5rem; cursor:pointer">&times;</span>
+      <h3>Ford Mustang 2016</h3>
+      <img src="GALERIA/MUSTANGFRENTE.jpg" alt="Mustang" style="width:100%; margin-bottom:1rem">
+      <p>• Nacional con placas al corriente<br>
+      • 6 Cilindros 3.7L Automático<br>
+      • Resonadores Borla, Underglow, cielo estrellado<br>
+      • A/C al 100% y detalles estéticos deportivos<br>
+      • Precio negociable</p>
+      <a class="btn" href="https://wa.me/526241181978?text=Hola%2C%20quiero%20info%20del%20Mustang%202016">Enviar mensaje</a>
+    </div>
+  </div>
+
+  <script>
+    function openModal(car) {
+      document.getElementById("modal").style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeModal();
+    });
+    document.getElementById("modal").addEventListener("click", function(e) {
+      if (!e.target.closest("div")) closeModal();
+    });
+  </script>
 </body>
 </html>
-
 
 
 
