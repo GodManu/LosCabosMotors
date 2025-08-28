@@ -508,6 +508,16 @@
   <h2 style="text-align:center; font-size: 2rem; margin-bottom: 30px;">Autos en Venta</h2>
   <div class="autos">
 
+    <!-- 1. Shelby 350 2019 -->
+<div class="card auto-card">
+  <img src="GALERIA/.jpg" alt="Shelby GT350 2019">
+  <h3 class="auto-titulo">Shelny GT350 2019</h3>
+  <p class="auto-precio">$950,000 MXN</p>
+  <p class="auto-contacto">📞 624-118-1978</p>
+  <a href="https://wa.me/526241181978?text=Hola%2C%20quiero%20más%20información%20del%20GT350R8%202019" target="_blank" class="whatsapp-btn">📲 Más info por WhatsApp</a>
+  <button onclick="openModal('gt3502019')">📸 Ver más detalles</button>
+</div>
+    
     <div class="card auto-card">
   <img src="GALERIA/MUSTANGFRENTE.jpg" alt="Mustang 2016">
   <h3 class="auto-titulo">Ford Mustang 2016</h3>
@@ -706,6 +716,7 @@
     mustang2015: ["GALERIA/mustangfrente.jpg", "GALERIA/mustangdentro.jpg", "GALERIA/mustangfrenteder.jpg", "GALERIA/mustangfrenteizq.jpg", "GALERIA/mustangladoder.jpg", "GALERIA/mustangladoizq.jpg", "GALERIA/mustangpuertader.jpg", "GALERIA/mustangpuertaizq.jpg", "GALERIA/mustandetras.png", "GALERIA/mustangcajuela.png"],
     audir8: ["GALERIA/BACKAUDI.jpg", "GALERIA/FRONTAUDI.jpg", "GALERIA/R8FRENTE.jpg", "GALERIA/R8FRENTELOGO.jpg", "GALERIA/R8LADO.jpg", "GALERIA/R8LOGO.jpg"],
     polo2020: ["Images/Polo2020.jpg"]
+    gt3502019: ["Images/.jpg"]
   };
 
   const info = {
@@ -725,6 +736,10 @@
       titulo: "VW Polo Sound & Design 2020",
       caracteristicas: ["Sistema de sonido premium de fábrica", "Rines deportivos y faros de niebla", "Motor 1.6L económico", "Gran rendimiento y estilo"]
     }
+    gt3502019: {
+      titulo: "Shelby GT350 2019",
+      caracteristicas: ["Motor V8potente", "Interior de lujo y tecnología avanzada", "Diseño aerodinámico", "Luces full LED"]
+    },
   };
 
   let currentGallery = [];
@@ -790,6 +805,7 @@
 
 </body>
 </html>
+
 
 
 
