@@ -712,35 +712,35 @@
 </script>
 <script>
   const images = {
-    mustang2016: ["GALERIA/MUSTANGFRENTE.jpg", "GALERIA/MUSTANGFRENTEIZQUIERDO.jpg", "GALERIA/MUSTANGINTERIOR.jpg", "GALERIA/MUSTANGLUZ.jpg"],
-    mustang2015: ["GALERIA/mustangfrente.jpg", "GALERIA/mustangdentro.jpg", "GALERIA/mustangfrenteder.jpg", "GALERIA/mustangfrenteizq.jpg", "GALERIA/mustangladoder.jpg", "GALERIA/mustangladoizq.jpg", "GALERIA/mustangpuertader.jpg", "GALERIA/mustangpuertaizq.jpg", "GALERIA/mustandetras.png", "GALERIA/mustangcajuela.png"],
-    audir8: ["GALERIA/BACKAUDI.jpg", "GALERIA/FRONTAUDI.jpg", "GALERIA/R8FRENTE.jpg", "GALERIA/R8FRENTELOGO.jpg", "GALERIA/R8LADO.jpg", "GALERIA/R8LOGO.jpg"],
-    polo2020: ["Images/Polo2020.jpg"]
-    gt3502019: ["Images/.jpg"]
-  };
+  mustang2016: ["GALERIA/MUSTANGFRENTE.jpg", "GALERIA/MUSTANGFRENTEIZQUIERDO.jpg", "GALERIA/MUSTANGINTERIOR.jpg", "GALERIA/MUSTANGLUZ.jpg"],
+  mustang2015: ["GALERIA/mustangfrente.jpg", "GALERIA/mustangdentro.jpg", "GALERIA/mustangfrenteder.jpg", "GALERIA/mustangfrenteizq.jpg", "GALERIA/mustangladoder.jpg", "GALERIA/mustangladoizq.jpg", "GALERIA/mustangpuertader.jpg", "GALERIA/mustangpuertaizq.jpg", "GALERIA/mustandetras.png", "GALERIA/mustangcajuela.png"],
+  audir8: ["GALERIA/BACKAUDI.jpg", "GALERIA/FRONTAUDI.jpg", "GALERIA/R8FRENTE.jpg", "GALERIA/R8FRENTELOGO.jpg", "GALERIA/R8LADO.jpg", "GALERIA/R8LOGO.jpg"],
+  polo2020: ["Images/Polo2020.jpg"],
+  gt3502019: ["GALERIA/front350.jpg", "GALERIA/interior350.jpg"] // ✅ Agrega las que existan
+};
 
-  const info = {
-    mustang2016: {
-      titulo: "Ford Mustang 2016",
-      caracteristicas: ["Motor V6 3.7L económico y potente", "Transmisión automática con modo sport", "Cambio al volante + A/C frío", "Parrilla RTR + Resonadores Borla", "Luces underglow y cielo estrellado"]
-    },
-    mustang2015: {
-      titulo: "Ford Mustang 2015",
-      caracteristicas: ["Motor V6 3.7L de alto rendimiento", "Luces LED, interior limpio", "Cajuela amplia y detalles premium", "Diseño deportivo y clásico"]
-    },
-    audir8: {
-      titulo: "Audi R8 2017",
-      caracteristicas: ["Motor V10 potente", "Interior de lujo y tecnología avanzada", "Diseño aerodinámico", "Luces full LED"]
-    },
-    polo2020: {
-      titulo: "VW Polo Sound & Design 2020",
-      caracteristicas: ["Sistema de sonido premium de fábrica", "Rines deportivos y faros de niebla", "Motor 1.6L económico", "Gran rendimiento y estilo"]
-    }
-    gt3502019: {
-      titulo: "Shelby GT350 2019",
-      caracteristicas: ["Motor V8potente", "Interior de lujo y tecnología avanzada", "Diseño aerodinámico", "Luces full LED"]
-    },
-  };
+const info = {
+  mustang2016: {
+    titulo: "Ford Mustang 2016",
+    caracteristicas: ["Motor V6 3.7L económico y potente", "Transmisión automática con modo sport", "Cambio al volante + A/C frío", "Parrilla RTR + Resonadores Borla", "Luces underglow y cielo estrellado"]
+  },
+  mustang2015: {
+    titulo: "Ford Mustang 2015",
+    caracteristicas: ["Motor V6 3.7L de alto rendimiento", "Luces LED, interior limpio", "Cajuela amplia y detalles premium", "Diseño deportivo y clásico"]
+  },
+  audir8: {
+    titulo: "Audi R8 2017",
+    caracteristicas: ["Motor V10 potente", "Interior de lujo y tecnología avanzada", "Diseño aerodinámico", "Luces full LED"]
+  },
+  polo2020: {
+    titulo: "VW Polo Sound & Design 2020",
+    caracteristicas: ["Sistema de sonido premium de fábrica", "Rines deportivos y faros de niebla", "Motor 1.6L económico", "Gran rendimiento y estilo"]
+  },
+  gt3502019: {
+    titulo: "Shelby GT350 2019",
+    caracteristicas: ["Motor V8 5.2 Vudú potente", "Interior con acabados deportivos", "Coleccionista", "Poco millaje"]
+  }
+};
 
   let currentGallery = [];
   let currentIndex = 0;
@@ -805,6 +805,7 @@
 
 </body>
 </html>
+
 
 
 
