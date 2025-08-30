@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Galería - Los Cabos Motors</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
   <style>
     body {
       background-color: #1c1c1c;
@@ -35,7 +36,6 @@
       color: white;
       text-shadow: 2px 2px 8px black;
     }
-
     nav {
       background-color: #111;
       text-align: center;
@@ -53,7 +53,6 @@
     nav a:hover {
       background-color: #333;
     }
-
     .contenedor {
       max-width: 1100px;
       margin: auto;
@@ -64,6 +63,11 @@
       text-align: center;
       margin-top: 40px;
       font-size: 1.8rem;
+    }
+    h3 {
+      margin-top: 30px;
+      text-align: center;
+      color: #ddd;
     }
     .descripcion-auto {
       text-align: center;
@@ -101,7 +105,6 @@
       margin: 50px auto;
       width: 80%;
     }
-
     .whatsapp-btn {
       position: fixed;
       bottom: 25px;
@@ -115,11 +118,9 @@
       z-index: 1000;
       box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
-
     .whatsapp-btn i {
       margin-right: 6px;
     }
-
     @media (max-width: 600px) {
       header h1 {
         font-size: 1.6rem;
@@ -150,28 +151,28 @@
     <h3>Audi R8 2017</h3>
     <p class="descripcion-auto">V10 Quattro – 650 HP, escape Akrapovic, interiores de lujo.</p>
     <div class="grid">
-      <img src="GALERIA/BACKAUDI.jpg" alt="Audi">
-      <img src="GALERIA/FRONTAUDI.jpg" alt="Audi">
-      <img src="GALERIA/R8FRENTE.jpg" alt="Audi">
-      <img src="GALERIA/R8FRENTELOGO.jpg" alt="Audi">
-      <img src="GALERIA/R8LADO.jpg" alt="Audi">
-      <img src="GALERIA/R8LOGO.jpg" alt="Audi">
+      <a href="GALERIA/BACKAUDI.jpg" data-lightbox="audi" data-title="Trasera Audi"><img src="GALERIA/BACKAUDI.jpg" alt="Audi"></a>
+      <a href="GALERIA/FRONTAUDI.jpg" data-lightbox="audi" data-title="Frente Audi"><img src="GALERIA/FRONTAUDI.jpg" alt="Audi"></a>
+      <a href="GALERIA/R8FRENTE.jpg" data-lightbox="audi" data-title="Frontal Audi"><img src="GALERIA/R8FRENTE.jpg" alt="Audi"></a>
+      <a href="GALERIA/R8FRENTELOGO.jpg" data-lightbox="audi" data-title="Logo Frontal"><img src="GALERIA/R8FRENTELOGO.jpg" alt="Audi"></a>
+      <a href="GALERIA/R8LADO.jpg" data-lightbox="audi" data-title="Vista Lateral"><img src="GALERIA/R8LADO.jpg" alt="Audi"></a>
+      <a href="GALERIA/R8LOGO.jpg" data-lightbox="audi" data-title="Logo Posterior"><img src="GALERIA/R8LOGO.jpg" alt="Audi"></a>
     </div>
 
     <h3>Ford Mustang 2016</h3>
     <p class="descripcion-auto">Automático, underglow, cielo estrellado, Borla 💨</p>
     <div class="grid">
-      <img src="GALERIA/MUSTANGFRENTE.jpg" alt="Mustang">
-      <img src="GALERIA/MUSTANGFRENTEIZQUIERDO.jpg" alt="Mustang">
-      <img src="GALERIA/MUSTANGINTERIOR.jpg" alt="Mustang">
-      <img src="GALERIA/MUSTANGLUZ.jpg" alt="Mustang">
+      <a href="GALERIA/MUSTANGFRENTE.jpg" data-lightbox="mustang16" data-title="Frente"><img src="GALERIA/MUSTANGFRENTE.jpg" alt="Mustang"></a>
+      <a href="GALERIA/MUSTANGFRENTEIZQUIERDO.jpg" data-lightbox="mustang16"><img src="GALERIA/MUSTANGFRENTEIZQUIERDO.jpg" alt="Mustang"></a>
+      <a href="GALERIA/MUSTANGINTERIOR.jpg" data-lightbox="mustang16"><img src="GALERIA/MUSTANGINTERIOR.jpg" alt="Mustang"></a>
+      <a href="GALERIA/MUSTANGLUZ.jpg" data-lightbox="mustang16"><img src="GALERIA/MUSTANGLUZ.jpg" alt="Mustang"></a>
     </div>
 
     <h3>Shelby GT350 2019</h3>
     <p class="descripcion-auto">Motor Voodoo 5.2L, 550 HP, suspensión magnética, Brembo.</p>
     <div class="grid">
-      <img src="GALERIA/front350.jpg" alt="Shelby">
-      <img src="GALERIA/Right350.jpg" alt="Shelby">
+      <a href="GALERIA/front350.jpg" data-lightbox="gt350"><img src="GALERIA/front350.jpg" alt="GT350"></a>
+      <a href="GALERIA/Right350.jpg" data-lightbox="gt350"><img src="GALERIA/Right350.jpg" alt="GT350"></a>
     </div>
 
     <div class="section-divider"></div>
@@ -182,29 +183,23 @@
     <h3>Mustang 2015</h3>
     <p class="descripcion-auto">Manual, headers, sonido deportivo, polarizado stealth.</p>
     <div class="grid">
-      <img src="GALERIA/mustangfrente.jpg" alt="Mustang15">
-      <img src="GALERIA/mustangdentro.jpg" alt="Mustang15">
-      <img src="GALERIA/mustangfrenteder.jpg" alt="Mustang15">
-      <img src="GALERIA/mustangfrenteizq.jpg" alt="Mustang15">
-      <img src="GALERIA/mustangladoder.jpg" alt="Mustang15">
-      <img src="GALERIA/mustangladoizq.jpg" alt="Mustang15">
-      <img src="GALERIA/mustangpuertader.jpg" alt="Mustang15">
-      <img src="GALERIA/mustangpuertaizq.jpg" alt="Mustang15">
-      <img src="GALERIA/mustandetras.png" alt="Mustang15">
-      <img src="GALERIA/mustangcajuela.png" alt="Mustang15">
+      <a href="GALERIA/mustangfrente.jpg" data-lightbox="mustang15"><img src="GALERIA/mustangfrente.jpg" alt="Mustang15"></a>
+      <a href="GALERIA/mustangdentro.jpg" data-lightbox="mustang15"><img src="GALERIA/mustangdentro.jpg" alt="Mustang15"></a>
+      <a href="GALERIA/mustangfrenteder.jpg" data-lightbox="mustang15"><img src="GALERIA/mustangfrenteder.jpg" alt="Mustang15"></a>
+      <a href="GALERIA/mustangfrenteizq.jpg" data-lightbox="mustang15"><img src="GALERIA/mustangfrenteizq.jpg" alt="Mustang15"></a>
     </div>
 
     <h3>Polo 2020 Sound and Design</h3>
-    <p class="descripcion-auto">	Sonido mejorado, aros deportivos, cámara reversa. </p>
+    <p class="descripcion-auto">Sonido mejorado, aros deportivos, cámara reversa.</p>
     <div class="grid">
-      <img src="Images/Polo2020.jpg" alt="Polo2020">
+      <a href="Images/Polo2020.jpg" data-lightbox="polo"><img src="Images/Polo2020.jpg" alt="Polo"></a>
     </div>
+
     <h3>Nissan X-Trail 2020</h3>
-    <p class="descripcion-auto">		Perfectas, A/C, placas al día. </p>
+    <p class="descripcion-auto">Perfecta, A/C, placas al día.</p>
     <div class="grid">
-      <img src="Images/Xtrail2020S.jpg" alt="Polo2020">
+      <a href="Images/Xtrail2020S.jpg" data-lightbox="xtrail"><img src="Images/Xtrail2020S.jpg" alt="Xtrail"></a>
     </div>
-    <!-- Puedes agregar más vendidos como el Polo aquí -->
 
     <a href="index.html" class="volver">← Volver al inicio</a>
   </div>
@@ -214,5 +209,7 @@
     <i class="fab fa-whatsapp"></i> Contáctanos
   </a>
 
+  <!-- Lightbox JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 </body>
 </html>
