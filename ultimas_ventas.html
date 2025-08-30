@@ -122,49 +122,47 @@
       text-decoration: none;
       font-weight: bold;
     }
-    .modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
+    .carousel {
   position: relative;
-  background-color: #111;
-  padding: 20px;
-  max-width: 700px;
+  overflow: hidden;
+  height: 200px;
   border-radius: 10px;
-  text-align: center;
 }
 
-.carousel-image {
+.carousel-img {
   width: 100%;
-  height: 400px;
+  height: 200px;
   object-fit: cover;
-  display: none;
-}
-
-.carousel-image.active {
-  display: block;
-}
-
-.carousel-controls button {
-  margin: 10px;
-  font-size: 1.5rem;
-}
-
-.close {
   position: absolute;
-  top: 10px; right: 20px;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
+
+.carousel-img.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 5px 10px;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 5px;
+}
+
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
+
 
   </style>
 </head>
@@ -195,8 +193,6 @@
         <blockquote class="vendedor">
           "Vendida en 48 horas gracias a la plataforma. Excelente trato y confianza total." – Los Cabos Motors
         </blockquote>
-        <button onclick="openModal()">📸 Ver más fotos</button>
-
       </div>
 
       <div class="card">
@@ -211,8 +207,7 @@
         <blockquote class="vendedor">
           "Una verdadera máquina, se fue rápido. Cliente feliz, atención top." – Los Cabos Motors
         </blockquote>
-        <button onclick="openModal()">📸 Ver más fotos</button>
-
+    
       </div>
     </div>
 <section class="reseñas">
@@ -234,58 +229,47 @@
   </div>
 
   <!-- Modal Carrusel -->
-<div id="modalCarrusel" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div class="carousel">
-      <img src="GALERIA/mustangfrente.jpg" class="carousel-image" alt="Mustang 1">
-      <img src="GALERIA/mustang2.jpg" class="carousel-image" alt="Mustang 2">
-      <img src="GALERIA/mustang3.jpg" class="carousel-image" alt="Mustang 3">
-    </div>
-    <div class="carousel-controls">
-      <button id="prevBtn">←</button>
-      <button id="nextBtn">→</button>
-    </div>
+<div class="card">
+  <div class="carousel">
+    <img src="GALERIA/mustang1.jpg" class="carousel-img active" />
+    <img src="GALERIA/mustang2.jpg" class="carousel-img" />
+    <img src="GALERIA/mustang3.jpg" class="carousel-img" />
+    <button class="carousel-prev">‹</button>
+    <button class="carousel-next">›</button>
+  </div>
+  <h3>Mustang 2015 Blanco</h3>
+  <p class="vendido">💲 VENDIDO 💲</p>
+</div>
   </div>
 </div>
 
 <script>
-let currentIndex = 0;
-const modal = document.getElementById('modalCarrusel');
-const images = document.querySelectorAll('.carousel-image');
-const closeBtn = document.querySelector('.close');
+document.querySelectorAll('.card').forEach(card => {
+  const images = card.querySelectorAll('.carousel-img');
+  const nextBtn = card.querySelector('.carousel-next');
+  const prevBtn = card.querySelector('.carousel-prev');
+  let index = 0;
 
-function showImage(index) {
-  images.forEach((img, i) => {
-    img.classList.toggle('active', i === index);
+  function showImage(i) {
+    images.forEach((img, idx) => {
+      img.classList.toggle('active', idx === i);
+    });
+  }
+
+  nextBtn?.addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    showImage(index);
   });
-}
 
-function openModal() {
-  modal.style.display = 'flex';
-  showImage(currentIndex);
-}
+  prevBtn?.addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    showImage(index);
+  });
 
-function closeModal() {
-  modal.style.display = 'none';
-}
-
-document.getElementById('prevBtn').onclick = () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage(currentIndex);
-};
-
-document.getElementById('nextBtn').onclick = () => {
-  currentIndex = (currentIndex + 1) % images.length;
-  showImage(currentIndex);
-};
-
-closeBtn.onclick = closeModal;
-
-window.onclick = function(event) {
-  if (event.target == modal) closeModal();
-};
+  showImage(index); // show first image
+});
 </script>
+
 
   
 </body>
