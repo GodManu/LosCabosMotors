@@ -4,120 +4,123 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Últimas Ventas - Los Cabos Motors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-color: #1c1c1c;
-      color: white;
-      font-family: Arial, sans-serif;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0f0f0f;
+      color: white;
+      font-family: 'Poppins', sans-serif;
     }
     header {
-    position: relative;
-    background: url('Images/LCMBANNER.png') center center / cover no-repeat;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    overflow: hidden;
-  }
-
-  header::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-  }
-
-  .header-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .header-content h1 {
-    font-size: 2.8rem;
-    color: white;
-    text-shadow: 2px 2px 0 black, -2px -2px 0 black;
-    margin: 0;
-  }
-
-  .header-content p {
-    font-size: 1.2rem;
-    text-shadow: 1px 1px 0 black;
-    margin-top: 10px;
-  }
-
+      background: url('Images/LCMBANNER.png') center center / cover no-repeat;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    header h1 {
+      position: relative;
+      font-size: 3rem;
+      color: white;
+      z-index: 2;
+      text-shadow: 2px 2px 4px #000;
+    }
+    nav {
+      background-color: #1a1a1a;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      display: inline-block;
+      transition: background 0.3s;
+      font-weight: 500;
+    }
+    nav a:hover {
+      background-color: #333;
+    }
     .ventas-container {
       max-width: 1100px;
       margin: auto;
-      padding: 20px;
+      padding: 40px 20px;
     }
     h2 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       color: #ff3c3c;
+      font-size: 2.2rem;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
     .card {
-      background-color: rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
       overflow: hidden;
       text-align: center;
-      padding: 10px;
+      padding: 15px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.03);
     }
     .card img {
       width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-    .card h3 {
-      margin: 10px 0 5px;
-      color: #fff;
-    }
-    .card p {
-      color: #ccc;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
       margin-bottom: 10px;
     }
-    .vendido {
-      color: red;
+    .card h3 {
+      color: #fff;
+      font-size: 1.1rem;
+      margin: 10px 0 5px;
+    }
+    .card p {
+      color: #ff4d4d;
       font-weight: bold;
+      font-size: 1rem;
     }
     a.volver {
       display: block;
       text-align: center;
-      margin-top: 30px;
+      margin: 40px 0;
       color: #ff3c3c;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
     }
-    nav {
-    background-color: #111;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  nav a {
-    color: white;
-    text-decoration: none;
-    padding: 15px 20px;
-    display: inline-block;
-    font-weight: bold;
-  }
-
-  nav a:hover {
-    background-color: #2e2e2e;
-  }
+    a.volver:hover {
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .card img {
+        height: 160px;
+      }
     }
   </style>
 </head>
@@ -125,12 +128,12 @@
   <header>
     <h1>Últimas Ventas</h1>
   </header>
-  <nav>
-  <a href="index.html">Venta de Autos</a>
-  <a href="galeria_autos.html">Galería</a>
-  <a href="ultimas_ventas.html">Últimas Ventas</a>
 
-</nav>
+  <nav>
+    <a href="index.html">Venta de Autos</a>
+    <a href="galeria_autos.html">Galería</a>
+    <a href="ultimas_ventas.html">Últimas Ventas</a>
+  </nav>
 
   <div class="ventas-container">
     <h2>Vehículos Vendidos</h2>
@@ -138,21 +141,17 @@
       <div class="card">
         <img src="Images/Xtrail2020S.jpg" alt="Xtrail 2020">
         <h3>Nissan Xtrail 2020 Sense</h3>
-        <p class="vendido">💲 VENDIDO 💲</p>
+        <p>💲 VENDIDO 💲</p>
       </div>
-      <div class="grid">
-     <div class="card">
-        <img src="GALERIA/mustangfrente.jpg" alt="Mustang 2016">
-        <h3>Mustang 2015 Blanco</h3>
-        <p class="vendido">💲 VENDIDO 💲</p>
+      <div class="card">
+        <img src="GALERIA/mustangfrente.jpg" alt="Mustang 2015 Blanco">
+        <h3>Ford Mustang 2015 Blanco</h3>
+        <p>💲 VENDIDO 💲</p>
+      </div>
+      <!-- Aquí puedes agregar más autos vendidos -->
     </div>
-</div>
-      <!-- Agrega más autos vendidos aquí -->
-    </div>
-  </div>
-      <!-- Agrega más autos vendidos aquí -->
-    </div>
-    <a href="index.html" class="volver">Volver al inicio</a>
+    <a href="index.html" class="volver">← Volver al inicio</a>
   </div>
 </body>
 </html>
+
