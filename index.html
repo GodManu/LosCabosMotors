@@ -3,783 +3,233 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <meta name="description" content="Los Cabos Motors: Venta de autos y rifas exclusivas en Baja California Sur. Encuentra tu próximo auto o participa para ganarlo.">
-<meta name="keywords" content="autos, venta de autos, rifas, carros, Los Cabos, México, motors">
-<meta name="author" content="Los Cabos Motors">
-  <meta name="category" content="Automóviles">
   <title>Los Cabos Motors</title>
-<link rel="icon" type="image/png" href="Images/LCMBANNER.png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #1c1c1c;
-    color: white;
-  }
- 
-  header {
-    position: relative;
-    background: url('Images/LCMBANNER.png') center center / cover no-repeat;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    overflow: hidden;
-  }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0c0c0c;
+      color: white;
+    }
 
-  header::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-  }
+    header {
+      background-image: url('Images/LCMBANNER.png');
+      background-size: cover;
+      background-position: center;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
 
-  .header-content {
-    position: relative;
-    z-index: 2;
-  }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
 
-  .header-content h1 {
-    font-size: 2.8rem;
-    color: white;
-    text-shadow: 2px 2px 0 black, -2px -2px 0 black;
-    margin: 0;
-  }
+    header h1 {
+      position: relative;
+      font-size: 3rem;
+      text-shadow: 2px 2px 8px black;
+      z-index: 1;
+    }
 
-  .header-content p {
-    font-size: 1.2rem;
-    text-shadow: 1px 1px 0 black;
-    margin-top: 10px;
-  }
+    .autos {
+      padding: 40px 20px;
+      max-width: 1300px;
+      margin: auto;
+    }
 
-  nav {
-    background-color: #111;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+    .autos h2 {
+      text-align: center;
+      color: #ff3c3c;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
 
-  nav a {
-    color: white;
-    text-decoration: none;
-    padding: 15px 20px;
-    display: inline-block;
-    font-weight: bold;
-  }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
 
-  nav a:hover {
-    background-color: #2e2e2e;
-  }
+    .card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 15px;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
 
-  section {
-    padding: 30px;
-  }
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+      border-radius: 10px;
+    }
 
-  .card {
-  background: rgba(255, 255, 255, 0.08); /* semitransparente */
-  backdrop-filter: blur(10px); /* desenfoque tipo vidrio */
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  width: 300px;
-  padding: 15px;
-  text-align: center;
-  color: white;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 10px;
-}
+    .carousel img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: none;
+    }
 
-.card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-}
+    .carousel img.active {
+      display: block;
+    }
 
-.card1 {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-  max-width: 500px;
-  padding: 30px;
-  text-align: center;
-  color: white;
-  margin: auto;
-}
+    .card h3 {
+      margin-top: 10px;
+      font-size: 1.3rem;
+      color: #fff;
+    }
 
-  .card img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  background-color: transparent;
-  border-radius: 10px;
-  display: block;
-  margin: 0 auto;
-}
+    .card p {
+      color: #bbb;
+      font-size: 0.95rem;
+    }
 
-  .card img:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-  }
-  .auto-titulo {
-    font-size: 1.3rem;
-    margin-top: 15px;
-    font-weight: bold;
-    color: #fff;
-  }
+    .social {
+      position: fixed;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
 
-  .auto-precio {
-    font-size: 1.1rem;
-    color: #d7e800;
-    font-weight: bold;
-    margin: 10px 0;
-  }
-.auto-sold {
-    font-size: 2.1rem;
-    color: #ff0000;
-    font-weight: bold;
-    margin: 10px 0;
-  }
-  .auto-contacto {
-    font-size: 1rem;
-    color: #ccc;
-  }
+    .social a {
+      background-color: #ff3c3c;
+      color: white;
+      padding: 12px;
+      border-radius: 50%;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+    }
 
-  .autos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+    .quienes {
+      background-color: #111;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-  footer {
-    background-color: #111;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 30px;
-  }
+    .quienes h2 {
+      color: #ff3c3c;
+      margin-bottom: 20px;
+    }
 
-  /* CHAT BOTÓN */
-  .chat-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ffbb33;
-    color: #000;
-    border: none;
-    padding: 12px 16px;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 1000;
-  }
+    .quienes p {
+      color: #ccc;
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.1rem;
+    }
 
-  #chat-box {
-    display: none;
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 350px;
-    max-height: 500px;
-    background: #1f1f1f;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
-  }
+    footer {
+      background-color: #000;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
 
-  #login-screen, #chat-screen {
-    display: none;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  #login-screen {
-    padding: 20px;
-  }
-
-  #login-screen input {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    border: none;
-    width: 100%;
-  }
-
-  #chat-header {
-    padding: 10px;
-    background: #222;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  #users-list {
-    background: #2d2d2d;
-    padding: 10px;
-    font-size: 0.85rem;
-    max-height: 80px;
-    overflow-y: auto;
-  }
-
-  #messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px;
-    background: #141414;
-  }
-
-  .message {
-    margin-bottom: 10px;
-    word-wrap: break-word;
-  }
-
-  .message .time {
-    font-size: 0.75rem;
-    color: #aaa;
-  }
-
-  #chat-form {
-    display: flex;
-    padding: 10px;
-    background: #2a2a2a;
-  }
-
-  #message-input {
-    flex: 1;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-  }
-
-  #send-btn {
-    background: #ffbb33;
-    border: none;
-    padding: 8px 12px;
-    margin-left: 8px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-    .whatsapp-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 15px;
-  background-color: #25D366;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.whatsapp-btn:hover {
-  transform: scale(1.05);
-}
-    .about-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 30px;
-  border-radius: 20px;
-  color: white;
-  max-width: 800px;
-  margin: 0 auto 40px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 25px;
-}
-
-.logo-container img {
-  max-width: 200px;
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
-}
-.redes-flotantes {
-  position: fixed;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 999;
-}
-
-.redes-flotantes a {
-  color: white;
-  padding: 12px;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 18px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-/* Colores de cada red */
-.redes-flotantes a.facebook {
-  background-color: #1877f2;
-}
-.redes-flotantes a.instagram {
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
-.redes-flotantes a.whatsapp {
-  background-color: #25d366;
-}
-.redes-flotantes a.correo {
-  background-color: #d60000;
-}
-
-.redes-flotantes a:hover {
-  transform: scale(1.1);
-}
-
-    /* MODAL MEJORADO Y RESPONSIVE */
-#modal {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background-color: rgba(0,0,0,0.85);
-  backdrop-filter: blur(4px);
-  overflow-y: auto;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
-
-#modal.show {
-  opacity: 1;
-}
-
-
-.modal-content {
-  background-color: #111;
-  border-radius: 15px;
-  max-width: 95%;
-  width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  position: relative;
-  text-align: center;
-  color: white;
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 2em;
-  cursor: pointer;
-  color: white;
-}
-
-.modal-carousel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.modal-carousel img {
-  max-width: 100%;
-  max-height: 60vh;
-  border-radius: 10px;
-  object-fit: contain;
-}
-
-.carousel-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2.5em;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  z-index: 2;
-}
-
-.carousel-btn.left {
-  left: -10px;
-}
-.carousel-btn.right {
-  right: -10px;
-}
-
-#modal-info {
-  margin-top: 20px;
-  text-align: left;
-}
-
-#modal-info h3 {
-  color: #ffbb33;
-  text-align: center;
-}
-
-#modal-info ul {
-  list-style: none;
-  padding: 0;
-}
-
-#modal-info li {
-  padding-left: 20px;
-  position: relative;
-  margin-bottom: 10px;
-}
-
-#modal-info li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: #25D366;
-}
-
-/* Swipe para móvil */
-@media (max-width: 768px) {
-  .carousel-btn {
-    font-size: 2em;
-    padding: 10px;
-  }
-}
-
-</style>
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="header-content">
+  <header>
     <h1>Los Cabos Motors</h1>
-    <p>Promocion y venta de vehiculos</p>
+  </header>
+
+  <div class="social">
+    <a href="https://wa.me/526241325313"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.facebook.com/LosCabosMotors"><i class="fab fa-facebook-f"></i></a>
   </div>
-</header>
 
-<nav>
-  <a href="#venta">Venta de Autos</a>
-  <a href="galeria_autos.html">Galería</a>
-  <a href="ultimas_ventas.html">Últimas Ventas</a>
-  <a href="#contacto">Contacto</a>
+  <section class="autos">
+    <h2>Autos Disponibles</h2>
+    <div class="grid">
 
-</nav>
-
-</section>
-
-  <div id="modal" style="display:none;">
-  <div class="modal-content">
-    <span class="modal-close" onclick="closeModal()">&times;</span>
-    <div class="modal-carousel">
-      <button class="carousel-btn left" onclick="changeImage(-1)">&#10094;</button>
-      <img id="carousel-image" src="">
-      <button class="carousel-btn right" onclick="changeImage(1)">&#10095;</button>
-    </div>
-    <div id="modal-info"></div>
-  </div>
-</div>
-
-  
-<section id="venta">
-  <h2 style="text-align:center; font-size: 2rem; margin-bottom: 30px;">Autos en Venta</h2>
-  <div class="autos">
-
-    <!-- 1. Shelby 350 2019 -->
-<div class="card auto-card">
-  <img src="GALERIA/front350.png" alt="Shelby GT350 2019">
-  <h3 class="auto-titulo">Shelby GT350 2019</h3>
-  <p class="auto-precio">$950,000 MXN</p>
-  <p class="auto-contacto">📞 624-118-1978</p>
-  <a href="https://wa.me/526241181978?text=Hola%2C%20quiero%20más%20información%20del%20GT350R8%202019" target="_blank" class="whatsapp-btn">📲 Más info por WhatsApp</a>
-  <button onclick="openModal('gt3502019')">📸 Ver más detalles</button>
-</div>
-    
-    <div class="card auto-card">
-  <img src="GALERIA/MUSTANGFRENTE.png" alt="Mustang 2016">
-  <h3 class="auto-titulo">Ford Mustang 2016</h3>
-  <p class="auto-precio">$240,000 MXN</p>
-  <p class="auto-contacto">📞 624-118-1978</p>
-  <a href="https://wa.me/526241181978?text=Hola%2C%20quiero%20más%20información%20del%20Mustang%202016" target="_blank" class="whatsapp-btn">📲 Más info por WhatsApp</a>
-  <button onclick="openModal('mustang2016')">📸 Ver más detalles</button>
-</div>
-
-<!-- 3. Audi R8 2017 -->
-<div class="card auto-card">
-  <img src="GALERIA/FRONTAUDI.png" alt="Audi R8 2017">
-  <h3 class="auto-titulo">Audi R8 2017</h3>
-  <p class="auto-precio">$2,200,000 MXN</p>
-  <p class="auto-contacto">📞 624-118-1978</p>
-  <a href="https://wa.me/526241181978?text=Hola%2C%20quiero%20más%20información%20del%20AudiR8%202017" target="_blank" class="whatsapp-btn">📲 Más info por WhatsApp</a>
-  <button onclick="openModal('audir8')">📸 Ver más detalles</button>
-</div>
-
-  </div>
-</section>
-  <section id="about-us">
-  <h2 style="text-align: center;">¿Quiénes somos?</h2>
-  <div class="card1 about-card">
-    <p style="text-align: justify; line-height: 1.6;">
-     <br> Los Cabos Motors es una empresa en crecimiento dedicada a facilitar la compraventa de vehículos en todo México.Con sede en Los Cabos, B.C.S., conectamos vendedores y compradores usando herramientas digitales y atención personalizada.<br>
-    <div class="logo-container">
-      <img src="Images/LCMNOLOGO.png" alt="Los Cabos Motors Logo">
+      <!-- SHELBY GT350 -->
+      <div class="card">
+        <div class="carousel" data-index="0">
+          <img src="Images/shelby1.jpg" class="active" />
+          <img src="Images/shelby2.jpg" />
+          <img src="Images/shelby3.jpg" />
+        </div>
+        <h3>Shelby GT350 2019</h3>
+        <p>Motor 5.2 Voodoo, 550 HP, suspensión electromagnética, interiores piel/Alcántara, Brembo, y más.</p>
       </div>
-      <br>Nuestra misión es ofrecer un proceso sencillo, ágil y confiable para vender o adquirir tu próximo auto.<br>
-    </p>
+
+      <!-- MUSTANG -->
+      <div class="card">
+        <div class="carousel" data-index="1">
+          <img src="Images/mustang1.jpg" class="active" />
+          <img src="Images/mustang2.jpg" />
+          <img src="Images/mustang3.jpg" />
+        </div>
+        <h3>Ford Mustang 2016</h3>
+        <p>Automático, luces underglow, cielo estrellado, resonadores Borla 💨</p>
+      </div>
+
+      <!-- AUDI R8 -->
+      <div class="card">
+        <div class="carousel" data-index="2">
+          <img src="Images/audi1.jpg" class="active" />
+          <img src="Images/audi2.jpg" />
+          <img src="Images/audi3.jpg" />
+        </div>
+        <h3>Audi R8 650HP</h3>
+        <p>Escape Akrapovic, tracción Quattro, interiores de lujo, motor V10.</p>
+      </div>
+
     </div>
-  </div>
-</section>
-</section>
-<section id="contacto">
-  <h2 style="text-align:center;">Contacto</h2>
-  <p style="text-align:center;">Tel: 624-118-1978 | Email: loscabosmotors@gmail.com</p>
-  <p style="text-align:center;">Dirección: Los Cabos, BCS</p>
-</section>
+  </section>
 
-<footer>
-  <p>&copy; 2025 Los Cabos Motors - Todos los derechos reservados</p>
-</footer>
+  <section class="quienes">
+    <h2>¿Quiénes somos?</h2>
+    <p>
+      En Los Cabos Motors nos dedicamos a ofrecer vehículos seleccionados de alta calidad y desempeño. Nuestro compromiso es brindarte confianza, atención personalizada y las mejores opciones del mercado automotriz.
+    </p>
+  </section>
 
-<!-- BOTÓN DEL CHAT -->
-<button class="chat-toggle" onclick="toggleChat()">💬 Chat</button>
+  <footer>
+    © 2025 Los Cabos Motors – Todos los derechos reservados.
+  </footer>
 
-<!-- CAJA DE CHAT -->
-<div id="chat-box">
-  <div id="login-screen">
-    <h3 style="text-align:center;">Ingresa tu nombre</h3>
-    <input type="text" id="name-input" placeholder="Tu nombre">
-    <button onclick="enterChat()">Entrar al chat</button>
-  </div>
-  <div id="chat-screen">
-    <div id="chat-header">🚘 Chat - Los Cabos Motors</div>
-    <div id="users-list"></div>
-    <div id="messages"></div>
-    <form id="chat-form">
-      <input type="text" id="message-input" placeholder="Escribe un mensaje...">
-      <button type="submit" id="send-btn">Enviar</button>
-    </form>
-  </div>
-<div class="redes-flotantes">
-  <a href="https://www.facebook.com/Los-Cabos-Motors" class="facebook" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-  <a href="https://www.instagram.com/LosCabosMotors" class="instagram" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-  <a href="https://wa.me/526241181978" class="whatsapp" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  <a href="mailto:loscabosmotors@gmail.com" class="correo" title="Correo"><i class="fas fa-envelope"></i></a>
-</div>
-
- 
-<!-- FIREBASE SCRIPTS (v8) -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDiM6ANhCufeBlc-zbAR_p3Ys_42q9dDJU",
-    authDomain: "chatloscabosmotors.firebaseapp.com",
-    databaseURL: "https://chatloscabosmotors-default-rtdb.firebaseio.com",
-    projectId: "chatloscabosmotors",
-    storageBucket: "chatloscabosmotors.appspot.com",
-    messagingSenderId: "312586924965",
-    appId: "1:312586924965:web:ae4868021f68728e74ae4c"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-  const usersRef = db.ref("users");
-  const messagesRef = db.ref("messages");
-
-  let username = "";
-  const userId = Math.random().toString(36).substring(2, 15);
-
-  function toggleChat() {
-    const chatBox = document.getElementById("chat-box");
-    const login = document.getElementById("login-screen");
-    const chat = document.getElementById("chat-screen");
-
-    if (chatBox.style.display === "flex") {
-      chatBox.style.display = "none";
-    } else {
-      chatBox.style.display = "flex";
-      login.style.display = "flex";
-      chat.style.display = "none";
-    }
-  }
-
-  function enterChat() {
-    const input = document.getElementById("name-input");
-    username = input.value.trim();
-    if (!username) return;
-
-    document.getElementById("login-screen").style.display = "none";
-    document.getElementById("chat-screen").style.display = "flex";
-
-    usersRef.child(userId).set({ name: username });
-    usersRef.child(userId).onDisconnect().remove();
-  }
-
-  function stringToColor(str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const color = Math.abs(hash).toString(16).substring(0, 6);
-    return `#${color.padStart(6, '0')}`;
-  }
-
-  function formatEmojis(text) {
-    return text
-      .replace(/:\)/g, '😊')
-      .replace(/:\(/g, '😢')
-      .replace(/:D/g, '😄')
-      .replace(/<3/g, '❤️')
-      .replace(/:p/g, '😜');
-  }
-
-  function addMessageToScreen(data, isMe) {
-    const div = document.createElement("div");
-    div.className = "message";
-    const color = stringToColor(data.name);
-    const time = new Date(data.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    div.innerHTML = `<strong style="color:${color}">${data.name}</strong>: ${formatEmojis(data.text)}<div class="time">${time}</div>`;
-    const messages = document.getElementById("messages");
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  document.getElementById("chat-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const msg = document.getElementById("message-input").value.trim();
-    if (!msg) return;
-    messagesRef.push({ name: username, text: msg, time: Date.now() });
-    document.getElementById("message-input").value = "";
-  });
-
-  messagesRef.limitToLast(100).on("child_added", (snapshot) => {
-    const msg = snapshot.val();
-    addMessageToScreen(msg, msg.name === username);
-  });
-
-  usersRef.on("value", (snapshot) => {
-    const users = snapshot.val() || {};
-    let list = '<strong>Conectados:</strong><br>';
-    for (const key in users) {
-      list += `<span style="color:${stringToColor(users[key].name)}">${users[key].name}</span><br>`;
-    }
-    document.getElementById("users-list").innerHTML = list;
-  });
-</script>
-<script>
-  const images = {
-  mustang2016: ["GALERIA/MUSTANGFRENTE.jpg", "GALERIA/MUSTANGFRENTEIZQUIERDO.jpg", "GALERIA/MUSTANGINTERIOR.jpg", "GALERIA/MUSTANGLUZ.jpg"],
-  mustang2015: ["GALERIA/mustangfrente.jpg", "GALERIA/mustangdentro.jpg", "GALERIA/mustangfrenteder.jpg", "GALERIA/mustangfrenteizq.jpg", "GALERIA/mustangladoder.jpg", "GALERIA/mustangladoizq.jpg", "GALERIA/mustangpuertader.jpg", "GALERIA/mustangpuertaizq.jpg", "GALERIA/mustandetras.png", "GALERIA/mustangcajuela.png"],
-  audir8: ["GALERIA/BACKAUDI.jpg", "GALERIA/FRONTAUDI.jpg", "GALERIA/R8FRENTE.jpg", "GALERIA/R8FRENTELOGO.jpg", "GALERIA/R8LADO.jpg", "GALERIA/R8LOGO.jpg"],
-  polo2020: ["Images/Polo2020.jpg"],
-  gt3502019: ["GALERIA/Right350.jpg", "GALERIA/front350.jpg"] // ✅ Agrega las que existan
-};
-
-const info = {
-  mustang2016: {
-    titulo: "Ford Mustang 2016",
-    caracteristicas: ["Motor V6 3.7L económico y potente", "Transmisión automática con modo sport", "Cambio al volante + A/C frío", "Parrilla RTR + Resonadores Borla", "Luces underglow y cielo estrellado"]
-  },
-  mustang2015: {
-    titulo: "Ford Mustang 2015",
-    caracteristicas: ["Motor V6 3.7L de alto rendimiento", "Luces LED, interior limpio", "Cajuela amplia y detalles premium", "Diseño deportivo y clásico"]
-  },
-  audir8: {
-    titulo: "Audi R8 2017",
-    caracteristicas: ["Motor V10 potente", "Interior de lujo y tecnología avanzada", "Diseño aerodinámico", "Luces full LED"]
-  },
-  polo2020: {
-    titulo: "VW Polo Sound & Design 2020",
-    caracteristicas: ["Sistema de sonido premium de fábrica", "Rines deportivos y faros de niebla", "Motor 1.6L económico", "Gran rendimiento y estilo"]
-  },
-  gt3502019: {
-    titulo: "Shelby GT350 2019",
-    caracteristicas: ["Motor V8 5.2 Vudú potente", "Interior con acabados deportivos", "Coleccionista", "Poco millaje"]
-  }
-};
-
-  let currentGallery = [];
-  let currentIndex = 0;
-
-  function openModal(car) {
-    currentGallery = images[car];
-    currentIndex = 0;
-    document.getElementById("carousel-image").src = currentGallery[currentIndex];
-    const modal = document.getElementById("modal");
-    modal.style.display = "flex";
-    setTimeout(() => modal.classList.add("show"), 10);
-    document.body.style.overflow = "hidden";
-    renderInfo(car);
-  }
-
-  function closeModal() {
-    const modal = document.getElementById("modal");
-    modal.classList.remove("show");
-    setTimeout(() => {
-      modal.style.display = "none";
-      document.body.style.overflow = "auto";
-    }, 300);
-  }
-
-  function changeImage(step) {
-    currentIndex = (currentIndex + step + currentGallery.length) % currentGallery.length;
-    document.getElementById("carousel-image").src = currentGallery[currentIndex];
-  }
-
-  function renderInfo(car) {
-    const container = document.getElementById("modal-info");
-    const data = info[car];
-    if (!data) return;
-    let html = `<h3>${data.titulo}</h3><ul>`;
-    data.caracteristicas.forEach(item => html += `<li>${item}</li>`);
-    html += "</ul>";
-    container.innerHTML = html;
-  }
-
-  // Cerrar con tecla ESC
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") closeModal();
-  });
-
-  // Cerrar si se hace clic fuera del contenido
-  document.getElementById("modal").addEventListener("click", function(e) {
-    if (!e.target.closest(".modal-content")) closeModal();
-  });
-
-  // Soporte táctil para móvil (swipe izq/der)
-  let startX = 0;
-  document.getElementById("carousel-image").addEventListener("touchstart", function(e) {
-    startX = e.touches[0].clientX;
-  }, false);
-  document.getElementById("carousel-image").addEventListener("touchend", function(e) {
-    const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) changeImage(1);  // swipe izquierda
-    else if (endX - startX > 50) changeImage(-1);  // swipe derecha
-  }, false);
-  
-</script>
-
+  <script>
+    // Carrusel automático
+    const carousels = document.querySelectorAll('.carousel');
+    carousels.forEach((carousel, idx) => {
+      let current = 0;
+      const images = carousel.querySelectorAll('img');
+      setInterval(() => {
+        images[current].classList.remove('active');
+        current = (current + 1) % images.length;
+        images[current].classList.add('active');
+      }, 2500);
+    });
+  </script>
 </body>
 </html>
+
+
 
 
 
