@@ -23,6 +23,7 @@
       justify-content: center;
       text-align: center;
       position: relative;
+      flex-direction: column;
     }
 
     header::before {
@@ -33,11 +34,37 @@
       background-color: rgba(0, 0, 0, 0.5);
     }
 
+    nav {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px 0;
+      z-index: 2;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 15px;
+    }
+
+    nav a:hover {
+      background-color: #ff3c3c;
+      border-radius: 8px;
+    }
+
     header h1 {
       position: relative;
       font-size: 3rem;
       text-shadow: 2px 2px 8px black;
       z-index: 1;
+      margin-top: 80px;
     }
 
     .autos {
@@ -148,12 +175,24 @@
       header h1 {
         font-size: 2rem;
       }
+
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="galeria_autos.html">Galería</a>
+      <a href="ultimas_ventas.html">Últimas Ventas</a>
+      <a href="boletos.html">Rifas</a>
+      <a href="https://wa.me/526241325313">WhatsApp</a>
+    </nav>
     <h1>Los Cabos Motors</h1>
   </header>
 
@@ -213,9 +252,8 @@
   </footer>
 
   <script>
-    // Carrusel automático
     const carousels = document.querySelectorAll('.carousel');
-    carousels.forEach((carousel, idx) => {
+    carousels.forEach((carousel) => {
       let current = 0;
       const images = carousel.querySelectorAll('img');
       setInterval(() => {
@@ -227,18 +265,6 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
