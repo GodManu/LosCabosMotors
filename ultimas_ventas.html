@@ -4,26 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Últimas Ventas - Los Cabos Motors</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      background-color: #0f0f0f;
+      background-color: #1c1c1c;
       color: white;
       font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
     }
     header {
+      position: relative;
       background: url('Images/LCMBANNER.png') center center / cover no-repeat;
       height: 250px;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
       text-align: center;
+      color: white;
     }
     header::before {
       content: "";
@@ -32,103 +29,151 @@
       width: 100%; height: 100%;
       background-color: rgba(0, 0, 0, 0.5);
     }
-    header h1 {
+    .header-content {
       position: relative;
-      font-size: 3rem;
-      color: white;
       z-index: 2;
-      text-shadow: 2px 2px 4px #000;
+    }
+    h1 {
+      font-size: 2.8rem;
+      color: #fff;
+      margin: 0;
+      text-shadow: 2px 2px 8px black;
     }
     nav {
-      background-color: #1a1a1a;
+      background-color: #111;
       text-align: center;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
     }
     nav a {
       color: white;
       text-decoration: none;
       padding: 15px 20px;
       display: inline-block;
-      transition: background 0.3s;
-      font-weight: 500;
+      font-weight: bold;
     }
     nav a:hover {
       background-color: #333;
     }
     .ventas-container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
-      padding: 40px 20px;
+      padding: 30px 20px;
     }
     h2 {
       text-align: center;
-      margin-bottom: 40px;
       color: #ff3c3c;
-      font-size: 2.2rem;
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 25px;
     }
     .card {
       background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
+      border-radius: 15px;
       overflow: hidden;
-      text-align: center;
       padding: 15px;
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: scale(1.03);
+      position: relative;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .card img {
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 10px;
+      border-radius: 10px;
     }
     .card h3 {
+      margin: 15px 0 5px;
+      font-size: 1.3rem;
       color: #fff;
-      font-size: 1.1rem;
-      margin: 10px 0 5px;
     }
-    .card p {
-      color: #ff4d4d;
+    .vendido {
+      color: #ff3c3c;
       font-weight: bold;
-      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .especificaciones {
+      width: 100%;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      color: #ddd;
+    }
+    .especificaciones td {
+      padding: 3px 5px;
+    }
+    blockquote.vendedor {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #ccc;
+      border-left: 3px solid #ff3c3c;
+      padding-left: 10px;
+      margin: 10px 0 0;
     }
     a.volver {
       display: block;
       text-align: center;
-      margin: 40px 0;
+      margin-top: 40px;
       color: #ff3c3c;
-      font-weight: bold;
       text-decoration: none;
+      font-weight: bold;
     }
-    a.volver:hover {
-      text-decoration: underline;
-    }
-    @media screen and (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      .card img {
-        height: 160px;
-      }
-    }
+    .modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #111;
+  padding: 20px;
+  max-width: 700px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: none;
+}
+
+.carousel-image.active {
+  display: block;
+}
+
+.carousel-controls button {
+  margin: 10px;
+  font-size: 1.5rem;
+}
+
+.close {
+  position: absolute;
+  top: 10px; right: 20px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
   </style>
 </head>
 <body>
   <header>
-    <h1>Últimas Ventas</h1>
+    <div class="header-content">
+      <h1>Últimas Ventas</h1>
+    </div>
   </header>
-
   <nav>
     <a href="index.html">Venta de Autos</a>
     <a href="galeria_autos.html">Galería</a>
@@ -141,35 +186,108 @@
       <div class="card">
         <img src="Images/Xtrail2020S.jpg" alt="Xtrail 2020">
         <h3>Nissan Xtrail 2020 Sense</h3>
-        <p>💲 VENDIDO 💲</p>
+        <p class="vendido">💲 VENDIDO 💲</p>
+        <table class="especificaciones">
+          <tr><td>Motor:</td><td>4 Cilindros</td></tr>
+          <tr><td>Transmisión:</td><td>Automática</td></tr>
+          <tr><td>Condiciones:</td><td>Perfectas, A/C, placas al día</td></tr>
+        </table>
+        <blockquote class="vendedor">
+          "Vendida en 48 horas gracias a la plataforma. Excelente trato y confianza total." – Los Cabos Motors
+        </blockquote>
+        <button onclick="openModal()">📸 Ver más fotos</button>
+
       </div>
+
       <div class="card">
-  <img src="GALERIA/mustangfrente.jpg" alt="Mustang 2015" onclick="openModal('mustang')">
-  <h3>Mustang 2015 Blanco</h3>
-  <p>💲 VENDIDO 💲</p>
+        <img src="GALERIA/mustangfrente.jpg" alt="Mustang 2015">
+        <h3>Ford Mustang 2015 Blanco</h3>
+        <p class="vendido">💲 VENDIDO 💲</p>
+        <table class="especificaciones">
+          <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
+          <tr><td>Transmisión:</td><td>Manual</td></tr>
+          <tr><td>Extras:</td><td>Headers, sonido deportivo, polarizado stealth</td></tr>
+        </table>
+        <blockquote class="vendedor">
+          "Una verdadera máquina, se fue rápido. Cliente feliz, atención top." – Los Cabos Motors
+        </blockquote>
+        <button onclick="openModal()">📸 Ver más fotos</button>
 
-  <table class="especificaciones">
-    <tr><td>Año:</td><td>2015</td></tr>
-    <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
-    <tr><td>Transmisión:</td><td>Manual</td></tr>
-    <tr><td>Extras:</td><td>Headers, filtro alto flujo, sonido deportivo</td></tr>
-  </table>
-
-  <blockquote class="vendedor">
-    “Gracias a Los Cabos Motors vendí mi carro en menos de una semana. Súper atención y resultados.”<br>– Manuel S.
+      </div>
+    </div>
+<section class="reseñas">
+  <h2>Opiniones de Clientes</h2>
+  <blockquote>
+    “Muy buena atención, el carro llegó en excelentes condiciones y todo el proceso fue transparente.”<br>
+    <cite>- Carlos M. desde La Paz</cite>
   </blockquote>
-</div>
-      </div>
-      <div class="card">
-        <img src="Images/Polo2020.jpg" alt="Polo 2020">
-        <h3>Polo 2020 Design and Sound</h3>
-        <p>💲 VENDIDO 💲</p>
-    </div>
-    </div>
-      <!-- Aquí puedes agregar más autos vendidos -->
-    </div>
-    <a href="index.html" class="volver">← Volver al inicio</a>
+  <blockquote>
+    “Mi Mustang superó mis expectativas, volveré a comprar con ustedes.”<br>
+    <cite>- Fernanda G., Los Cabos</cite>
+  </blockquote>
+</section>
+
+
+
+    
+    <a href="index.html" class="volver">Volver al inicio</a>
   </div>
+
+  <!-- Modal Carrusel -->
+<div id="modalCarrusel" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="carousel">
+      <img src="GALERIA/mustangfrente.jpg" class="carousel-image" alt="Mustang 1">
+      <img src="GALERIA/mustang2.jpg" class="carousel-image" alt="Mustang 2">
+      <img src="GALERIA/mustang3.jpg" class="carousel-image" alt="Mustang 3">
+    </div>
+    <div class="carousel-controls">
+      <button id="prevBtn">←</button>
+      <button id="nextBtn">→</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentIndex = 0;
+const modal = document.getElementById('modalCarrusel');
+const images = document.querySelectorAll('.carousel-image');
+const closeBtn = document.querySelector('.close');
+
+function showImage(index) {
+  images.forEach((img, i) => {
+    img.classList.toggle('active', i === index);
+  });
+}
+
+function openModal() {
+  modal.style.display = 'flex';
+  showImage(currentIndex);
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+document.getElementById('prevBtn').onclick = () => {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage(currentIndex);
+};
+
+document.getElementById('nextBtn').onclick = () => {
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage(currentIndex);
+};
+
+closeBtn.onclick = closeModal;
+
+window.onclick = function(event) {
+  if (event.target == modal) closeModal();
+};
+</script>
+
+  
 </body>
 </html>
 
