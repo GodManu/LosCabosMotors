@@ -6,114 +6,122 @@
   <title>Últimas Ventas - Los Cabos Motors</title>
   <style>
     body {
-  background-color: #1c1c1c;
-  color: white;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-header {
-  background-color: #000;
-  padding: 20px;
-  text-align: center;
-}
-.header-content h1 {
-  font-size: 2.8rem;
-  color: white;
-}
-nav {
-  background-color: #111;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-nav a {
-  color: white;
-  text-decoration: none;
-  padding: 15px 20px;
-  display: inline-block;
-  font-weight: bold;
-}
-nav a:hover {
-  background-color: #2e2e2e;
-}
-.ventas-container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-.card {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-}
-.vendido {
-  color: red;
-  font-weight: bold;
-}
-.carousel {
-  position: relative;
-  overflow: hidden;
-  height: 200px;
-  border-radius: 10px;
-}
-.carousel-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-.carousel-img.active {
-  opacity: 1;
-  z-index: 1;
-}
-.carousel-prev,
-.carousel-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
-  border: none;
-  font-size: 2rem;
-  padding: 5px 10px;
-  cursor: pointer;
-  z-index: 2;
-  border-radius: 5px;
-}
-.carousel-prev { left: 10px; }
-.carousel-next { right: 10px; }
-.reseñas {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-}
-.reseñas blockquote {
-  background: rgba(255,255,255,0.05);
-  padding: 15px;
-  border-left: 5px solid #ff3c3c;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-.reseñas cite {
-  display: block;
-  text-align: right;
-  color: #aaa;
-  margin-top: 10px;
-}
-
-
+      background-color: #1c1c1c;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      position: relative;
+      background: url('Images/LCMBANNER.png') center center / cover no-repeat;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      font-size: 2.8rem;
+      color: #fff;
+      margin: 0;
+      text-shadow: 2px 2px 8px black;
+    }
+    nav {
+      background-color: #111;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      display: inline-block;
+      font-weight: bold;
+    }
+    nav a:hover {
+      background-color: #333;
+    }
+    .ventas-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #ff3c3c;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 15px;
+      position: relative;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .card h3 {
+      margin: 15px 0 5px;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+    .vendido {
+      color: #ff3c3c;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .especificaciones {
+      width: 100%;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      color: #ddd;
+    }
+    .especificaciones td {
+      padding: 3px 5px;
+    }
+    blockquote.vendedor {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #ccc;
+      border-left: 3px solid #ff3c3c;
+      padding-left: 10px;
+      margin: 10px 0 0;
+    }
+    a.volver {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      color: #ff3c3c;
+      text-decoration: none;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -122,7 +130,6 @@ nav a:hover {
       <h1>Últimas Ventas</h1>
     </div>
   </header>
-
   <nav>
     <a href="index.html">Venta de Autos</a>
     <a href="galeria_autos.html">Galería</a>
@@ -133,65 +140,34 @@ nav a:hover {
     <h2>Vehículos Vendidos</h2>
     <div class="grid">
       <div class="card">
-        <div class="carousel">
-          <img src="GALERIA/mustang1.jpg" class="carousel-img active" />
-          <img src="GALERIA/mustang2.jpg" class="carousel-img" />
-          <img src="GALERIA/mustang3.jpg" class="carousel-img" />
-          <button class="carousel-prev">‹</button>
-          <button class="carousel-next">›</button>
-        </div>
-        <h3>Mustang 2015 Blanco</h3>
+        <img src="Images/Xtrail2020S.jpg" alt="Xtrail 2020">
+        <h3>Nissan Xtrail 2020 Sense</h3>
         <p class="vendido">💲 VENDIDO 💲</p>
+        <table class="especificaciones">
+          <tr><td>Motor:</td><td>4 Cilindros</td></tr>
+          <tr><td>Transmisión:</td><td>Automática</td></tr>
+          <tr><td>Condiciones:</td><td>Perfectas, A/C, placas al día</td></tr>
+        </table>
+        <blockquote class="vendedor">
+          "Vendida en 48 horas gracias a la plataforma. Excelente trato y confianza total." – Los Cabos Motors
+        </blockquote>
+      </div>
+
+      <div class="card">
+        <img src="GALERIA/mustangfrente.jpg" alt="Mustang 2015">
+        <h3>Ford Mustang 2015 Blanco</h3>
+        <p class="vendido">💲 VENDIDO 💲</p>
+        <table class="especificaciones">
+          <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
+          <tr><td>Transmisión:</td><td>Manual</td></tr>
+          <tr><td>Extras:</td><td>Headers, sonido deportivo, polarizado stealth</td></tr>
+        </table>
+        <blockquote class="vendedor">
+          "Una verdadera máquina, se fue rápido. Cliente feliz, atención top." – Los Cabos Motors
+        </blockquote>
       </div>
     </div>
-  </div>
-<section class="reseñas">
-    <h2>Opiniones de Clientes</h2>
-    <blockquote>
-      “Muy buena atención, el carro llegó en excelentes condiciones y todo el proceso fue transparente.”<br>
-      <cite>- Carlos M. desde La Paz</cite>
-    </blockquote>
-    <blockquote>
-      “Mi Mustang superó mis expectativas, volveré a comprar con ustedes.”<br>
-      <cite>- Fernanda G., Los Cabos</cite>
-    </blockquote>
-  </section>
-
-    
     <a href="index.html" class="volver">Volver al inicio</a>
   </div>
-
-</div>
-
-<script>
-document.querySelectorAll('.card').forEach(card => {
-  const images = card.querySelectorAll('.carousel-img');
-  const nextBtn = card.querySelector('.carousel-next');
-  const prevBtn = card.querySelector('.carousel-prev');
-  let index = 0;
-
-  function showImage(i) {
-    images.forEach((img, idx) => {
-      img.classList.toggle('active', idx === i);
-    });
-  }
-
-  nextBtn?.addEventListener('click', () => {
-    index = (index + 1) % images.length;
-    showImage(index);
-  });
-
-  prevBtn?.addEventListener('click', () => {
-    index = (index - 1 + images.length) % images.length;
-    showImage(index);
-  });
-
-  showImage(index);
-});
-</script>
-
-
-  
 </body>
 </html>
-
