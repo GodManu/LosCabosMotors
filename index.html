@@ -181,15 +181,11 @@
         gap: 10px;
       }
       .formulario {
-  padding: 40px 20px;
-  background: #111;
-  text-align: center;
-}
-
-.formulario {
-  background-color: #111;
   padding: 60px 20px;
+  background: #0c0c0c;
+  color: white;
   text-align: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .formulario h2 {
@@ -199,51 +195,75 @@
 }
 
 .formulario form {
-  background-color: #1a1a1a;
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 500px;
-  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  box-shadow: 0 0 10px rgba(255, 60, 60, 0.2);
+  max-width: 500px;
+  margin: auto;
 }
 
 .formulario input,
 .formulario textarea {
-  padding: 12px;
-  border: 1px solid #333;
-  background-color: #222;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background-color: #1a1a1a;
   color: white;
-  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
-.formulario input:focus,
-.formulario textarea:focus {
-  outline: none;
-  border-color: #ff3c3c;
+.formulario input::placeholder,
+.formulario textarea::placeholder {
+  color: #aaa;
 }
 
 .formulario button {
-  background: #ff3c3c;
+  background-color: #ff3c3c;
   color: white;
-  padding: 12px;
+  padding: 14px;
   font-weight: bold;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 }
 
 .formulario button:hover {
-  background: #e23232;
+  background-color: #e13232;
 }
 
-#form-status {
-  font-weight: bold;
+.formulario button.loading {
+  pointer-events: none;
+  opacity: 0.7;
+  position: relative;
+}
+
+.formulario button.loading::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.fade.show {
+  opacity: 1;
   margin-top: 10px;
 }
     }
@@ -327,10 +347,12 @@
     <input type="text" id="nombre" placeholder="Tu nombre completo" required>
     <input type="email" id="email" placeholder="Correo electrónico" required>
     <input type="tel" id="telefono" placeholder="Número de teléfono">
-    <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." rows="4" required></textarea>
-    <button type="submit">Enviar mensaje</button>
-    <p id="form-status" style="display:none;"></p>
+    <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+    <button type="submit" id="submitBtn">Enviar mensaje</button>
+    <p id="form-status" class="fade"></p>
   </form>
+</section>
+
 </section>
 
 
@@ -372,18 +394,25 @@
   const db = firebase.database();
 
   // Manejo del formulario de contacto
+  <script>
   const form = document.getElementById('contactForm');
   const status = document.getElementById('form-status');
+  const submitBtn = document.getElementById('submitBtn');
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
+    
+    // Activar animación de carga
+    submitBtn.classList.add('loading');
+    status.classList.remove('show');
+    status.style.color = "";
 
     const nombre = document.getElementById('nombre').value;
     const email = document.getElementById('email').value;
     const telefono = document.getElementById('telefono').value;
     const mensaje = document.getElementById('mensaje').value;
 
-    const nuevaEntrada = db.ref('visitas').push();
+    const nuevaEntrada = firebase.database().ref('visitas').push();
     nuevaEntrada.set({
       nombre,
       email,
@@ -393,24 +422,25 @@
     })
     .then(() => {
       form.reset();
-      status.style.display = "block";
-      status.style.color = "lightgreen";
       status.textContent = "✅ ¡Mensaje enviado con éxito!";
+      status.style.color = "lightgreen";
+      status.classList.add('show');
     })
     .catch((error) => {
-      console.error("Error al guardar en Firebase:", error);
-      status.style.display = "block";
+      status.textContent = "❌ Error al enviar. Intenta de nuevo.";
       status.style.color = "red";
-      status.textContent = "❌ Hubo un error. Intenta más tarde.";
+      status.classList.add('show');
+      console.error("Error al guardar en Firebase:", error);
+    })
+    .finally(() => {
+      submitBtn.classList.remove('loading');
     });
   });
 </script>
 
-
-
-  
 </body>
 </html>
+
 
 
 
