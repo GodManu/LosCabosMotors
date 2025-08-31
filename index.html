@@ -180,106 +180,103 @@
         flex-direction: column;
         gap: 10px;
       }
-      <style>
-  /* CONTENEDOR GENERAL */
   .formulario {
-    background-color: #111;
-    padding: 40px 20px;
-    border-radius: 12px;
-    max-width: 800px;
-    margin: 60px auto;
-    color: #fff;
-    box-shadow: 0 0 20px rgba(255, 60, 60, 0.15);
-    
-    /* Animación de entrada */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 40px 25px;
+  max-width: 600px;
+  margin: 80px auto;
+  animation: fadeInUp 1s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.formulario h2 {
+  text-align: center;
+  color: #ff3c3c;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.form-desc {
+  text-align: center;
+  color: #ccc;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (min-width: 600px) {
+  .form-group:nth-child(1) {
+    flex-direction: row;
+  }
+  .form-group input {
+    flex: 1;
+  }
+}
+
+#contactForm input,
+#contactForm textarea {
+  background-color: #222;
+  color: #fff;
+  padding: 14px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+#contactForm input:focus,
+#contactForm textarea:focus {
+  border: 1px solid #ff3c3c;
+}
+
+.btn-enviar {
+  background-color: #ff3c3c;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-enviar:hover {
+  background-color: #e53935;
+  transform: scale(1.02);
+}
+
+.form-status {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+@keyframes fadeInUp {
+  from {
     opacity: 0;
-    transform: translateY(40px);
-    animation: fadeInUp 0.9s ease forwards;
+    transform: translateY(30px);
   }
-
-  /* TÍTULO */
-  .formulario h2 {
-    color: #ff3c3c;
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 1.8rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  /* FORMULARIO INTERNO */
-  .formulario form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-
-  /* INPUTS Y TEXTAREA */
-  .formulario input,
-  .formulario textarea {
-    padding: 14px;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
-    flex: 1 1 250px;
-    background: #1a1a1a;
-    color: white;
-    transition: all 0.3s ease;
-  }
-
-  .formulario input:focus,
-  .formulario textarea:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #ff3c3c;
-    background-color: #222;
-  }
-
-  .formulario textarea {
-    resize: vertical;
-    min-height: 120px;
-    flex: 1 1 100%;
-  }
-
-  /* BOTÓN */
-  .formulario .btn-enviar {
-    background-color: #ff3c3c;
-    color: white;
-    font-weight: bold;
-    padding: 14px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    flex: 1 1 100%;
-    max-width: 300px;
-  }
-
-  .formulario .btn-enviar:hover {
-    background-color: #e13232;
-  }
-
-  /* MENSAJE DE ESTADO */
-  #form-status {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.95rem;
-    display: none;
-    color: #4caf50;
-  }
-
-  /* ANIMACIÓN DE ENTRADA */
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 600px) {
-    .formulario form {
-      flex-direction: column;
-    }
-  }
+}
 
   </style>
 </head>
@@ -357,15 +354,23 @@
 
   <section class="formulario">
   <h2>Contáctanos</h2>
+  <p class="form-desc">¿Tienes dudas o te interesa un vehículo? ¡Escríbenos!</p>
   <form id="contactForm">
-    <input type="text" id="nombre" placeholder="Tu nombre completo" required>
-    <input type="email" id="email" placeholder="Correo electrónico" required>
-    <input type="tel" id="telefono" placeholder="Número de teléfono">
-    <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+    <div class="form-group">
+      <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+      <input type="email" id="email" placeholder="Correo electrónico" required>
+    </div>
+    <div class="form-group">
+      <input type="tel" id="telefono" placeholder="Número de WhatsApp (opcional)">
+    </div>
+    <div class="form-group">
+      <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." rows="4" required></textarea>
+    </div>
     <button type="submit" class="btn-enviar">Enviar mensaje</button>
-    <p id="form-status"></p>
+    <p id="form-status" class="form-status"></p>
   </form>
 </section>
+
 
 
 
@@ -453,6 +458,7 @@
 
 </body>
 </html>
+
 
 
 
