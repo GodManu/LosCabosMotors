@@ -181,11 +181,9 @@
         gap: 10px;
       }
       .formulario {
+  background-color: #111;
   padding: 60px 20px;
-  background: #0c0c0c;
-  color: white;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
 }
 
 .formulario h2 {
@@ -195,78 +193,68 @@
 }
 
 .formulario form {
+  max-width: 600px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  max-width: 500px;
-  margin: auto;
 }
 
 .formulario input,
 .formulario textarea {
-  padding: 14px;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
-  background-color: #1a1a1a;
+  padding: 14px;
   color: white;
   font-size: 1rem;
-  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
+  outline: none;
+  transition: 0.3s ease;
 }
 
-.formulario input::placeholder,
-.formulario textarea::placeholder {
-  color: #aaa;
+.formulario input:focus,
+.formulario textarea:focus {
+  border-color: #ff3c3c;
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.formulario button {
+.formulario textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.btn-enviar {
   background-color: #ff3c3c;
   color: white;
-  padding: 14px;
   font-weight: bold;
+  padding: 14px;
+  font-size: 1rem;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background 0.3s ease;
 }
 
-.formulario button:hover {
-  background-color: #e13232;
+.btn-enviar:hover {
+  background-color: #e02e2e;
 }
 
-.formulario button.loading {
-  pointer-events: none;
-  opacity: 0.7;
-  position: relative;
+/* Opcional: animación suave al aparecer */
+.formulario {
+  animation: fadeInUp 1s ease;
 }
 
-.formulario button.loading::after {
-  content: '';
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  border: 3px solid white;
-  border-top: 3px solid transparent;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes spin {
-  to { transform: translateY(-50%) rotate(360deg); }
-}
-
-.fade {
-  opacity: 0;
-  transition: opacity 0.6s ease-in-out;
-}
-
-.fade.show {
-  opacity: 1;
-  margin-top: 10px;
-}
-    }
   </style>
 </head>
 <body>
@@ -348,11 +336,9 @@
     <input type="email" id="email" placeholder="Correo electrónico" required>
     <input type="tel" id="telefono" placeholder="Número de teléfono">
     <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
-    <button type="submit" id="submitBtn">Enviar mensaje</button>
-    <p id="form-status" class="fade"></p>
+    <button type="submit" class="btn-enviar">Enviar mensaje</button>
+    <p id="form-status" style="display:none;"></p>
   </form>
-</section>
-
 </section>
 
 
@@ -440,6 +426,7 @@
 
 </body>
 </html>
+
 
 
 
