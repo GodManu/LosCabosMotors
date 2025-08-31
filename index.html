@@ -401,23 +401,28 @@
     © 2025 Los Cabos Motors – Todos los derechos reservados.
   </footer>
 
-  <script>
-    const carousels = document.querySelectorAll('.carousel');
+  <!-- Carrusel automático -->
+<script>
+  const carousels = document.querySelectorAll('.carousel');
   carousels.forEach((carousel) => {
     let current = 0;
     const images = carousel.querySelectorAll('img');
+    if (images.length <= 1) return; // No hacer carrusel si hay 1 imagen
+
     setInterval(() => {
       images[current].classList.remove('active');
       current = (current + 1) % images.length;
       images[current].classList.add('active');
     }, 2500);
   });
-  
+</script>
+
+<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
+<!-- Firebase config + formulario -->
 <script>
-  // Configuración del proyecto correcto de Firebase (el mismo del chat)
   const firebaseConfig = {
     apiKey: "AIzaSyDmuGghmIyIVJtRo96Rk3UwNRt-mwZcWM4",
     authDomain: "los-cabos-motors-index.firebaseapp.com",
@@ -428,20 +433,15 @@
     appId: "1:634233905652:web:f0598bf9f51f5b49f6d9a1"
   };
 
-  // Inicializar Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
 
-  // Manejo del formulario de contacto
-  <script>
   const form = document.getElementById('contactForm');
   const status = document.getElementById('form-status');
-  const submitBtn = document.getElementById('submitBtn');
+  const submitBtn = document.querySelector('.btn-enviar');
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    
-    // Activar animación de carga
     submitBtn.classList.add('loading');
     status.classList.remove('show');
     status.style.color = "";
@@ -451,7 +451,7 @@
     const telefono = document.getElementById('telefono').value;
     const mensaje = document.getElementById('mensaje').value;
 
-    const nuevaEntrada = firebase.database().ref('visitas').push();
+    const nuevaEntrada = db.ref('visitas').push();
     nuevaEntrada.set({
       nombre,
       email,
@@ -479,6 +479,7 @@
 
 </body>
 </html>
+
 
 
 
