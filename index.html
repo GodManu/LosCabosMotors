@@ -181,31 +181,45 @@
         gap: 10px;
       }
   .formulario {
-  padding: 50px 20px;
-  background-color: #111;
-  border-radius: 12px;
-  max-width: 700px;
-  margin: 60px auto;
-  box-shadow: 0 0 12px rgba(255, 60, 60, 0.2);
+  padding: 60px 20px;
+  background-color: #0c0c0c;
+  border-radius: 16px;
+  max-width: 900px;
+  margin: 80px auto;
   animation: fadeIn 1s ease-in;
 }
 
 .formulario h2 {
   text-align: center;
   color: #fff;
+  font-size: 2rem;
   margin-bottom: 10px;
 }
 
-.formulario .subtexto {
+.subtexto {
   text-align: center;
   color: #ccc;
-  margin-bottom: 30px;
   font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.form-card {
+  background: #151515;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  border: 1px solid #ff3c3c55;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 30px rgba(255, 60, 60, 0.4);
 }
 
 .form-grid {
   display: grid;
-  gap: 15px;
+  gap: 20px;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -214,30 +228,38 @@
   resize: vertical;
 }
 
-.formulario input,
-.formulario textarea {
-  padding: 12px;
+.form-card input,
+.form-card textarea {
+  padding: 14px;
   border-radius: 8px;
-  border: none;
-  font-size: 1rem;
-  background-color: #222;
+  border: 1px solid #333;
+  background-color: #1a1a1a;
   color: white;
+  font-size: 1rem;
+  transition: border 0.3s ease, background-color 0.3s ease;
 }
 
-.formulario input::placeholder,
-.formulario textarea::placeholder {
-  color: #aaa;
+.form-card input:focus,
+.form-card textarea:focus {
+  border-color: #ff3c3c;
+  background-color: #111;
+  outline: none;
+}
+
+.form-card input::placeholder,
+.form-card textarea::placeholder {
+  color: #888;
 }
 
 .btn-enviar {
-  margin-top: 20px;
+  margin-top: 25px;
   width: 100%;
-  padding: 14px;
+  padding: 15px;
   background-color: #ff3c3c;
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -254,11 +276,18 @@
   color: #00ff88;
 }
 
-/* Animación de entrada */
+/* Animación */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* Responsive */
+@media (max-width: 700px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
   .form-grid textarea {
     grid-column: span 1;
   }
@@ -331,10 +360,18 @@
     </div>
   </section>
   
+  <section class="quienes">
+    <h2>¿Quiénes somos?</h2>
+    <p>
+      En Los Cabos Motors nos dedicamos a ofrecer vehículos seleccionados de alta calidad y desempeño. Nuestro compromiso es brindarte confianza, atención personalizada y las mejores opciones del mercado automotriz.
+    </p>
+  
+  </section>
+  
 <section class="formulario">
   <h2>Contáctanos</h2>
   <p class="subtexto">¿Tienes dudas o te interesa un vehículo? ¡Escríbenos!</p>
-  <form id="contactForm">
+  <form id="contactForm" class="form-card">
     <div class="form-grid">
       <input type="text" id="nombre" placeholder="Tu nombre completo" required>
       <input type="email" id="email" placeholder="Correo electrónico" required>
@@ -344,14 +381,8 @@
     <button type="submit" class="btn-enviar">Enviar mensaje</button>
     <p id="form-status" class="form-status"></p>
   </form>
-</section>
   
-  <section class="quienes">
-    <h2>¿Quiénes somos?</h2>
-    <p>
-      En Los Cabos Motors nos dedicamos a ofrecer vehículos seleccionados de alta calidad y desempeño. Nuestro compromiso es brindarte confianza, atención personalizada y las mejores opciones del mercado automotriz.
-    </p>
-  </section>
+</section>
 
 
   <footer>
@@ -436,6 +467,7 @@
 
 </body>
 </html>
+
 
 
 
