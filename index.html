@@ -291,17 +291,21 @@
     </p>
   </section>
 
-  <section class="formulario">
-  <h2>Contáctanos</h2>
-  <form id="contactForm">
-    <input type="text" id="nombre" placeholder="Tu nombre completo" required>
-    <input type="email" id="email" placeholder="Correo electrónico" required>
-    <input type="tel" id="telefono" placeholder="Número de WhatsApp">
-    <textarea id="mensaje" placeholder="Mensaje o consulta..." rows="4" required></textarea>
-    <button type="submit">Enviar mensaje</button>
+  <section id="contacto" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(8px); border-radius: 15px; padding: 40px 20px; max-width: 600px; margin: 60px auto">
+  <h2 style="text-align:center; color:#ff3c3c; margin-bottom: 20px;">Contáctanos</h2>
+  <p style="text-align:center; color:#ccc; margin-bottom: 25px;">Déjanos tus datos y te contactaremos pronto.</p>
+
+  <form id="contactForm" style="display:flex; flex-direction:column; gap:15px;">
+    <input type="text" id="nombre" placeholder="Tu nombre completo" required style="padding:12px; border-radius:8px; border:none; font-size:1rem;">
+    <input type="email" id="email" placeholder="Correo electrónico" required style="padding:12px; border-radius:8px; border:none; font-size:1rem;">
+    <input type="tel" id="telefono" placeholder="Número de WhatsApp (opcional)" style="padding:12px; border-radius:8px; border:none; font-size:1rem;">
+    <textarea id="mensaje" placeholder="Mensaje o consulta..." rows="4" required style="padding:12px; border-radius:8px; border:none; font-size:1rem; resize:vertical;"></textarea>
+    <button type="submit" style="background-color:#ff3c3c; color:white; padding:14px; border:none; border-radius:8px; font-size:1rem; font-weight:bold; cursor:pointer;">Enviar mensaje</button>
   </form>
-  <p id="form-status"></p>
+
+  <p id="form-status" style="text-align:center; margin-top:20px; font-size:0.95rem; display:none;"></p>
 </section>
+
 
 
   <footer>
@@ -329,7 +333,7 @@
      apiKey: "AIzaSyDmuGghmIyIVJtRo96Rk3UwNRt-mwZcWM4",
   authDomain: "los-cabos-motors-index.firebaseapp.com",
   projectId: "los-cabos-motors-index",
-  storageBucket: "los-cabos-motors-index.firebasestorage.app",
+  storageBucket: "los-cabos-motors-index.appspot.com",
   messagingSenderId: "634233905652",
   appId: "1:634233905652:web:f0598bf9f51f5b49f6d9a1"
 };
@@ -373,6 +377,7 @@
   
 </body>
 </html>
+
 
 
 
