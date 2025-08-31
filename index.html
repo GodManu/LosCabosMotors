@@ -180,80 +180,106 @@
         flex-direction: column;
         gap: 10px;
       }
-      .formulario {
-  background-color: #111;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.formulario h2 {
-  color: #ff3c3c;
-  font-size: 2rem;
-  margin-bottom: 25px;
-}
-
-.formulario form {
-  max-width: 600px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.formulario input,
-.formulario textarea {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  padding: 14px;
-  color: white;
-  font-size: 1rem;
-  outline: none;
-  transition: 0.3s ease;
-}
-
-.formulario input:focus,
-.formulario textarea:focus {
-  border-color: #ff3c3c;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.formulario textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.btn-enviar {
-  background-color: #ff3c3c;
-  color: white;
-  font-weight: bold;
-  padding: 14px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.btn-enviar:hover {
-  background-color: #e02e2e;
-}
-
-/* Opcional: animación suave al aparecer */
-.formulario {
-  animation: fadeInUp 1s ease;
-}
-
-@keyframes fadeInUp {
-  from {
+      <style>
+  /* CONTENEDOR GENERAL */
+  .formulario {
+    background-color: #111;
+    padding: 40px 20px;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 60px auto;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 60, 60, 0.15);
+    
+    /* Animación de entrada */
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
+    animation: fadeInUp 0.9s ease forwards;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  /* TÍTULO */
+  .formulario h2 {
+    color: #ff3c3c;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
   }
-}
+
+  /* FORMULARIO INTERNO */
+  .formulario form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  /* INPUTS Y TEXTAREA */
+  .formulario input,
+  .formulario textarea {
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    flex: 1 1 250px;
+    background: #1a1a1a;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .formulario input:focus,
+  .formulario textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #ff3c3c;
+    background-color: #222;
+  }
+
+  .formulario textarea {
+    resize: vertical;
+    min-height: 120px;
+    flex: 1 1 100%;
+  }
+
+  /* BOTÓN */
+  .formulario .btn-enviar {
+    background-color: #ff3c3c;
+    color: white;
+    font-weight: bold;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1 1 100%;
+    max-width: 300px;
+  }
+
+  .formulario .btn-enviar:hover {
+    background-color: #e13232;
+  }
+
+  /* MENSAJE DE ESTADO */
+  #form-status {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    display: none;
+    color: #4caf50;
+  }
+
+  /* ANIMACIÓN DE ENTRADA */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .formulario form {
+      flex-direction: column;
+    }
+  }
 
   </style>
 </head>
@@ -337,9 +363,10 @@
     <input type="tel" id="telefono" placeholder="Número de teléfono">
     <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
     <button type="submit" class="btn-enviar">Enviar mensaje</button>
-    <p id="form-status" style="display:none;"></p>
+    <p id="form-status"></p>
   </form>
 </section>
+
 
 
 
@@ -426,6 +453,7 @@
 
 </body>
 </html>
+
 
 
 
