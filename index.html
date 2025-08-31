@@ -186,20 +186,45 @@
   text-align: center;
 }
 
+.formulario {
+  background-color: #111;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.formulario h2 {
+  color: #ff3c3c;
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
 .formulario form {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  margin: auto;
   gap: 15px;
+  box-shadow: 0 0 10px rgba(255, 60, 60, 0.2);
 }
 
 .formulario input,
 .formulario textarea {
   padding: 12px;
-  border: none;
+  border: 1px solid #333;
+  background-color: #222;
+  color: white;
   border-radius: 8px;
   font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+  outline: none;
+  border-color: #ff3c3c;
 }
 
 .formulario button {
@@ -210,11 +235,16 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s;
+}
+
+.formulario button:hover {
+  background: #e23232;
 }
 
 #form-status {
-  margin-top: 15px;
   font-weight: bold;
+  margin-top: 10px;
 }
     }
   </style>
@@ -291,16 +321,18 @@
     </p>
   </section>
 
+  <section class="formulario">
   <h2>Contáctanos</h2>
   <form id="contactForm">
-    <input type="text" id="nombre" placeholder="Tu nombre" required><br>
-    <input type="email" id="email" placeholder="Tu correo" required><br>
-    <input type="tel" id="telefono" placeholder="Teléfono"><br>
-    <textarea id="mensaje" placeholder="Mensaje..." required></textarea><br>
-    <button type="submit">Enviar</button>
+    <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+    <input type="email" id="email" placeholder="Correo electrónico" required>
+    <input type="tel" id="telefono" placeholder="Número de teléfono">
+    <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." rows="4" required></textarea>
+    <button type="submit">Enviar mensaje</button>
+    <p id="form-status" style="display:none;"></p>
   </form>
+</section>
 
-  <p id="form-status" style="display:none;"></p>
 
 
 
@@ -379,6 +411,7 @@
   
 </body>
 </html>
+
 
 
 
