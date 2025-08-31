@@ -323,36 +323,48 @@
         images[current].classList.add('active');
       }, 2500);
     });
-  <!-- Firebase -->
+  <!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
 <script>
-  // 🔧 Configuración personalizada de tu proyecto
+  // Configuración de Firebase
   const firebaseConfig = {
-     apiKey: "AIzaSyDmuGghmIyIVJtRo96Rk3UwNRt-mwZcWM4",
-  authDomain: "los-cabos-motors-index.firebaseapp.com",
-  projectId: "los-cabos-motors-index",
-  storageBucket: "los-cabos-motors-index.appspot.com",
-  messagingSenderId: "634233905652",
-  appId: "1:634233905652:web:f0598bf9f51f5b49f6d9a1"
-};
+    apiKey: "AIzaSyDmuGghmIyIVJtRo96Rk3UwNRt-mwZcWM4",
+    authDomain: "los-cabos-motors-index.firebaseapp.com",
+    databaseURL: "https://los-cabos-motors-index-default-rtdb.firebaseio.com", // ESTA LÍNEA ES IMPORTANTE
+    projectId: "los-cabos-motors-index",
+    storageBucket: "los-cabos-motors-index.firebasestorage.app",
+    messagingSenderId: "634233905652",
+    appId: "1:634233905652:web:f0598bf9f51f5b49f6d9a1"
+  };
 
   // Inicializar Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
 
+  // Referencias al formulario y estado
   const form = document.getElementById('contactForm');
   const status = document.getElementById('form-status');
 
+  // Escuchar envío del formulario
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const nombre = document.getElementById('nombre').value;
-    const email = document.getElementById('email').value;
-    const telefono = document.getElementById('telefono').value;
-    const mensaje = document.getElementById('mensaje').value;
+    // Obtener valores
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
 
+    // Validar datos (opcional pero recomendable)
+    if (!nombre || !email || !telefono || !mensaje) {
+      status.textContent = "❌ Por favor llena todos los campos.";
+      status.style.color = "orange";
+      return;
+    }
+
+    // Guardar en Firebase
     const nuevaEntrada = db.ref('visitas').push();
     nuevaEntrada.set({
       nombre,
@@ -377,6 +389,7 @@
   
 </body>
 </html>
+
 
 
 
