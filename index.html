@@ -180,6 +180,42 @@
         flex-direction: column;
         gap: 10px;
       }
+      .formulario {
+  padding: 40px 20px;
+  background: #111;
+  text-align: center;
+}
+
+.formulario form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+  gap: 15px;
+}
+
+.formulario input,
+.formulario textarea {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.formulario button {
+  background: #ff3c3c;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#form-status {
+  margin-top: 15px;
+  font-weight: bold;
+}
     }
   </style>
 </head>
@@ -255,6 +291,19 @@
     </p>
   </section>
 
+  <section class="formulario">
+  <h2>Contáctanos</h2>
+  <form id="contactForm">
+    <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+    <input type="email" id="email" placeholder="Correo electrónico" required>
+    <input type="tel" id="telefono" placeholder="Número de WhatsApp">
+    <textarea id="mensaje" placeholder="Mensaje o consulta..." rows="4" required></textarea>
+    <button type="submit">Enviar mensaje</button>
+  </form>
+  <p id="form-status"></p>
+</section>
+
+
   <footer>
     © 2025 Los Cabos Motors – Todos los derechos reservados.
   </footer>
@@ -271,8 +320,61 @@
       }, 2500);
     });
   </script>
+<!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+
+<script>
+  // Reemplaza esto con tu configuración real:
+  const firebaseConfig = {
+    apiKey: "TU_API_KEY",
+    authDomain: "TU_DOMINIO.firebaseapp.com",
+    projectId: "los-cabos-motors-index",
+    storageBucket: "xxx.appspot.com",
+    messagingSenderId: "XXXX",
+    appId: "XXXX"
+  };
+
+  // Inicializa Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // Captura el formulario
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const telefono = document.getElementById('telefono').value;
+    const mensaje = document.getElementById('mensaje').value;
+
+    try {
+      await db.collection('visitas').add({
+        nombre,
+        email,
+        telefono,
+        mensaje,
+        fecha: new Date()
+      });
+
+      form.reset();
+      status.textContent = '¡Mensaje enviado con éxito!';
+      status.style.color = 'lightgreen';
+    } catch (error) {
+      console.error("Error al guardar:", error);
+      status.textContent = 'Hubo un error. Intenta nuevamente.';
+      status.style.color = 'red';
+    }
+  });
+</script>
+
+  
 </body>
 </html>
+
 
 
 
