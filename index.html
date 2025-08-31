@@ -319,17 +319,16 @@
       images[current].classList.add('active');
     }, 2500);
   });
-    </script>
-  <!-- Firebase SDKs (compatibilidad) -->
+    <!-- Firebase SDK (Versión compat) -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
 <script>
-  // Configuración de tu proyecto Firebase
+  // Configuración del proyecto correcto de Firebase (el mismo del chat)
   const firebaseConfig = {
     apiKey: "AIzaSyDmuGghmIyIVJtRo96Rk3UwNRt-mwZcWM4",
     authDomain: "los-cabos-motors-index.firebaseapp.com",
-    databaseURL: "https://los-cabos-motors-index-default-rtdb.firebaseio.com/",
+    databaseURL: "https://los-cabos-motors-index-default-rtdb.firebaseio.com",
     projectId: "los-cabos-motors-index",
     storageBucket: "los-cabos-motors-index.appspot.com",
     messagingSenderId: "634233905652",
@@ -340,11 +339,11 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
 
-  // Referencia al formulario
+  // Manejo del formulario de contacto
   const form = document.getElementById('contactForm');
   const status = document.getElementById('form-status');
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
 
     const nombre = document.getElementById('nombre').value;
@@ -363,22 +362,24 @@
     .then(() => {
       form.reset();
       status.style.display = "block";
-      status.textContent = "✅ ¡Mensaje enviado con éxito!";
       status.style.color = "lightgreen";
+      status.textContent = "✅ ¡Mensaje enviado con éxito!";
     })
     .catch((error) => {
       console.error("Error al guardar en Firebase:", error);
       status.style.display = "block";
-      status.textContent = "❌ Error al enviar. Intenta de nuevo.";
       status.style.color = "red";
+      status.textContent = "❌ Hubo un error. Intenta más tarde.";
     });
   });
 </script>
 
 
+
   
 </body>
 </html>
+
 
 
 
