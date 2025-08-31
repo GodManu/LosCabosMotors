@@ -319,61 +319,61 @@
         images[current].classList.add('active');
       }, 2500);
     });
-  </script>
-<!-- Firebase CDN -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+  <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
 <script>
-  // Reemplaza esto con tu configuración real:
+  // 🔧 Configuración personalizada de tu proyecto
   const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_DOMINIO.firebaseapp.com",
-    projectId: "los-cabos-motors-index",
-    storageBucket: "xxx.appspot.com",
-    messagingSenderId: "XXXX",
-    appId: "XXXX"
-  };
+     apiKey: "AIzaSyDmuGghmIyIVJtRo96Rk3UwNRt-mwZcWM4",
+  authDomain: "los-cabos-motors-index.firebaseapp.com",
+  projectId: "los-cabos-motors-index",
+  storageBucket: "los-cabos-motors-index.firebasestorage.app",
+  messagingSenderId: "634233905652",
+  appId: "1:634233905652:web:f0598bf9f51f5b49f6d9a1"
+};
 
-  // Inicializa Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+  // Inicializar Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
 
-  // Captura el formulario
   const form = document.getElementById('contactForm');
   const status = document.getElementById('form-status');
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     const nombre = document.getElementById('nombre').value;
     const email = document.getElementById('email').value;
     const telefono = document.getElementById('telefono').value;
     const mensaje = document.getElementById('mensaje').value;
 
-    try {
-      await db.collection('visitas').add({
-        nombre,
-        email,
-        telefono,
-        mensaje,
-        fecha: new Date()
-      });
-
+    const nuevaEntrada = db.ref('visitas').push();
+    nuevaEntrada.set({
+      nombre,
+      email,
+      telefono,
+      mensaje,
+      fecha: new Date().toISOString()
+    })
+    .then(() => {
       form.reset();
-      status.textContent = '¡Mensaje enviado con éxito!';
-      status.style.color = 'lightgreen';
-    } catch (error) {
-      console.error("Error al guardar:", error);
-      status.textContent = 'Hubo un error. Intenta nuevamente.';
-      status.style.color = 'red';
-    }
+      status.textContent = "✅ ¡Mensaje enviado con éxito!";
+      status.style.color = "lightgreen";
+    })
+    .catch((error) => {
+      console.error("Error al guardar en Firebase:", error);
+      status.textContent = "❌ Error al enviar. Intenta de nuevo.";
+      status.style.color = "red";
+    });
   });
 </script>
 
   
 </body>
 </html>
+
 
 
 
