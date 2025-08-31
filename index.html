@@ -185,13 +185,13 @@
   background-color: #0c0c0c;
   border-radius: 16px;
   max-width: 900px;
-  margin: 80px auto;
+  margin: 60px auto;
   animation: fadeIn 1s ease-in;
 }
 
 .formulario h2 {
   text-align: center;
-  color: #fff;
+  color: #ff3c3c;
   font-size: 2rem;
   margin-bottom: 10px;
 }
@@ -200,7 +200,7 @@
   text-align: center;
   color: #ccc;
   font-size: 1rem;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .form-card {
@@ -208,13 +208,13 @@
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
-  border: 1px solid #ff3c3c55;
+  border: 1px solid rgba(255, 60, 60, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-card:hover {
   transform: scale(1.01);
-  box-shadow: 0 0 30px rgba(255, 60, 60, 0.4);
+  box-shadow: 0 0 30px rgba(255, 60, 60, 0.5);
 }
 
 .form-grid {
@@ -262,11 +262,12 @@
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-enviar:hover {
   background-color: #e12f2f;
+  transform: scale(1.02);
 }
 
 .form-status {
@@ -276,13 +277,13 @@
   color: #00ff88;
 }
 
-/* Animación */
+/* Animación de entrada */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
+/* Responsive: una columna en móviles */
 @media (max-width: 700px) {
   .form-grid {
     grid-template-columns: 1fr;
@@ -370,7 +371,7 @@
   
 <section class="formulario">
   <h2>Contáctanos</h2>
-  <p class="subtexto">¿Tienes dudas o te interesa un vehículo? ¡Escríbenos!</p>
+  <p class="subtexto">¿Tienes dudas o estás interesado en un vehículo? ¡Contáctanos!</p>
   <form id="contactForm" class="form-card">
     <div class="form-grid">
       <input type="text" id="nombre" placeholder="Tu nombre completo" required>
@@ -381,8 +382,8 @@
     <button type="submit" class="btn-enviar">Enviar mensaje</button>
     <p id="form-status" class="form-status"></p>
   </form>
-  
 </section>
+
 
 
   <footer>
@@ -467,6 +468,7 @@
 
 </body>
 </html>
+
 
 
 
