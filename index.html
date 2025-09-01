@@ -539,6 +539,18 @@
     © 2025 Los Cabos Motors – Todos los derechos reservados.
   </footer>
 
+<script>
+  let heroSlides = document.querySelectorAll('.hero-slide');
+  let currentHero = 0;
+
+  setInterval(() => {
+    heroSlides[currentHero].classList.remove('active');
+    currentHero = (currentHero + 1) % heroSlides.length;
+    heroSlides[currentHero].classList.add('active');
+  }, 4000);
+</script>
+
+  
   <!-- Carrusel automático -->
 <script>
   const carousels = document.querySelectorAll('.carousel');
@@ -617,6 +629,7 @@
 
 </body>
 </html>
+
 
 
 
