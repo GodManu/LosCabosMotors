@@ -6,9 +6,8 @@
   <title>Los Cabos Motors</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="Images/LCMNOLOGO.png" type="image/png">
-
   <style>
+    /* Estilos globales */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -16,6 +15,7 @@
       color: white;
     }
 
+    /* Header con banner */
     header {
       background-image: url('Images/LCMBANNER.png');
       background-size: cover;
@@ -70,6 +70,52 @@
       margin-top: 80px;
     }
 
+    /* Carrusel principal */
+    .hero-carousel {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .hero-slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .hero-text {
+      background-color: rgba(0,0,0,0.6);
+      padding: 30px 40px;
+      border-radius: 12px;
+      color: white;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .hero-text h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #ff3c3c;
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    /* Sección Autos */
     .autos {
       padding: 40px 20px;
       max-width: 1300px;
@@ -96,6 +142,7 @@
       backdrop-filter: blur(6px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
+      position: relative;
     }
 
     .carousel {
@@ -127,6 +174,20 @@
       font-size: 0.95rem;
     }
 
+    .precio-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #ff3c3c;
+      color: white;
+      padding: 6px 12px;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(255, 60, 60, 0.7);
+      font-size: 1rem;
+    }
+
+    /* Redes sociales flotantes */
     .social {
       position: fixed;
       top: 50%;
@@ -148,156 +209,124 @@
       font-size: 18px;
     }
 
-    .quienes {
+    /* Sección Quiénes somos y Ventajas */
+    .quienes, .ventajas {
       background-color: #111;
       padding: 40px 20px;
       text-align: center;
     }
 
-    .quienes h2 {
+    .quienes h2, .ventajas h2 {
       color: #ff3c3c;
       margin-bottom: 20px;
     }
 
-    .quienes p {
+    .quienes p, .ventajas p {
       color: #ccc;
       max-width: 800px;
       margin: auto;
       font-size: 1.1rem;
     }
-    .ventajas {
-      background-color: #111;
-      padding: 40px 20px;
-      text-align: center;
-    }
 
-    .ventajas h2 {
-      color: #ff3c3c;
-      margin-bottom: 20px;
-    }
-
-    .ventajas p {
-      color: #ccc;
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.1rem;
-    }
-    .ventaja i {
-  font-size: 1.5rem;
-  color: #ff3c3c;
-  margin-right: 10px;
-}
-.ventaja {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 0;
-  font-size: 1.1rem;
-  color: #ddd;
-}
-.grid-ventajas {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
+    /* Formulario */
     .formulario {
-  padding: 60px 20px;
-  background-color: #0c0c0c;
-  border-radius: 16px;
-  max-width: 900px;
-  margin: 60px auto;
-  animation: fadeIn 1s ease-in;
-}
+      padding: 60px 20px;
+      background-color: #0c0c0c;
+      border-radius: 16px;
+      max-width: 900px;
+      margin: 60px auto;
+      animation: fadeIn 1s ease-in;
+    }
 
-.formulario h2 {
-  text-align: center;
-  color: #ff3c3c;
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
+    .formulario h2 {
+      text-align: center;
+      color: #ff3c3c;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
 
-.subtexto {
-  text-align: center;
-  color: #ccc;
-  font-size: 1rem;
-  margin-bottom: 30px;
-}
+    .subtexto {
+      text-align: center;
+      color: #ccc;
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
 
-.form-card {
-  background: #151515;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
-  border: 1px solid rgba(255, 60, 60, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    .form-card {
+      background: #151515;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+      border: 1px solid rgba(255, 60, 60, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-.form-card:hover {
-  transform: scale(1.01);
-  box-shadow: 0 0 30px rgba(255, 60, 60, 0.5);
-}
+    .form-card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 30px rgba(255, 60, 60, 0.5);
+    }
 
-.form-grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr 1fr;
-}
+    .form-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+    }
 
-.form-grid textarea {
-  grid-column: span 2;
-  resize: vertical;
-}
+    .form-grid textarea {
+      grid-column: span 2;
+      resize: vertical;
+    }
 
-.form-card input,
-.form-card textarea {
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  background-color: #1a1a1a;
-  color: white;
-  font-size: 1rem;
-  transition: border 0.3s ease, background-color 0.3s ease;
-}
+    .form-card input,
+    .form-card textarea {
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background-color: #1a1a1a;
+      color: white;
+      font-size: 1rem;
+      transition: border 0.3s ease, background-color 0.3s ease;
+    }
 
-.form-card input:focus,
-.form-card textarea:focus {
-  border-color: #ff3c3c;
-  background-color: #111;
-  outline: none;
-}
+    .form-card input:focus,
+    .form-card textarea:focus {
+      border-color: #ff3c3c;
+      background-color: #111;
+      outline: none;
+    }
 
-.form-card input::placeholder,
-.form-card textarea::placeholder {
-  color: #888;
-}
+    .form-card input::placeholder,
+    .form-card textarea::placeholder {
+      color: #888;
+    }
 
-.btn-enviar {
-  margin-top: 25px;
-  width: 100%;
-  padding: 15px;
-  background-color: #ff3c3c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+    .btn-enviar {
+      margin-top: 25px;
+      width: 100%;
+      padding: 15px;
+      background-color: #ff3c3c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-.btn-enviar:hover {
-  background-color: #e12f2f;
-  transform: scale(1.02);
-}
+    .btn-enviar:hover {
+      background-color: #e12f2f;
+      transform: scale(1.02);
+    }
 
-.form-status {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 0.9rem;
-  color: #00ff88;
-}
+    .form-status {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #00ff88;
+    }
+
+    /* Footer */
     footer {
       background-color: #000;
       color: #aaa;
@@ -305,124 +334,40 @@
       padding: 20px;
       font-size: 0.9rem;
     }
-.card:hover .precio-auto {
-  transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(255, 60, 60, 0.7);
-}
-.precio-tag {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #ff3c3c;
-  color: white;
-  padding: 6px 12px;
-  font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(255, 60, 60, 0.7);
-  font-size: 1rem;
-}
 
-/* Animación de entrada */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-/* Responsive: una columna en móviles */
-@media (max-width: 500px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-carousel { height: 280px; }
+      .hero-text h2 { font-size: 1.5rem; }
+      .hero-text p { font-size: 0.9rem; }
+    }
 
-  .form-grid textarea {
-    grid-column: span 1;
-  }
+    @media (max-width: 500px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-grid textarea {
+        grid-column: span 1;
+      }
       header h1 {
         font-size: 2rem;
       }
-
       nav {
         flex-direction: column;
         gap: 10px;
       }
-  .hero-carousel {
-  position: relative;
-  height: 400px;
-  overflow: hidden;
-}
+    }
+  </style>
+</head>
+<body>
+<!-- Código HTML estructurado continúa... -->
 
-.hero-slide {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-slide.active {
-  opacity: 1;
-  z-index: 1;
-}
-
-.hero-text {
-  background-color: rgba(0,0,0,0.6);
-  padding: 30px 40px;
-  border-radius: 12px;
-  color: white;
-  text-align: center;
-  animation: fadeIn 1s ease;
-}
-
-.hero-text h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #ff3c3c;
-}
-
-.hero-text p {
-  font-size: 1rem;
-  color: #ddd;
-}
-
-/* Para responsive */
-@media (max-width: 768px) {
-  .hero-text h2 {
-    font-size: 1.5rem;
-  }
-
-  .hero-text p {
-    font-size: 0.9rem;
-  }
-
-  .hero-carousel {
-    height: 280px;
-  }
-.card {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-.card:nth-child(1) { animation-delay: 0.2s; }
-.card:nth-child(2) { animation-delay: 0.4s; }
-.card:nth-child(3) { animation-delay: 0.6s; }
-.card:nth-child(4) { animation-delay: 0.8s; }
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-  }
   </style>
 </head>
 <body>
@@ -667,6 +612,7 @@
 
 </body>
 </html>
+
 
 
 
