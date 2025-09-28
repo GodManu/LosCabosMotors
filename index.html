@@ -3,186 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Últimas Ventas - Los Cabos Motors</title>
-  <style>
-    body {
-      background-color: #1c1c1c;
-      color: white;
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      position: relative;
-      background: url('Images/LCMBANNER.png') center center / cover no-repeat;
-      height: 250px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-    .header-content {
-      position: relative;
-      z-index: 2;
-    }
-    h1 {
-      font-size: 2.8rem;
-      color: #fff;
-      margin: 0;
-      text-shadow: 2px 2px 8px black;
-    }
-    nav {
-      background-color: #111;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 15px 20px;
-      display: inline-block;
-      font-weight: bold;
-    }
-    nav a:hover {
-      background-color: #333;
-    }
-    .ventas-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 30px 20px;
-    }
-    h2 {
-      text-align: center;
-      color: #ff3c3c;
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 25px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 15px;
-      overflow: hidden;
-      padding: 10px;
-      position: relative;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      flex-direction: column;
-      max-height: 500px;
-    }
-    .carousel {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      position: relative;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .carousel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: none;
-    }
-    .carousel img.active {
-      display: block;
-    }
-    .carousel-buttons {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-    }
-    .carousel-buttons button {
-      background-color: rgba(0, 0, 0, 0.5);
-      border: none;
-      color: white;
-      padding: 5px 10px;
-      cursor: pointer;
-      font-size: 18px;
-    }
-    .card h3 {
-      margin: 10px 0 5px;
-      font-size: 1.2rem;
-    }
-    .vendido {
-      color: #ff3c3c;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .especificaciones {
-      width: 100%;
-      font-size: 0.85rem;
-      color: #ddd;
-      margin-top: auto;
-    }
-    .especificaciones td {
-      padding: 3px 5px;
-    }
-    a.volver {
-      display: block;
-      text-align: center;
-      margin-top: 40px;
-      color: #ff3c3c;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
+  <title>Los Cabos Motors</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <header>
-    <div class="header-content">
-      <h1>Últimas Ventas</h1>
-    </div>
+    <img src="Images/LCMBANNER.png" alt="Los Cabos Motors" class="banner">
   </header>
+
   <nav>
-    <a href="index.html">Venta de Autos</a>
+    <a href="#autos">Autos en venta</a>
+    <a href="#quienes">¿Quiénes somos?</a>
     <a href="galeria_autos.html">Galería</a>
-    <a href="ultimas_ventas.html">Últimas Ventas</a>
+    <a href="ultimas_ventas.html">Últimas ventas</a>
   </nav>
 
-  <div class="ventas-container">
-    <h2>Vehículos Vendidos</h2>
-    <div class="grid">
-      <!-- Aquí van tus .card -->
+  <section id="autos" class="autos-section">
+    <h2>Autos en venta</h2>
+    <div class="autos-grid">
+      <!-- Ejemplo de auto -->
+      <div class="auto-card">
+        <img src="GALERIA/mustangfrente.jpg" alt="Mustang Blanco">
+        <h3>Ford Mustang 2015</h3>
+        <button onclick="abrirCarrusel('mustang2015')">📸 Ver más detalles</button>
+      </div>
+      <!-- Repite por cada auto -->
     </div>
-    <a href="index.html" class="volver">Volver al inicio</a>
+  </section>
+
+  <section id="quienes" class="quienes">
+    <h2>¿Quiénes somos?</h2>
+    <p>Somos una empresa apasionada por los autos deportivos y de alto desempeño. Ubicados en Los Cabos, BCS, ofrecemos vehículos únicos, asesoría personalizada y un proceso 100% confiable.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Los Cabos Motors. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Modal carrusel -->
+  <div id="modal" class="modal">
+    <span class="cerrar" onclick="cerrarCarrusel()">&times;</span>
+    <div class="modal-contenido">
+      <img id="imagenActual" src="" alt="Detalle Auto">
+      <div class="controles">
+        <button onclick="anteriorImagen()">⟨</button>
+        <button onclick="siguienteImagen()">⟩</button>
+      </div>
+    </div>
   </div>
 
   <script>
-    function nextSlide(button) {
-      const carousel = button.closest('.carousel');
-      const images = carousel.querySelectorAll('img');
-      let index = parseInt(carousel.dataset.index);
-      images[index].classList.remove('active');
-      index = (index + 1) % images.length;
-      images[index].classList.add('active');
-      carousel.dataset.index = index;
+    const imagenes = {
+      mustang2015: [
+        'GALERIA/mustangfrente.jpg',
+        'GALERIA/mustandetras.png',
+        'GALERIA/mustangdentro.jpg'
+      ]
+      // Puedes agregar más objetos para otros autos
+    };
+
+    let indice = 0;
+    let imagenActual = '';
+
+    function abrirCarrusel(nombre) {
+      imagenActual = nombre;
+      indice = 0;
+      document.getElementById('imagenActual').src = imagenes[nombre][indice];
+      document.getElementById('modal').style.display = 'block';
     }
 
-    function prevSlide(button) {
-      const carousel = button.closest('.carousel');
-      const images = carousel.querySelectorAll('img');
-      let index = parseInt(carousel.dataset.index);
-      images[index].classList.remove('active');
-      index = (index - 1 + images.length) % images.length;
-      images[index].classList.add('active');
-      carousel.dataset.index = index;
+    function cerrarCarrusel() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function siguienteImagen() {
+      if (imagenes[imagenActual]) {
+        indice = (indice + 1) % imagenes[imagenActual].length;
+        document.getElementById('imagenActual').src = imagenes[imagenActual][indice];
+      }
+    }
+
+    function anteriorImagen() {
+      if (imagenes[imagenActual]) {
+        indice = (indice - 1 + imagenes[imagenActual].length) % imagenes[imagenActual].length;
+        document.getElementById('imagenActual').src = imagenes[imagenActual][indice];
+      }
     }
   </script>
+
 </body>
 </html>
