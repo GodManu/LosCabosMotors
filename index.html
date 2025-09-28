@@ -146,19 +146,20 @@
   min-height: 350px; /* puedes ajustar este valor según necesites */
 }
 
-    .carousel {
+   .carousel {
   position: relative;
   overflow: hidden;
-  height: 160px; /* antes 200px */
   border-radius: 10px;
+  aspect-ratio: 16/9; /* Mantiene proporción como video widescreen */
+  background-color: #000; /* Por si hay espacio negro en imágenes */
 }
 
-
-    .carousel img {
+.carousel img {
   width: 100%;
-  height: 160px;  /* antes 200px */
+  height: 100%;
   object-fit: cover;
   display: none;
+  transition: opacity 0.3s ease;
 }
 
 
@@ -588,6 +589,7 @@
 
 </body>
 </html>
+
 
 
 
