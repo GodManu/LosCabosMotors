@@ -5,670 +5,572 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Los Cabos Motors</title>
 
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
-    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="Images/LCMNOLOGO.png">
 
-<style>
+  <style>
+    /* =======================================================
+       ESTILO GLOBAL – TEMA A (ROJO DEPORTIVO / RACING)
+    ======================================================= */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0c0c0c;
+      color: white;
+    }
 
-/* ============================= */
-/*      ESTILO GLOBAL A1-ROJO    */
-/* ============================= */
+    /* =======================================================
+       HEADER + NAVBAR
+    ======================================================= */
+    header {
+      background-image: url('Images/LCMBANNER.png');
+      background-size: cover;
+      background-position: center;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      flex-direction: column;
+    }
 
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #000;
-  color: white;
-}
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.55);
+    }
 
-/* ============================= */
-/*          HEADER               */
-/* ============================= */
+    nav {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 14px 0;
+      z-index: 5;
+      flex-wrap: wrap;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+    }
 
-header {
-  background-image: url('Images/LCMBANNER.png');
-  background-size: cover;
-  background-position: center;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex-direction: column;
-}
+    nav a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
 
-header::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(255,0,0,0.15));
-}
+    nav a:hover {
+      background-color: #ff3c3c;
+    }
 
-nav {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  padding: 12px 0;
-  z-index: 2;
-  flex-wrap: wrap;
-}
+    header h1 {
+      position: relative;
+      font-size: 3rem;
+      text-shadow: 2px 2px 10px black;
+      z-index: 3;
+      margin-top: 70px;
+      font-weight: 700;
+    }
 
-nav a {
-  color: white;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 8px 18px;
-  border-radius: 6px;
-  transition: 0.3s;
-}
+    /* =======================================================
+       BANNER PRINCIPAL ESTÁTICO (SIN CARRUSEL)
+    ======================================================= */
+    .hero-banner-static {
+      background-image: url('Images/LCMBANNER.png');
+      background-size: cover;
+      background-position: center;
+      height: 260px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
 
-nav a:hover {
-  background-color: #ff1f1f;
-  box-shadow: 0 0 12px #ff1f1f;
-}
+    .hero-banner-static::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.55);
+    }
 
-header h1 {
-  position: relative;
-  margin-top: 90px;
-  font-size: 3rem;
-  font-weight: 700;
-  text-shadow: 0 0 12px #ff0000;
-  z-index: 2;
-}
+    .hero-title {
+      z-index: 2;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ff3c3c;
+      text-shadow: 0 0 15px black;
+    }
 
-/* ============================= */
-/*       HERO CAROUSEL          */
-/* ============================= */
+    .hero-sub {
+      z-index: 2;
+      font-size: 1.2rem;
+      opacity: 0.85;
+    }
 
-.hero-carousel {
-  height: 420px;
-  position: relative;
-  overflow: hidden;
-}
+    /* =======================================================
+       TARJETAS DE AUTOS
+    ======================================================= */
+    .autos {
+      padding: 40px 20px;
+      max-width: 1300px;
+      margin: auto;
+    }
 
-.hero-slide {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.8);
-  opacity: 0;
-  transition: opacity 1.2s ease;
-  display: flex;
-  align-items: flex-end;
-  justify-content: left;
-  padding: 40px;
-}
+    .autos h2 {
+      text-align: center;
+      color: #ff3c3c;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255,0,0,0.4);
+    }
 
-.hero-slide.active {
-  opacity: 1;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 30px;
+    }
 
-.hero-text {
-  background: rgba(0,0,0,0.65);
-  backdrop-filter: blur(4px);
-  padding: 20px 30px;
-  border-radius: 10px;
-  border-left: 4px solid #ff1f1f;
-  animation: fadeIn 1s ease;
-}
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 15px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
 
-.hero-text h2 {
-  margin: 0;
-  font-size: 2rem;
-  color: #ff3c3c;
-}
-.hero-text p {
-  margin: 5px 0 0;
-  color: #ddd;
-}
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+    }
 
-/* ============================= */
-/*      AUTOS EN VENTA          */
-/* ============================= */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      height: 210px;
+      border-radius: 12px;
+    }
 
-.autos {
-  padding: 50px 20px;
-  max-width: 1300px;
-  margin: auto;
-}
+    .carousel img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: none;
+    }
 
-.autos h2 {
-  text-align: center;
-  font-size: 2.4rem;
-  color: #ff3c3c;
-  margin-bottom: 50px;
-  text-shadow: 0 0 10px #ff0000;
-}
+    .carousel img.active {
+      display: block;
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 35px;
-}
+    .card h3 {
+      margin-top: 10px;
+      font-size: 1.4rem;
+      color: white;
+      font-weight: 600;
+    }
 
-.card {
-  background: #0c0c0c;
-  border-radius: 14px;
-  padding: 15px;
-  border: 1px solid rgba(255,0,0,0.25);
-  box-shadow: 0 0 15px rgba(255,0,0,0.15);
-  transition: 0.3s;
-}
+    .card p {
+      color: #bbb;
+      font-size: 0.95rem;
+    }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 25px rgba(255,0,0,0.5);
-}
+    /* Etiquetas de precio */
+    .precio-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #ff3c3c;
+      color: white;
+      padding: 6px 12px;
+      font-weight: bold;
+      border-radius: 10px;
+      font-size: 1rem;
+      box-shadow: 0 0 10px rgba(255,60,60,0.7);
+    }
 
-/* Carrusel dentro de cards */
+    .precio-tag1 {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff3c3c;
+      color: white;
+      padding: 6px 12px;
+      font-weight: bold;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      box-shadow: 0 0 10px rgba(255,60,60,0.7);
+    }
 
-.carousel {
-  position: relative;
-  height: 170px;
-  overflow: hidden;
-  border-radius: 12px;
-}
+    .btn-ws {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 18px;
+      background-color: #25D366;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
 
-.carousel img {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  display: none;
-}
+    .btn-ws:hover {
+      background-color: #1ebc59;
+      transform: scale(1.03);
+    }
 
-.carousel img.active {
-  display: block;
-}
+    /* =======================================================
+       SECCIÓN QUIÉNES SOMOS
+    ======================================================= */
+    .quienes {
+      background: #111;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-/* Títulos */
+    .quienes h2 {
+      color: #ff3c3c;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
 
-.card h3 {
-  margin-top: 12px;
-  font-size: 1.3rem;
-  font-weight: 600;
-}
+    .quienes p {
+      color: #ccc;
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.1rem;
+    }
 
-/* Texto */
+    /* =======================================================
+       SECCIÓN VENTAJAS
+    ======================================================= */
+    .ventajas {
+      background: #0f0f0f;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-.card p {
-  color: #bbb;
-  font-size: 0.95rem;
-}
+    .ventajas h2 {
+      color: #ff3c3c;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
 
-/* Precio */
+    .grid-ventajas {
+      display: grid;
+      gap: 15px;
+      max-width: 600px;
+      margin: auto;
+    }
 
-.precio-tag {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background-color: #ff1f1f;
-  padding: 6px 12px;
-  font-weight: bold;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  box-shadow: 0 0 10px #ff0000;
-}
+    .ventaja {
+      background: rgba(255,255,255,0.05);
+      padding: 15px;
+      border-radius: 10px;
+    }
 
-/* Tag de oferta */
+    .ventaja i {
+      color: #ff3c3c;
+      margin-right: 8px;
+    }
 
-.precio-tag1 {
-  position: absolute;
-  top: -35px;
-  left: 10px;
-  background: #ff0000;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-weight: bold;
-}
+    /* =======================================================
+       FORMULARIO
+    ======================================================= */
+    .formulario {
+      padding: 60px 20px;
+      background-color: #0c0c0c;
+      border-radius: 16px;
+      max-width: 900px;
+      margin: 60px auto;
+      animation: fadeIn 1s ease-in;
+    }
 
-/* Botón WhatsApp */
+    .formulario h2 {
+      text-align: center;
+      color: #ff3c3c;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
 
-.btn-ws {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 15px;
-  background: #25D366;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
+    .subtexto {
+      text-align: center;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
 
-.btn-ws:hover {
-  background: #1DB954;
-}
+    .form-card {
+      background: #151515;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 60, 60, 0.3);
+    }
 
-/* ============================= */
-/*   REDES SOCIALES FLOTANTES   */
-/* ============================= */
+    .form-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+    }
 
-.social {
-  position: fixed;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1000;
-}
+    .form-grid textarea {
+      grid-column: span 2;
+      resize: vertical;
+    }
 
-.social a {
-  background: #ff1f1f;
-  padding: 12px;
-  border-radius: 50%;
-  color: white;
-  font-size: 20px;
-  box-shadow: 0 0 10px #ff0000;
-}
+    .form-card input,
+    .form-card textarea {
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background-color: #1a1a1a;
+      color: white;
+      font-size: 1rem;
+    }
 
-/* ============================= */
-/*      QUIENES / VENTAJAS      */
-/* ============================= */
+    .btn-enviar {
+      width: 100%;
+      padding: 15px;
+      background-color: #ff3c3c;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+    }
 
-section.quienes,
-section.ventajas {
-  background: #070707;
-  padding: 50px 20px;
-  text-align: center;
-  border-top: 1px solid #221;
-}
+    footer {
+      text-align: center;
+      padding: 25px;
+      margin-top: 50px;
+      background: #000;
+      color: #888;
+    }
 
-section h2 {
-  color: #ff3c3c;
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-section p {
-  max-width: 800px;
-  margin: auto;
-  color: #ccc;
-}
-
-/* ============================= */
-/*          FORMULARIO          */
-/* ============================= */
-
-.formulario {
-  padding: 60px 20px;
-  background: #0c0c0c;
-  border-radius: 16px;
-  max-width: 900px;
-  margin: 70px auto;
-  box-shadow: 0 0 20px rgba(255,0,0,0.25);
-}
-
-.form-card {
-  background: #111;
-  padding: 30px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,0,0,0.3);
-}
-
-.form-card input,
-.form-card textarea {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 18px;
-  border-radius: 8px;
-  background: #1b1b1b;
-  border: 1px solid #333;
-  color: white;
-}
-
-.btn-enviar {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  background: #ff1f1f;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-enviar:hover {
-  background: #cc0000;
-}
-
-/* ============================= */
-/*           FOOTER             */
-/* ============================= */
-
-footer {
-  text-align: center;
-  padding: 30px;
-  background: #000;
-  color: #aaa;
-  margin-top: 60px;
-}
-
-/* Fade in */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-</style>
+  </style>
 </head>
 
-  <body>
+<body>
 
-<header>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="ventas.html">Artículos para carro</a>
-    <a href="galeria_autos.html">Galería</a>
-    <a href="ultimas_ventas.html">Últimas Ventas</a>
-    <a href="https://wa.me/526241181978">WhatsApp</a>
-  </nav>
-  <h1>Los Cabos Motors</h1>
-</header>
+  <!-- NAV + HEADER -->
+  <header>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="ventas.html">Artículos para carro</a>
+      <a href="galeria_autos.html">Galería</a>
+      <a href="ultimas_ventas.html">Últimas Ventas</a>
+      <a href="https://wa.me/526241181978">WhatsApp</a>
+    </nav>
+    <h1>Los Cabos Motors</h1>
+  </header>
 
-<!-- ========================== -->
-<!--      HERO CAROUSEL        -->
-<!-- ========================== -->
+  <!-- BANNER ESTÁTICO -->
+  <section class="hero-banner-static">
+    <h2 class="hero-title">Los Mejores Autos en Los Cabos</h2>
+    <p class="hero-sub">Calidad • Confianza • Alto Desempeño</p>
+  </section>
 
-<section class="hero-carousel">
+  <!-- AUTOS -->
+  <section class="autos">
+    <h2>Autos Disponibles</h2>
+    <div class="grid">
 
-  <div class="hero-slide active" style="background-image: url('GALERIA/front350.jpg');">
-    <div class="hero-text">
-      <h2>Shelby GT350 2019</h2>
-      <p>Motor 5.2 Voodoo, suspensión electromagnética y frenos Brembo</p>
-    </div>
-  </div>
-
-  <div class="hero-slide" style="background-image: url('GALERIA/FRONTAUDI.jpg');">
-    <div class="hero-text">
-      <h2>Audi R8 V10</h2>
-      <p>Tracción Quattro, escape Akrapovic y lujo total</p>
-    </div>
-  </div>
-
-  <div class="hero-slide" style="background-image: url('GALERIA/MUSTANGFRENTE.jpg');">
-    <div class="hero-text">
-      <h2>Ford Mustang 2016</h2>
-      <p>Luces underglow, cielo estrellado y resonadores Borla</p>
-    </div>
-  </div>
-
-</section>
-
-<!-- ========================== -->
-<!--   REDES SOCIALES   -->
-<!-- ========================== -->
-
-<div class="social">
-  <a href="https://wa.me/526241181978"><i class="fab fa-whatsapp"></i></a>
-  <a href="https://www.facebook.com/profile.php?id=61577800575125"><i class="fab fa-facebook-f"></i></a>
-</div>
-
-<!-- ========================== -->
-<!--      AUTOS DISPONIBLES    -->
-<!-- ========================== -->
-
-<section class="autos">
-  <h2>Autos Disponibles</h2>
-
-  <div class="grid">
-
-    <!-- GT350 -->
-    <div class="card">
-      <div class="carousel">
-        <img src="GALERIA/front350.jpg" class="active">
-        <img src="GALERIA/Right350.jpg">
+      <!-- GT350 -->
+      <div class="card">
+        <div class="carousel">
+          <img src="GALERIA/front350.jpg" class="active">
+          <img src="GALERIA/Right350.jpg">
+        </div>
+        <h3>Shelby GT350 2019</h3>
+        <p>Motor 5.2 Voodoo, suspensión electromagnética, frenos Brembo.</p>
+        <div class="precio-tag">$950,000 MXN</div>
+        <a class="btn-ws" target="_blank"
+           href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20Shelby%20GT350%202019">
+           <i class="fab fa-whatsapp"></i> Info por WhatsApp
+        </a>
       </div>
 
-      <div class="precio-tag">$950,000 MXN</div>
-
-      <h3>Shelby GT350 2019</h3>
-      <p>Motor 5.2 Voodoo, suspensión electrónica, frenos Brembo, interiores en piel y Alcántara.</p>
-
-      <a class="btn-ws"
-         target="_blank"
-         href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20GT350%202019.">
-         <i class="fab fa-whatsapp"></i> Info por WhatsApp
-      </a>
-    </div>
-
-    <!-- MUSTANG 2016 -->
-    <div class="card">
-      <div class="carousel">
-        <img src="GALERIA/MUSTANGFRENTE.jpg" class="active">
-        <img src="GALERIA/MUSTANGINTERIOR.jpg">
-        <img src="GALERIA/MUSTANGFRENTEIZQUIERDO.jpg">
+      <!-- Mustang 2016 -->
+      <div class="card">
+        <div class="carousel">
+          <img src="GALERIA/MUSTANGFRENTE.jpg" class="active">
+          <img src="GALERIA/MUSTANGINTERIOR.jpg">
+          <img src="GALERIA/MUSTANGFRENTEIZQUIERDO.jpg">
+        </div>
+        <h3>Ford Mustang 2016</h3>
+        <p>Automático, cielo estrellado, underglow, resonadores Borla.</p>
+        <div class="precio-tag">$205,000 MXN</div>
+        <a class="btn-ws"
+           href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20Mustang%202016">
+           <i class="fab fa-whatsapp"></i> Info por WhatsApp
+        </a>
       </div>
 
-      <div class="precio-tag">$205,000 MXN</div>
-
-      <h3>Ford Mustang 2016</h3>
-      <p>Automático, luces underglow, cielo estrellado, resonadores Borla. Muy cuidado.</p>
-
-      <a class="btn-ws"
-         target="_blank"
-         href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20Mustang%202016.">
-         <i class="fab fa-whatsapp"></i> Info por WhatsApp
-      </a>
-    </div>
-
-    <!-- CAMARO SS 2010 -->
-    <div class="card">
-      <div class="carousel">
-        <img src="GALERIA/camaro1.jpg" class="active">
-        <img src="GALERIA/camaro2.jpg">
-        <img src="GALERIA/camaro3.jpg">
-        <img src="GALERIA/camaro4.jpg">
-        <img src="GALERIA/camaro5.jpg">
-        <img src="GALERIA/camaro6.jpg">
-        <img src="GALERIA/camaro7.jpg">
+      <!-- Camaro 2010 SS -->
+      <div class="card">
+        <div class="carousel">
+          <img src="GALERIA/camaro1.jpg" class="active">
+          <img src="GALERIA/camaro2.jpg">
+          <img src="GALERIA/camaro3.jpg">
+          <img src="GALERIA/camaro4.jpg">
+          <img src="GALERIA/camaro5.jpg">
+        </div>
+        <h3>Camaro 2010 2SS</h3>
+        <p>Short headers, motor 6.2 L99, Flowmaster, piel, poco millaje.</p>
+        <div class="precio-tag">$210,000 MXN</div>
+        <div class="precio-tag1">Oferta</div>
+        <a class="btn-ws"
+           href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20Camaro%202010%20SS">
+           <i class="fab fa-whatsapp"></i> Info por WhatsApp
+        </a>
       </div>
 
-      <div class="precio-tag">$210,000 MXN</div>
-      <div class="precio-tag1">Oferta por tiempo limitado</div>
-
-      <h3>Camaro 2010 2SS</h3>
-      <p>Short headers, motor 6.2 L99, Flowmaster directo, interiores de piel, poco millaje.</p>
-
-      <a class="btn-ws"
-         target="_blank"
-         href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20Camaro%202010%202SS.">
-         <i class="fab fa-whatsapp"></i> Info por WhatsApp
-      </a>
-    </div>
-
-    <!-- MUSTANG 2015 COYOTE -->
-    <div class="card">
-      <div class="carousel">
-        <img src="GALERIA/coyote1.jpg" class="active">
-        <img src="GALERIA/coyote2.jpg">
-        <img src="GALERIA/coyote3.jpg">
-        <img src="GALERIA/coyote4.jpg">
-        <img src="GALERIA/coyote5.jpg">
-        <img src="GALERIA/coyote6.jpg">
+      <!-- Mustang 2015 Coyote -->
+      <div class="card">
+        <div class="carousel">
+          <img src="GALERIA/coyote1.jpg" class="active">
+          <img src="GALERIA/coyote2.jpg">
+          <img src="GALERIA/coyote3.jpg">
+        </div>
+        <h3>Mustang 2015 | 5.0 Coyote</h3>
+        <p>Asientos de piel, poco millaje, excelente estado.</p>
+        <div class="precio-tag">$360,000 MXN</div>
+        <a class="btn-ws"
+           href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20Mustang%202015">
+           <i class="fab fa-whatsapp"></i> Info por WhatsApp
+        </a>
       </div>
 
-      <div class="precio-tag">$360,000 MXN</div>
-
-      <h3>Mustang 2015 | 5.0 Coyote</h3>
-      <p>Asientos de piel, MyColor, poco millaje, excelente condición. Muy conservado.</p>
-
-      <a class="btn-ws"
-         target="_blank"
-         href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20Mustang%202015%20Coyote.">
-         <i class="fab fa-whatsapp"></i> Info por WhatsApp
-      </a>
-    </div>
-
-    <!-- CAMARO 2015 2SS -->
-    <div class="card">
-      <div class="carousel">
-        <img src="GALERIA/camaroa1.jpg" class="active">
-        <img src="GALERIA/camaroa2.jpg">
-        <img src="GALERIA/camaroa3.jpg">
-        <img src="GALERIA/camaroa4.jpg">
-        <img src="GALERIA/camaroa5.jpg">
-        <img src="GALERIA/camaroa6.jpg">
+      <!-- Camaro 2015 2SS -->
+      <div class="card">
+        <div class="carousel">
+          <img src="GALERIA/camaroa1.jpg" class="active">
+          <img src="GALERIA/camaroa2.jpg">
+          <img src="GALERIA/camaroa3.jpg">
+        </div>
+        <h3>Camaro 2015 2SS</h3>
+        <p>Convertible, piel, nunca modificado.</p>
+        <div class="precio-tag">$205,000 MXN</div>
+        <a class="btn-ws"
+           href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20Camaro%202015">
+           <i class="fab fa-whatsapp"></i> Info por WhatsApp
+        </a>
       </div>
 
-      <div class="precio-tag">$205,000 MXN</div>
-
-      <h3>Camaro 2015 2SS Convertible</h3>
-      <p>Asientos de piel, convertible, nunca modificado, muy cuidado.</p>
-
-      <a class="btn-ws"
-         target="_blank"
-         href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20Camaro%202015%202SS.">
-         <i class="fab fa-whatsapp"></i> Info por WhatsApp
-      </a>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- QUIÉNES SOMOS -->
+  <section class="quienes">
+    <h2>¿Quiénes somos?</h2>
+    <p>En Los Cabos Motors seleccionamos vehículos de calidad que brindan desempeño y seguridad.
+       Atención profesional, confianza y los mejores precios del mercado.</p>
+  </section>
 
-<!-- ========================== -->
-<!--  SECCIÓN QUIÉNES SOMOS     -->
-<!-- ========================== -->
+  <!-- VENTAJAS -->
+  <section class="ventajas">
+    <h2>¿Por qué elegirnos?</h2>
+    <div class="grid-ventajas">
+      <div class="ventaja"><i class="fas fa-check-circle"></i> Autos seleccionados</div>
+      <div class="ventaja"><i class="fas fa-shield-alt"></i> Trámite seguro</div>
+      <div class="ventaja"><i class="fas fa-car-side"></i> Entrega en Baja California Sur</div>
+    </div>
+  </section>
 
-<section class="quienes">
-  <h2>¿Quiénes somos?</h2>
-  <p>En Los Cabos Motors ofrecemos vehículos seleccionados con calidad premium, confianza, seguridad y atención personalizada en Los Cabos, BCS.</p>
-</section>
+  <!-- CONTACTO -->
+  <section class="formulario">
+    <h2>Contáctanos</h2>
+    <p class="subtexto">¿Tienes dudas o viste un auto que te gustó? ¡Escríbenos!</p>
 
-<!-- ========================== -->
-<!--  SECCIÓN VENTAJAS          -->
-<!-- ========================== -->
+    <form id="contactForm" class="form-card">
+      <div class="form-grid">
+        <input type="text" id="nombre" placeholder="Tu nombre" required>
+        <input type="email" id="email" placeholder="Correo" required>
+        <input type="tel" id="telefono" placeholder="WhatsApp (opcional)">
+        <textarea id="mensaje" placeholder="Mensaje" rows="4" required></textarea>
+      </div>
+      <button class="btn-enviar" type="submit">Enviar mensaje</button>
+      <p id="form-status" class="form-status"></p>
+    </form>
+  </section>
 
-<section class="ventajas">
-  <h2>¿Por qué elegirnos?</h2>
-  <p>Seleccionamos autos de calidad, entregas rápidas y atención profesional.</p>
-</section>
+  <footer>
+    © 2025 Los Cabos Motors – Todos los derechos reservados.
+  </footer>
 
-<!-- ========================== -->
-<!--       FORMULARIO           -->
-<!-- ========================== -->
+  <!-- CARRUSEL SCRIPT -->
+  <script>
+    const carousels = document.querySelectorAll('.carousel');
+    carousels.forEach(c => {
+      let current = 0;
+      const imgs = c.querySelectorAll('img');
+      if (imgs.length <= 1) return;
+      setInterval(() => {
+        imgs[current].classList.remove('active');
+        current = (current + 1) % imgs.length;
+        imgs[current].classList.add('active');
+      }, 3500);
+    });
+  </script>
 
-<section class="formulario">
-  <h2>Contáctanos</h2>
-  <p class="subtexto">¿Tienes preguntas o quieres apartar un vehículo?</p>
+  <!-- FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
-  <form id="contactForm" class="form-card">
-    <input type="text" id="nombre" placeholder="Tu nombre completo" required>
-    <input type="email" id="email" placeholder="Correo electrónico" required>
-    <input type="tel" id="telefono" placeholder="Número de WhatsApp (opcional)">
-    <textarea id="mensaje" placeholder="Escribe tu mensaje..." rows="4" required></textarea>
-
-    <button type="submit" class="btn-enviar">Enviar mensaje</button>
-    <p id="form-status" class="form-status"></p>
-  </form>
-</section>
-
-<footer>
-  © 2025 Los Cabos Motors – Todos los derechos reservados.
-</footer>
-
-<!-- ======================================= -->
-<!--          SCRIPTS PRINCIPALES            -->
-<!-- ======================================= -->
-
-<!-- Carrusel HERO -->
-<script>
-  const heroSlides = document.querySelectorAll('.hero-slide');
-  let currentHero = 0;
-
-  function nextHero() {
-    heroSlides[currentHero].classList.remove('active');
-    currentHero = (currentHero + 1) % heroSlides.length;
-    heroSlides[currentHero].classList.add('active');
-  }
-
-  setInterval(nextHero, 4500);
-</script>
-
-<!-- Carruseles de autos -->
-<script>
-  document.querySelectorAll('.carousel').forEach((carousel) => {
-    let current = 0;
-    const imgs = carousel.querySelectorAll('img');
-
-    if (imgs.length <= 1) return;
-
-    setInterval(() => {
-      imgs[current].classList.remove('active');
-      current = (current + 1) % imgs.length;
-      imgs[current].classList.add('active');
-    }, 3000);
-  });
-</script>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDmuGghmIyIVJtRo96Rk3UwNRt-mwZcWM4",
-    authDomain: "los-cabos-motors-index.firebaseapp.com",
-    databaseURL: "https://los-cabos-motors-index-default-rtdb.firebaseio.com",
-    projectId: "los-cabos-motors-index",
-    storageBucket: "los-cabos-motors-index.appspot.com",
-    messagingSenderId: "634233905652",
-    appId: "1:634233905652:web:f0598bf9f51f5b49f6d9a1"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-</script>
-
-<!-- Formulario -->
-<script>
-  const form = document.getElementById('contactForm');
-  const statusMsg = document.getElementById('form-status');
-  const btn = document.querySelector('.btn-enviar');
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    btn.disabled = true;
-    btn.textContent = "Enviando...";
-
-    const data = {
-      nombre: document.getElementById('nombre').value,
-      email: document.getElementById('email').value,
-      telefono: document.getElementById('telefono').value,
-      mensaje: document.getElementById('mensaje').value,
-      fecha: new Date().toISOString()
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDmuGghmIyIVJtRo96Rk3UwNRt-mwZcWM4",
+      authDomain: "los-cabos-motors-index.firebaseapp.com",
+      databaseURL: "https://los-cabos-motors-index-default-rtdb.firebaseio.com",
+      projectId: "los-cabos-motors-index",
+      storageBucket: "los-cabos-motors-index.appspot.com",
+      messagingSenderId: "634233905652",
+      appId: "1:634233905652:web:f0598bf9f51f5b49f6d9a1"
     };
 
-    db.ref("visitas").push(data)
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const email = document.getElementById("email").value;
+      const telefono = document.getElementById("telefono").value;
+      const mensaje = document.getElementById("mensaje").value;
+
+      db.ref("visitas").push({
+        nombre, email, telefono, mensaje,
+        fecha: new Date().toISOString()
+      })
       .then(() => {
         form.reset();
-        statusMsg.textContent = "✅ ¡Mensaje enviado correctamente!";
-        statusMsg.style.color = "#00ff88";
+        status.textContent = "✔ Mensaje enviado correctamente";
+        status.style.color = "lightgreen";
       })
-      .catch((err) => {
-        statusMsg.textContent = "❌ Error al enviar. Intenta más tarde.";
-        statusMsg.style.color = "red";
-        console.error(err);
-      })
-      .finally(() => {
-        btn.disabled = false;
-        btn.textContent = "Enviar mensaje";
+      .catch(() => {
+        status.textContent = "❌ Error al enviar. Intenta de nuevo.";
+        status.style.color = "red";
       });
-  });
-</script>
+    });
+  </script>
 
-  
+</body>
+</html>
