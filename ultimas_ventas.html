@@ -41,22 +41,48 @@
       text-shadow: 2px 2px 8px black;
     }
     nav {
-      background-color: #111;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 15px 20px;
-      display: inline-block;
-      font-weight: bold;
-    }
-    nav a:hover {
-      background-color: #333;
-    }
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+
+  transition: 0.3s ease;
+}
+
+nav a {
+  color: #fff;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  padding: 5px 10px;
+
+  font-size: 0.95rem;
+  transition: 0.25s;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  background: rgba(255,60,60,0.25);
+  color: #ff3c3c;
+}
+
+/* Para celular */
+@media (max-width: 600px) {
+  nav {
+    gap: 14px;
+    padding: 8px 0;
+  }
+  nav a {
+    font-size: 0.85rem;
+  }
+}
     .ventas-container {
       max-width: 1200px;
       margin: auto;
