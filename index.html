@@ -195,24 +195,28 @@ nav a:hover {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.50);
+  
+  background: rgba(0,0,0,0.55);
   color: white;
   border: none;
-  padding: 6px 10px;
+
+  padding: 7px 11px;
   cursor: pointer;
-  font-size: 17px;
+  font-size: 18px;
   border-radius: 50%;
 
-  transition: background 0.2s ease;
+  z-index: 5;          /* 🔥 Fuerza visibilidad */
+  opacity: 0.9;        /* Mantener visibles */
+  transition: background 0.25s ease, transform 0.25s ease;
 }
 
 .arrow:hover {
   background: #ff3c3c;
+  transform: translateY(-50%) scale(1.12);
 }
 
 .arrow.left { left: 8px; }
 .arrow.right { right: 8px; }
-
 /* ------------------------------------------ */
 /* TEXTO */
 /* ------------------------------------------ */
@@ -666,6 +670,7 @@ form.addEventListener('submit', e => {
 </html>
 
   
+
 
 
 
