@@ -273,6 +273,110 @@ nav a:hover {
   padding: 0 20px;
 }
 
+.formulario h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #ff3c3c;
+  margin-bottom: 10px;
+}
+
+.subtexto {
+  text-align: center;
+  color: #ccc;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.form-card {
+  background: rgba(255,255,255,0.05);
+  padding: 28px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,60,60,0.25);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 18px rgba(255,60,60,0.15);
+  transition: 0.3s;
+}
+
+.form-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(255,60,60,0.35);
+}
+
+.form-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-grid textarea {
+  grid-column: span 2;
+}
+
+/* Inputs */
+.form-card input,
+.form-card textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+
+  background: rgba(0,0,0,0.45);
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: white;
+
+  transition: 0.25s ease;
+}
+
+.form-card input::placeholder,
+.form-card textarea::placeholder {
+  color: #888;
+}
+
+.form-card input:focus,
+.form-card textarea:focus {
+  background: rgba(0,0,0,0.65);
+  border-color: #ff3c3c;
+  outline: none;
+}
+
+/* Botón elegante */
+.btn-enviar {
+  width: 100%;
+  margin-top: 12px;
+  padding: 15px;
+
+  background: #ff3c3c;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.15rem;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.btn-enviar:hover {
+  background: #e02f2f;
+  transform: scale(1.03);
+}
+
+/* Mensaje de estado */
+.form-status {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-grid textarea {
+    grid-column: span 1;
+  }
+}
 /* (tu formulario ya perfecto, no se tocó) */
 
 /* ------------------------- */
@@ -489,6 +593,7 @@ form.addEventListener('submit', e => {
 </html>
 
   
+
 
 
 
