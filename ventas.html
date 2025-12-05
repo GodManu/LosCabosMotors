@@ -139,14 +139,68 @@ nav a:hover {
       overflow:hidden;
     }
     .product:hover{transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.6)}
-    .product img{
-  width: 100%;
-  height: 220px; /* más altura para evitar recortes feos */
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 12px;
+    /* CONTENEDOR DE LA GALERÍA */
+/* ZOOM TIPO LUPA */
+.product-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.product-img.zoomable {
+  transform-origin: center;
   transition: transform 0.25s ease;
 }
+
+.product-img-wrapper.zoom-active .product-img.zoomable {
+  transform: scale(1.9);
+  cursor: zoom-out;
+}
+
+
+/* IMÁGENES DE LA GALERÍA */
+.product-img{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: none;
+  transition: opacity 0.25s ease;
+}
+
+.product-img.active{
+  display: block;
+  opacity: 1;
+}
+
+/* FLECHAS */
+.product-arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+  z-index: 5;
+  opacity: 0;
+  transition: 0.25s ease;
+}
+
+.product-img-wrapper:hover .product-arrow{
+  opacity: 1;
+}
+
+.product-arrow.left{
+  left: 10px;
+}
+
+.product-arrow.right{
+  right: 10px;
+}
+
 
 .product:hover img{
   transform: scale(1.05); /* zoom suave y elegante */
@@ -313,6 +367,43 @@ nav a:hover {
       {id:'llanta-winrun', title:'1x Llanta Winrun ', desc:'93W XL 225/35ZR20', price: 1500, img:'ventas/winrunll.jpg'}  
     ];
 
+    // ZOOM tipo lupa
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".product-img-wrapper").forEach(wrapper => {
+
+    const imgs = wrapper.querySelectorAll(".product-img.zoomable");
+    let activeImg = wrapper.querySelector(".product-img.active");
+
+    // Actualizar imagen activa cuando cambia el carrusel
+    const observer = new MutationObserver(() => {
+      activeImg = wrapper.querySelector(".product-img.active");
+    });
+
+    imgs.forEach(img => observer.observe(img, { attributes: true }));
+
+    // Activar zoom
+    wrapper.addEventListener("mousemove", (e) => {
+      if (!wrapper.classList.contains("zoom-active") || !activeImg) return;
+
+      const rect = wrapper.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      activeImg.style.transformOrigin = `${x}% ${y}%`;
+    });
+
+    // Activar/desactivar zoom al click
+    wrapper.addEventListener("click", () => {
+      wrapper.classList.toggle("zoom-active");
+    });
+
+    // Móvil → no usar lupa
+    wrapper.addEventListener("touchstart", () => {
+      wrapper.classList.remove("zoom-active");
+    });
+  });
+});
+
     // WhatsApp receptor (número de la empresa) -- no preguntaste uno, por defecto usamos este:
     const WHATSAPP_NUMBER = '526241181978'; // modifica si quieres otro
 
@@ -324,7 +415,16 @@ nav a:hover {
       const node = document.createElement('div');
       node.className = 'product';
       node.innerHTML = `
-        <img src="${p.img}" alt="${p.title}">
+  <div class="product-img-wrapper">
+    ${p.img.map((img, index) => `
+      <img src="${img}" class="product-img zoomable ${index === 0 ? 'active' : ''}">
+
+    `).join('')}
+
+    <button class="product-arrow left">❮</button>
+    <button class="product-arrow right">❯</button>
+  </div>
+
         <h3>${p.title}</h3>
         <p>${p.desc}</p>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;">
@@ -341,6 +441,33 @@ nav a:hover {
       `;
       productsGrid.appendChild(node);
     });
+setTimeout(() => {
+  document.querySelectorAll('.product').forEach(card => {
+    const imgs = card.querySelectorAll('.product-img');
+    const left = card.querySelector('.product-arrow.left');
+    const right = card.querySelector('.product-arrow.right');
+    let index = 0;
+
+    function showImage(i){
+      imgs.forEach(img => img.classList.remove('active'));
+      imgs[i].classList.add('active');
+    }
+
+    if(left){
+      left.addEventListener('click', () => {
+        index = (index - 1 + imgs.length) % imgs.length;
+        showImage(index);
+      });
+    }
+
+    if(right){
+      right.addEventListener('click', () => {
+        index = (index + 1) % imgs.length;
+        showImage(index);
+      });
+    }
+  });
+}, 300);
 
     /*******************
      * Carrito simple
