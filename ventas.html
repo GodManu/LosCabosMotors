@@ -1,268 +1,459 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accesorios | Los Cabos Motors</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ventas - Los Cabos Motors</title>
 
-<style>
-/* GENERAL */
-body {
-  margin: 0;
-  background: #0c0c0c;
-  font-family: 'Poppins', sans-serif;
-  color: white;
-}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="Images/loscabosmotorsweb.png">
 
-nav {
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(8px);
-  padding: 12px 0;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
+  <style>
+    :root {
+      --bg:#0c0c0c;
+      --card:#151515;
+      --accent:#ff3c3c;
+      --glass:rgba(255,255,255,0.04);
+      --muted:#bdbdbd;
+    }
 
-nav a {
-  color: white;
-  margin: 0 18px;
-  font-weight: 300;
-  text-decoration: none;
-  transition: .3s;
-}
+    body {
+      margin:0;
+      font-family:'Poppins', sans-serif;
+      background:var(--bg);
+      color:white;
+    }
 
-nav a:hover {
-  color: #ff3c3c;
-}
+    /* -------------------- HEADER -------------------- */
+    header {
+      background-image: url('Images/bannerarticulos.png');
+      background-size: cover;
+      background-position: center;
+      height: 260px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      position:relative;
+    }
 
-/* HEADER */
-header {
-  background-image: url("Images/LCMBANNER.png");
-  height: 230px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    header::before {
+      content:"";
+      position:absolute;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.45);
+      top:0; left:0;
+    }
 
-header::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-}
+    header h1 {
+      position:relative;
+      z-index:2;
+      color:white;
+      margin-top:80px;
+      font-size:2.8rem;
+      text-shadow:2px 2px 8px black;
+    }
 
-header h1 {
-  position: relative;
-  font-size: 2.4rem;
-  text-shadow: 0 0 8px black;
-  z-index: 2;
-}
+    nav {
+      position:absolute;
+      top:0;
+      width:100%;
+      z-index:999;
+      padding:10px 0;
+      display:flex;
+      justify-content:center;
+      gap:28px;
+      backdrop-filter:blur(8px);
+      background:rgba(0,0,0,0.25);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
 
-/* GRID */
-.container {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
+    nav a {
+      color:white;
+      font-size:0.9rem;
+      font-weight:300;
+      padding:6px 10px;
+      transition:0.25s;
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
+    nav a:hover {
+      color:var(--accent);
+    }
 
-/* PRODUCT CARD */
-.card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  padding: 15px;
+    .container {
+      max-width:1200px;
+      margin:35px auto;
+      padding:0 20px;
+    }
 
-  backdrop-filter: blur(6px);
-  transition: .3s;
-  text-align: center;
-}
+    .hero h2 {
+      margin:0;
+      font-size:1.6rem;
+      color:var(--accent);
+    }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 18px rgba(255,60,60,0.3);
-}
+    .hero p {
+      margin:6px 0 0 0;
+      color:var(--muted);
+    }
 
-/* IMAGE WRAPPER */
-.img-wrapper {
-  width: 100%;
-  height: 190px;
-  overflow: hidden;
-  border-radius: 10px;
-  position: relative;
-}
+    /* -------------------- PRODUCTOS -------------------- */
 
-.card img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  display: none;
-  transition: .3s;
-}
+    .products {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+      gap:22px;
+    }
 
-.card img.active {
-  display: block;
-}
+    .product {
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:14px;
+      padding:14px;
+      transition:0.3s ease;
+      box-shadow:0 0 15px rgba(255,60,60,0.08);
+      position:relative;
+    }
 
-/* ARROWS */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.55);
-  color: white;
-  padding: 7px 11px;
-  border-radius: 50%;
-  font-size: 14px;
-  cursor: pointer;
-  border: none;
-  transition: .3s;
-  z-index: 9;
-}
+    .product:hover {
+      transform:translateY(-5px);
+      box-shadow:0 10px 28px rgba(255,60,60,0.15);
+    }
 
-.arrow:hover {
-  background: #ff3c3c;
-}
+    /* CARRUSEL */
+    .carousel-wrapper {
+      position:relative;
+      height:180px;
+      overflow:hidden;
+      border-radius:12px;
+      margin-bottom:12px;
+    }
 
-.left { left: 10px; }
-.right { right: 10px; }
+    .carousel-img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:none;
+    }
 
-/* PRICE */
-.price {
-  background: #ff3c3c;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  display: inline-block;
-  margin: 10px 0;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
+    .carousel-img.active {
+      display:block;
+    }
 
-/* WHATSAPP */
-.ws-btn {
-  display: inline-block;
-  background: #25D366;
-  padding: 10px 16px;
-  border-radius: 8px;
-  color: black;
-  font-weight: bold;
-  margin-top: 8px;
-  transition: .3s;
-}
+    .arrow {
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      color:white;
+      background:rgba(0,0,0,0.55);
+      padding:6px 10px;
+      border-radius:50%;
+      font-size:16px;
+      cursor:pointer;
+      opacity:0;
+      transition:0.2s;
+    }
 
-.ws-btn:hover {
-  background: #1ebe5c;
-  transform: scale(1.05);
-}
+    .carousel-wrapper:hover .arrow {
+      opacity:1;
+    }
 
-/* ZOOM MODAL */
-#zoomModal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  backdrop-filter: blur(4px);
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
+    .arrow.left { left:8px; }
+    .arrow.right { right:8px; }
 
-#zoomModal img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
-}
-</style>
+    /* Zoom */
+    .carousel-wrapper:hover .carousel-img.active {
+      transform:scale(1.05);
+      transition:0.3s ease;
+    }
+
+    .product h3 {
+      margin:0;
+      font-size:1rem;
+      color:white;
+    }
+
+    .product p {
+      color:var(--muted);
+      font-size:0.9rem;
+      min-height:32px;
+    }
+
+    .price {
+      font-weight:bold;
+      color:var(--accent);
+      margin:6px 0 10px;
+    }
+
+    .prod-controls {
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .qty {
+      display:flex;
+      gap:6px;
+      align-items:center;
+      background:rgba(255,255,255,0.05);
+      padding:6px 10px;
+      border-radius:8px;
+    }
+
+    .qty button {
+      background:none;
+      border:1px solid rgba(255,255,255,0.1);
+      color:white;
+      padding:3px 7px;
+      cursor:pointer;
+      border-radius:6px;
+    }
+
+    .qty input {
+      width:34px;
+      text-align:center;
+      background:none;
+      border:none;
+      color:white;
+      font-weight:bold;
+    }
+
+    .add-btn {
+      background:var(--accent);
+      border:none;
+      color:white;
+      padding:7px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      margin-left:auto;
+    }
+
+    /* -------------------- CARRITO -------------------- */
+    .layout {
+      display:grid;
+      grid-template-columns:1fr 350px;
+      gap:22px;
+    }
+
+    .aside {
+      background:rgba(255,255,255,0.03);
+      padding:16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.05);
+      position:sticky;
+      top:20px;
+    }
+
+    .checkout-btn {
+      margin-top:12px;
+      width:100%;
+      background:var(--accent);
+      color:white;
+      padding:12px;
+      border-radius:8px;
+      border:none;
+      font-weight:bold;
+    }
+
+  </style>
 </head>
 
 <body>
 
-<nav>
-  <a href="index.html">Inicio</a>
-  <a href="ventas.html">Accesorios</a>
-  <a href="galeria_autos.html">Galería</a>
-  <a href="ultimas_ventas.html">Últimas Ventas</a>
-  <a href="https://wa.me/526241181978">WhatsApp</a>
-</nav>
+<header>
+  <h1>Accesorios & Repuestos</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="ventas.html">Artículos</a>
+    <a href="ultimas_ventas.html">Últimas ventas</a>
+    <a href="https://wa.me/526241181978">WhatsApp</a>
+  </nav>
+</header>
 
-<header><h1>Accesorios Deportivos</h1></header>
+<main class="container">
 
-<div class="container">
-<div class="grid">
+  <section class="hero">
+    <h2>Tienda de accesorios</h2>
+    <p>Envios solo en Los Cabos, BCS — Aparta y paga por WhatsApp.</p>
+  </section>
 
-  <!-- PRODUCTO 1 -->
-  <div class="card">
-    <div class="img-wrapper" data-index="0">
-      <img src="Images/productos/lip1.jpg" class="active">
-      <img src="Images/productos/lip2.jpg">
-      <img src="Images/productos/lip3.jpg">
+  <div class="layout">
 
-      <button class="arrow left">&lt;</button>
-      <button class="arrow right">&gt;</button>
+    <!-- ------------- PRODUCTOS ------------- -->
+    <div>
+      <div class="products" id="productsGrid"></div>
     </div>
 
-    <h3>Lip Deportivo Mustang</h3>
-    <p>Ajuste perfecto para Mustang 2015–2023. Gloss premium.</p>
-    <div class="price">$1,800 MXN</div>
+    <!-- ------------- CARRITO ------------- -->
+    <aside class="aside">
+      <h3>Tu pedido</h3>
+      <div id="cartList"></div>
+      <div style="display:flex; justify-content:space-between; margin-top:10px;">
+        <span>Total:</span>
+        <strong id="cartTotal">$0 MXN</strong>
+      </div>
 
-    <a class="ws-btn" target="_blank"
-       href="https://wa.me/526241181978?text=Hola!%20Quiero%20información%20sobre%20el%20Lip%20Deportivo">
-       Pedir por WhatsApp
-    </a>
+      <input id="c_name" placeholder="Nombre completo" style="margin-top:12px; width:100%; padding:10px;">
+      <input id="c_phone" placeholder="WhatsApp" style="margin-top:8px; width:100%; padding:10px;">
+
+      <button id="checkoutBtn" class="checkout-btn"><i class="fab fa-whatsapp"></i> Enviar pedido</button>
+    </aside>
+
   </div>
 
-</div>
-</div>
-
-<!-- ZOOM MODAL -->
-<div id="zoomModal"><img id="zoomImg"></div>
+</main>
 
 <script>
-/* CARRUSEL MANUAL */
-document.querySelectorAll(".img-wrapper").forEach(wrapper => {
+/* ----------- PRODUCTOS (3 imágenes por producto) ----------- */
+const PRODUCTS = [
+  {
+    id:'lip-mustang',
+    title:'Lip deportivo – Mustang 2001-2019',
+    desc:'Lip delantero estilo GT.',
+    price:2800,
+    imgs:[
+      'ventas/lip1.jpg',
+      'ventas/lip2.jpg',
+      'ventas/lip3.jpg'
+    ]
+  },
+  {
+    id:'porta-placas',
+    title:'Porta placas deportivo',
+    desc:'Acabado premium anti-vibración.',
+    price:850,
+    imgs:[
+      'ventas/placa1.jpg',
+      'ventas/placa2.jpg',
+      'ventas/placa3.jpg'
+    ]
+  },
+  {
+    id:'llanta-winrun',
+    title:'Llanta Winrun 225/35ZR20',
+    desc:'Índice 93W XL – Alto desempeño.',
+    price:1500,
+    imgs:[
+      'ventas/winrun1.jpg',
+      'ventas/winrun2.jpg',
+      'ventas/winrun3.jpg'
+    ]
+  }
+];
+
+/* ----------- RENDER ----------- */
+const productsGrid = document.getElementById('productsGrid');
+
+PRODUCTS.forEach(p=>{
+  const el = document.createElement('div');
+  el.className='product';
+  el.innerHTML = `
+    <div class="carousel-wrapper" data-id="${p.id}">
+      <img class="carousel-img active" src="${p.imgs[0]}">
+      <img class="carousel-img" src="${p.imgs[1]}">
+      <img class="carousel-img" src="${p.imgs[2]}">
+
+      <div class="arrow left" data-dir="left">❮</div>
+      <div class="arrow right" data-dir="right">❯</div>
+    </div>
+
+    <h3>${p.title}</h3>
+    <p>${p.desc}</p>
+    <div class="price">$${p.price.toLocaleString()} MXN</div>
+
+    <div class="prod-controls">
+      <div class="qty">
+        <button class="qty-dec">-</button>
+        <input type="number" value="1" min="1">
+        <button class="qty-inc">+</button>
+      </div>
+      <button class="add-btn" data-id="${p.id}">Agregar</button>
+    </div>
+  `;
+  productsGrid.appendChild(el);
+});
+
+/* ----------- CARRUSEL MANUAL ----------- */
+document.querySelectorAll('.carousel-wrapper').forEach(wrapper=>{
   let index = 0;
-  const images = wrapper.querySelectorAll("img");
-  const left = wrapper.querySelector(".left");
-  const right = wrapper.querySelector(".right");
+  const imgs = wrapper.querySelectorAll('.carousel-img');
+  const left = wrapper.querySelector('.arrow.left');
+  const right = wrapper.querySelector('.arrow.right');
 
-  right.onclick = () => {
-    images[index].classList.remove("active");
-    index = (index + 1) % images.length;
-    images[index].classList.add("active");
-  };
+  function show(n){
+    imgs.forEach(i=>i.classList.remove('active'));
+    index = (n + imgs.length) % imgs.length;
+    imgs[index].classList.add('active');
+  }
 
-  left.onclick = () => {
-    images[index].classList.remove("active");
-    index = (index - 1 + images.length) % images.length;
-    images[index].classList.add("active");
-  };
+  left.onclick = ()=>show(index-1);
+  right.onclick = ()=>show(index+1);
 });
 
-/* ZOOM */
-const modal = document.getElementById("zoomModal");
-const zoomImg = document.getElementById("zoomImg");
+/* ----------- CARRITO ----------- */
+let CART = {};
+const cartList = document.getElementById('cartList');
+const cartTotal = document.getElementById('cartTotal');
 
-document.querySelectorAll(".card img").forEach(img => {
-  img.addEventListener("click", () => {
-    modal.style.display = "flex";
-    zoomImg.src = img.src;
+function updateCart(){
+  cartList.innerHTML="";
+  let total = 0;
+
+  Object.values(CART).forEach(item=>{
+    total += item.qty * item.product.price;
+    const row = document.createElement('div');
+    row.style.margin="6px 0";
+    row.innerHTML = `
+      ${item.qty} × ${item.product.title}
+      <strong style="float:right">$${(item.qty*item.product.price).toLocaleString()}</strong>
+    `;
+    cartList.appendChild(row);
   });
+
+  if(total===0) cartList.innerHTML = "<p style='color:#777'>Carrito vacío</p>";
+  cartTotal.textContent = "$" + total.toLocaleString() + " MXN";
+}
+
+document.querySelectorAll('.add-btn').forEach((btn, i)=>{
+  btn.onclick = ()=>{
+    const id = btn.dataset.id;
+    const product = PRODUCTS.find(p=>p.id===id);
+    const qty = parseInt(btn.parentElement.querySelector("input").value) || 1;
+
+    if(!CART[id]) CART[id] = {product, qty};
+    else CART[id].qty += qty;
+
+    updateCart();
+  };
 });
 
-modal.addEventListener("click", () => modal.style.display = "none");
+/* ----------- CHECKOUT ----------- */
+document.getElementById('checkoutBtn').onclick = ()=>{
+  const name = document.getElementById('c_name').value;
+  const phone = document.getElementById('c_phone').value;
+  const items = Object.values(CART);
+
+  if(items.length===0){
+    alert("El carrito está vacío.");
+    return;
+  }
+
+  let msg = "🛒 *Pedido desde la tienda Los Cabos Motors*\n\n";
+  msg += `👤 Nombre: ${name || "No proporcionado"}\n`;
+  msg += `📱 WhatsApp: ${phone || "No proporcionado"}\n\n`;
+
+  msg += "*Artículos:*\n";
+  items.forEach(i=>{
+    msg += `• ${i.qty} × ${i.product.title} = $${(i.qty*i.product.price).toLocaleString()}\n`;
+  });
+
+  const total = items.reduce((t,i)=>t+i.qty*i.product.price, 0);
+  msg += `\nTotal: *$${total.toLocaleString()} MXN*`;
+
+  window.open(`https://wa.me/526241181978?text=${encodeURIComponent(msg)}`, "_blank");
+};
 </script>
 
 </body>
