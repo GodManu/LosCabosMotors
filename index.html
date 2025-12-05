@@ -596,30 +596,35 @@ footer {
 
 <!-- SCRIPTS DE GALERÍA MANUAL -->
 <script>
-<script>
-document.querySelectorAll(".car-img-wrapper").forEach(wrapper => {
-  const imgs = wrapper.querySelectorAll(".car-img");
-  const prev = wrapper.querySelector(".arrow.left");
-  const next = wrapper.querySelector(".arrow.right");
-
+document.querySelectorAll('.car-img-wrapper').forEach(wrapper => {
+  const images = wrapper.querySelectorAll('.car-img');
+  const prevBtn = wrapper.querySelector('.arrow.left');
+  const nextBtn = wrapper.querySelector('.arrow.right');
   let index = 0;
 
-  function show(i) {
-    imgs.forEach(img => img.classList.remove("active"));
-    imgs[i].classList.add("active");
+  function showImage(i) {
+    images.forEach(img => img.classList.remove('active'));
+    images[i].classList.add('active');
   }
 
-  next.addEventListener("click", () => {
-    index = (index + 1) % imgs.length;
-    show(index);
-  });
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      index--;
+      if (index < 0) index = images.length - 1;
+      showImage(index);
+    });
+  }
 
-  prev.addEventListener("click", () => {
-    index = (index - 1 + imgs.length) % imgs.length;
-    show(index);
-  });
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      index++;
+      if (index >= images.length) index = 0;
+      showImage(index);
+    });
+  }
 });
 </script>
+
 
 
 <!-- FIREBASE -->
@@ -670,6 +675,7 @@ form.addEventListener('submit', e => {
 </html>
 
   
+
 
 
 
