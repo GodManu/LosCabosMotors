@@ -1,276 +1,268 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accesorios | Los Cabos Motors</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accesorios | Los Cabos Motors</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* GENERAL */
+body {
+  margin: 0;
+  background: #0c0c0c;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
 
-  <style>
-    body {
-      margin: 0;
-      background: #0c0c0c;
-      font-family: 'Poppins', sans-serif;
-      color: white;
-    }
+nav {
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  padding: 12px 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
-    /* NAVBAR */
-    nav {
-      background: rgba(0,0,0,0.35);
-      backdrop-filter: blur(8px);
-      padding: 12px 0;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
+nav a {
+  color: white;
+  margin: 0 18px;
+  font-weight: 300;
+  text-decoration: none;
+  transition: .3s;
+}
 
-    nav a {
-      color: #fff;
-      margin: 0 18px;
-      font-size: 0.9rem;
-      font-weight: 300;
-      text-decoration: none;
-      transition: .3s;
-    }
+nav a:hover {
+  color: #ff3c3c;
+}
 
-    nav a:hover {
-      color: #ff3c3c;
-    }
+/* HEADER */
+header {
+  background-image: url("Images/LCMBANNER.png");
+  height: 230px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    /* HEADER BANNER */
-    .banner {
-      background-image: url("Images/LCMBANNER.png");
-      height: 220px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
 
-    .banner::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-    }
+header h1 {
+  position: relative;
+  font-size: 2.4rem;
+  text-shadow: 0 0 8px black;
+  z-index: 2;
+}
 
-    .banner h1 {
-      position: relative;
-      font-size: 2.4rem;
-      text-shadow: 2px 2px 6px black;
-    }
+/* GRID */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
 
-    /* GRID */
-    .container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
 
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 28px;
-    }
+/* PRODUCT CARD */
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 15px;
 
-    /* PRODUCT CARD */
-    .product-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 15px;
+  backdrop-filter: blur(6px);
+  transition: .3s;
+  text-align: center;
+}
 
-      backdrop-filter: blur(6px);
-      transition: 0.25s ease;
-      text-align: center;
-    }
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 18px rgba(255,60,60,0.3);
+}
 
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 18px rgba(255,60,60,0.35);
-    }
+/* IMAGE WRAPPER */
+.img-wrapper {
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+}
 
-    /* IMAGE WRAPPER */
-    .img-wrapper {
-      width: 100%;
-      height: 180px;
-      overflow: hidden;
-      border-radius: 12px;
-      position: relative;
-    }
+.card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: none;
+  transition: .3s;
+}
 
-    .prod-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      display: none;
-    }
+.card img.active {
+  display: block;
+}
 
-    .prod-img.active {
-      display: block;
-    }
+/* ARROWS */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.55);
+  color: white;
+  padding: 7px 11px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: .3s;
+  z-index: 9;
+}
 
-    /* ARROWS */
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.55);
-      border: none;
-      color: white;
-      padding: 6px 9px;
-      font-size: 14px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: .3s;
-    }
+.arrow:hover {
+  background: #ff3c3c;
+}
 
-    .arrow:hover {
-      background: #ff3c3c;
-    }
+.left { left: 10px; }
+.right { right: 10px; }
 
-    .arrow.left { left: 8px; }
-    .arrow.right { right: 8px; }
+/* PRICE */
+.price {
+  background: #ff3c3c;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
 
-    /* PRODUCT TEXT */
-    .product-card h3 {
-      margin-top: 10px;
-      font-size: 1.1rem;
-    }
+/* WHATSAPP */
+.ws-btn {
+  display: inline-block;
+  background: #25D366;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: black;
+  font-weight: bold;
+  margin-top: 8px;
+  transition: .3s;
+}
 
-    .product-card p {
-      font-size: 0.85rem;
-      color: #bbb;
-      min-height: 40px;
-    }
+.ws-btn:hover {
+  background: #1ebe5c;
+  transform: scale(1.05);
+}
 
-    /* PRICE */
-    .price {
-      display: inline-block;
-      background: #ff3c3c;
-      padding: 5px 12px;
-      border-radius: 6px;
-      margin-top: 6px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(255,0,0,0.45);
-    }
+/* ZOOM MODAL */
+#zoomModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
-    /* TAG CABOS */
-    .tag-cabos {
-      margin-top: 6px;
-      font-size: 0.72rem;
-      color: #ffaaaa;
-      opacity: 0.7;
-    }
-
-    /* WHATSAPP BUTTON */
-    .ws-btn {
-      margin-top: 12px;
-      padding: 8px 14px;
-      font-size: 0.8rem;
-      background: #25D366;
-      color: white;
-      border-radius: 8px;
-      display: inline-block;
-      transition: .25s;
-    }
-
-    .ws-btn:hover {
-      background: #1ebe5c;
-      transform: scale(1.03);
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 25px;
-      margin-top: 40px;
-      color: #aaa;
-      background: #000;
-      border-top: 1px solid #222;
-    }
-
-  </style>
+#zoomModal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+</style>
 </head>
+
 <body>
 
 <nav>
   <a href="index.html">Inicio</a>
-  <a href="ventas.html">Artículos</a>
+  <a href="ventas.html">Accesorios</a>
   <a href="galeria_autos.html">Galería</a>
   <a href="ultimas_ventas.html">Últimas Ventas</a>
   <a href="https://wa.me/526241181978">WhatsApp</a>
 </nav>
 
-<header class="banner">
-  <h1>Accesorios Deportivos</h1>
-</header>
+<header><h1>Accesorios Deportivos</h1></header>
 
 <div class="container">
-  <div class="product-grid">
+<div class="grid">
 
+  <!-- PRODUCTO 1 -->
+  <div class="card">
+    <div class="img-wrapper" data-index="0">
+      <img src="Images/productos/lip1.jpg" class="active">
+      <img src="Images/productos/lip2.jpg">
+      <img src="Images/productos/lip3.jpg">
 
-    <!-- PRODUCTO EJEMPLO -->
-    <div class="product-card">
-      <div class="img-wrapper" data-index="0">
-
-        <img src="Images/productos/lip1.jpg" class="prod-img active">
-        <img src="Images/productos/lip2.jpg" class="prod-img">
-        <img src="Images/productos/lip3.jpg" class="prod-img">
-
-        <button class="arrow left">&lt;</button>
-        <button class="arrow right">&gt;</button>
-      </div>
-
-      <h3>Lip Deportivo Mustang</h3>
-      <p>Ajuste perfecto para Mustang 2015–2023. Acabado gloss premium.</p>
-
-      <div class="price">$1,800 MXN</div>
-      <div class="tag-cabos">Solo entregas en Los Cabos, B.C.S</div>
-
-      <a class="ws-btn" target="_blank"
-         href="https://wa.me/526241181978?text=Hola!%20Quiero%20información%20sobre%20el%20Lip%20Deportivo">
-         Pedir por WhatsApp
-      </a>
+      <button class="arrow left">&lt;</button>
+      <button class="arrow right">&gt;</button>
     </div>
 
+    <h3>Lip Deportivo Mustang</h3>
+    <p>Ajuste perfecto para Mustang 2015–2023. Gloss premium.</p>
+    <div class="price">$1,800 MXN</div>
 
-    <!-- DUPLICA ESTE BLOQUE PARA AGREGAR MÁS PRODUCTOS -->
-
-
+    <a class="ws-btn" target="_blank"
+       href="https://wa.me/526241181978?text=Hola!%20Quiero%20información%20sobre%20el%20Lip%20Deportivo">
+       Pedir por WhatsApp
+    </a>
   </div>
+
+</div>
 </div>
 
-<footer>
-  © 2025 Los Cabos Motors – Accesorios Deportivos
-</footer>
+<!-- ZOOM MODAL -->
+<div id="zoomModal"><img id="zoomImg"></div>
 
 <script>
-  document.querySelectorAll(".img-wrapper").forEach(wrapper => {
-    let index = 0;
-    const images = wrapper.querySelectorAll(".prod-img");
-    const left = wrapper.querySelector(".arrow.left");
-    const right = wrapper.querySelector(".arrow.right");
+/* CARRUSEL MANUAL */
+document.querySelectorAll(".img-wrapper").forEach(wrapper => {
+  let index = 0;
+  const images = wrapper.querySelectorAll("img");
+  const left = wrapper.querySelector(".left");
+  const right = wrapper.querySelector(".right");
 
-    right.onclick = () => {
-      images[index].classList.remove("active");
-      index = (index + 1) % images.length;
-      images[index].classList.add("active");
-    };
+  right.onclick = () => {
+    images[index].classList.remove("active");
+    index = (index + 1) % images.length;
+    images[index].classList.add("active");
+  };
 
-    left.onclick = () => {
-      images[index].classList.remove("active");
-      index = (index - 1 + images.length) % images.length;
-      images[index].classList.add("active");
-    };
+  left.onclick = () => {
+    images[index].classList.remove("active");
+    index = (index - 1 + images.length) % images.length;
+    images[index].classList.add("active");
+  };
+});
+
+/* ZOOM */
+const modal = document.getElementById("zoomModal");
+const zoomImg = document.getElementById("zoomImg");
+
+document.querySelectorAll(".card img").forEach(img => {
+  img.addEventListener("click", () => {
+    modal.style.display = "flex";
+    zoomImg.src = img.src;
   });
+});
+
+modal.addEventListener("click", () => modal.style.display = "none");
 </script>
 
 </body>
