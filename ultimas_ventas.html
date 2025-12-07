@@ -5,127 +5,152 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Últimas Ventas - Los Cabos Motors</title>
   <link rel="icon" type="image/png" href="Images/loscabosmotorsweb.png">
+
   <style>
+    /* ---------------- GENERAL ---------------- */
     body {
-      background-color: #1c1c1c;
-      color: white;
-      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
+      background-color: #0c0c0c;
+      color: white;
+      font-family: 'Poppins', sans-serif;
     }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ---------------- HEADER ---------------- */
     header {
       position: relative;
-      background: url('Images/ultimasventas.png') 50% 85% / cover no-repeat;
-      height: 250px;
+      background: url('Images/ultimasventas.png') center/cover no-repeat;
+      height: 260px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: white;
     }
+
     header::before {
-      content: "";
+      content:"";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.55);
     }
+
     .header-content {
       position: relative;
       z-index: 2;
     }
+
     h1 {
-      font-size: 2.8rem;
-      color: #fff;
+      font-size: 2.6rem;
       margin: 0;
+      color: white;
       text-shadow: 2px 2px 8px black;
-      h2 {
-      font-size: 1rem;
-      color: gray;
-      margin: 0;
-      text-shadow: 1px 1px 4px black;
     }
+
+    h2 {
+      margin-top: 8px;
+      font-weight: 300;
+      color: #d9d9d9;
+      font-size: 1rem;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    /* ---------------- NAV ---------------- */
     nav {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
-  gap: 28px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 12px 0;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      z-index: 999;
+    }
 
-  backdrop-filter: blur(8px);
-  background: rgba(0,0,0,0.25);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+    nav a {
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 0.95rem;
+      font-weight: 300;
+      border-radius: 4px;
+      transition: 0.25s ease;
+    }
 
-  transition: 0.3s ease;
-}
+    nav a:hover {
+      color: #ff3c3c;
+      background: rgba(255,60,60,0.2);
+    }
 
-nav a {
-  color: #fff;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  padding: 5px 10px;
+    @media (max-width: 600px) {
+      nav {
+        gap: 12px;
+        padding: 8px 0;
+      }
+      nav a {
+        font-size: 0.78rem;
+        padding: 5px 8px;
+      }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 0.85rem; }
+    }
 
-  font-size: 0.95rem;
-  transition: 0.25s;
-  border-radius: 4px;
-}
-
-nav a:hover {
-  background: rgba(255,60,60,0.25);
-  color: #ff3c3c;
-}
-
-/* Para celular */
-@media (max-width: 600px) {
-  nav {
-    gap: 14px;
-    padding: 8px 0;
-  }
-  nav a {
-    font-size: 0.85rem;
-  }
-}
+    /* ---------------- CONTENEDOR ---------------- */
     .ventas-container {
-      max-width: 1200px;
+      max-width: 1250px;
       margin: auto;
       padding: 30px 20px;
     }
-    h2 {
+
+    .ventas-container h2 {
       text-align: center;
       color: #ff3c3c;
       font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 25px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 15px;
-      overflow: hidden;
-      padding: 15px;
-      position: relative;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 25px;
     }
 
+    /* ---------------- GRID ---------------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 28px;
+    }
+
+    /* ---------------- CARD ---------------- */
+    .card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(5px);
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    }
+
+    /* ---------------- CAROUSEL ---------------- */
     .carousel {
       position: relative;
       overflow: hidden;
-      height: 200px;
-      border-radius: 10px;
+      height: 210px;
+      border-radius: 12px;
     }
 
     .carousel img {
       width: 100%;
-      height: 200px;
+      height: 210px;
       object-fit: cover;
       display: none;
+      transition: opacity .25s ease;
     }
 
     .carousel img.active {
@@ -139,20 +164,28 @@ nav a:hover {
       display: flex;
       justify-content: space-between;
       transform: translateY(-50%);
+      padding: 0 8px;
     }
 
     .carousel-buttons button {
-      background-color: rgba(0, 0, 0, 0.5);
+      background: rgba(0,0,0,0.55);
       border: none;
       color: white;
-      padding: 5px 10px;
+      padding: 6px 10px;
+      border-radius: 50%;
       cursor: pointer;
       font-size: 18px;
+      transition: 0.25s ease;
     }
 
+    .carousel-buttons button:hover {
+      background: #ff3c3c;
+    }
+
+    /* ---------------- TEXTO ---------------- */
     .card h3 {
-      margin: 15px 0 5px;
-      font-size: 1.3rem;
+      margin: 14px 0 6px;
+      font-size: 1.25rem;
       color: #fff;
     }
 
@@ -164,166 +197,190 @@ nav a:hover {
 
     .especificaciones {
       width: 100%;
+      color: #dcdcdc;
       font-size: 0.9rem;
-      margin-bottom: 15px;
-      color: #ddd;
     }
 
     .especificaciones td {
-      padding: 3px 5px;
+      padding: 4px 6px;
     }
 
-    a.volver {
+    /* ---------------- VOLVER ---------------- */
+    .volver {
       display: block;
       text-align: center;
       margin-top: 40px;
       color: #ff3c3c;
-      text-decoration: none;
       font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <h1>Últimas Ventas</h1>
-      <h2>Asi como muchos, puedes vender tu vehiculo atraves de nosotros</h2>
-    </div>
-  </header>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="ventas.html">Artículos para carro</a>
-    <a href="ultimas_ventas.html">Últimas Ventas</a>
-    <a href="https://wa.me/526241181978">WhatsApp</a>
-  </nav>
 
-  <div class="ventas-container">
-    <h2>Vehículos Vendidos</h2>
-    <div class="grid">
-
-      <!-- CARD 1 -->
-      <div class="card">
-        <div class="carousel" data-index="0">
-          <img src="Images/Xtrail2020S.jpg" class="active" alt="Xtrail 1">
-          <div class="carousel-buttons">
-            <button onclick="prevSlide(this)">‹</button>
-            <button onclick="nextSlide(this)">›</button>
-          </div>
-        </div>
-        <h3>Nissan Xtrail 2020 Sense</h3>
-        <p class="vendido">💲 VENDIDO 💲</p>
-        <table class="especificaciones">
-          <tr><td>Motor:</td><td>4 Cilindros</td></tr>
-          <tr><td>Transmisión:</td><td>Automática</td></tr>
-          <tr><td>Condiciones:</td><td>Perfectas, A/C, placas al día</td></tr>
-        </table>
-      </div>
-
-      <!-- CARD 2 -->
-      <div class="card">
-        <div class="carousel" data-index="0">
-          <img src="GALERIA/mustangfrente.jpg" class="active" alt="Mustang 1">
-          <img src="GALERIA/mustandetras.png" alt="Mustang 2">
-          <img src="GALERIA/mustangdentro.jpg" alt="Mustang 3">
-          <img src="GALERIA/mustangfrenteizq.jpg" alt="Mustang 4">
-          <img src="GALERIA/mustangladoder.jpg" alt="Mustang 5">
-          <img src="GALERIA/mustangpuertader.jpg" alt="Mustang 6">
-          <div class="carousel-buttons">
-            <button onclick="prevSlide(this)">‹</button>
-            <button onclick="nextSlide(this)">›</button>
-          </div>
-        </div>
-        <h3>Ford Mustang 2015 Blanco</h3>
-        <p class="vendido">💲 VENDIDO 💲</p>
-        <table class="especificaciones">
-          <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
-          <tr><td>Transmisión:</td><td>Manual</td></tr>
-          <tr><td>Extras:</td><td>Headers, sonido deportivo, polarizado stealth</td></tr>
-        </table>
-      </div>
-<!-- CARD 3 - Polo 2020 -->
-<div class="card">
-  <div class="carousel" data-index="0">
-    <img src="Images/Polo2020.jpg" class="active" alt="Polo 2020 Frente">
-    <div class="carousel-buttons">
-      <button onclick="prevSlide(this)">‹</button>
-      <button onclick="nextSlide(this)">›</button>
-    </div>
+<header>
+  <div class="header-content">
+    <h1>Últimas Ventas</h1>
+    <h2>Así como muchos, puedes vender tu vehículo con nosotros</h2>
   </div>
-  <h3>Volkswagen Polo 2020 Sound & Design</h3>
-  <p class="vendido">💲 VENDIDO 💲</p>
-  <table class="especificaciones">
-    <tr><td>Motor:</td><td>1.6L, 4 Cilindros</td></tr>
-    <tr><td>Transmisión:</td><td>Automática Tiptronic</td></tr>
-    <tr><td>Extras:</td><td>Sonido mejorado, aros deportivos, cámara reversa</td></tr>
-  </table>
+</header>
+
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="ventas.html">Artículos</a>
+  <a href="ultimas_ventas.html">Últimas Ventas</a>
+  <a href="https://wa.me/526241181978">WhatsApp</a>
+</nav>
+
+<div class="ventas-container">
+  <h2>Vehículos Vendidos</h2>
+
+  <div class="grid">
+
+    <!-- CARD 1 -->
+    <div class="card">
+      <div class="carousel" data-index="0">
+        <img src="Images/Xtrail2020S.jpg" class="active">
+        <div class="carousel-buttons">
+          <button onclick="prevSlide(this)">‹</button>
+          <button onclick="nextSlide(this)">›</button>
+        </div>
+      </div>
+
+      <h3>Nissan Xtrail 2020 Sense</h3>
+      <p class="vendido">💲 VENDIDO 💲</p>
+
+      <table class="especificaciones">
+        <tr><td>Motor:</td><td>4 Cilindros</td></tr>
+        <tr><td>Transmisión:</td><td>Automática</td></tr>
+        <tr><td>Condiciones:</td><td>Perfectas, A/C, placas al día</td></tr>
+      </table>
+    </div>
+
+    <!-- CARD 2 Mustang -->
+    <div class="card">
+      <div class="carousel" data-index="0">
+        <img src="GALERIA/mustangfrente.jpg" class="active">
+        <img src="GALERIA/mustandetras.png">
+        <img src="GALERIA/mustangdentro.jpg">
+        <img src="GALERIA/mustangfrenteizq.jpg">
+        <img src="GALERIA/mustangladoder.jpg">
+        <img src="GALERIA/mustangpuertader.jpg">
+
+        <div class="carousel-buttons">
+          <button onclick="prevSlide(this)">‹</button>
+          <button onclick="nextSlide(this)">›</button>
+        </div>
+      </div>
+
+      <h3>Ford Mustang 2015 Blanco</h3>
+      <p class="vendido">💲 VENDIDO 💲</p>
+
+      <table class="especificaciones">
+        <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
+        <tr><td>Transmisión:</td><td>Manual</td></tr>
+        <tr><td>Extras:</td><td>Headers, sonido deportivo, polarizado stealth</td></tr>
+      </table>
+    </div>
+
+    <!-- CARD 3 Polo -->
+    <div class="card">
+      <div class="carousel" data-index="0">
+        <img src="Images/Polo2020.jpg" class="active">
+        <div class="carousel-buttons">
+          <button onclick="prevSlide(this)">‹</button>
+          <button onclick="nextSlide(this)">›</button>
+        </div>
+      </div>
+
+      <h3>Polo 2020 Sound & Design</h3>
+      <p class="vendido">💲 VENDIDO 💲</p>
+
+      <table class="especificaciones">
+        <tr><td>Motor:</td><td>1.6L</td></tr>
+        <tr><td>Transmisión:</td><td>Automática</td></tr>
+        <tr><td>Extras:</td><td>Sonido, rines, cámara reversa</td></tr>
+      </table>
+    </div>
+
+    <!-- CARD 4 Audi R8 -->
+    <div class="card">
+      <div class="carousel" data-index="0">
+        <img src="GALERIA/FRONTAUDI.jpg" class="active">
+        <img src="GALERIA/BACKAUDI.jpg">
+        <img src="GALERIA/R8LOGO.jpg">
+
+        <div class="carousel-buttons">
+          <button onclick="prevSlide(this)">‹</button>
+          <button onclick="nextSlide(this)">›</button>
+        </div>
+      </div>
+
+      <h3>Audi R8 2017</h3>
+      <p class="vendido">💲 VENDIDO 💲</p>
+
+      <table class="especificaciones">
+        <tr><td>Motor:</td><td>V10</td></tr>
+        <tr><td>Transmisión:</td><td>Automática</td></tr>
+        <tr><td>Extras:</td><td>Akrapovic, Quattro, interiores premium</td></tr>
+      </table>
+    </div>
+
+    <!-- CARD 5 Mustang Shelby -->
+    <div class="card">
+      <div class="carousel" data-index="0">
+        <img src="GALERIA/MUSTANGFRESKO1.jpg" class="active">
+        <img src="GALERIA/MUSTANGFRESKOUNDER.jpg">
+        <img src="GALERIA/MUSTANGG20.jpg">
+        <img src="GALERIA/MUSTANGDETRASG20.jpg">
+        <img src="GALERIA/MUSTANGINTERIORMIO.jpg">
+        <img src="GALERIA/MUSTANGPROMIO.jpg">
+
+        <div class="carousel-buttons">
+          <button onclick="prevSlide(this)">‹</button>
+          <button onclick="nextSlide(this)">›</button>
+        </div>
+      </div>
+
+      <h3>Mustang 2017 Conv. Shelby GT350</h3>
+      <p class="vendido">💲 VENDIDO 💲</p>
+
+      <table class="especificaciones">
+        <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
+        <tr><td>Transmisión:</td><td>Automática</td></tr>
+        <tr><td>Extras:</td><td>Headers, Brembo, Intake, bodykit GT350, Borla Attack</td></tr>
+      </table>
+    </div>
+
+  </div>
+
+  <a href="index.html" class="volver">Volver al inicio</a>
 </div>
-      <!-- CARD 4 - Audi R8 2017 -->
-<div class="card">
-  <div class="carousel" data-index="0">
-    <img src="GALERIA/FRONTAUDI.jpg" class="active" alt="Audi Frente">
-    <img src="GALERIA/BACKAUDI.jpg" alt="Audi detras">
-      <<img src="GALERIA/R8LOGO.jpg" alt="Audi logo">
-    <div class="carousel-buttons">
-      <button onclick="prevSlide(this)">‹</button>
-      <button onclick="nextSlide(this)">›</button>
-    </div>
- </div>
-  <h3>Audi R8 2017</h3>
-  <p class="vendido">💲 VENDIDO 💲</p>
-  <table class="especificaciones">
-    <tr><td>Motor:</td><td>V10</td></tr>
-    <tr><td>Transmisión:</td><td>Automática</td></tr>
-    <tr><td>Extras:</td><td>Escape Akrapovic, tracción Quattro, interiores de lujo.</td></tr>
-  </table>
- </div>
-         <!-- CARD 5 -->
-      <div class="card">
-        <div class="carousel" data-index="0">
-          <img src="GALERIA/MUSTANGFRESKO1.jpg" class="active" alt="Mustang 1">
-          <img src="GALERIA/MUSTANGFRESKOUNDER.jpg" alt="Mustang 2">
-          <img src="GALERIA/MUSTANGG20.jpg" alt="Mustang 3">
-          <img src="GALERIA/MUSTANGDETRASG20.jpg" alt="Mustang 4">
-          <img src="GALERIA/MUSTANGINTERIORMIO.jpg" alt="Mustang 5">
-          <img src="GALERIA/MUSTANGPROMIO.jpg" alt="Mustang 6">
-          <div class="carousel-buttons">
-            <button onclick="prevSlide(this)">‹</button>
-            <button onclick="nextSlide(this)">›</button>
-          </div>
-        </div>
-        <h3>Ford Mustang 2017 Conversion Shelby GT350</h3>
-        <p class="vendido">💲 VENDIDO 💲</p>
-        <table class="especificaciones">
-          <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
-          <tr><td>Transmisión:</td><td>Automatico</td></tr>
-          <tr><td>Extras:</td><td>Headers BBK Larges, Rines 20" progresivos,Big Brembo pack, JLT Filtro Intake, frente GT350 y aleron GT500, borla attack, x pipe.</td></tr>
-        </table>  
-    </div>
-        
-    <a href="index.html" class="volver">Volver al inicio</a>
-  </div>
-        
 
-  <script>
-    function nextSlide(button) {
-      const carousel = button.closest('.carousel');
-      const images = carousel.querySelectorAll('img');
-      let index = parseInt(carousel.dataset.index);
-      images[index].classList.remove('active');
-      index = (index + 1) % images.length;
-      images[index].classList.add('active');
-      carousel.dataset.index = index;
-    }
+<script>
+function nextSlide(btn) {
+  const carousel = btn.closest('.carousel');
+  const images = carousel.querySelectorAll('img');
+  let index = parseInt(carousel.dataset.index);
 
-    function prevSlide(button) {
-      const carousel = button.closest('.carousel');
-      const images = carousel.querySelectorAll('img');
-      let index = parseInt(carousel.dataset.index);
-      images[index].classList.remove('active');
-      index = (index - 1 + images.length) % images.length;
-      images[index].classList.add('active');
-      carousel.dataset.index = index;
-    }
-  </script>
+  images[index].classList.remove('active');
+  index = (index + 1) % images.length;
+  images[index].classList.add('active');
+
+  carousel.dataset.index = index;
+}
+
+function prevSlide(btn) {
+  const carousel = btn.closest('.carousel');
+  const images = carousel.querySelectorAll('img');
+  let index = parseInt(carousel.dataset.index);
+
+  images[index].classList.remove('active');
+  index = (index - 1 + images.length) % images.length;
+  images[index].classList.add('active');
+
+  carousel.dataset.index = index;
+}
+</script>
+
 </body>
 </html>
