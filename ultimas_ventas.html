@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Últimas Ventas - Los Cabos Motors</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" type="image/png" href="Images/loscabosmotorsweb.png">
 
   <style>
@@ -14,6 +17,7 @@
       background-color: #0c0c0c;
       color: white;
       font-family: 'Poppins', sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
@@ -24,7 +28,7 @@
     header {
       position: relative;
       background: url('Images/ultimasventas.png') center/cover no-repeat;
-       background-position: 50% 85%;
+      background-position: 50% 85%;
       height: 260px;
       display: flex;
       align-items: center;
@@ -33,10 +37,10 @@
     }
 
     header::before {
-      content:"";
+      content: "";
       position: absolute;
-      top:0; left:0;
-      width:100%; height:100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.55);
     }
 
@@ -68,36 +72,32 @@
       display: flex;
       justify-content: center;
       gap: 28px;
-      padding: 12px 0;
+      padding: 10px 0;
       background: rgba(0,0,0,0.25);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       z-index: 999;
+      transition: 0.3s ease;
     }
 
     nav a {
       color: #fff;
-      padding: 6px 12px;
+      padding: 5px 10px;
       font-size: 0.95rem;
       font-weight: 300;
+      letter-spacing: 0.5px;
       border-radius: 4px;
       transition: 0.25s ease;
     }
 
     nav a:hover {
       color: #ff3c3c;
-      background: rgba(255,60,60,0.2);
+      background: rgba(255,60,60,0.25);
     }
 
     @media (max-width: 600px) {
-      nav {
-        gap: 12px;
-        padding: 8px 0;
-      }
-      nav a {
-        font-size: 0.78rem;
-        padding: 5px 8px;
-      }
+      nav { gap: 14px; padding: 8px 0; }
+      nav a { font-size: 0.85rem; padding: 5px 8px; }
       h1 { font-size: 2rem; }
       h2 { font-size: 0.85rem; }
     }
@@ -105,53 +105,58 @@
     /* ---------------- CONTENEDOR ---------------- */
     .ventas-container {
       max-width: 1250px;
-      margin: auto;
-      padding: 30px 20px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
-    .ventas-container h2 {
+    .section-title {
       text-align: center;
       color: #ff3c3c;
       font-size: 2rem;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
 
-    /* ---------------- GRID ---------------- */
+    /* ---------------- GRID (ESTILO UNIFICADO) ---------------- */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 28px;
+      /* Ajustado a 260px para que el tamaño coincida con las tarjetas de inicio */
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
     }
 
     /* ---------------- CARD ---------------- */
     .card {
       background: rgba(255,255,255,0.05);
-      border-radius: 14px;
-      padding: 15px;
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(5px);
-      transition: 0.3s ease;
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.07);
+      backdrop-filter: blur(4px);
+      transition: transform 0.20s ease-out, box-shadow 0.20s ease-out;
+      display: flex;
+      flex-direction: column;
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.45);
     }
 
     /* ---------------- CAROUSEL ---------------- */
     .carousel {
       position: relative;
       overflow: hidden;
-      height: 210px;
-      border-radius: 12px;
+      /* Altura reducida a 180px para igualar proporciones del index */
+      height: 180px;
+      border-radius: 8px;
     }
 
     .carousel img {
       width: 100%;
-      height: 210px;
+      height: 180px;
       object-fit: cover;
       display: none;
       transition: opacity .25s ease;
+      will-change: opacity;
     }
 
     .carousel img.active {
@@ -165,102 +170,154 @@
       display: flex;
       justify-content: space-between;
       transform: translateY(-50%);
-      padding: 0 8px;
+      padding: 0 5px;
+      box-sizing: border-box;
+      pointer-events: none; /* Permite clickar imagen si en el futuro se quiere */
     }
 
     .carousel-buttons button {
       background: rgba(0,0,0,0.55);
       border: none;
       color: white;
-      padding: 6px 10px;
+      padding: 5px 9px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 14px;
       transition: 0.25s ease;
+      pointer-events: auto; /* Reactiva el click en los botones */
+      opacity: 0.85;
     }
 
     .carousel-buttons button:hover {
       background: #ff3c3c;
+      opacity: 1;
+      transform: scale(1.1);
     }
 
-    /* ---------------- TEXTO ---------------- */
+    /* ---------------- TEXTO Y ETIQUETA VENDIDO ---------------- */
     .card h3 {
-      margin: 14px 0 6px;
-      font-size: 1.25rem;
+      margin: 12px 0 8px;
+      font-size: 1.1rem;
+      font-weight: 500;
       color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .vendido {
+    /* Nuevo estilo profesional para "VENDIDO" */
+    .vendido-tag {
+      display: inline-block;
+      background-color: rgba(255, 60, 60, 0.15); /* Fondo rojo transparente */
       color: #ff3c3c;
-      font-weight: bold;
-      margin-bottom: 10px;
+      border: 1px solid rgba(255, 60, 60, 0.5);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      align-self: flex-start; /* Evita que ocupe todo el ancho */
+    }
+
+    /* ---------------- TABLA DE ESPECIFICACIONES ---------------- */
+    .specs-container {
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      padding: 8px;
+      border: 1px solid rgba(255,255,255,0.03);
+      flex-grow: 1; /* Empuja el contenido hacia abajo uniformemente */
     }
 
     .especificaciones {
       width: 100%;
-      color: #dcdcdc;
-      font-size: 0.9rem;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      color: #bbb;
     }
 
     .especificaciones td {
-      padding: 4px 6px;
+      padding: 6px 4px;
+      vertical-align: top;
+    }
+
+    /* Títulos de las filas (Motor, Transmisión, etc) */
+    .especificaciones tr td:first-child {
+      font-weight: 600;
+      color: #ddd;
+      width: 35%; /* Ancho fijo para alinear columnas */
+    }
+
+    .especificaciones tr:not(:last-child) {
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     /* ---------------- VOLVER ---------------- */
-    .volver {
-      display: block;
-      text-align: center;
-      margin-top: 40px;
+    .volver-btn {
+      display: table;
+      margin: 50px auto 20px auto;
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid #ff3c3c;
       color: #ff3c3c;
-      font-weight: bold;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: 0.3s;
     }
+
+    .volver-btn:hover {
+      background: #ff3c3c;
+      color: white;
+    }
+
   </style>
 </head>
 <body>
 
 <header>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="ventas.html">Artículos para carro</a>
+    <a href="ultimas_ventas.html">Últimas Ventas</a>
+    <a href="https://wa.me/526241181978">WhatsApp</a>
+  </nav>
+
   <div class="header-content">
     <h1>Últimas Ventas</h1>
     <h2>Así como muchos, puedes vender tu vehículo con nosotros</h2>
   </div>
 </header>
 
-<nav>
-  <a href="index.html">Inicio</a>
-  <a href="ventas.html">Artículos</a>
-  <a href="ultimas_ventas.html">Últimas Ventas</a>
-  <a href="https://wa.me/526241181978">WhatsApp</a>
-</nav>
-
 <div class="ventas-container">
-  <h2>Vehículos Vendidos</h2>
+  <h2 class="section-title">Vehículos Exitosamente Vendidos</h2>
 
   <div class="grid">
 
-    <!-- CARD 1 -->
     <div class="card">
       <div class="carousel" data-index="0">
-        <img src="Images/Xtrail2020S.jpg" class="active">
+        <img src="Images/Xtrail2020S.jpg" class="active" onerror="this.src='https://via.placeholder.com/400x300/222/fff?text=Sin+Imagen'">
         <div class="carousel-buttons">
-          <button onclick="prevSlide(this)">‹</button>
-          <button onclick="nextSlide(this)">›</button>
+          <button onclick="prevSlide(this)">&#10094;</button>
+          <button onclick="nextSlide(this)">&#10095;</button>
         </div>
       </div>
 
       <h3>Nissan Xtrail 2020 Sense</h3>
-      <p class="vendido">💲 VENDIDO 💲</p>
+      <div class="vendido-tag"><i class="fas fa-check-circle"></i> Vendido</div>
 
-      <table class="especificaciones">
-        <tr><td>Motor:</td><td>4 Cilindros</td></tr>
-        <tr><td>Transmisión:</td><td>Automática</td></tr>
-        <tr><td>Condiciones:</td><td>Perfectas, A/C, placas al día</td></tr>
-      </table>
+      <div class="specs-container">
+        <table class="especificaciones">
+          <tr><td>Motor:</td><td>4 Cilindros</td></tr>
+          <tr><td>Transmisión:</td><td>Automática</td></tr>
+          <tr><td>Condiciones:</td><td>Perfectas, A/C, placas al día</td></tr>
+        </table>
+      </div>
     </div>
 
-    <!-- CARD 2 Mustang -->
     <div class="card">
       <div class="carousel" data-index="0">
-        <img src="GALERIA/mustangfrente.jpg" class="active">
+        <img src="GALERIA/mustangfrente.jpg" class="active" onerror="this.src='https://via.placeholder.com/400x300/222/fff?text=Mustang'">
         <img src="GALERIA/mustandetras.png">
         <img src="GALERIA/mustangdentro.jpg">
         <img src="GALERIA/mustangfrenteizq.jpg">
@@ -268,68 +325,71 @@
         <img src="GALERIA/mustangpuertader.jpg">
 
         <div class="carousel-buttons">
-          <button onclick="prevSlide(this)">‹</button>
-          <button onclick="nextSlide(this)">›</button>
+          <button onclick="prevSlide(this)">&#10094;</button>
+          <button onclick="nextSlide(this)">&#10095;</button>
         </div>
       </div>
 
       <h3>Ford Mustang 2015 Blanco</h3>
-      <p class="vendido">💲 VENDIDO 💲</p>
+      <div class="vendido-tag"><i class="fas fa-check-circle"></i> Vendido</div>
 
-      <table class="especificaciones">
-        <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
-        <tr><td>Transmisión:</td><td>Manual</td></tr>
-        <tr><td>Extras:</td><td>Headers, sonido deportivo, polarizado stealth</td></tr>
-      </table>
+      <div class="specs-container">
+        <table class="especificaciones">
+          <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
+          <tr><td>Transmisión:</td><td>Manual</td></tr>
+          <tr><td>Extras:</td><td>Headers, sonido deportivo, polarizado stealth</td></tr>
+        </table>
+      </div>
     </div>
 
-    <!-- CARD 3 Polo -->
     <div class="card">
       <div class="carousel" data-index="0">
-        <img src="Images/Polo2020.jpg" class="active">
+        <img src="Images/Polo2020.jpg" class="active" onerror="this.src='https://via.placeholder.com/400x300/222/fff?text=Polo'">
         <div class="carousel-buttons">
-          <button onclick="prevSlide(this)">‹</button>
-          <button onclick="nextSlide(this)">›</button>
+          <button onclick="prevSlide(this)">&#10094;</button>
+          <button onclick="nextSlide(this)">&#10095;</button>
         </div>
       </div>
 
       <h3>Polo 2020 Sound & Design</h3>
-      <p class="vendido">💲 VENDIDO 💲</p>
+      <div class="vendido-tag"><i class="fas fa-check-circle"></i> Vendido</div>
 
-      <table class="especificaciones">
-        <tr><td>Motor:</td><td>1.6L</td></tr>
-        <tr><td>Transmisión:</td><td>Automática</td></tr>
-        <tr><td>Extras:</td><td>Sonido, rines, cámara reversa</td></tr>
-      </table>
+      <div class="specs-container">
+        <table class="especificaciones">
+          <tr><td>Motor:</td><td>1.6L</td></tr>
+          <tr><td>Transmisión:</td><td>Automática</td></tr>
+          <tr><td>Extras:</td><td>Sonido, rines, cámara reversa</td></tr>
+        </table>
+      </div>
     </div>
 
-    <!-- CARD 4 Audi R8 -->
     <div class="card">
       <div class="carousel" data-index="0">
-        <img src="GALERIA/FRONTAUDI.jpg" class="active">
+        <img src="GALERIA/FRONTAUDI.jpg" class="active" onerror="this.src='https://via.placeholder.com/400x300/222/fff?text=Audi+R8'">
         <img src="GALERIA/BACKAUDI.jpg">
         <img src="GALERIA/R8LOGO.jpg">
 
         <div class="carousel-buttons">
-          <button onclick="prevSlide(this)">‹</button>
-          <button onclick="nextSlide(this)">›</button>
+          <button onclick="prevSlide(this)">&#10094;</button>
+          <button onclick="nextSlide(this)">&#10095;</button>
         </div>
       </div>
 
       <h3>Audi R8 2017</h3>
-      <p class="vendido">💲 VENDIDO 💲</p>
+      <div class="vendido-tag"><i class="fas fa-check-circle"></i> Vendido</div>
 
-      <table class="especificaciones">
-        <tr><td>Motor:</td><td>V10</td></tr>
-        <tr><td>Transmisión:</td><td>Automática</td></tr>
-        <tr><td>Extras:</td><td>Akrapovic, Quattro, interiores premium</td></tr>
-      </table>
+      <div class="specs-container">
+        <table class="especificaciones">
+          <tr><td>Motor:</td><td>V10</td></tr>
+          <tr><td>Transmisión:</td><td>Automática</td></tr>
+          <tr><td>Extras:</td><td>Akrapovic, Quattro, interiores premium</td></tr>
+        </table>
+      </div>
     </div>
 
-    <!-- CARD 5 Mustang Shelby -->
     <div class="card">
       <div class="carousel" data-index="0">
-        <img src="GALERIA/MUSTANGFRESKO1.jpg" class="active">
+        <img src="GALERIA/MUSTANGFRESKO1.jpg" class="active" onerror="this.src='https://via.placeholder.com/400x300/222/fff?text=Shelby'">
         <img src="GALERIA/MUSTANGFRESKOUNDER.jpg">
         <img src="GALERIA/MUSTANGG20.jpg">
         <img src="GALERIA/MUSTANGDETRASG20.jpg">
@@ -337,48 +397,59 @@
         <img src="GALERIA/MUSTANGPROMIO.jpg">
 
         <div class="carousel-buttons">
-          <button onclick="prevSlide(this)">‹</button>
-          <button onclick="nextSlide(this)">›</button>
+          <button onclick="prevSlide(this)">&#10094;</button>
+          <button onclick="nextSlide(this)">&#10095;</button>
         </div>
       </div>
 
-      <h3>Mustang 2017 Conv. Shelby GT350</h3>
-      <p class="vendido">💲 VENDIDO 💲</p>
+      <h3>Mustang 17 Conv. Shelby GT350</h3>
+      <div class="vendido-tag"><i class="fas fa-check-circle"></i> Vendido</div>
 
-      <table class="especificaciones">
-        <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
-        <tr><td>Transmisión:</td><td>Automática</td></tr>
-        <tr><td>Extras:</td><td>Headers, Brembo, Intake, bodykit GT350, Borla Attack</td></tr>
-      </table>
+      <div class="specs-container">
+        <table class="especificaciones">
+          <tr><td>Motor:</td><td>V6 3.7 Cyclone</td></tr>
+          <tr><td>Transmisión:</td><td>Automática</td></tr>
+          <tr><td>Extras:</td><td>Headers, Brembo, Intake, bodykit GT350, Borla</td></tr>
+        </table>
+      </div>
     </div>
 
   </div>
 
-  <a href="index.html" class="volver">Volver al inicio</a>
+  <a href="index.html" class="volver-btn"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
 </div>
 
 <script>
+// Validamos si hay más de 1 imagen para mostrar u ocultar las flechas
+document.querySelectorAll('.carousel').forEach(carousel => {
+  const images = carousel.querySelectorAll('img');
+  const buttons = carousel.querySelector('.carousel-buttons');
+  if (images.length <= 1 && buttons) {
+    buttons.style.display = 'none'; // Oculta las flechas si solo hay 1 foto
+  }
+});
+
 function nextSlide(btn) {
   const carousel = btn.closest('.carousel');
   const images = carousel.querySelectorAll('img');
+  if(images.length <= 1) return;
+  
   let index = parseInt(carousel.dataset.index);
-
   images[index].classList.remove('active');
   index = (index + 1) % images.length;
   images[index].classList.add('active');
-
   carousel.dataset.index = index;
 }
 
 function prevSlide(btn) {
   const carousel = btn.closest('.carousel');
   const images = carousel.querySelectorAll('img');
-  let index = parseInt(carousel.dataset.index);
+  if(images.length <= 1) return;
 
+  let index = parseInt(carousel.dataset.index);
   images[index].classList.remove('active');
   index = (index - 1 + images.length) % images.length;
   images[index].classList.add('active');
-
   carousel.dataset.index = index;
 }
 </script>
