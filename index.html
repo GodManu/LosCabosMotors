@@ -107,60 +107,63 @@ nav a:hover {
 /* SECCIÓN AUTOS */
 /* ------------------------- */
 .autos {
-  /* ¡AQUÍ ESTABA EL DETALLE! Cambiado de 550px a 1200px para PC */
-  max-width: 1200px; 
+  max-width: 1300px; /* Un poco más ancho para dar espacio a la cuadrícula */
   margin: 60px auto;
   padding: 0 20px;
 }
 
 .section-title {
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 2rem; /* Ligeramente más pequeño */
   color: #ff3c3c;
   margin-bottom: 25px;
 }
 
-/* GRID NUEVO C2-A MINI */
+/* GRID OPTIMIZADO PARA TARJETAS PEQUEÑAS */
 .grid-c2a {
   display: grid;
-  /* Esta línea hace la magia responsiva automáticamente */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 22px;
+  /* AJUSTE: Mínimo 220px para que quepan más por fila en PC */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px; /* Espaciado ligeramente menor */
 }
 
 /* ------------------------------------------ */
-/* TARJETAS MINIMALISTAS C2-A OPTIMIZADAS */
+/* TARJETAS MICRO-MINIMALISTAS */
 /* ------------------------------------------ */
 .car-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 14px;
-  padding: 12px;
+  border-radius: 12px; /* Radio ligeramente menor */
+  padding: 10px; /* Menos padding interno */
   text-align: center;
   backdrop-filter: blur(4px);
   transition: transform 0.20s ease-out, box-shadow 0.20s ease-out;
   will-change: transform;
+  display: flex; /* Para asegurar alineación vertical */
+  flex-direction: column;
+  justify-content: space-between; /* Empuja el botón hacia abajo */
 }
 
 .car-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(255,60,60,0.25);
+  box-shadow: 0 6px 12px rgba(255,60,60,0.20);
 }
 
 /* ------------------------------------------ */
-/* MINI CARRUSEL OPTIMIZADO */
+/* MINI CARRUSEL - AHORA MÁS BAJO */
 /* ------------------------------------------ */
 .car-img-wrapper {
   position: relative;
   width: 100%;
-  height: 260px;
+  /* AJUSTE: Altura reducida de 260px a 180px para efecto "cuadro" */
+  height: 180px; 
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .car-img {
   width: 100%;
-  height: 260px;
+  height: 180px; /* Ajustar a la nueva altura */
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -175,227 +178,88 @@ nav a:hover {
   z-index: 2;
 }
 
-.car-img:not(.active) {
-  opacity: 0;
-  z-index: 1;
-}
-
-/* ------------------------------------------ */
-/* FLECHAS MANUALES */
-/* ------------------------------------------ */
+/* Flechas más pequeñas para el carrusel pequeño */
 .arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.55);
-  color: white;
-  border: none;
-  padding: 7px 11px;
-  cursor: pointer;
-  font-size: 18px;
-  border-radius: 50%;
-  z-index: 5;
-  opacity: 0.9;
-  transition: background 0.25s ease, transform 0.25s ease;
+  padding: 5px 9px;
+  font-size: 14px;
 }
-
-.arrow:hover {
-  background: #ff3c3c;
-  transform: translateY(-50%) scale(1.12);
-}
-
-.arrow.left { left: 8px; }
-.arrow.right { right: 8px; }
 
 /* ------------------------------------------ */
-/* TEXTO Y BOTONES */
+/* TEXTO Y BOTONES COMPACTOS */
 /* ------------------------------------------ */
 .car-card h3 {
-  margin-top: 15px;
-  font-size: 1.15rem;
-  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 1rem; /* Texto más pequeño */
+  font-weight: 600;
   color: #fff;
+  /* Limitar a 1 línea para mantener uniformidad si el nombre es largo */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .car-card p {
-  font-size: 0.85rem;
-  line-height: 1.25rem;
+  font-size: 0.78rem; /* Texto más pequeño */
+  line-height: 1.1rem;
   color: #bbb;
-  min-height: 40px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  min-height: 35px; /* Altura mínima para 2 líneas de texto */
+  /* Limitar a 2 líneas de texto */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 .tag-price {
   display: inline-block;
   background: #ff3c3c;
-  padding: 4px 10px;
-  font-size: 0.85rem;
+  padding: 3px 8px; /* Más compacto */
+  font-size: 0.8rem; /* Más pequeño */
   font-weight: 600;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  box-shadow: 0 0 6px rgba(255,0,0,0.35);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  box-shadow: 0 0 5px rgba(255,0,0,0.3);
 }
 
 .ws-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 14px;
-  font-size: 0.85rem;
+  display: block; /* Ocupa todo el ancho disponible */
+  margin-top: auto; /* Empuja el botón al fondo de la tarjeta */
+  padding: 7px 10px;
+  font-size: 0.8rem;
   background: #25D366;
   color: #fff;
   border-radius: 6px;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: 0.2s;
 }
 
 .ws-btn:hover {
   background: #1ebe59;
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
 /* ------------------------- */
-/* QUIÉNES SOMOS */
+/* RESTO DE ESTILOS (IGUALES) */
 /* ------------------------- */
-.quienes {
-  background: #111;
-  padding: 50px 20px;
-  text-align: center;
-  margin-top: 60px;
-  border-top: 1px solid #222;
-  border-bottom: 1px solid #222;
-}
-
-.quienes h2 {
-  color: #ff3c3c;
-  font-size: 2rem;
-  margin-bottom: 15px;
-}
-
-.quienes p {
-  max-width: 750px;
-  margin: auto;
-  color: #ccc;
-  font-size: 1.08rem;
-}
-
-/* ------------------------- */
-/* FORMULARIO */
-/* ------------------------- */
-.formulario {
-  max-width: 900px;
-  margin: 70px auto;
-  padding: 0 20px;
-}
-
-.formulario h2 {
-  text-align: center;
-  font-size: 2rem;
-  color: #ff3c3c;
-  margin-bottom: 10px;
-}
-
-.subtexto {
-  text-align: center;
-  color: #ccc;
-  margin-bottom: 25px;
-  font-size: 1rem;
-}
-
-.form-card {
-  background: rgba(255,255,255,0.05);
-  padding: 28px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,60,60,0.25);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 18px rgba(255,60,60,0.15);
-  transition: 0.3s;
-}
-
-.form-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 30px rgba(255,60,60,0.35);
-}
-
-.form-grid {
-  display: grid;
-  gap: 18px;
-  grid-template-columns: 1fr 1fr;
-}
-
-.form-grid textarea {
-  grid-column: span 2;
-}
-
-.form-card input,
-.form-card textarea {
-  width: 100%;
-  padding: 14px;
-  font-size: 1rem;
-  background: rgba(0,0,0,0.45);
-  border: 1px solid #333;
-  border-radius: 10px;
-  color: white;
-  box-sizing: border-box; /* Previene que los inputs se salgan del div */
-  transition: 0.25s ease;
-}
-
-.form-card input::placeholder,
-.form-card textarea::placeholder {
-  color: #888;
-}
-
-.form-card input:focus,
-.form-card textarea:focus {
-  background: rgba(0,0,0,0.65);
-  border-color: #ff3c3c;
-  outline: none;
-}
-
-.btn-enviar {
-  width: 100%;
-  margin-top: 12px;
-  padding: 15px;
-  background: #ff3c3c;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-size: 1.15rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.btn-enviar:hover {
-  background: #e02f2f;
-  transform: scale(1.03);
-}
-
-.form-status {
-  text-align: center;
-  margin-top: 16px;
-  font-size: 1rem;
-}
-
-@media (max-width: 700px) {
-  .form-grid { grid-template-columns: 1fr; }
-  .form-grid textarea { grid-column: span 1; }
-}
-
-/* ------------------------- */
-/* FOOTER */
-/* ------------------------- */
-footer {
-  background: black;
-  text-align: center;
-  padding: 20px;
-  margin-top: 60px;
-  color: #aaa;
-  border-top: 1px solid #222;
-  font-size: 0.95rem;
-}
-
-@media (max-width: 768px) {
-  header h1 { font-size: 2rem; }
-}
+.quienes { background: #111; padding: 50px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #222; border-bottom: 1px solid #222; }
+.quienes h2 { color: #ff3c3c; font-size: 2rem; margin-bottom: 15px; }
+.quienes p { max-width: 750px; margin: auto; color: #ccc; font-size: 1.08rem; }
+.formulario { max-width: 900px; margin: 70px auto; padding: 0 20px; }
+.formulario h2 { text-align: center; font-size: 2rem; color: #ff3c3c; margin-bottom: 10px; }
+.subtexto { text-align: center; color: #ccc; margin-bottom: 25px; font-size: 1rem; }
+.form-card { background: rgba(255,255,255,0.05); padding: 28px; border-radius: 14px; border: 1px solid rgba(255,60,60,0.25); backdrop-filter: blur(8px); box-shadow: 0 0 18px rgba(255,60,60,0.15); transition: 0.3s; }
+.form-card:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(255,60,60,0.35); }
+.form-grid { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
+.form-grid textarea { grid-column: span 2; }
+.form-card input, .form-card textarea { width: 100%; padding: 14px; font-size: 1rem; background: rgba(0,0,0,0.45); border: 1px solid #333; border-radius: 10px; color: white; box-sizing: border-box; transition: 0.25s ease; }
+.form-card input:focus, .form-card textarea:focus { background: rgba(0,0,0,0.65); border-color: #ff3c3c; outline: none; }
+.btn-enviar { width: 100%; margin-top: 12px; padding: 15px; background: #ff3c3c; border: none; border-radius: 10px; color: white; font-size: 1.15rem; font-weight: bold; cursor: pointer; transition: 0.25s ease; }
+.form-status { text-align: center; margin-top: 16px; font-size: 1rem; }
+@media (max-width: 700px) { .form-grid { grid-template-columns: 1fr; } .form-grid textarea { grid-column: span 1; } }
+footer { background: black; text-align: center; padding: 20px; margin-top: 60px; color: #aaa; border-top: 1px solid #222; font-size: 0.95rem; }
+@media (max-width: 768px) { header h1 { font-size: 2rem; } }
 </style>
 </head>
 <body>
@@ -420,24 +284,61 @@ footer {
       <div class="car-img-wrapper">
         <img src="GALERIA/camaro1.jpg" class="car-img active">
         <img src="GALERIA/camaro2.jpg" class="car-img">
-        <img src="GALERIA/camaro3.jpg" class="car-img">
-        <img src="GALERIA/camaro4.jpg" class="car-img">
-        <img src="GALERIA/camaro5.jpg" class="car-img">
-        <img src="GALERIA/camaro6.jpg" class="car-img">
-        <img src="GALERIA/camaro7.jpg" class="car-img">
-
         <button class="arrow left">&#10094;</button>
         <button class="arrow right">&#10095;</button>
       </div>
 
-      <span class="tag-price">$210,000 MXN</span>
-      <h3>Camaro 2010 2SS</h3>
-      <p>Short headers, 6.2 L99, Flowmaster, poco millaje, interiores en excelente estado.</p>
+      <div class="car-info-content"> <h3>Camaro 2010 2SS</h3>
+        <span class="tag-price">$210,000 MXN</span>
+        <p>Short headers, 6.2 L99, Flowmaster, poco millaje, interiores impecables.</p>
+      </div>
 
       <a href="https://wa.me/526241181978?text=Hola,%20estoy%20interesado%20en%20el%20Camaro%202010%202SS" 
          target="_blank" class="ws-btn">
          <i class="fab fa-whatsapp"></i> WhatsApp
       </a>
+    </div>
+
+    <div class="car-card">
+      <div class="car-img-wrapper">
+        <img src="https://via.placeholder.com/400x300/222/fff?text=Auto+Demo+2" class="car-img active">
+        <button class="arrow left">&#10094;</button>
+        <button class="arrow right">&#10095;</button>
+      </div>
+      <div class="car-info-content">
+        <h3>Mustang GT 2015</h3>
+        <span class="tag-price">$350,000 MXN</span>
+        <p>Piel, automático, rines deportivos, excelentes condiciones generales.</p>
+      </div>
+      <a href="#" class="ws-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+
+    <div class="car-card">
+      <div class="car-img-wrapper">
+        <img src="https://via.placeholder.com/400x300/222/fff?text=Auto+Demo+3" class="car-img active">
+        <button class="arrow left">&#10094;</button>
+        <button class="arrow right">&#10095;</button>
+      </div>
+      <div class="car-info-content">
+        <h3>Challenger SRT</h3>
+        <span class="tag-price">$420,000 MXN</span>
+        <p>Hemi 6.4, sonido Harman Kardon, solo para exigentes.</p>
+      </div>
+      <a href="#" class="ws-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+
+    <div class="car-card">
+      <div class="car-img-wrapper">
+        <img src="https://via.placeholder.com/400x300/222/fff?text=Auto+Demo+4" class="car-img active">
+        <button class="arrow left">&#10094;</button>
+        <button class="arrow right">&#10095;</button>
+      </div>
+      <div class="car-info-content">
+        <h3>Nissan 370Z</h3>
+        <span class="tag-price">$290,000 MXN</span>
+        <p>Estándar, touring package, mantenimiento al día.</p>
+      </div>
+      <a href="#" class="ws-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
     
     </div>
@@ -488,11 +389,12 @@ document.querySelectorAll('.car-img-wrapper').forEach(wrapper => {
   let index = 0;
 
   function showImage(i) {
+    if(images.length === 0) return;
     images.forEach(img => img.classList.remove('active'));
     images[i].classList.add('active');
   }
 
-  if (prevBtn) {
+  if (prevBtn && images.length > 0) {
     prevBtn.addEventListener('click', () => {
       index--;
       if (index < 0) index = images.length - 1;
@@ -500,7 +402,7 @@ document.querySelectorAll('.car-img-wrapper').forEach(wrapper => {
     });
   }
 
-  if (nextBtn) {
+  if (nextBtn && images.length > 0) {
     nextBtn.addEventListener('click', () => {
       index++;
       if (index >= images.length) index = 0;
@@ -532,7 +434,6 @@ const statusEl = document.getElementById('form-status');
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  // CORRECCIÓN AQUÍ: Se debe extraer el .value del elemento HTML directamente.
   const nombreVal = document.getElementById('nombre').value;
   const emailVal = document.getElementById('email').value;
   const telefonoVal = document.getElementById('telefono').value;
