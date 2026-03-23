@@ -107,24 +107,22 @@ nav a:hover {
 /* SECCIÓN AUTOS */
 /* ------------------------- */
 .autos {
-  max-width: 1300px; /* Un poco más ancho para dar espacio a la cuadrícula */
+  max-width: 1300px;
   margin: 60px auto;
   padding: 0 20px;
 }
 
 .section-title {
   text-align: center;
-  font-size: 2rem; /* Ligeramente más pequeño */
+  font-size: 2rem;
   color: #ff3c3c;
   margin-bottom: 25px;
 }
 
-/* GRID OPTIMIZADO PARA TARJETAS PEQUEÑAS */
 .grid-c2a {
   display: grid;
-  /* AJUSTE: Mínimo 220px para que quepan más por fila en PC */
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px; /* Espaciado ligeramente menor */
+  gap: 20px;
 }
 
 /* ------------------------------------------ */
@@ -133,15 +131,15 @@ nav a:hover {
 .car-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 12px; /* Radio ligeramente menor */
-  padding: 10px; /* Menos padding interno */
+  border-radius: 12px;
+  padding: 10px;
   text-align: center;
   backdrop-filter: blur(4px);
   transition: transform 0.20s ease-out, box-shadow 0.20s ease-out;
   will-change: transform;
-  display: flex; /* Para asegurar alineación vertical */
+  display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Empuja el botón hacia abajo */
+  justify-content: space-between;
 }
 
 .car-card:hover {
@@ -150,12 +148,44 @@ nav a:hover {
 }
 
 /* ------------------------------------------ */
-/* MINI CARRUSEL - AHORA MÁS BAJO */
+/* ESTILO PARA ESPACIO DISPONIBLE (SLOT) */
+/* ------------------------------------------ */
+.empty-slot {
+  border: 2px dashed rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.2);
+  opacity: 0.7;
+  justify-content: center;
+  align-items: center;
+  min-height: 320px; /* Para que quede del mismo tamaño que las tarjetas con foto */
+}
+
+.empty-slot:hover {
+  opacity: 1;
+  border-color: rgba(255,255,255,0.3);
+  box-shadow: 0 6px 12px rgba(255,255,255,0.05);
+}
+
+.empty-icon {
+  font-size: 3.5rem;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.empty-slot h3 {
+  color: #888;
+  font-weight: 400;
+}
+
+.empty-slot p {
+  color: #666;
+}
+
+/* ------------------------------------------ */
+/* MINI CARRUSEL */
 /* ------------------------------------------ */
 .car-img-wrapper {
   position: relative;
   width: 100%;
-  /* AJUSTE: Altura reducida de 260px a 180px para efecto "cuadro" */
   height: 180px; 
   overflow: hidden;
   border-radius: 8px;
@@ -163,7 +193,7 @@ nav a:hover {
 
 .car-img {
   width: 100%;
-  height: 180px; /* Ajustar a la nueva altura */
+  height: 180px;
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -178,55 +208,72 @@ nav a:hover {
   z-index: 2;
 }
 
-/* Flechas más pequeñas para el carrusel pequeño */
 .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.55);
+  color: white;
+  border: none;
   padding: 5px 9px;
+  cursor: pointer;
   font-size: 14px;
+  border-radius: 50%;
+  z-index: 5;
+  opacity: 0.9;
+  transition: background 0.25s ease, transform 0.25s ease;
 }
 
+.arrow:hover {
+  background: #ff3c3c;
+  transform: translateY(-50%) scale(1.12);
+}
+
+.arrow.left { left: 8px; }
+.arrow.right { right: 8px; }
+
 /* ------------------------------------------ */
-/* TEXTO Y BOTONES COMPACTOS */
+/* TEXTO Y BOTONES */
 /* ------------------------------------------ */
 .car-card h3 {
   margin-top: 10px;
   margin-bottom: 5px;
-  font-size: 1rem; /* Texto más pequeño */
+  font-size: 1rem;
   font-weight: 600;
   color: #fff;
-  /* Limitar a 1 línea para mantener uniformidad si el nombre es largo */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .car-card p {
-  font-size: 0.78rem; /* Texto más pequeño */
+  font-size: 0.78rem;
   line-height: 1.1rem;
   color: #bbb;
   margin-top: 0;
   margin-bottom: 10px;
-  min-height: 35px; /* Altura mínima para 2 líneas de texto */
-  /* Limitar a 2 líneas de texto */
+  min-height: 35px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
 
+/* ¡CAMBIO DE COLOR A VERDE AQUÍ! */
 .tag-price {
   display: inline-block;
-  background: #ff3c3c;
-  padding: 3px 8px; /* Más compacto */
-  font-size: 0.8rem; /* Más pequeño */
+  background: #28a745; /* Verde vibrante */
+  padding: 3px 8px;
+  font-size: 0.8rem;
   font-weight: 600;
   border-radius: 4px;
   margin-bottom: 8px;
-  box-shadow: 0 0 5px rgba(255,0,0,0.3);
+  box-shadow: 0 0 5px rgba(40,167,69,0.4); /* Sombra verde */
 }
 
 .ws-btn {
-  display: block; /* Ocupa todo el ancho disponible */
-  margin-top: auto; /* Empuja el botón al fondo de la tarjeta */
+  display: block;
+  margin-top: auto;
   padding: 7px 10px;
   font-size: 0.8rem;
   background: #25D366;
@@ -241,7 +288,7 @@ nav a:hover {
 }
 
 /* ------------------------- */
-/* RESTO DE ESTILOS (IGUALES) */
+/* QUIÉNES SOMOS Y FORMULARIO (Mismos estilos) */
 /* ------------------------- */
 .quienes { background: #111; padding: 50px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #222; border-bottom: 1px solid #222; }
 .quienes h2 { color: #ff3c3c; font-size: 2rem; margin-bottom: 15px; }
@@ -282,13 +329,16 @@ footer { background: black; text-align: center; padding: 20px; margin-top: 60px;
     
     <div class="car-card">
       <div class="car-img-wrapper">
-        <img src="GALERIA/camaro1.jpg" class="car-img active">
+        <img src="GALERIA/camaro1.jpg" class="car-img active" onerror="this.src='https://via.placeholder.com/400x300/222/fff?text=Camaro'">
         <img src="GALERIA/camaro2.jpg" class="car-img">
+        <img src="GALERIA/camaro3.jpg" class="car-img">
+        
         <button class="arrow left">&#10094;</button>
         <button class="arrow right">&#10095;</button>
       </div>
 
-      <div class="car-info-content"> <h3>Camaro 2010 2SS</h3>
+      <div class="car-info-content">
+        <h3>Camaro 2010 2SS</h3>
         <span class="tag-price">$210,000 MXN</span>
         <p>Short headers, 6.2 L99, Flowmaster, poco millaje, interiores impecables.</p>
       </div>
@@ -299,61 +349,57 @@ footer { background: black; text-align: center; padding: 20px; margin-top: 60px;
       </a>
     </div>
 
-    <div class="car-card">
-      <div class="car-img-wrapper">
-        <img src="https://via.placeholder.com/400x300/222/fff?text=Auto+Demo+2" class="car-img active">
-        <button class="arrow left">&#10094;</button>
-        <button class="arrow right">&#10095;</button>
-      </div>
+    <div class="car-card empty-slot">
+      <div class="empty-icon"><i class="fas fa-car"></i></div>
       <div class="car-info-content">
-        <h3>Mustang GT 2015</h3>
-        <span class="tag-price">$350,000 MXN</span>
-        <p>Piel, automático, rines deportivos, excelentes condiciones generales.</p>
+        <h3>Espacio Disponible</h3>
+        <p>En espera de un nuevo vehículo para ser agregado al catálogo.</p>
       </div>
-      <a href="#" class="ws-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
 
-    <div class="car-card">
-      <div class="car-img-wrapper">
-        <img src="https://via.placeholder.com/400x300/222/fff?text=Auto+Demo+3" class="car-img active">
-        <button class="arrow left">&#10094;</button>
-        <button class="arrow right">&#10095;</button>
-      </div>
+    <div class="car-card empty-slot">
+      <div class="empty-icon"><i class="fas fa-car-side"></i></div>
       <div class="car-info-content">
-        <h3>Challenger SRT</h3>
-        <span class="tag-price">$420,000 MXN</span>
-        <p>Hemi 6.4, sonido Harman Kardon, solo para exigentes.</p>
+        <h3>Próximamente</h3>
+        <p>Preparando nuevos ingresos para esta categoría.</p>
       </div>
-      <a href="#" class="ws-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
 
-    <div class="car-card">
-      <div class="car-img-wrapper">
-        <img src="https://via.placeholder.com/400x300/222/fff?text=Auto+Demo+4" class="car-img active">
-        <button class="arrow left">&#10094;</button>
-        <button class="arrow right">&#10095;</button>
-      </div>
+    <div class="car-card empty-slot">
+      <div class="empty-icon"><i class="fas fa-tags"></i></div>
       <div class="car-info-content">
-        <h3>Nissan 370Z</h3>
-        <span class="tag-price">$290,000 MXN</span>
-        <p>Estándar, touring package, mantenimiento al día.</p>
+        <h3>Espacio Disponible</h3>
+        <p>En espera de un nuevo vehículo para ser agregado al catálogo.</p>
       </div>
-      <a href="#" class="ws-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
     
-    </div>
+  </div>
 </section>
 
 <section class="autos">
   <h2 class="section-title">Autos Casuales</h2>
   <div class="grid-c2a">
+    <div class="car-card empty-slot">
+      <div class="empty-icon"><i class="fas fa-car"></i></div>
+      <div class="car-info-content">
+        <h3>Espacio Disponible</h3>
+        <p>En espera de autos casuales para ser agregados.</p>
+      </div>
     </div>
+  </div>
 </section>
 
 <section class="autos">
   <h2 class="section-title">Autos Todoterreno, 4x4</h2>
   <div class="grid-c2a">
+    <div class="car-card empty-slot">
+      <div class="empty-icon"><i class="fas fa-truck-pickup"></i></div>
+      <div class="car-info-content">
+        <h3>Espacio Disponible</h3>
+        <p>En espera de vehículos todoterreno para ser agregados.</p>
+      </div>
     </div>
+  </div>
 </section>
 
 <section class="quienes">
