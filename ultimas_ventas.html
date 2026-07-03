@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendidos — Los Cabos Motors</title>
+<meta name="description" content="Vehículos vendidos a través de Los Cabos Motors. Así como ellos, tú también puedes vender tu auto con nosotros.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" type="image/png" href="Images/loscabosmotorsweb.png">
+<link rel="stylesheet" href="assets/lcm.css">
+
+<style>
+.page-hero { position: relative; padding: clamp(54px,9vw,96px) 0 clamp(40px,6vw,64px); overflow: hidden; border-bottom: 1px solid var(--line); }
+.page-hero::before { content:""; position:absolute; inset:0; background: url('Images/ultimasventas.png') center 70%/cover no-repeat; opacity:.28; }
+.page-hero::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(10,9,8,.6), rgba(10,9,8,.92)); }
+.page-hero .wrap { position: relative; z-index: 2; }
+.page-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.2rem,6vw,3.8rem); margin: 14px 0 0; letter-spacing: -.02em; line-height: .95; }
+.page-hero p { color: var(--fog); margin: 14px 0 0; max-width: 54ch; font-size: 1.05rem; }
+.sold-meta { display:flex; gap:28px; flex-wrap:wrap; margin-top:24px; }
+.sold-meta div strong { font-family:var(--display); font-weight:800; font-size:1.8rem; color:var(--sand); display:block; line-height:1; }
+.sold-meta div span { font-size:.8rem; color:var(--fog); }
+
+.sold-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; }
+.sold {
+  background: var(--ink-3); border: 1px solid var(--line); border-radius: var(--r);
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.sold:hover { transform: translateY(-6px); border-color: rgba(216,184,120,.35); box-shadow: var(--shadow); }
+.lcm-carousel { position: relative; aspect-ratio: 4/3; overflow: hidden; background:#000; }
+.lcm-carousel .slide { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .5s ease; }
+.lcm-carousel .slide.on { opacity:1; }
+.lcm-carousel::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 55%, rgba(10,9,8,.5)); pointer-events:none; }
+.car-prev,.car-next { position:absolute; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:rgba(10,9,8,.6); color:#fff; border:1px solid var(--line); cursor:pointer; z-index:3; display:grid; place-items:center; transition:background .2s, transform .2s; backdrop-filter:blur(4px); }
+.car-prev:hover,.car-next:hover { background:var(--red); transform:translateY(-50%) scale(1.08); }
+.car-prev{left:10px;} .car-next{right:10px;}
+.car-dots { position:absolute; left:0; right:0; bottom:10px; z-index:3; display:flex; gap:6px; justify-content:center; }
+.car-dot { width:7px; height:7px; border-radius:50%; border:none; background:rgba(255,255,255,.4); cursor:pointer; padding:0; }
+.car-dot.on { background:var(--sand); width:18px; border-radius:4px; }
+.sold-tag { position:absolute; top:12px; left:12px; z-index:3; font-family:var(--display); font-weight:700; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; padding:5px 11px; border-radius:6px; background:rgba(225,29,42,.16); color:#ff6b73; border:1px solid rgba(225,29,42,.5); backdrop-filter:blur(4px); display:inline-flex; align-items:center; gap:6px; }
+.sold-body { padding: 16px 16px 18px; display:flex; flex-direction:column; gap:12px; flex:1; }
+.sold-title { font-family:var(--display); font-weight:700; font-size:1.16rem; margin:0; }
+.specs { width:100%; border-collapse:collapse; font-size:.84rem; }
+.specs td { padding:8px 4px; border-bottom:1px solid var(--line-soft); vertical-align:top; color:var(--fog); }
+.specs tr:last-child td { border-bottom:none; }
+.specs td:first-child { color:var(--sand); font-family:var(--display); font-weight:600; width:38%; }
+.sell-cta { margin-top: clamp(40px,7vw,64px); text-align:center; background: linear-gradient(180deg, var(--ink-3), var(--ink-2)); border:1px solid var(--line); border-radius: var(--r); padding: clamp(34px,6vw,56px); }
+.sell-cta h2 { font-family:var(--display); font-weight:800; font-size: clamp(1.6rem,4vw,2.4rem); margin:8px 0 12px; letter-spacing:-.02em; }
+.sell-cta p { color:var(--fog); max-width:48ch; margin: 0 auto 24px; }
+</style>
+</head>
+<body>
+
+<nav class="lcm-nav">
+  <a href="index.html" class="lcm-brand">
+    <img src="Images/loscabosmotorsweb.png" alt="Los Cabos Motors">
+    <span>LOS CABOS <b>MOTORS</b></span>
+  </a>
+  <button class="lcm-burger" aria-label="Menú" aria-expanded="false"><i class="fas fa-bars"></i></button>
+  <div class="lcm-links">
+    <a href="index.html">Inicio</a>
+    <a href="ultimas_ventas.html" class="active">Vendidos</a>
+    <a href="ventas.html">Accesorios</a>
+    <a href="https://wa.me/526241181978" class="wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Historial de ventas</span>
+    <h1>Vehículos que ya<br>encontraron dueño</h1>
+    <p>Cada uno se vendió con trato directo y honesto. Así como ellos, tú también puedes vender tu auto con nosotros.</p>
+    <div class="sold-meta">
+      <div><strong>5</strong><span>Vehículos vendidos</span></div>
+      <div><strong>100%</strong><span>Operaciones completadas</span></div>
+      <div><strong>BCS</strong><span>Entregados en Los Cabos</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="section wrap reveal">
+  <div class="sold-grid">
+
+    <article class="sold">
+      <div class="lcm-carousel">
+        <span class="sold-tag"><i class="fas fa-circle-check"></i> Vendido</span>
+        <img src="Images/Xtrail2020S.jpg" class="slide on" alt="Nissan Xtrail 2020" onerror="this.src='https://via.placeholder.com/600x450/1b1917/d8b878?text=Xtrail'">
+      </div>
+      <div class="sold-body">
+        <h3 class="sold-title">Nissan Xtrail 2020 Sense</h3>
+        <table class="specs">
+          <tr><td>Motor</td><td>4 cilindros</td></tr>
+          <tr><td>Transmisión</td><td>Automática</td></tr>
+          <tr><td>Condiciones</td><td>Perfectas, A/C, placas al día</td></tr>
+        </table>
+      </div>
+    </article>
+
+    <article class="sold">
+      <div class="lcm-carousel">
+        <span class="sold-tag"><i class="fas fa-circle-check"></i> Vendido</span>
+        <img src="GALERIA/mustangfrente.jpg" class="slide on" alt="Ford Mustang 2015 frente" onerror="this.src='https://via.placeholder.com/600x450/1b1917/d8b878?text=Mustang'">
+        <img src="GALERIA/mustandetras.png" class="slide" alt="Mustang trasera">
+        <img src="GALERIA/mustangdentro.jpg" class="slide" alt="Mustang interior">
+        <img src="GALERIA/mustangfrenteizq.jpg" class="slide" alt="Mustang frente izquierdo">
+        <img src="GALERIA/mustangladoder.jpg" class="slide" alt="Mustang lado derecho">
+        <img src="GALERIA/mustangpuertader.jpg" class="slide" alt="Mustang puerta">
+        <button class="car-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+        <button class="car-next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+        <div class="car-dots"></div>
+      </div>
+      <div class="sold-body">
+        <h3 class="sold-title">Ford Mustang 2015 Blanco</h3>
+        <table class="specs">
+          <tr><td>Motor</td><td>V6 3.7 Cyclone</td></tr>
+          <tr><td>Transmisión</td><td>Manual</td></tr>
+          <tr><td>Extras</td><td>Headers, sonido deportivo, polarizado stealth</td></tr>
+        </table>
+      </div>
+    </article>
+
+    <article class="sold">
+      <div class="lcm-carousel">
+        <span class="sold-tag"><i class="fas fa-circle-check"></i> Vendido</span>
+        <img src="Images/Polo2020.jpg" class="slide on" alt="Volkswagen Polo 2020" onerror="this.src='https://via.placeholder.com/600x450/1b1917/d8b878?text=Polo'">
+      </div>
+      <div class="sold-body">
+        <h3 class="sold-title">Polo 2020 Sound &amp; Design</h3>
+        <table class="specs">
+          <tr><td>Motor</td><td>1.6L</td></tr>
+          <tr><td>Transmisión</td><td>Automática</td></tr>
+          <tr><td>Extras</td><td>Sonido, rines, cámara de reversa</td></tr>
+        </table>
+      </div>
+    </article>
+
+    <article class="sold">
+      <div class="lcm-carousel">
+        <span class="sold-tag"><i class="fas fa-circle-check"></i> Vendido</span>
+        <img src="GALERIA/FRONTAUDI.jpg" class="slide on" alt="Audi R8 2017 frente" onerror="this.src='https://via.placeholder.com/600x450/1b1917/d8b878?text=Audi+R8'">
+        <img src="GALERIA/BACKAUDI.jpg" class="slide" alt="Audi R8 trasera">
+        <img src="GALERIA/R8LOGO.jpg" class="slide" alt="Audi R8 detalle">
+        <button class="car-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+        <button class="car-next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+        <div class="car-dots"></div>
+      </div>
+      <div class="sold-body">
+        <h3 class="sold-title">Audi R8 2017</h3>
+        <table class="specs">
+          <tr><td>Motor</td><td>V10</td></tr>
+          <tr><td>Transmisión</td><td>Automática</td></tr>
+          <tr><td>Extras</td><td>Akrapovic, Quattro, interiores premium</td></tr>
+        </table>
+      </div>
+    </article>
+
+    <article class="sold">
+      <div class="lcm-carousel">
+        <span class="sold-tag"><i class="fas fa-circle-check"></i> Vendido</span>
+        <img src="GALERIA/MUSTANGFRESKO1.jpg" class="slide on" alt="Mustang Shelby GT350 frente" onerror="this.src='https://via.placeholder.com/600x450/1b1917/d8b878?text=Shelby'">
+        <img src="GALERIA/MUSTANGFRESKOUNDER.jpg" class="slide" alt="Shelby detalle">
+        <img src="GALERIA/MUSTANGG20.jpg" class="slide" alt="Shelby lateral">
+        <img src="GALERIA/MUSTANGDETRASG20.jpg" class="slide" alt="Shelby trasera">
+        <img src="GALERIA/MUSTANGINTERIORMIO.jpg" class="slide" alt="Shelby interior">
+        <img src="GALERIA/MUSTANGPROMIO.jpg" class="slide" alt="Shelby promo">
+        <button class="car-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+        <button class="car-next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+        <div class="car-dots"></div>
+      </div>
+      <div class="sold-body">
+        <h3 class="sold-title">Mustang 2017 Conv. Shelby GT350</h3>
+        <table class="specs">
+          <tr><td>Motor</td><td>V6 3.7 Cyclone</td></tr>
+          <tr><td>Transmisión</td><td>Automática</td></tr>
+          <tr><td>Extras</td><td>Headers, Brembo, Intake, bodykit GT350, Borla</td></tr>
+        </table>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="sell-cta reveal">
+    <span class="eyebrow">Tu turno</span>
+    <h2>¿Quieres vender tu auto?</h2>
+    <p>Nos encargamos de mostrarlo, atender a los interesados y acompañar la operación hasta la entrega.</p>
+    <a class="btn btn-wa" target="_blank" href="https://wa.me/526241181978?text=Hola,%20quiero%20vender%20mi%20auto%20con%20Los%20Cabos%20Motors">
+      <i class="fab fa-whatsapp"></i> Vender mi auto por WhatsApp
+    </a>
+  </div>
+</main>
+
+<footer class="lcm-footer">
+  <div class="wrap">
+    <div class="brand-line"><img src="Images/loscabosmotorsweb.png" alt=""><span>LOS CABOS <b>MOTORS</b></span></div>
+    <div class="foot-links">
+      <a href="index.html">Inicio</a>
+      <a href="ultimas_ventas.html">Vendidos</a>
+      <a href="ventas.html">Accesorios</a>
+      <a href="https://wa.me/526241181978">WhatsApp</a>
+    </div>
+    <div class="copy">© 2026 Los Cabos Motors · El puente entre el comprador y el vendedor · Los Cabos, BCS</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/526241181978" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<script src="assets/lcm.js"></script>
+</body>
+</html>
