@@ -3,73 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accesorios — Los Cabos Motors</title>
-<meta name="description" content="Accesorios y repuestos para tu auto en Los Cabos, BCS. Aparta y paga, te llega tu pedido por WhatsApp.">
+<title>Accesorios y repuestos | Los Cabos Motors</title>
+<meta name="description" content="Accesorios y repuestos para tu auto en Los Cabos, BCS. Arma tu pedido y recíbelo por WhatsApp. Envíos en Los Cabos.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://loscabosmotors.com/ventas.html">
+<meta property="og:title" content="Accesorios y repuestos | Los Cabos Motors">
+<meta property="og:description" content="Aparta y paga: arma tu pedido de accesorios y repuestos para tu auto en Los Cabos.">
+<meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="icon" type="image/png" href="Images/loscabosmotorsweb.png">
-<link rel="stylesheet" href="assets/lcm.css">
+<link rel="stylesheet" href="assets/lcm.css?v=3">
 
 <style>
-.page-hero { position: relative; padding: clamp(54px,9vw,90px) 0 clamp(36px,5vw,54px); overflow: hidden; border-bottom: 1px solid var(--line); }
-.page-hero::before { content:""; position:absolute; inset:0; background: url('Images/bannerarticulos.png') center/cover no-repeat; opacity:.25; }
-.page-hero::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(10,9,8,.6), rgba(10,9,8,.92)); }
+.page-hero { position: relative; padding: clamp(52px,9vw,88px) 0 clamp(34px,5vw,52px); overflow: hidden; border-bottom: 1px solid var(--line); }
+.page-hero::before { content:""; position:absolute; inset:0; background: url('Images/bannerarticulos.png') center/cover no-repeat; opacity:.24; }
+.page-hero::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(8,7,10,.6), rgba(8,7,10,.94)); }
 .page-hero .wrap { position: relative; z-index: 2; }
-.page-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.1rem,6vw,3.6rem); margin: 14px 0 0; letter-spacing: -.02em; line-height:.95; }
-.page-hero p { color: var(--fog); margin: 14px 0 0; max-width: 56ch; font-size: 1.02rem; }
-.ship-note { display:inline-flex; align-items:center; gap:8px; margin-top:18px; font-size:.85rem; color:var(--sand); background:rgba(216,184,120,.08); border:1px solid rgba(216,184,120,.25); padding:8px 14px; border-radius:8px; }
-
-.shop { display: grid; grid-template-columns: 1fr 370px; gap: 30px; align-items: start; }
-@media (max-width: 900px){ .shop { grid-template-columns: 1fr; } }
-
-.products { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 20px; }
-.product { background: var(--ink-3); border:1px solid var(--line); border-radius: var(--r); overflow:hidden; display:flex; flex-direction:column; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
-.product:hover { transform: translateY(-5px); border-color: rgba(225,29,42,.35); box-shadow: var(--shadow); }
-.product .ph { aspect-ratio: 4/3; overflow:hidden; background:#000; }
-.product .ph img { width:100%; height:100%; object-fit:cover; transition: transform .4s ease; }
-.product:hover .ph img { transform: scale(1.05); }
-.product .pb { padding: 14px 14px 16px; display:flex; flex-direction:column; gap:9px; flex:1; }
-.product h3 { font-family:var(--display); font-weight:700; font-size:1rem; margin:0; line-height:1.2; }
-.product .desc { font-size:.82rem; color:var(--fog); margin:0; flex:1; line-height:1.4; }
-.product .price { font-family:var(--display); font-weight:800; font-size:1.2rem; color:var(--sand); }
-.product .price small { font-size:.68rem; color:var(--fog-dim); font-weight:600; }
-.prod-controls { display:flex; gap:9px; align-items:stretch; margin-top:4px; }
-.qty { display:flex; align-items:center; background:var(--ink); border:1px solid var(--line); border-radius:9px; overflow:hidden; }
-.qty button { background:transparent; border:none; color:var(--cream); padding:0 12px; cursor:pointer; font-size:1.1rem; transition:background .2s; }
-.qty button:hover { background:rgba(255,255,255,.07); }
-.qty input { width:30px; background:transparent; border:none; color:var(--cream); text-align:center; font-weight:700; font-family:var(--display); -moz-appearance:textfield; }
-.qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
-.add-btn { flex:1; background:var(--wa); border:none; color:#061b0f; border-radius:9px; cursor:pointer; font-family:var(--display); font-weight:700; font-size:.85rem; transition:background .2s, transform .2s; }
-.add-btn:hover { background:var(--wa-deep); color:#fff; transform: scale(1.02); }
-
-.cart { background: var(--ink-3); border:1px solid rgba(225,29,42,.22); border-radius: var(--r); padding: 20px; position: sticky; top: 84px; box-shadow: var(--shadow); }
-.cart h3 { font-family:var(--display); font-weight:800; font-size:1.2rem; margin:0 0 16px; display:flex; align-items:center; gap:10px; padding-bottom:14px; border-bottom:1px solid var(--line); }
-.cart h3 i { color: var(--red); }
-.cart-list { display:flex; flex-direction:column; gap:10px; max-height:300px; overflow-y:auto; margin-bottom:14px; padding-right:4px; }
-.cart-list::-webkit-scrollbar { width:6px; } .cart-list::-webkit-scrollbar-thumb { background:rgba(255,255,255,.18); border-radius:10px; }
-.empty-cart { text-align:center; color:var(--fog-dim); font-size:.9rem; padding:24px 0; }
-.cart-item { display:flex; gap:10px; align-items:center; background:var(--ink); padding:10px; border-radius:10px; border:1px solid var(--line); }
-.cart-item img { width:54px; height:54px; object-fit:cover; border-radius:7px; }
-.cart-item .meta { flex:1; } .cart-item .meta h4 { margin:0; font-size:.86rem; font-weight:600; } .cart-item .meta small { color:var(--fog); font-size:.76rem; }
-.cart-item .col { text-align:right; } .cart-item .col div { color:var(--sand); font-family:var(--display); font-weight:700; font-size:.86rem; margin-bottom:6px; }
-.remove { background:rgba(225,29,42,.15); border:none; color:var(--red); width:26px; height:26px; border-radius:6px; cursor:pointer; font-size:.75rem; transition:.2s; }
-.remove:hover { background:var(--red); color:#fff; }
-.total-row { display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px dashed var(--line); font-size:1rem; }
-.total-row strong { font-family:var(--display); color:var(--sand); font-size:1.4rem; }
-.cfield { display:flex; flex-direction:column; gap:5px; margin-top:14px; }
-.cfield label { font-size:.74rem; color:var(--fog); font-family:var(--display); font-weight:600; letter-spacing:.03em; text-transform:uppercase; }
-.cfield input { width:100%; padding:11px 12px; border-radius:9px; border:1px solid var(--line); background:var(--ink); color:var(--cream); font-family:var(--body); font-size:.9rem; transition:border-color .2s; }
-.cfield input:focus { outline:none; border-color:var(--red); }
-.cbox { display:flex; align-items:center; gap:9px; margin-top:14px; font-size:.86rem; color:var(--fog); cursor:pointer; }
-.checkout { margin-top:18px; width:100%; }
-.deliver { margin-top:14px; background:var(--ink); padding:11px; border-radius:9px; color:var(--fog); font-size:.82rem; text-align:center; border:1px solid var(--line); }
-.deliver b { color: var(--sand); }
+.page-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2rem,5.4vw,3.4rem); margin: 12px 0 0; letter-spacing: -.02em; line-height:.96; }
+.page-hero p { color: var(--fog); margin: 14px 0 0; max-width: 56ch; font-size: 1rem; }
+.ship-note { display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-size:.84rem; color:var(--sand); background:rgba(217,184,119,.08); border:1px solid rgba(217,184,119,.25); padding:8px 14px; border-radius:9px; }
 </style>
 </head>
 <body>
+<div id="page-progress"></div>
 
 <nav class="lcm-nav">
   <a href="index.html" class="lcm-brand">
@@ -81,25 +41,29 @@
     <a href="index.html">Inicio</a>
     <a href="ultimas_ventas.html">Vendidos</a>
     <a href="ventas.html" class="active">Accesorios</a>
+    <a href="index.html#vender">Vender mi auto</a>
     <a href="https://wa.me/526241181978" class="wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
 </nav>
 
 <header class="page-hero">
-  <div class="wrap">
+  <div class="wrap reveal">
     <span class="eyebrow">Tienda</span>
     <h1>Accesorios y repuestos<br>para tu auto</h1>
-    <p>Aparta y paga: armas tu pedido aquí y te llega la confirmación directo por WhatsApp. Stock limitado.</p>
-    <span class="ship-note"><i class="fas fa-truck"></i> Envíos solo en Los Cabos, BCS · fuera de zona, consultar</span>
+    <p>Arma tu pedido aquí y te llega la confirmación directo por WhatsApp. Stock limitado.</p>
+    <span class="ship-note"><i class="fas fa-truck"></i> Envíos en Los Cabos, BCS · fuera de zona, consultar</span>
   </div>
 </header>
 
 <main class="section wrap reveal">
   <div class="shop">
-    <div class="products" id="productsGrid"></div>
+    <div>
+      <div class="shop-filters" id="shopFilters"></div>
+      <div class="products" id="productsGrid"></div>
+    </div>
 
     <aside class="cart">
-      <h3><i class="fas fa-cart-shopping"></i> Tu pedido</h3>
+      <h3><i class="fas fa-cart-shopping"></i> Tu pedido <span class="cart-badge" id="cartBadge" style="display:none">0</span></h3>
       <div class="cart-list" id="cartList">
         <div class="empty-cart">Aún no agregas artículos.</div>
       </div>
@@ -125,67 +89,93 @@
       <a href="ventas.html">Accesorios</a>
       <a href="https://wa.me/526241181978">WhatsApp</a>
     </div>
-    <div class="copy">© 2026 Los Cabos Motors · El puente entre el comprador y el vendedor · Los Cabos, BCS</div>
+    <div class="legal">© 2026 Los Cabos Motors · Los Cabos, BCS.</div>
   </div>
 </footer>
 
 <a class="wa-float" href="https://wa.me/526241181978" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-<script src="assets/lcm.js"></script>
+<script src="assets/lcm.js?v=3"></script>
 
 <script>
 const PRODUCTS = [
-  {id:'lip-mustang', title:'Lip deportivo Mustang 01-19', desc:'Lip delantero estilo GT, excelente acabado.', price: 2800, img:'ventas/lipmustang.jpg'},
-  {id:'porta-placas', title:'Porta placas deportivo', desc:'Marco resistente con estilo fibra de carbono.', price: 850, img:'ventas/portaplaca.jpg'},
-  {id:'llanta-winrun', title:'Llanta Winrun', desc:'93W XL 225/35ZR20 de alto rendimiento.', price: 1500, img:'ventas/winrunll.jpg'}
+  {id:'lip-mustang', title:'Lip deportivo Mustang 01-19', desc:'Lip delantero estilo GT, excelente acabado.', price: 2800, img:'ventas/thumb/lipmustang.jpg', cat:'Exterior'},
+  {id:'porta-placas', title:'Porta placas deportivo', desc:'Marco resistente con estilo fibra de carbono.', price: 850, img:'ventas/thumb/portaplaca.jpg', cat:'Exterior'},
+  {id:'llanta-winrun', title:'Llanta Winrun', desc:'93W XL 225/35ZR20 de alto rendimiento.', price: 1500, img:'ventas/thumb/winrunll.jpg', cat:'Llantas'}
 ];
 const WHATSAPP_NUMBER = '526241181978';
 const productsGrid = document.getElementById('productsGrid');
+const filtersWrap = document.getElementById('shopFilters');
 
-PRODUCTS.forEach(p => {
-  const card = document.createElement('div');
-  card.className = 'product';
-  card.innerHTML = `
-    <div class="ph"><img src="${p.img}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/300x225/1b1917/d8b878?text=Sin+imagen'"></div>
-    <div class="pb">
-      <h3>${p.title}</h3>
-      <p class="desc">${p.desc}</p>
-      <div class="price">$${p.price.toLocaleString()} <small>MXN</small></div>
-      <div class="prod-controls">
-        <div class="qty">
-          <button class="qty-dec" data-id="${p.id}">−</button>
-          <input type="number" min="1" value="1" class="qty-input" data-id="${p.id}" readonly>
-          <button class="qty-inc" data-id="${p.id}">+</button>
+const cats = ['Todos', ...new Set(PRODUCTS.map(p => p.cat))];
+let activeCat = 'Todos';
+
+function renderFilters(){
+  filtersWrap.innerHTML = '';
+  cats.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'chip-filter' + (c === activeCat ? ' active' : '');
+    b.textContent = c;
+    b.onclick = () => { activeCat = c; renderFilters(); renderProducts(); };
+    filtersWrap.appendChild(b);
+  });
+}
+
+function renderProducts(){
+  productsGrid.innerHTML = '';
+  const list = activeCat === 'Todos' ? PRODUCTS : PRODUCTS.filter(p => p.cat === activeCat);
+  list.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product';
+    card.innerHTML = `
+      <div class="ph"><img src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x225/17161b/d9b877?text=Sin+imagen'"></div>
+      <div class="pb">
+        <h3>${p.title}</h3>
+        <p class="desc">${p.desc}</p>
+        <div class="price">$${p.price.toLocaleString()} <small>MXN</small></div>
+        <div class="prod-controls">
+          <div class="qty">
+            <button class="qty-dec" data-id="${p.id}">−</button>
+            <input type="number" min="1" value="1" class="qty-input" data-id="${p.id}" readonly>
+            <button class="qty-inc" data-id="${p.id}">+</button>
+          </div>
+          <button class="add-btn" data-id="${p.id}">Agregar</button>
         </div>
-        <button class="add-btn" data-id="${p.id}">Agregar</button>
-      </div>
-    </div>`;
-  productsGrid.appendChild(card);
-});
+      </div>`;
+    productsGrid.appendChild(card);
+  });
+}
+renderFilters();
+renderProducts();
 
 let CART = {};
 function updateCartUI(){
   const cartList = document.getElementById('cartList');
   const cartTotal = document.getElementById('cartTotal');
+  const cartBadge = document.getElementById('cartBadge');
   const items = Object.values(CART);
   cartList.innerHTML = '';
   if(items.length === 0){
     cartList.innerHTML = '<div class="empty-cart">Aún no agregas artículos.</div>';
     cartTotal.textContent = '$0 MXN';
+    cartBadge.style.display = 'none';
     return;
   }
-  let total = 0;
+  let total = 0, count = 0;
   items.forEach(item => {
     total += item.qty * item.product.price;
+    count += item.qty;
     const el = document.createElement('div');
     el.className = 'cart-item';
     el.innerHTML = `
-      <img src="${item.product.img}" onerror="this.src='https://via.placeholder.com/60x60/1b1917/d8b878?text=IMG'">
+      <img src="${item.product.img}" onerror="this.src='https://via.placeholder.com/60x60/17161b/d9b877?text=IMG'">
       <div class="meta"><h4>${item.product.title}</h4><small>${item.qty} × $${item.product.price.toLocaleString()}</small></div>
       <div class="col"><div>$${(item.qty*item.product.price).toLocaleString()}</div>
         <button class="remove" data-id="${item.product.id}"><i class="fas fa-trash"></i></button></div>`;
     cartList.appendChild(el);
   });
   cartTotal.textContent = `$${total.toLocaleString()} MXN`;
+  cartBadge.style.display = 'inline-block';
+  cartBadge.textContent = count;
   cartList.querySelectorAll('.remove').forEach(btn => {
     btn.onclick = () => { const id = btn.dataset.id || btn.closest('.remove').dataset.id; delete CART[id]; updateCartUI(); };
   });
@@ -208,12 +198,16 @@ document.addEventListener('click', e => {
     if(CART[id]) CART[id].qty += qty; else CART[id] = {product, qty};
     qtyInput.value = 1;
     updateCartUI();
+    e.target.classList.add('added');
+    e.target.textContent = 'Agregado ✓';
+    setTimeout(() => { e.target.classList.remove('added'); e.target.textContent = 'Agregar'; }, 1200);
+    if (window.lcmToast) window.lcmToast(product.title + ' agregado al pedido');
   }
 });
 
 document.getElementById('checkoutBtn').onclick = () => {
   const items = Object.values(CART);
-  if(items.length === 0){ alert("Tu pedido está vacío. Agrega algún artículo antes de enviar."); return; }
+  if(items.length === 0){ if(window.lcmToast) lcmToast('Tu pedido está vacío','circle-exclamation'); return; }
   const nombre = document.getElementById('c_name').value.trim();
   const telefono = document.getElementById('c_phone').value.trim();
   const direccion = document.getElementById('c_address').value.trim();
