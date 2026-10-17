@@ -174,14 +174,24 @@
     if (isSold) {
       priceEl.innerHTML = '<span style="color:#ff7580;font-size:1rem">Vehículo vendido</span>';
     } else {
-      priceEl.innerHTML = priceVal ? ('$' + priceVal + ' <small>MXN</small>') : 'Consultar precio';
+      var usdVal = car.dataset.priceUsd;
+      var base = car.dataset.priceBase || 'mxn';
+      if (base === 'usd' && usdVal) {
+        priceEl.innerHTML = '$' + usdVal + ' <small>USD</small>' +
+          (priceVal ? '<span class="price-alt">≈ $' + priceVal + ' MXN</span>' : '');
+      } else if (priceVal) {
+        priceEl.innerHTML = '$' + priceVal + ' <small>MXN</small>' +
+          (usdVal ? '<span class="price-alt">≈ $' + usdVal + ' USD</span>' : '');
+      } else {
+        priceEl.innerHTML = '<span class="price-ask">Precio a consultar</span>';
+      }
     }
     document.getElementById('modalDesc').textContent = car.dataset.desc || '';
 
     var badgeRow = overlay.querySelector('.badge-row');
     badgeRow.innerHTML = isSold
       ? '<span class="car-badge" style="position:static;color:#ff7580;border-color:rgba(226,34,47,.5)">Vendido</span>'
-      : '<span class="car-badge" style="position:static">Disponible</span>';
+      : '<span class="car-badge" style="position:static">' + ((car.querySelector('.car-badge') || {}).textContent || 'Disponible') + '</span>';
 
     var specsWrap = document.getElementById('modalSpecs');
     specsWrap.innerHTML = '';
