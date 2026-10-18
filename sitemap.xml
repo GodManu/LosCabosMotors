@@ -20,6 +20,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://loscabosmotors.com/nosotros.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://loscabosmotors.com/Images/LCMBANNER.png</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://loscabosmotors.com/autos/hummer2003.html</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>

@@ -763,3 +763,4 @@ html { scroll-padding-top: 80px; }
 .faq { max-width: var(--maxw); }
 .faq details, .faq .row-head { max-width: 860px; }
 @media (max-width: 760px) { .dgal-main { aspect-ratio: 1 / 1.05; } .dgal-main img { object-fit: cover; } }
+@media (max-width: 900px) { .tabbar { grid-template-columns: repeat(6, 1fr); } .tabbar a { font-size: .6rem; } }

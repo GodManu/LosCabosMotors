@@ -29,7 +29,7 @@
         a.classList.toggle('active', a.getAttribute('data-nav') === key);
       });
     }
-    var map = { vendidos: 'vendidos', accesorios: 'accesorios', detalle: 'autos', index: 'autos' };
+    var map = { vendidos: 'vendidos', accesorios: 'accesorios', detalle: 'autos', index: 'autos', nosotros: 'nosotros' };
     setActive(map[page] || '');
     if (page === 'index' && 'IntersectionObserver' in window) {
       var secs = [['autos', 'autos'], ['recientes', 'vendidos'], ['vender', 'vender'], ['preguntas', 'faq'], ['contacto', '']];
