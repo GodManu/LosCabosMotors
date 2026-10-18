@@ -1,51 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://loscabosmotors.com/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image><image:loc>https://loscabosmotors.com/Images/og/portada.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://loscabosmotors.com/ultimas_ventas.html</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://loscabosmotors.com/ventas.html</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loscabosmotors.com/autos/camaro2010.html</loc>
-    <lastmod>2026-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://loscabosmotors.com/autos/cupra2016.html</loc>
-    <lastmod>2026-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://loscabosmotors.com/autos/outlander2016.html</loc>
-    <lastmod>2026-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://loscabosmotors.com/autos/rogue2016.html</loc>
-    <lastmod>2026-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://loscabosmotors.com/autos/hummer2003.html</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/HummerFrontalD.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/HummerFrontalI.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/HummerLado.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/HummerTrasero.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/HummerAtras.jpeg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://loscabosmotors.com/autos/outlander2016.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/MitsubishiFrontal.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/MitsubishiLado.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/MitsubishiTrasero.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/MitsubishiPiloto.jpeg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://loscabosmotors.com/autos/rogue2016.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/NissanFrontal.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/NissanAtrasD.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/NissanTrasero2.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/NissanAtras.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/NissanTrasero.jpeg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://loscabosmotors.com/autos/cupra2016.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://loscabosmotors.com/Images/Cuprafrente.png</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/Images/Cupralado.png</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/Images/Cupraatras.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://loscabosmotors.com/autos/camaro2010.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/camaro1.jpg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/camaro7.jpg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/camaro4.jpg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/camaro2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://loscabosmotors.com/GALERIA/camaro3.jpg</image:loc></image:image>
   </url>
 </urlset>
